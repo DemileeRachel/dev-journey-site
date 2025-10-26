@@ -19,45 +19,48 @@ body {
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
-/* 🕒 Center the clock in the navbar */
+
+/* 💻 Logo */
+.logo {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* 🕒 UK Clock (below logo, far left) */
 #clock-container {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  color: #fff;
   background: rgba(255, 255, 255, 0.08);
-  padding: 10px 20px;
+  color: white;
+  text-align: center;
+  padding: 8px 14px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 15px rgba(255, 215, 102, 0.5);
-  transition: box-shadow 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 215, 102, 0.4);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  width: max-content;
 }
 
 #clock-container:hover {
   box-shadow: 0 0 25px rgba(255, 215, 102, 0.8);
+  transform: translateY(-2px);
 }
 
 #clock-container h2 {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #ffd166;
   margin: 0;
 }
 
 #uk-clock {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  margin: 5px 0 0;
+  margin-top: 4px;
 }
 
-
-.logo {
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-/* 🔗 Nav Links */
+/* 🔗 Navigation Links */
 .nav-links {
   display: flex;
   gap: 30px;
@@ -72,7 +75,7 @@ body {
   transition: color 0.3s ease;
 }
 
-/* ✨ Hover + Active Underline Animation */
+/* ✨ Hover + Active Underline */
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -89,7 +92,7 @@ body {
   width: 100%;
 }
 
-/* 🍔 Mobile Menu */
+/* 🍔 Mobile Menu Button */
 .menu-toggle {
   display: none;
   background: none;
@@ -99,7 +102,7 @@ body {
   cursor: pointer;
 }
 
-/* 📱 Responsive Layout */
+/* 📱 Responsive Menu */
 @media (max-width: 700px) {
   .nav-links {
     display: none;
@@ -121,22 +124,20 @@ body {
   .menu-toggle {
     display: block;
   }
+
+  /* Move clock below logo for mobile */
+  #clock-container {
+    margin-top: 8px;
+  }
 }
 
-/* 🎬 Animation for mobile dropdown */
+/* 🎬 Dropdown Animation */
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; /* allows wrapping on smaller screens */
-  gap: 40px; /* adds nice even space between links */
-  padding: 0 20px; /* ensures space from edges */
-  box-sizing: border-box;
-}
+
+/* 🌟 Hero Section */
 .hero {
   text-align: center;
   margin-top: 100px;
@@ -147,65 +148,4 @@ nav {
   font-size: 2.5rem;
   margin-bottom: 20px;
   color: #222;
-}
-/* 🕒 UK Clock Box */
-#clock-container {
-  background: white;
-  color: #333;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  padding: 20px;
-  width: 250px;
-  margin: 50px auto;
-  text-align: center;
-  font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-#uk-clock {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-top: 10px;
-}
-/* 🕒 UK Clock Box in Navbar */
-#clock-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  left: 30px; /* Slightly left of center */
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 10px 20px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 15px rgba(255, 215, 102, 0.5);
-  color: white;
-  text-align: center;
-  transition: box-shadow 0.3s ease;
-}
-
-#clock-container:hover {
-  box-shadow: 0 0 25px rgba(255, 215, 102, 0.8);
-}
-
-#clock-container h2 {
-  font-size: 1rem;
-  margin: 0;
-  color: #ffd166;
-}
-
-#uk-clock {
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-}
-
-#uk-clock {
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin: 5px 0 0;
 }
