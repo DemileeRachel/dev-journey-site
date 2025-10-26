@@ -117,3 +117,21 @@ nav {
   margin-bottom: 20px;
   color: #222;
 }
+/* 🕒 UK Clock Box */
+#clock-container {
+  background: white;
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  width: 250px;
+  margin: 50px auto;
+  text-align: center;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+#uk-clock {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 10px;
+}

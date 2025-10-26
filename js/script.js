@@ -34,4 +34,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+// 🕒 UK Clock
+function updateUKClock() {
+  const options = {
+    timeZone: 'Europe/London',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  };
+  const now = new Date().toLocaleTimeString('en-GB', options);
+  const clockElement = document.getElementById('uk-clock');
+  if (clockElement) {
+    clockElement.textContent = now;
+  }
+}
+
+// Update every second
+setInterval(updateUKClock, 1000);
+updateUKClock(); // initial call
 
