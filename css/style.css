@@ -12,13 +12,44 @@ body {
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(90deg, #2c2c2c, #3a3a3a);
-  padding: 12px 24px;
+  padding: 12px 40px;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
+/* 🕒 Center the clock in the navbar */
+#clock-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(255, 215, 102, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+#clock-container:hover {
+  box-shadow: 0 0 25px rgba(255, 215, 102, 0.8);
+}
+
+#clock-container h2 {
+  font-size: 1rem;
+  color: #ffd166;
+  margin: 0;
+}
+
+#uk-clock {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 5px 0 0;
+}
+
 
 .logo {
   color: white;
