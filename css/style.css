@@ -42,4 +42,42 @@ body {
   margin: 0;
   padding-top: 60px; /* prevents content from hiding under the fixed header */
 }
+/* Navigation Bar */
+header {
+  background-color: #333;
+  padding: 15px 0;
+  position: fixed; /* Keeps it visible on scroll */
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Keeps it above other elements */
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ffb3b3; /* Soft pink hover color */
+}
+
+nav a.active {
+  color: #ffd166; /* Highlight for current page */
+}
+
+/* Push page content below fixed navbar */
+body {
+  margin: 0;
+  padding-top: 70px; /* Matches navbar height */
+  background-color: #e6e6fa;
+  font-family: Arial, sans-serif;
+}
 
