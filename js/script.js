@@ -8,3 +8,7 @@ document.getElementById('menuToggle').addEventListener('click', function() {
   const navLinks = document.getElementById('navLinks');
   navLinks.classList.toggle('active');
 });
+// Toggle mobile menu visibility
+document.getElementById("menuToggle").addEventListener("click", function() {
+  document.getElementById("navLinks").classList.toggle("active");
+});
