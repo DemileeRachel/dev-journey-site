@@ -166,18 +166,23 @@ nav {
   font-weight: bold;
   margin-top: 10px;
 }
-/* 🕒 UK Clock in Navbar */
+/* 🕒 UK Clock Box in Navbar */
 #clock-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  color: #fff;
-  margin-left: 30px;
-  padding: 10px 15px;
-  background: rgba(255, 255, 255, 0.1);
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 30px; /* Slightly left of center */
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
   box-shadow: 0 0 15px rgba(255, 215, 102, 0.5);
+  color: white;
+  text-align: center;
   transition: box-shadow 0.3s ease;
 }
 
@@ -189,6 +194,14 @@ nav {
   font-size: 1rem;
   margin: 0;
   color: #ffd166;
+}
+
+#uk-clock {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
 }
 
 #uk-clock {
