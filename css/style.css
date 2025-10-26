@@ -29,4 +29,17 @@ nav a.active {
   border-bottom: 2px solid #00bfff;
   padding-bottom: 2px;
 }
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  z-index: 1000; /* keeps it above other content */
+}
+
+body {
+  margin: 0;
+  padding-top: 60px; /* prevents content from hiding under the fixed header */
+}
 
