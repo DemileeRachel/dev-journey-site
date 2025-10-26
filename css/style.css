@@ -5,7 +5,6 @@ body {
   background-color: lavender;
   font-family: Arial, sans-serif;
 }
-
 /* 🌈 Navigation Bar */
 .navbar {
   display: flex;
@@ -20,18 +19,57 @@ body {
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-/* 💻 Logo */
+/* 🕒 Centered clock */
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+
 .logo {
   color: white;
   font-weight: bold;
   font-size: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
 }
 
-/* 🕒 UK Clock (below logo, perfectly centered) */
+/* 🔗 Nav Links */
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 8px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: #ffd166;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* 🕒 Clock Styles */
 #clock-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,14 +83,11 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 20px rgba(255, 215, 102, 0.45);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
-
-  width: 150px; /* keeps it nicely compact */
-  margin-top: 8px; /* space below “My Dev Journey” */
 }
 
 #clock-container:hover {
   box-shadow: 0 0 35px rgba(255, 215, 102, 0.8);
-  transform: translateY(-2px);
+  transform: translate(-50%, -2px);
 }
 
 #clock-container h2 {
@@ -68,6 +103,36 @@ body {
   margin-top: 4px;
   text-align: center;
 }
+
+/* 📱 Responsive Layout */
+@media (max-width: 700px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #333;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    width: 180px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  #clock-container {
+    position: static;
+    transform: none;
+    margin: 10px auto;
+  }
+}
+
 
 
 /* 🔗 Navigation Links */
