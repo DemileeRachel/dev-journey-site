@@ -1,45 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Dev Journey</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <header class="navbar">
+    <div class="navbar-inner">
+      <div class="logo">My Dev Journey</div>
 
- <header class="navbar">
- <div class="navbar">
-  <div class="navbar-inner">
-    <div class="logo">My Dev Journey</div>
-    <div id="clock-container">
-      <h2>🌍 UK Time</h2>
-      <div id="uk-clock">--:--:--</div>
+      <!-- 🕒 UK Clock -->
+      <div id="clock-container">
+        <h2>🌍 UK Time</h2>
+        <div id="uk-clock">--:--:--</div>
+      </div>
+
+      <!-- 🔗 Navigation -->
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+      </div>
     </div>
-    <div class="nav-links">
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
-    </div>
-  </div>
-</div>
 
+    <!-- 🍔 Mobile Menu Button -->
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </header>
 
-  <button class="menu-toggle" id="menuToggle">☰</button>
-
-  <nav class="nav-links" id="navLinks">
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="projects.html">Projects</a>
-  </nav>
-</header>
-
-
-
-<main class="hero">
-  <h1>Made using GitHub Pages</h1>
-  <button id="greetBtn">Click me!</button>
-  <p>If you see this, my site works 🌸</p>
-</main>
-
+  <!-- 🦋 Hero Section -->
+  <main class="hero">
+    <h1>Made using GitHub Pages</h1>
+    <button id="greetBtn">Click me!</button>
+    <p>If you see this, my site works 🌸</p>
+  </main>
 
   <script src="js/script.js"></script>
 </body>

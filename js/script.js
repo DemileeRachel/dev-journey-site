@@ -1,16 +1,14 @@
-// js/script.js
-
 document.addEventListener('DOMContentLoaded', function () {
-  // Mobile menu toggle (safe: checks elements exist)
+  // 🍔 Mobile menu toggle
   const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
+  const navLinks = document.querySelector('.nav-links');
   if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
   }
 
-  // Greet button (safe)
+  // 🎉 Greet button
   const greetBtn = document.getElementById('greetBtn');
   if (greetBtn) {
     greetBtn.addEventListener('click', () => {
@@ -18,23 +16,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Optional: automatically set "active" class on nav links based on current page
-  // (This removes the need to manually add class="active" in each HTML file)
+  // 🌐 Highlight active page
   const links = document.querySelectorAll('.nav-links a');
-  if (links && links.length) {
-    const path = window.location.pathname.split('/').pop(); // e.g. "index.html" or "about.html"
-    links.forEach(link => {
-      // Remove existing active class
-      link.classList.remove('active');
-      // If href matches current path, add active
-      const href = link.getAttribute('href');
-      if (href === path || (href === 'index.html' && path === '')) {
-        link.classList.add('active');
-      }
-    });
-  }
+  const path = window.location.pathname.split('/').pop();
+  links.forEach(link => {
+    link.classList.remove('active');
+    const href = link.getAttribute('href');
+    if (href === path || (href === 'index.html' && path === '')) {
+      link.classList.add('active');
+    }
+  });
 });
-// 🕒 UK Clock
+
+// 🕒 UK Clock Function
 function updateUKClock() {
   const options = {
     timeZone: 'Europe/London',
@@ -50,7 +44,7 @@ function updateUKClock() {
   }
 }
 
-// Update every second
 setInterval(updateUKClock, 1000);
 updateUKClock(); // initial call
+
 
