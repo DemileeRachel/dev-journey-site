@@ -1,31 +1,28 @@
-/* 🌸 Base Styles */
+/* 🌸 Base */
 body {
   margin: 0;
-  padding-top: 70px; /* Space for fixed navbar */
+  padding-top: 80px;
   background-color: lavender;
   font-family: Arial, sans-serif;
 }
 
-/* 🌈 Navigation Bar */
+/* 🌈 Navbar */
 .navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(90deg, #2c2c2c, #3a3a3a);
-  padding: 12px 40px;
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000;
+  background: linear-gradient(90deg, #2c2c2c, #3a3a3a);
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  z-index: 1000;
 }
 
 .navbar-inner {
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  max-width: 1100px;
+  padding: 12px 20px;
   position: relative;
 }
 
@@ -35,19 +32,43 @@ body {
   font-size: 18px;
 }
 
-/* 🔗 Nav Links */
+/* 🕒 Clock */
+#clock-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  text-align: center;
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(255, 215, 102, 0.4);
+  font-size: 0.85rem;
+}
+
+#clock-container h2 {
+  font-size: 0.8rem;
+  color: #ffd166;
+  margin: 0;
+}
+
+#uk-clock {
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* 🔗 Links */
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: 25px;
 }
 
 .nav-links a {
-  position: relative;
   color: white;
   text-decoration: none;
   font-weight: 600;
-  padding: 6px 8px;
-  transition: color 0.3s ease;
+  position: relative;
 }
 
 .nav-links a::after {
@@ -55,9 +76,9 @@ body {
   position: absolute;
   left: 0;
   bottom: -4px;
-  width: 0%;
   height: 2px;
-  background-color: #ffd166;
+  width: 0;
+  background: #ffd166;
   transition: width 0.3s ease;
 }
 
@@ -66,53 +87,29 @@ body {
   width: 100%;
 }
 
-/* 🕒 Refined UK Clock (Smaller + Glowing) */
-#clock-container {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 4px;
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
-  text-align: center;
-  padding: 4px 10px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 10px rgba(255, 215, 102, 0.3);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-#clock-container:hover {
-  box-shadow: 0 0 18px rgba(255, 215, 102, 0.7);
-  transform: translate(-50%, -1px);
-}
-
-#clock-container h2 {
-  font-size: 0.75rem;
-  color: #ffd166;
-  margin: 0;
-  letter-spacing: 0.4px;
-  font-weight: 500;
-}
-
-#uk-clock {
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-top: 2px;
-}
-
-/* 🍔 Mobile Menu Button */
+/* 🍔 Toggle */
 .menu-toggle {
   display: none;
   background: none;
   border: none;
   color: white;
-  font-size: 26px;
+  font-size: 24px;
   cursor: pointer;
 }
 
-/* 📱 Responsive Layout */
+/* 📱 Responsive */
 @media (max-width: 700px) {
+  .navbar-inner {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  #clock-container {
+    position: static;
+    transform: none;
+    margin: 8px auto;
+  }
+
   .nav-links {
     display: none;
     flex-direction: column;
@@ -127,35 +124,27 @@ body {
 
   .nav-links.active {
     display: flex;
-    animation: slideDown 0.3s ease forwards;
+    animation: slideDown 0.3s ease;
   }
 
   .menu-toggle {
     display: block;
   }
-
-  /* Move clock below logo for mobile */
-  #clock-container {
-    position: static;
-    transform: none;
-    margin: 10px auto;
-  }
 }
 
-/* 🎬 Dropdown Animation */
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* 🌟 Hero Section */
+/* 🌟 Hero */
 .hero {
   text-align: center;
-  margin-top: 100px;
+  margin-top: 120px;
 }
 
 .hero h1 {
   font-size: 2.5rem;
-  margin-bottom: 20px;
   color: #222;
 }
+
