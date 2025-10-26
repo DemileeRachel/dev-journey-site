@@ -1,60 +1,34 @@
-body {
-  background-color: lavender;
-}
-/* Navigation Bar Styling */
-header {
-  background-color: #333;
-  padding: 10px 0;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  font-family: Arial, sans-serif;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  color: #00bfff;
-}
-nav a.active {
-  color: #00bfff;
-  border-bottom: 2px solid #00bfff;
-  padding-bottom: 2px;
-}
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #333;
-  z-index: 1000; /* keeps it above other content */
-}
-
+/* 🌸 Base Styles */
 body {
   margin: 0;
-  padding-top: 60px; /* prevents content from hiding under the fixed header */
-}
-/* Navigation Bar */
-header {
-  background-color: #333;
-  padding: 15px 0;
-  position: fixed; /* Keeps it visible on scroll */
-  top: 0;
-  width: 100%;
-  z-index: 1000; /* Keeps it above other elements */
+  padding-top: 70px; /* Space for fixed navbar */
+  background-color: lavender;
+  font-family: Arial, sans-serif;
 }
 
-nav {
+/* 🌈 Navigation Bar */
+.navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #2c2c2c, #3a3a3a);
+  padding: 12px 24px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.logo {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* 🔗 Nav Links */
+.nav-links {
+  display: flex;
   gap: 30px;
 }
 
@@ -67,7 +41,7 @@ nav {
   transition: color 0.3s ease;
 }
 
-/* Underline animation */
+/* ✨ Hover + Active Underline Animation */
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -84,31 +58,33 @@ nav {
   width: 100%;
 }
 
-
+/* 🍔 Mobile Menu */
 .menu-toggle {
   display: none;
   background: none;
   border: none;
   color: white;
-  font-size: 24px;
+  font-size: 26px;
   cursor: pointer;
 }
 
-/* Mobile Styles */
+/* 📱 Responsive Layout */
 @media (max-width: 700px) {
   .nav-links {
     display: none;
     flex-direction: column;
-    background-color: #333;
+    background: #333;
     position: absolute;
     top: 60px;
-    right: 0;
-    width: 150px;
-    padding: 10px;
+    right: 10px;
+    width: 180px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   }
 
   .nav-links.active {
     display: flex;
+    animation: slideDown 0.3s ease forwards;
   }
 
   .menu-toggle {
@@ -116,3 +92,8 @@ nav {
   }
 }
 
+/* 🎬 Animation for mobile dropdown */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
