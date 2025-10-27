@@ -1,16 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
+  const greetBtn = document.getElementById('greetBtn');
+  const emojiContainer = document.getElementById('emoji-container');
+  const clock = document.getElementById('uk-clock');
+  const greeting = document.getElementById('greeting');
+  const paragraph = document.getElementById('intro-text');
 
-  // 🍔 Toggle menu
+  // 🍔 Toggle Menu (Safari-safe)
   if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       navLinks.classList.toggle('active');
       menuToggle.classList.toggle('open');
     });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('open');
+      }
+    });
   }
 
-  // 🕒 Update UK Clock
+  // 🕒 UK Clock
   function updateUKClock() {
     const now = new Date().toLocaleTimeString('en-GB', {
       timeZone: 'Europe/London',
@@ -19,59 +33,58 @@ document.addEventListener('DOMContentLoaded', () => {
       second: '2-digit',
       hour12: false
     });
-    const clock = document.getElementById('uk-clock');
     if (clock) clock.textContent = now;
   }
   setInterval(updateUKClock, 1000);
   updateUKClock();
 
-  // 🌅 Dynamic Greeting
-  function updateGreeting() {
+  // 🌤 Greeting
+  if (greeting) {
     const hours = new Date().getHours();
-    let greeting = 'Welcome to My Dev Journey 🌸';
-    if (hours < 12) greeting = 'Good Morning, Developer 🌞';
-    else if (hours < 18) greeting = 'Good Afternoon, Coder ☕';
-    else greeting = 'Good Evening, Dream Builder 🌙';
-    document.getElementById('greeting').textContent = greeting;
+    let text = 'Welcome to My Dev Journey 🌸';
+    if (hours < 12) text = 'Good Morning, Developer 🌞';
+    else if (hours < 18) text = 'Good Afternoon, Coder ☕';
+    else text = 'Good Evening, Dream Builder 🌙';
+    greeting.textContent = text;
   }
-  updateGreeting();
 
-  // 💬 Typewriter Effect
-  function typeWriter(element, text, speed = 80) {
-    let i = 0;
-    function typing() {
-      if (i < text.length) {
-        element.textContent += text.charAt(i);
-        i++;
-        setTimeout(typing, speed);
-      }
-    }
-    typing();
-  }
-  const paragraph = document.getElementById('intro-text');
+  // 💬 Typewriter
   if (paragraph) {
     const text = paragraph.textContent;
     paragraph.textContent = '';
-    typeWriter(paragraph, text);
+    let i = 0;
+    (function type() {
+      if (i < text.length) {
+        paragraph.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 70);
+      }
+    })();
   }
 
-  // 🎈 Floating Emoji Particles
+  // ✨ Floating Emojis
   function spawnEmoji() {
-    const emojis = ['💻', '🌸', '🚀', '✨', '🧠'];
+    if (!emojiContainer) return;
+    const emojis = ['💻', '🌸', '🚀', '✨', '🧠', '💡', '🎨'];
     const emoji = document.createElement('div');
     emoji.className = 'float-emoji';
     emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
     emoji.style.left = Math.random() * 100 + 'vw';
-    document.getElementById('emoji-container').appendChild(emoji);
+    emoji.style.animationDuration = 3 + Math.random() * 3 + 's';
+    emojiContainer.appendChild(emoji);
     setTimeout(() => emoji.remove(), 6000);
   }
   setInterval(spawnEmoji, 1500);
 
-  // 🎉 Button Click
-  const greetBtn = document.getElementById('greetBtn');
+  // 🎉 Fun Button
   if (greetBtn) {
     greetBtn.addEventListener('click', () => {
-      alert('You clicked the magic button — keep building amazing things! 🚀');
+      greetBtn.classList.add('clicked');
+      greetBtn.textContent = '✨ Magic! ✨';
+      setTimeout(() => {
+        greetBtn.textContent = 'Do you press?';
+        greetBtn.classList.remove('clicked');
+      }, 1500);
     });
   }
 });

@@ -198,3 +198,47 @@ body {
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
 }
+.fun-btn {
+  background: linear-gradient(135deg, #ffffff, #d6e0ff);
+  border: 2px solid #999;
+  border-radius: 12px;
+  padding: 0.7rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255,255,255,0.4);
+}
+
+.fun-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #e2e8ff, #ffffff);
+  box-shadow: 0 0 20px rgba(200,200,255,0.7);
+}
+
+.fun-btn.clicked {
+  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
+  box-shadow: 0 0 25px rgba(255,200,255,0.9);
+  transform: scale(1.15) rotate(-2deg);
+}
+
+/* Floating Emoji Animation */
+.float-emoji {
+  position: absolute;
+  bottom: 0;
+  font-size: 1.5rem;
+  animation: floatUp linear forwards;
+  opacity: 0.9;
+  z-index: 5;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
