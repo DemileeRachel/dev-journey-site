@@ -1,9 +1,10 @@
 /* 🌸 Base */
 body {
   margin: 0;
-  padding-top: 80px; /* Space for fixed navbar */
+  padding-top: 80px;
   background-color: lavender;
   font-family: Arial, sans-serif;
+  overflow-x: hidden;
 }
 
 /* 🌈 Navbar */
@@ -45,12 +46,6 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 15px rgba(255, 215, 102, 0.4);
   font-size: 0.85rem;
-  transition: all 0.3s ease;
-}
-
-#clock-container:hover {
-  box-shadow: 0 0 25px rgba(255, 215, 102, 0.8);
-  transform: translateX(-50%) scale(1.03);
 }
 
 #clock-container h2 {
@@ -75,7 +70,6 @@ body {
   text-decoration: none;
   font-weight: 600;
   position: relative;
-  transition: color 0.3s ease;
 }
 
 .nav-links a::after {
@@ -94,11 +88,7 @@ body {
   width: 100%;
 }
 
-.nav-links a:hover {
-  color: #ffd166;
-}
-
-/* 🍔 Hamburger Menu Button */
+/* 🍔 Hamburger */
 .menu-toggle {
   display: none;
   background: none;
@@ -106,18 +96,12 @@ body {
   color: white;
   font-size: 26px;
   cursor: pointer;
-  transition: transform 0.3s ease;
 }
 
-.menu-toggle.open {
-  transform: rotate(90deg);
-}
-
-/* 📱 Responsive Layout */
+/* 📱 Responsive */
 @media (max-width: 700px) {
   .navbar-inner {
     flex-wrap: wrap;
-    justify-content: space-between;
   }
 
   #clock-container {
@@ -136,7 +120,6 @@ body {
     width: 180px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    overflow: hidden;
   }
 
   .nav-links.active {
@@ -147,16 +130,6 @@ body {
   .menu-toggle {
     display: block;
   }
-
-  .nav-links a {
-    padding: 10px 0;
-    text-align: center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .nav-links a:last-child {
-    border-bottom: none;
-  }
 }
 
 @keyframes slideDown {
@@ -164,49 +137,64 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* 🌟 Hero Section */
+/* 🌟 Hero */
 .hero {
   text-align: center;
   margin-top: 120px;
 }
 
-.hero h1 {
-  font-size: 2.5rem;
-  color: #222;
+/* ✨ Dynamic Greeting */
+.dynamic-greeting {
+  font-size: 1.6rem;
+  color: #333;
+  margin-bottom: 15px;
+  animation: fadeIn 1.5s ease;
 }
 
-/* 🌟 Hero Section */
-.hero {
-  text-align: center;
-  margin-top: 120px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* 🎀 CTA Button */
-.cta-button {
-  background: linear-gradient(90deg, #ffd166, #ff69b4);
-  color: #222;
-  font-weight: bold;
+/* 🎈 Floating Emojis */
+#emoji-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.float-emoji {
+  position: absolute;
+  bottom: 0;
+  font-size: 1.8rem;
+  animation: floatUp 6s linear forwards;
+  opacity: 0.8;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* 💫 Button Styling */
+.fun-btn {
+  margin-top: 40px;
+  padding: 12px 24px;
+  font-size: 1rem;
   border: none;
-  border-radius: 25px;
-  padding: 12px 30px;
-  font-size: 1.1rem;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #ffd166, #ff6b6b);
+  color: white;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  margin: 20px 0;
+  box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-.cta-button:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(90deg, #ffb347, #ff69b4);
-}
-
-.cta-button:active {
-  transform: scale(0.98);
+.fun-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
 }
