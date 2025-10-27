@@ -41,6 +41,18 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateUKClock, 1000);
   updateUKClock();
 });
+// 🍔 Toggle Mobile Menu
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('open');
+    });
+  }
+});
 
 
 
