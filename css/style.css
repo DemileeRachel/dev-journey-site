@@ -242,3 +242,82 @@ body {
     opacity: 0;
   }
 }
+/* 💜 About Me Section */
+.about-section {
+  max-width: 900px;
+  margin: 120px auto;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px 50px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+
+.about-section h2 {
+  font-size: 2.2rem;
+  color: #333;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-section p {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* 🌸 Back Button */
+.about-section a {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 10px 22px;
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
+  color: #333;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
+}
+
+.about-section a:hover {
+  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
+}
+
+/* Optional — make it look better on small screens */
+@media (max-width: 700px) {
+  .about-section {
+    margin: 100px 20px;
+    padding: 30px 25px;
+  }
+
+  .about-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .about-section p {
+    font-size: 1rem;
+  }
+}
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #555;
+  font-size: 0.9rem;
+  margin-top: 60px;
+}
+body {
+  animation: fadePage 1.2s ease;
+}
+
+@keyframes fadePage {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
