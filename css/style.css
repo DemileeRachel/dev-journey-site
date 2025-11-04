@@ -388,3 +388,109 @@ footer {
   color: #333;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
+/* 🧠 Quiz Section */
+.quiz-section {
+  max-width: 700px;
+  margin: 120px auto;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+
+.quiz-section h2 {
+  font-size: 2rem;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;
+}
+
+.quiz-question {
+  margin: 25px 0;
+  text-align: left;
+}
+
+.quiz-question p {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.quiz-option {
+  display: block;
+  margin-bottom: 6px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.quiz-option:hover {
+  background: rgba(139, 92, 246, 0.1);
+}
+
+#result {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #333;
+}
+.quiz-section {
+  max-width: 700px;
+  margin: 120px auto;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+
+.quiz-section h2 {
+  font-size: 2rem;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;
+}
+
+.quiz-question {
+  margin: 25px 0;
+}
+
+.quiz-option {
+  display: block;
+  margin: 8px 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.quiz-option:hover {
+  background: rgba(139, 92, 246, 0.1);
+}
+
+#result {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.fade {
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}

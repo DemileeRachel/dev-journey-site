@@ -1,34 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Projects</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<header class="navbar">
-  <div class="logo">My Dev Journey</div>
+  <header class="navbar">
+    <div class="logo">My Dev Journey</div>
 
-  <!-- Hamburger menu for mobile -->
-  <button class="menu-toggle" id="menuToggle">☰</button>
+    <!-- Hamburger menu for mobile -->
+    <button class="menu-toggle" id="menuToggle">☰</button>
 
-  <!-- Navigation links -->
-  <nav class="nav-links" id="navLinks">
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="projects.html">Projects</a>
-  </nav>
-</header>
-
+    <!-- Navigation links -->
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html" class="active">Projects</a>
+    </nav>
+  </header>
 
   <main class="hero">
     <h1>Projects</h1>
     <p>This is where I’ll showcase my coding projects and experiments.</p>
-        <a href="index.html">Back to Home</a>
+    <a href="index.html">← Back to Home</a>
   </main>
 
-  <script src="js/script.js"></script>
+  <!-- 🐍 Python Mini Quiz Section -->
+  <section class="quiz-section">
+    <h2>🐍 Python Mini Quiz</h2>
+    <p class="quiz-intro">Test your Python knowledge — one question at a time!</p>
+
+    <div id="quiz-container"></div>
+
+    <button id="next-btn" class="fun-btn">Next Question</button>
+    <p id="result"></p>
+  </section>
+
   <footer>
-  <p>© 2025 My Dev Journey! Built with 💜 and curiosity.</p>
-</footer>
+    <p>© 2025 My Dev Journey — Built with 💜 and curiosity.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
