@@ -9,6 +9,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   padding-top: 80px; /* space for fixed navbar */
   background-color: lavender;
   font-family: "Segoe UI", Arial, sans-serif;
@@ -51,7 +52,6 @@ main {
   color: white;
   font-weight: bold;
   font-size: 18px;
-  margin-left: 20px;
 }
 
 .nav-links {
@@ -59,7 +59,6 @@ main {
   justify-content: flex-end;
   align-items: center;
   gap: 25px;
-  margin-right: 20px;
 }
 
 .nav-links a {
@@ -67,7 +66,6 @@ main {
   text-decoration: none;
   font-weight: 600;
   position: relative;
-  transition: color 0.3s ease;
 }
 
 .nav-links a::after {
@@ -86,7 +84,7 @@ main {
   width: 100%;
 }
 
-/* ====== CLOCK (Center of Navbar) ====== */
+/* ====== CLOCK ====== */
 #clock-container {
   position: absolute;
   left: 50%;
@@ -112,7 +110,7 @@ main {
   margin-top: 2px;
 }
 
-/* 🍔 Hamburger (Mobile) */
+/* ====== MOBILE MENU ====== */
 .menu-toggle {
   display: none;
   background: none;
@@ -120,7 +118,6 @@ main {
   color: white;
   font-size: 26px;
   cursor: pointer;
-  margin-right: 20px;
 }
 
 @media (max-width: 700px) {
@@ -161,7 +158,6 @@ main {
 .hero,
 .projects-hero {
   text-align: center;
-  margin-top: 120px;
 }
 
 .hero h1,
@@ -181,7 +177,7 @@ main {
 /* ====== BACK BUTTON ====== */
 .back-btn {
   display: inline-block;
-  margin-top: 12px;
+  margin-top: 8px;
   padding: 10px 24px;
   background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
   color: #333;
@@ -190,7 +186,6 @@ main {
   text-decoration: none;
   box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
   transition: all 0.3s ease;
-  position: relative;
   z-index: 10;
 }
 
@@ -203,7 +198,7 @@ main {
 /* ====== ABOUT SECTION ====== */
 .about-section {
   max-width: 900px;
-  margin: 100px auto;
+  margin: 120px auto 80px;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
   border-radius: 20px;
@@ -213,28 +208,10 @@ main {
   animation: fadeIn 1s ease;
 }
 
-.about-section h2 {
-  font-size: 2.2rem;
-  background: linear-gradient(90deg, #8b5cf6, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
-}
-
-.about-section p {
-  font-size: 1.1rem;
-  color: #444;
-  line-height: 1.6;
-  margin-bottom: 10px;
-}
-
 /* ====== PROJECTS PAGE ====== */
 .projects-hero {
-  text-align: center;
-  margin-top: 130px;
-  margin-bottom: 60px;
-  position: relative;
-  z-index: 5;
+  margin-top: 70px; /* pulled up closer to navbar */
+  margin-bottom: 20px;
 }
 
 .projects-layout {
@@ -245,6 +222,7 @@ main {
   max-width: 1100px;
   margin: 0 auto 100px;
   padding: 0 40px;
+  margin-top: -40px; /* moves content upward */
 }
 
 /* 🐍 Python Quiz */
@@ -256,10 +234,8 @@ main {
   padding: 40px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   text-align: left;
-  position: relative;
-  margin-top: -40px;
+  margin-top: -30px; /* lifted higher again */
   animation: fadeIn 0.8s ease;
-  z-index: 1;
 }
 
 .quiz-section h2 {
@@ -268,11 +244,6 @@ main {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 10px;
-}
-
-.quiz-section p {
-  color: #444;
-  line-height: 1.5;
 }
 
 .quiz-option {
@@ -286,28 +257,6 @@ main {
 
 .quiz-option:hover {
   background: rgba(139, 92, 246, 0.1);
-}
-
-/* 🧮 Buttons */
-.fun-btn,
-#next-btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 24px;
-  background: linear-gradient(135deg, #8b5cf6, #6366f1);
-  color: white;
-  font-weight: 600;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
-  transition: all 0.3s ease;
-}
-
-.fun-btn:hover,
-#next-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
 }
 
 /* 🚀 Projects Showcase */
@@ -338,7 +287,7 @@ main {
   bottom: 0;
   font-size: 1.8rem;
   animation: floatUp 6s linear forwards;
-  opacity: 1; /* full color */
+  opacity: 1; /* fully visible */
   filter: none;
   mix-blend-mode: normal;
 }
@@ -357,6 +306,7 @@ footer {
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: auto;
 }
 
 /* ====== ANIMATIONS ====== */
@@ -366,128 +316,6 @@ footer {
 }
 
 /* ====== RESPONSIVE ====== */
-@media (max-width: 900px) {
-  .projects-layout {
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-    padding: 0 20px;
-  }
-
-  .quiz-section,
-  .project-showcase {
-    width: 100%;
-    margin-top: 0;
-  }
-
-  .projects-hero {
-    margin-top: 100px;
-  }
-}
-/* ===== PAGE LAYOUT CONSISTENCY ===== */
-
-/* Full-page layout structure */
-html, body {
-  height: 100%;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* Main content area expands to fill page */
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* optional: vertically center content */
-}
-
-/* Ensures each major section has padding */
-main > section {
-  padding: 40px 20px;
-}
-
-/* Makes all sections centered & nicely spaced */
-main > section,
-.hero,
-.about-section,
-.projects-layout {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1100px;
-}
-
-/* Ensures footer always sits at bottom visually */
-footer {
-  margin-top: auto;
-}
-.about-section {
-  justify-content: flex-start;
-  margin-top: 120px;
-  margin-bottom: 80px;
-}
-/* ====== PROJECTS PAGE LAYOUT IMPROVEMENTS ====== */
-
-/* Title and back button area */
-.projects-hero {
-  text-align: center;
-  margin-top: 90px;   /* reduced from 130px for better use of space */
-  margin-bottom: 30px; /* slightly tighter below */
-  position: relative;
-  z-index: 5;
-}
-
-.projects-hero h1 {
-  font-size: 2.6rem;
-  background: linear-gradient(90deg, #8b5cf6, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 6px;
-}
-
-/* Back button */
-.back-btn {
-  display: inline-block;
-  margin-top: 5px;
-  padding: 10px 24px;
-  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
-  color: #333;
-  font-weight: 600;
-  border-radius: 10px;
-  text-decoration: none;
-  box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 10;
-}
-
-.back-btn:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
-  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
-}
-
-/* Layout containers */
-.projects-layout {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
-  max-width: 1100px;
-  margin: 0 auto 100px;
-  padding: 0 40px;
-  margin-top: -10px; /* slight upward shift of both quiz + cards */
-}
-
-/* Quiz slightly higher */
-.quiz-section {
-  margin-top: -20px; /* pulls the quiz box closer to the title */
-}
-
-/* Responsive fix */
 @media (max-width: 900px) {
   .projects-layout {
     flex-direction: column;
