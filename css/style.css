@@ -548,3 +548,56 @@ footer {
     width: 100%;
   }
 }
+/* 💻 Projects Page Layout */
+.projects-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 100px auto;
+  padding: 40px;
+}
+
+/* 🧠 Quiz - Left Side */
+.quiz-section {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease;
+  text-align: left;
+  position: relative;
+  z-index: 10;
+}
+
+/* 📁 Projects - Right Side */
+.project-showcase {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* 🪄 Fix fun button interaction */
+.quiz-section .fun-btn {
+  display: inline-block;
+  margin-top: 20px;
+  cursor: pointer;
+  z-index: 15;
+}
+
+/* 📱 Responsive Layout */
+@media (max-width: 900px) {
+  .projects-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  .quiz-section, .project-showcase {
+    width: 100%;
+  }
+}
