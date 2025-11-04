@@ -42,9 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (greeting) {
     const hours = new Date().getHours();
     let text = 'Welcome to My Dev Journey 🌸';
-    if (hours < 12) text = 'Good Morning, Developer 🌞';
-    else if (hours < 18) text = 'Good Afternoon, Coder ☕';
-    else text = 'Good Evening, Dream Builder 🌙';
+    if (hours < 12) text = 'Good Morning! 🌞';
+    else if (hours < 18) text = 'Good Afternoon! ☕';
+    else text = 'Good Evening! 🌙';
     greeting.textContent = text;
   }
 
