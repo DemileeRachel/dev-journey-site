@@ -217,3 +217,17 @@ document.getElementById("result").addEventListener("click", (e) => {
     document.getElementById("result").innerHTML = "";
   }
 });
+function moveClock(position) {
+  const clock = document.getElementById("clock-container");
+  clock.classList.remove("clock-left", "clock-right");
+
+  if (position === "left") clock.classList.add("clock-left");
+  if (position === "right") clock.classList.add("clock-right");
+
+  localStorage.setItem("clockPosition", position);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const saved = localStorage.getItem("clockPosition");
+  if (saved) moveClock(saved);
+});
