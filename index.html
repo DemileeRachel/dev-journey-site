@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Dev Journey</title>
+  <title>My Dev Journey — Home</title>
   <link rel="stylesheet" href="css/style.css" />
-  <script src="js/script.js" defer></script>
 </head>
 <body>
-  <!-- 🌈 Navbar -->
+  <!-- Navbar -->
   <header class="navbar">
     <div class="navbar-inner">
       <div class="logo">My Dev Journey</div>
 
-      <div id="clock-container">
-        <h2>🌍 UK Time</h2>
+      <!-- Center clock -->
+      <div id="clock-container" aria-live="polite">
+        <h2>UK Time</h2>
         <div id="uk-clock">--:--:--</div>
       </div>
 
-      <button class="menu-toggle" id="menuToggle">☰</button>
-
+      <!-- Links + hamburger -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
       <nav class="nav-links" id="navLinks">
         <a href="index.html" class="active">Home</a>
         <a href="about.html">About</a>
@@ -28,21 +28,25 @@
     </div>
   </header>
 
-  <!-- 💻 Main Content -->
+  <!-- Main content -->
   <main class="hero">
-    <div id="emoji-container"></div>
+    <h1 id="greeting" class="dynamic-greeting">Welcome to My Dev Journey 🌸</h1>
+    <p id="intro-text">
+      I'm learning full-stack development and sharing small projects, notes, and experiments as I go.
+    </p>
 
-    <h2 id="greeting" class="dynamic-greeting"></h2>
-    <p id="intro-text">If you see this, my site works 🌸</p>
-
-    <button id="greetBtn" class="fun-btn">Do you press?</button>
+    <button id="greetBtn" class="fun-btn" type="button">Do you press?</button>
   </main>
+
+  <!-- Floating emojis (optional) -->
+  <div id="emoji-container"></div>
+
+  <!-- Footer (auto-sticks to bottom) -->
   <footer>
-  <p>© 2025 My Dev Journey! Built with 💜 and curiosity.</p>
-</footer>
+    <p>© 2025 My Dev Journey — Built with 💜 and curiosity.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
-
 </html>
-
-
 
