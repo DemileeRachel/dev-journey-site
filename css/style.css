@@ -328,3 +328,20 @@ footer {
     margin-top: 0;
   }
 }
+/* Dynamic greeting emoji fix */
+.dynamic-greeting {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #6d28d9; /* keep purple text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Make only the emoji normal color */
+.dynamic-greeting span.emoji {
+  color: initial; /* restores default emoji color */
+  -webkit-text-fill-color: initial; /* prevent gradient or clipping */
+  background: none;
+}
