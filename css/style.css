@@ -365,3 +365,49 @@ footer {
     margin-top: 100px;
   }
 }
+.about-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e9d8fd, #d6e0ff, #f0f9ff);
+  background-size: 300% 300%;
+  animation: gradientFlow 12s ease infinite;
+  border-radius: 20px;
+  padding: 50px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Sparkle overlay */
+.about-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 200%; height: 200%;
+  background-image: radial-gradient(2px 2px at 20px 20px, rgba(255,255,255,0.8), transparent),
+                    radial-gradient(2px 2px at 80px 100px, rgba(255,255,255,0.6), transparent),
+                    radial-gradient(2px 2px at 150px 60px, rgba(255,255,255,0.7), transparent);
+  background-size: 100px 100px;
+  animation: sparkleDrift 15s linear infinite;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Animations */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes sparkleDrift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-100px, -100px); }
+}
+.about-section h2, .about-section p {
+  position: relative;
+  z-index: 1;
+}
+
+.about-section h2 {
+  text-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
