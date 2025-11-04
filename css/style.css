@@ -1,6 +1,6 @@
-/* 🌸 My Dev Journey — Clean Pastel Glass Theme */
+/* 🌸 MY DEV JOURNEY — Clean Pastel Glass Theme */
 
-/* ====== BASE ====== */
+/* ====== BASE LAYOUT ====== */
 html, body {
   height: 100%;
 }
@@ -19,7 +19,7 @@ body {
 }
 
 main {
-  flex: 1; /* pushes footer to bottom */
+  flex: 1; /* ensures footer sticks to bottom */
 }
 
 @keyframes fadePage {
@@ -54,6 +54,7 @@ main {
   font-size: 18px;
 }
 
+/* ====== NAV LINKS ====== */
 .nav-links {
   display: flex;
   justify-content: flex-end;
@@ -66,6 +67,7 @@ main {
   text-decoration: none;
   font-weight: 600;
   position: relative;
+  transition: color 0.3s ease;
 }
 
 .nav-links a::after {
@@ -84,7 +86,7 @@ main {
   width: 100%;
 }
 
-/* ====== CLOCK ====== */
+/* ====== CLOCK (centered in navbar) ====== */
 #clock-container {
   position: absolute;
   left: 50%;
@@ -110,7 +112,7 @@ main {
   margin-top: 2px;
 }
 
-/* ====== MOBILE MENU ====== */
+/* 🍔 Hamburger (mobile menu) */
 .menu-toggle {
   display: none;
   background: none;
@@ -128,7 +130,7 @@ main {
   #clock-container {
     position: static;
     transform: none;
-    margin: 8px auto 0;
+    margin: 8px auto;
     order: 3;
   }
 
@@ -141,7 +143,7 @@ main {
     right: 10px;
     width: 180px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     padding: 10px;
   }
 
@@ -158,11 +160,13 @@ main {
 .hero,
 .projects-hero {
   text-align: center;
+  margin-top: 100px;
 }
 
 .hero h1,
 .projects-hero h1 {
   font-size: 2.6rem;
+  font-weight: 700;
   background: linear-gradient(90deg, #8b5cf6, #6366f1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -174,70 +178,37 @@ main {
   margin-top: 10px;
 }
 
-/* ====== DYNAMIC GREETING ====== */
-.dynamic-greeting {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #6d28d9; /* purple text */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-}
-
-/* Make emoji natural color */
-.dynamic-greeting span.emoji {
-  color: initial;
-  -webkit-text-fill-color: initial;
-  background: none;
-}
-
-/* ====== FIXED BUTTON SIZE ====== */
+/* ====== BUTTONS (shared gradient style) ====== */
+.back-btn,
+.about-section a,
 .fun-btn,
-#next-btn {
+#next-btn,
+#retry-btn {
   display: inline-block;
-  width: 200px; /* fixed width */
-  text-align: center;
-  padding: 12px 0;
-  background: linear-gradient(90deg, #7c3aed, #6366f1);
-  color: white;
-  font-weight: 600;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: 2px solid #4f46e5;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.fun-btn:hover,
-#next-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.6);
-}
-
-/* ====== BACK BUTTON ====== */
-.back-btn {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 10px 24px;
-  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
-  color: #333;
+  padding: 10px 26px;
+  background: linear-gradient(90deg, #cdb4ff, #a5d8ff);
+  color: #222;
   font-weight: 600;
   border-radius: 10px;
   text-decoration: none;
+  border: none;
   box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
-  transition: all 0.3s ease;
-  z-index: 10;
+  cursor: pointer;
+  transition: all 0.3s ease, box-shadow 0.4s ease;
 }
 
-.back-btn:hover {
+.back-btn:hover,
+.about-section a:hover,
+.fun-btn:hover,
+#next-btn:hover,
+#retry-btn:hover {
   transform: scale(1.05);
-  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
-  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
+  background: linear-gradient(90deg, #a5d8ff, #cdb4ff);
+  box-shadow: 0 0 25px rgba(150, 150, 255, 0.7),
+              0 0 40px rgba(170, 170, 255, 0.4);
 }
 
-/* ====== ABOUT SECTION ====== */
+/* ====== ABOUT PAGE ====== */
 .about-section {
   max-width: 900px;
   margin: 120px auto 80px;
@@ -250,10 +221,28 @@ main {
   animation: fadeIn 1s ease;
 }
 
+.about-section h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.about-section p {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
 /* ====== PROJECTS PAGE ====== */
 .projects-hero {
-  margin-top: 70px; /* pulled up closer to navbar */
+  margin-top: 60px;
   margin-bottom: 20px;
+  position: relative;
+  z-index: 5;
 }
 
 .projects-layout {
@@ -264,7 +253,7 @@ main {
   max-width: 1100px;
   margin: 0 auto 100px;
   padding: 0 40px;
-  margin-top: -40px; /* moves content upward */
+  margin-top: -30px; /* lifts layout slightly */
 }
 
 /* 🐍 Python Quiz */
@@ -276,8 +265,8 @@ main {
   padding: 40px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   text-align: left;
-  margin-top: -30px; /* lifted higher again */
   animation: fadeIn 0.8s ease;
+  margin-top: -20px;
 }
 
 .quiz-section h2 {
@@ -285,7 +274,6 @@ main {
   background: linear-gradient(90deg, #8b5cf6, #6366f1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 10px;
 }
 
 .quiz-option {
@@ -329,7 +317,7 @@ main {
   bottom: 0;
   font-size: 1.8rem;
   animation: floatUp 6s linear forwards;
-  opacity: 1; /* fully visible */
+  opacity: 1;
   filter: none;
   mix-blend-mode: normal;
 }
@@ -362,11 +350,18 @@ footer {
   .projects-layout {
     flex-direction: column;
     align-items: center;
+    gap: 25px;
     padding: 0 20px;
     margin-top: 0;
   }
 
-  .quiz-section {
+  .quiz-section,
+  .project-showcase {
+    width: 100%;
     margin-top: 0;
+  }
+
+  .projects-hero {
+    margin-top: 100px;
   }
 }
