@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const greeting = document.getElementById('greeting');
   const paragraph = document.getElementById('intro-text');
 
-  // 🍔 Toggle Menu
+  /* =============================
+     🍔 NAV MENU TOGGLE (Mobile)
+  ============================== */
   if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -15,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
       menuToggle.classList.toggle('open');
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
       if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
         navLinks.classList.remove('active');
@@ -24,7 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 🕒 UK Clock
+  /* =============================
+     🕒 UK CLOCK (Live)
+  ============================== */
   function updateUKClock() {
     const now = new Date().toLocaleTimeString('en-GB', {
       timeZone: 'Europe/London',
@@ -38,17 +41,21 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateUKClock, 1000);
   updateUKClock();
 
-  // 🌤 Dynamic Greeting
+  /* =============================
+     🌤 DYNAMIC GREETING
+  ============================== */
   if (greeting) {
     const hours = new Date().getHours();
     let text = 'Welcome to My Dev Journey 🌸';
-    if (hours < 12) text = 'Good Morning! 🌞';
+    if (hours < 12) text = 'Good Morning! ☀️';
     else if (hours < 18) text = 'Good Afternoon! ☕';
     else text = 'Good Evening! 🌙';
     greeting.textContent = text;
   }
 
-  // 💬 Typewriter Effect
+  /* =============================
+     💬 TYPEWRITER EFFECT
+  ============================== */
   if (paragraph) {
     const text = paragraph.textContent;
     paragraph.textContent = '';
@@ -62,7 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })();
   }
 
-  // ✨ Floating Emojis
+  /* =============================
+     ✨ FLOATING EMOJIS
+  ============================== */
   function spawnEmoji() {
     if (!emojiContainer) return;
     const emojis = ['💻', '🌸', '🚀', '✨', '🧠', '💡', '🎨'];
@@ -76,7 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setInterval(spawnEmoji, 1500);
 
-  // 🎉 Fun Button
+  /* =============================
+     🎉 FUN INTERACTIVE BUTTON
+  ============================== */
   if (greetBtn) {
     greetBtn.addEventListener('click', () => {
       greetBtn.classList.add('clicked');
@@ -88,7 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 🐍 Python Interactive Quiz
+  /* =============================
+     🐍 PYTHON MINI QUIZ
+  ============================== */
   const quizData = [
     {
       question: "What is the output of print(2 ** 3)?",
@@ -101,12 +114,12 @@ document.addEventListener('DOMContentLoaded', () => {
       correct: "def"
     },
     {
-      question: "What data type is the result of: 3 / 2 ?",
+      question: "What data type is the result of 3 / 2?",
       options: ["int", "float", "str", "bool"],
       correct: "float"
     },
     {
-      question: "How do you insert COMMENTS in Python code?",
+      question: "How do you insert comments in Python code?",
       options: ["// comment", "# comment", "<!-- comment -->", "/* comment */"],
       correct: "# comment"
     }
@@ -119,11 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextBtn = document.getElementById("next-btn");
   const resultText = document.getElementById("result");
 
-  // Load saved score if exists
+  // Restore saved score if exists
   if (localStorage.getItem("pythonQuizScore")) {
     score = parseInt(localStorage.getItem("pythonQuizScore"));
   }
 
+  /* --- Show a question --- */
   function showQuestion() {
     const q = quizData[currentQuestion];
     quizContainer.innerHTML = `
@@ -141,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
+  /* --- Confetti effect --- */
   function showConfetti() {
     const colors = ['#8b5cf6', '#a78bfa', '#facc15', '#f472b6', '#60a5fa'];
     for (let i = 0; i < 50; i++) {
@@ -159,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  /* --- Show results --- */
   function showResult() {
     quizContainer.innerHTML = `
       <h3>🎉 Quiz Complete!</h3>
@@ -172,14 +188,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const retryBtn = document.getElementById("retry-btn");
     retryBtn.addEventListener("click", () => {
+      // Reset everything properly
       localStorage.removeItem("pythonQuizScore");
       currentQuestion = 0;
       score = 0;
+      resultText.textContent = "";
       nextBtn.style.display = "inline-block";
       showQuestion();
     });
   }
 
+  /* --- Next Question Logic --- */
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
       const selected = document.querySelector('input[name="answer"]:checked');
@@ -204,30 +223,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Initialize first question
+  // Initialize quiz if container exists
   if (quizContainer) {
     showQuestion();
   }
-});
-document.getElementById("result").addEventListener("click", (e) => {
-  if (e.target.id === "retry-btn") {
-    score = 0;
-    currentQuestion = 0;
-    showQuestion();
-    document.getElementById("result").innerHTML = "";
-  }
-});
-function moveClock(position) {
-  const clock = document.getElementById("clock-container");
-  clock.classList.remove("clock-left", "clock-right");
-
-  if (position === "left") clock.classList.add("clock-left");
-  if (position === "right") clock.classList.add("clock-right");
-
-  localStorage.setItem("clockPosition", position);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const saved = localStorage.getItem("clockPosition");
-  if (saved) moveClock(saved);
 });
