@@ -209,3 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
     showQuestion();
   }
 });
+document.getElementById("result").addEventListener("click", (e) => {
+  if (e.target.id === "retry-btn") {
+    score = 0;
+    currentQuestion = 0;
+    showQuestion();
+    document.getElementById("result").innerHTML = "";
+  }
+});
