@@ -1057,3 +1057,46 @@ input[type="number"] {
     max-width: 95%;
   }
 }
+/* 🌌 PROJECTS SHOWCASE (CLEAN + RESPONSIVE) */
+.projects-showcase {
+  padding: 120px 20px 100px;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.projects-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #cdb4ff, #a5d8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+.projects-sub {
+  color: #bbb;
+  font-size: 1.1rem;
+  margin-bottom: 50px;
+}
+
+/* --- GRID LAYOUT --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  gap: 40px;
+  justify-content: center;
+  align-items: start;
+  max-width: 1000px;
+  margin: 0 auto 50px;
+}
+
+/* --- CARD STYLE --- */
+.project-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4p
