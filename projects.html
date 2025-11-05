@@ -109,12 +109,21 @@ document.getElementById("squareBtn").addEventListener("click", square_it)
     setInterval(updateClock, 1000);
     updateClock();
 
-    // 🐱 Random Cat Name Generator
-    const catNames = ["WhiskerSpark", "LunaPaw", "MochiTail", "CosmoCat", "PixelPounce", "VelvetFang", "CometWhisk"];
-    document.getElementById("catBtn").addEventListener("click", () => {
-      const random = catNames[Math.floor(Math.random() * catNames.length)];
-      document.getElementById("catName").textContent = "Your cat’s name is: " + random;
-    });
+   // 🐱 Random Cat Name Generator (with emojis!)
+const catNames = [
+  "✨ Whisker Spark ✨",
+  "🌙 Luna Paw 🌙",
+  "🍡 Mochi Tail 🍡",
+  "🌌 Cosmo Cat 🌌",
+  "💾 Pixel Pounce 💾",
+  "🖤 Velvet Fang 🖤",
+  "☄️ Comet Whisk ☄️"
+];
+
+document.getElementById("catBtn").addEventListener("click", () => {
+  const random = catNames[Math.floor(Math.random() * catNames.length)];
+  document.getElementById("catName").textContent = "🐾 Your cat’s name is: " + random;
+});
   </script>
    <footer>
     <p>© 2025 My Dev Journey; built with 💜.</p>
