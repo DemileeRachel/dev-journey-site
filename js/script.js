@@ -180,15 +180,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ===========================
-     PYTHON MINI QUIZ
+     SQL MINI QUIZ
   ============================ */
-  const quizData = [
-    { question: "What is the output of print(2 ** 3)?", options: ["5", "6", "8", "9"], correct: "8" },
-    { question: "Which keyword defines a function?", options: ["func", "def", "function", "lambda"], correct: "def" },
-    { question: "Type of 3 / 2 ?", options: ["int", "float", "str", "bool"], correct: "float" },
-    { question: "Python comment starts with…", options: ["//", "#", "<!--", "/*"], correct: "#" }
-  ];
-
+ const quizData = [
+  { 
+    question: "Which SQL keyword is used to retrieve data from a database?", 
+    options: ["GET", "SELECT", "FETCH", "SHOW"], 
+    correct: "SELECT" 
+  },
+  { 
+    question: "Which clause filters rows returned by a SELECT query?", 
+    options: ["ORDER BY", "WHERE", "GROUP BY", "HAVING"], 
+    correct: "WHERE" 
+  },
+  { 
+    question: "Which SQL statement is used to add new data into a table?", 
+    options: ["ADD", "INSERT INTO", "UPDATE", "APPEND"], 
+    correct: "INSERT INTO" 
+  },
+  { 
+    question: "Which command permanently removes a table from the database?", 
+    options: ["DELETE FROM", "DROP TABLE", "REMOVE TABLE", "TRUNCATE TABLE"], 
+    correct: "DROP TABLE" 
+  }
+];
   const quizContainer = document.getElementById('quiz-container');
   const nextBtn = document.getElementById('next-btn');
   const resultText = document.getElementById('result');
