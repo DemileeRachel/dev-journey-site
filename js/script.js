@@ -168,12 +168,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ✅ Toggle Typing Game on button click
-  if (greetBtn && tgWrap) {
-    greetBtn.addEventListener('click', () => {
-      tgWrap.classList.toggle('typing-visible');
-      tgWrap.classList.toggle('typing-hidden');
-    });
-  }
+ // ✅ Toggle Typing Game visibility + button text
+if (greetBtn && tgWrap) {
+  greetBtn.addEventListener('click', () => {
+    const isVisible = tgWrap.classList.contains('typing-visible');
+    tgWrap.classList.toggle('typing-visible');
+    tgWrap.classList.toggle('typing-hidden');
+    greetBtn.textContent = isVisible ? "Do you press?" : "Hide Challenge";
+  });
+}
 
   /* ===========================
      PYTHON MINI QUIZ
