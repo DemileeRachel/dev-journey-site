@@ -36,9 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ===== THEME TOGGLE ===== */
   const THEME_KEY = 'siteTheme';
-  const applyTheme = (theme) => {
-    document.body.classList.toggle('dark', theme === 'dark');
-  };
+  const applyTheme = (theme) => document.body.classList.toggle('dark', theme === 'dark');
   applyTheme(localStorage.getItem(THEME_KEY) || 'light');
   if (themeBtn) {
     themeBtn.addEventListener('click', () => {
@@ -62,9 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (greetingEl) greetingEl.innerHTML = `${base}${name ? ', ' + name : ''}! <span id="greeting-emoji" class="emoji">🌸</span>`;
   }
 
-  if (!localStorage.getItem('visitorName')) {
-    localStorage.setItem('visitorName', '');
-  }
+  if (!localStorage.getItem('visitorName')) localStorage.setItem('visitorName', '');
   setGreetingLine();
   setInterval(setGreetingLine, 60 * 1000);
 
@@ -80,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== GREETING EMOJI (Interactive + Persistent) ===== */
+  /* ===== GREETING EMOJI ===== */
   function initEmoji() {
     const greetingEmoji = document.getElementById('greeting-emoji');
     if (greetingEmoji) {
@@ -90,9 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       greetingEmoji.addEventListener('click', () => {
         let next;
-        do {
-          next = emojiSet[Math.floor(Math.random() * emojiSet.length)];
-        } while (next === greetingEmoji.textContent);
+        do { next = emojiSet[Math.floor(Math.random() * emojiSet.length)]; }
+        while (next === greetingEmoji.textContent);
         greetingEmoji.textContent = next;
         localStorage.setItem('greetingEmoji', next);
         greetingEmoji.classList.add('clicked');
@@ -102,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   initEmoji();
 
-    /* ===== MULTI-LINE TYPEWRITER (FINAL FIX) ===== */
+  /* ===== TYPEWRITER EFFECT ===== */
   const paragraph = document.getElementById('intro-text');
   if (paragraph) {
     const lines = [
@@ -112,15 +107,11 @@ document.addEventListener('DOMContentLoaded', () => {
       "Let’s build something amazing today 🚀"
     ];
 
-    let lineIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
-    let typingSpeed = 70;
-    let pauseDelay = 1200;
+    let lineIndex = 0, charIndex = 0, deleting = false;
+    const typingSpeed = 70, pauseDelay = 1200;
 
     function typeWriter() {
       const currentLine = lines[lineIndex];
-
       if (!deleting && charIndex < currentLine.length) {
         paragraph.textContent = currentLine.substring(0, charIndex + 1);
         charIndex++;
@@ -137,13 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
           lineIndex = (lineIndex + 1) % lines.length;
         }
       }
-
       setTimeout(typeWriter, deleting ? typingSpeed / 2 : typingSpeed);
     }
 
     typeWriter();
   }
-
 
   /* ===== FUN BUTTON ===== */
   if (greetBtn) {
@@ -151,7 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
       greetBtn.classList.add('clicked');
       const old = greetBtn.textContent;
       greetBtn.textContent = '✨ Magic! ✨';
-      setTimeout(() => { greetBtn.textContent = old; greetBtn.classList.remove('clicked'); }, 1200);
+      setTimeout(() => {
+        greetBtn.textContent = old;
+        greetBtn.classList.remove('clicked');
+      }, 1200);
     });
   }
 
@@ -196,60 +188,66 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== PYTHON QUIZ (Projects Page Only) ===== */
+  /* ===== PYTHON MINI QUIZ (Projects Page) ===== */
   const quizData = [
-    { question: "What is the output of print(2 ** 3)?", options: ["5","6","8","9"], correct: "8" },
-    { question: "Which keyword defines a function?", options: ["func","def","function","lambda"], correct: "def" },
-    { question: "Type of 3 / 2 ?", options: ["int","float","str","bool"], correct: "float" },
-    { question: "Python comment starts with…", options: ["//","#","<!--","/*"], correct: "#" }
+    { question: "What is the output of print(2 ** 3)?", options: ["5", "6", "8", "9"], correct: "8" },
+    { question: "Which keyword defines a function?", options: ["func", "def", "function", "lambda"], correct: "def" },
+    { question: "Type of 3 / 2 ?", options: ["int", "float", "str", "bool"], correct: "float" },
+    { question: "Python comment starts with…", options: ["//", "#", "<!--", "/*"], correct: "#" }
   ];
-  let qIndex = 0, qScore = 0;
+
   const quizContainer = document.getElementById('quiz-container');
-  const nextBtn       = document.getElementById('next-btn');
-  const resultText    = document.getElementById('result');
+  const nextBtn = document.getElementById('next-btn');
+  const resultText = document.getElementById('result');
 
-  function drawQuestion() {
-    const q = quizData[qIndex];
-    quizContainer.innerHTML = `
-      <div class="quiz-question fade">
-        <p><strong>${qIndex + 1}. ${q.question}</strong></p>
-        ${q.options.map(o => `
-          <label class="quiz-option">
-            <input type="radio" name="answer" value="${o}"> ${o}
-          </label>
-        `).join('')}
-      </div>`;
-  }
+  if (quizContainer && nextBtn && resultText) {
+    let qIndex = 0, qScore = 0;
 
-  function showResult() {
-    quizContainer.innerHTML = `
-      <h3>🎉 Quiz Complete!</h3>
-      <p>You scored <strong>${qScore}</strong> out of <strong>${quizData.length}</strong>.</p>
-      <button id="retry-btn" class="fun-btn">Try Again</button>
-    `;
-    if (nextBtn) nextBtn.style.display = 'none';
-    const rb = document.getElementById('retry-btn');
-    rb && rb.addEventListener('click', () => {
-      qIndex = 0; qScore = 0; resultText.textContent = '';
-      if (nextBtn) nextBtn.style.display = 'inline-block';
-      drawQuestion();
-    });
-  }
+    function drawQuestion() {
+      const q = quizData[qIndex];
+      quizContainer.innerHTML = `
+        <div class="quiz-question">
+          <p><strong>${qIndex + 1}. ${q.question}</strong></p>
+          ${q.options.map(o => `
+            <label class="quiz-option">
+              <input type="radio" name="answer" value="${o}"> ${o}
+            </label>
+          `).join('')}
+        </div>`;
+    }
 
-  if (quizContainer) {
-    if (nextBtn && !nextBtn.classList.contains('fun-btn')) nextBtn.classList.add('fun-btn');
-    drawQuestion();
-    nextBtn && nextBtn.addEventListener('click', () => {
-      const pick = document.querySelector('input[name="answer"]:checked');
-      if (!pick) {
+    function showResult() {
+      quizContainer.innerHTML = `
+        <h3>🎉 Quiz Complete!</h3>
+        <p>You scored <strong>${qScore}</strong> / <strong>${quizData.length}</strong>.</p>
+        <button id="retry-btn" class="fun-btn">Try Again</button>
+      `;
+      resultText.textContent = "";
+      nextBtn.style.display = "none";
+
+      const retry = document.getElementById('retry-btn');
+      retry.addEventListener('click', () => {
+        qIndex = 0;
+        qScore = 0;
+        nextBtn.style.display = "inline-block";
+        drawQuestion();
+      });
+    }
+
+    nextBtn.addEventListener('click', () => {
+      const picked = document.querySelector('input[name="answer"]:checked');
+      if (!picked) {
         resultText.textContent = "⚠️ Select an answer first";
         resultText.style.color = "#ff6b6b";
         return;
       }
-      if (pick.value === quizData[qIndex].correct) qScore++;
+      if (picked.value === quizData[qIndex].correct) qScore++;
       qIndex++;
-      resultText.textContent = '';
-      (qIndex < quizData.length) ? drawQuestion() : showResult();
+      resultText.textContent = "";
+      if (qIndex < quizData.length) drawQuestion();
+      else showResult();
     });
+
+    drawQuestion();
   }
 });
