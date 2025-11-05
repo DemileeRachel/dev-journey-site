@@ -1,4 +1,4 @@
-/* 🌸 MY DEV JOURNEY — Clean Pastel Glass Theme */
+/* 🌸 My Dev Journey — Unified Pastel Glass Theme */
 
 /* ====== BASE LAYOUT ====== */
 html, body {
@@ -9,8 +9,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  padding-top: 80px; /* space for fixed navbar */
+  padding-top: 80px; /* Space for navbar */
   background-color: lavender;
   font-family: "Segoe UI", Arial, sans-serif;
   color: #333;
@@ -19,7 +18,7 @@ body {
 }
 
 main {
-  flex: 1; /* ensures footer sticks to bottom */
+  flex: 1; /* Keeps footer at bottom */
 }
 
 @keyframes fadePage {
@@ -54,10 +53,9 @@ main {
   font-size: 18px;
 }
 
-/* ====== NAV LINKS ====== */
+/* 🔗 Navigation Links */
 .nav-links {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   gap: 25px;
 }
@@ -67,7 +65,6 @@ main {
   text-decoration: none;
   font-weight: 600;
   position: relative;
-  transition: color 0.3s ease;
 }
 
 .nav-links a::after {
@@ -86,7 +83,7 @@ main {
   width: 100%;
 }
 
-/* ====== CLOCK (centered in navbar) ====== */
+/* ===== CLOCK (CENTERED IN NAVBAR) ===== */
 #clock-container {
   position: absolute;
   left: 50%;
@@ -100,19 +97,17 @@ main {
   box-shadow: 0 0 15px rgba(255, 215, 102, 0.4);
   font-size: 0.85rem;
 }
-
 #clock-container h2 {
   font-size: 0.8rem;
   color: #ffd166;
   margin: 0;
 }
-
 #uk-clock {
   font-weight: 600;
   margin-top: 2px;
 }
 
-/* 🍔 Hamburger (mobile menu) */
+/* ===== HAMBURGER MENU ===== */
 .menu-toggle {
   display: none;
   background: none;
@@ -123,14 +118,12 @@ main {
 }
 
 @media (max-width: 700px) {
-  .navbar-inner {
-    flex-wrap: wrap;
-  }
+  .navbar-inner { flex-wrap: wrap; }
 
   #clock-container {
     position: static;
     transform: none;
-    margin: 8px auto;
+    margin: 8px auto 0;
     order: 3;
   }
 
@@ -143,7 +136,7 @@ main {
     right: 10px;
     width: 180px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     padding: 10px;
   }
 
@@ -151,22 +144,26 @@ main {
     display: flex;
   }
 
-  .menu-toggle {
-    display: block;
-  }
+  .menu-toggle { display: block; }
 }
 
-/* ====== HERO SECTIONS ====== */
+/* ===== PAGE SPACING (UNIFORM ACROSS ALL PAGES) ===== */
+.hero,
+.projects-hero,
+.about-section {
+  margin-top: 120px;
+  margin-bottom: 40px;
+}
+
+/* ===== HERO / HEADERS ===== */
 .hero,
 .projects-hero {
   text-align: center;
-  margin-top: 100px;
 }
 
 .hero h1,
 .projects-hero h1 {
   font-size: 2.6rem;
-  font-weight: 700;
   background: linear-gradient(90deg, #8b5cf6, #6366f1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -178,73 +175,69 @@ main {
   margin-top: 10px;
 }
 
-/* ====== BUTTONS (shared gradient style) ====== */
-.back-btn,
-.about-section a,
-.fun-btn,
-#next-btn,
-#retry-btn {
+/* ===== BACK TO HOME BUTTON (UNIFIED STYLE) ===== */
+.back-btn {
   display: inline-block;
-  padding: 10px 26px;
-  background: linear-gradient(90deg, #cdb4ff, #a5d8ff);
-  color: #222;
+  margin-top: 10px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
+  color: #333;
   font-weight: 600;
   border-radius: 10px;
   text-decoration: none;
-  border: none;
   box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
-  cursor: pointer;
-  transition: all 0.3s ease, box-shadow 0.4s ease;
+  transition: all 0.3s ease;
 }
-
-.back-btn:hover,
-.about-section a:hover,
-.fun-btn:hover,
-#next-btn:hover,
-#retry-btn:hover {
+.back-btn:hover {
   transform: scale(1.05);
-  background: linear-gradient(90deg, #a5d8ff, #cdb4ff);
-  box-shadow: 0 0 25px rgba(150, 150, 255, 0.7),
-              0 0 40px rgba(170, 170, 255, 0.4);
+  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
+  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
 }
 
-/* ====== ABOUT PAGE ====== */
+/* ===== ABOUT SECTION (SPARKLY TILE) ===== */
 .about-section {
   max-width: 900px;
-  margin: 120px auto 80px;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(12px);
+  margin: 120px auto 80px auto;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e9d8fd, #d6e0ff, #f0f9ff);
+  background-size: 300% 300%;
+  animation: gradientFlow 12s ease infinite;
+  backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 50px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   text-align: center;
-  animation: fadeIn 1s ease;
 }
 
-.about-section h2 {
-  font-size: 2.2rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #8b5cf6, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
+/* ✨ Sparkle overlay */
+.about-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 200%; height: 200%;
+  background-image: radial-gradient(2px 2px at 20px 20px, rgba(255,255,255,0.8), transparent),
+                    radial-gradient(2px 2px at 80px 100px, rgba(255,255,255,0.6), transparent),
+                    radial-gradient(2px 2px at 150px 60px, rgba(255,255,255,0.7), transparent);
+  background-size: 100px 100px;
+  animation: sparkleDrift 15s linear infinite;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
-.about-section p {
-  font-size: 1.1rem;
-  color: #444;
-  line-height: 1.6;
-  margin-bottom: 10px;
+/* Sparkle + Gradient Animation */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* ====== PROJECTS PAGE ====== */
-.projects-hero {
-  margin-top: 60px;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 5;
+@keyframes sparkleDrift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-100px, -100px); }
 }
 
+/* ===== PROJECTS LAYOUT ===== */
 .projects-layout {
   display: flex;
   justify-content: space-between;
@@ -253,7 +246,7 @@ main {
   max-width: 1100px;
   margin: 0 auto 100px;
   padding: 0 40px;
-  margin-top: -30px; /* lifts layout slightly */
+  margin-top: -20px;
 }
 
 /* 🐍 Python Quiz */
@@ -266,27 +259,6 @@ main {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   text-align: left;
   animation: fadeIn 0.8s ease;
-  margin-top: -20px;
-}
-
-.quiz-section h2 {
-  font-size: 1.8rem;
-  background: linear-gradient(90deg, #8b5cf6, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.quiz-option {
-  display: block;
-  margin-bottom: 8px;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.quiz-option:hover {
-  background: rgba(139, 92, 246, 0.1);
 }
 
 /* 🚀 Projects Showcase */
@@ -301,7 +273,7 @@ main {
   animation: fadeIn 1s ease;
 }
 
-/* ====== FLOATING EMOJIS (NORMAL COLORS) ====== */
+/* ===== FLOATING EMOJIS ===== */
 #emoji-container {
   position: fixed;
   bottom: 0;
@@ -319,7 +291,6 @@ main {
   animation: floatUp 6s linear forwards;
   opacity: 1;
   filter: none;
-  mix-blend-mode: normal;
 }
 
 @keyframes floatUp {
@@ -327,7 +298,7 @@ main {
   100% { transform: translateY(-100vh); opacity: 0; }
 }
 
-/* ====== FOOTER ====== */
+/* ===== FOOTER ===== */
 footer {
   text-align: center;
   padding: 20px;
@@ -339,20 +310,13 @@ footer {
   margin-top: auto;
 }
 
-/* ====== ANIMATIONS ====== */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ====== RESPONSIVE ====== */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .projects-layout {
     flex-direction: column;
     align-items: center;
     gap: 25px;
     padding: 0 20px;
-    margin-top: 0;
   }
 
   .quiz-section,
@@ -361,53 +325,10 @@ footer {
     margin-top: 0;
   }
 
-  .projects-hero {
+  .hero,
+  .projects-hero,
+  .about-section {
     margin-top: 100px;
+    margin-bottom: 60px;
   }
-}
-.about-section {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #e9d8fd, #d6e0ff, #f0f9ff);
-  background-size: 300% 300%;
-  animation: gradientFlow 12s ease infinite;
-  border-radius: 20px;
-  padding: 50px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-/* Sparkle overlay */
-.about-section::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 200%; height: 200%;
-  background-image: radial-gradient(2px 2px at 20px 20px, rgba(255,255,255,0.8), transparent),
-                    radial-gradient(2px 2px at 80px 100px, rgba(255,255,255,0.6), transparent),
-                    radial-gradient(2px 2px at 150px 60px, rgba(255,255,255,0.7), transparent);
-  background-size: 100px 100px;
-  animation: sparkleDrift 15s linear infinite;
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-/* Animations */
-@keyframes gradientFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes sparkleDrift {
-  from { transform: translate(0, 0); }
-  to { transform: translate(-100px, -100px); }
-}
-.about-section h2, .about-section p {
-  position: relative;
-  z-index: 1;
-}
-
-.about-section h2 {
-  text-shadow: 0 0 8px rgba(255,255,255,0.6);
 }
