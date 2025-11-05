@@ -387,4 +387,59 @@ footer {
     width: 100%;
   }
 }
-/* ===== END OF STYLE ===== */
+/* ===== SHIMMER EFFECT for PROJECTS TILES ===== */
+
+/* Shared shimmer + sparkle animation for both tiles */
+.quiz-section,
+.project-showcase {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✨ Sparkle shimmer overlay */
+.quiz-section::before,
+.project-showcase::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.8), transparent 60%),
+    radial-gradient(2px 2px at 80% 70%, rgba(255,255,255,0.6), transparent 60%),
+    radial-gradient(2px 2px at 40% 80%, rgba(255,255,255,0.7), transparent 60%);
+  animation: sparkleDrift 15s linear infinite;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* 💫 Moving shimmer streak */
+.quiz-section::after,
+.project-showcase::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,0.55) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  animation: shimmer 9s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ✨ Keyframes for sparkles */
+@keyframes sparkleDrift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-80px, -60px); }
+}
+
+/* 🌈 Keyframes for shimmer sweep */
+@keyframes shimmer {
+  0% { left: -150%; }
+  45% { left: 120%; }
+  100% { left: 120%; }
+}
