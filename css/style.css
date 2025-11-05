@@ -1249,3 +1249,13 @@ body.light input[type="number"] {
   padding-bottom: 60px; /* was 100px+, gives footer more room */
   min-height: calc(100vh - 120px); /* ensures section fills viewport neatly */
 }
+/* --- FINAL POSITION FIX: Projects layout balance --- */
+body.projects .projects-showcase {
+  padding-top: 100px !important;     /* keeps it below navbar */
+  padding-bottom: 40px !important;   /* pulls content higher */
+  min-height: calc(100vh - 80px) !important; /* ensures it fits viewport cleanly */
+}
+
+body.projects footer {
+  margin-top: 30px !important; /* slight gap for breathing room */
+}
