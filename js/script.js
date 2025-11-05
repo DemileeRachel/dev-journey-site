@@ -214,3 +214,36 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => greetingEmoji.classList.remove('clicked'), 400);
     });
   }
+  /* ===== TYPEWRITER ANIMATION ===== */
+  const paragraph = document.getElementById('intro-text');
+  if (paragraph) {
+    const text = paragraph.textContent;
+    paragraph.textContent = '';
+    let i = 0;
+    (function type() {
+      if (i < text.length) {
+        paragraph.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 70);
+      }
+    })();
+  }
+
+  /* ===== GREETING EMOJI ===== */
+  const greetingEmoji = document.getElementById('greeting-emoji');
+  if (greetingEmoji) {
+    const emojiSet = ['🌸','💜','🌞','🐍','💻','🚀','🎨','🧠','✨'];
+    const savedEmoji = localStorage.getItem('greetingEmoji');
+    if (savedEmoji) greetingEmoji.textContent = savedEmoji;
+
+    greetingEmoji.addEventListener('click', () => {
+      let next;
+      do {
+        next = emojiSet[Math.floor(Math.random() * emojiSet.length)];
+      } while (next === greetingEmoji.textContent);
+      greetingEmoji.textContent = next;
+      localStorage.setItem('greetingEmoji', next);
+      greetingEmoji.classList.add('clicked');
+      setTimeout(() => greetingEmoji.classList.remove('clicked'), 400);
+    });
+  }
