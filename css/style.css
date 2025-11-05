@@ -472,3 +472,72 @@ body.home footer {
 body.home {
   overflow-y: hidden;
 }
+/* ===========================
+   SKILLS PANEL (ABOUT PAGE)
+=========================== */
+#skills {
+  position: fixed;
+  right: 0;
+  top: 100px; /* below navbar */
+  height: calc(100vh - 120px);
+  width: 260px;
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 2px solid rgba(200, 180, 255, 0.4);
+  box-shadow: -4px 0 10px rgba(0,0,0,0.1);
+  padding: 20px 15px;
+  overflow-y: auto;
+  backdrop-filter: blur(10px);
+  color: #333;
+}
+
+#skills h2 {
+  color: #6d28d9;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skill-category h3 {
+  color: #8b5cf6;
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.skill-category ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.skill-category li {
+  margin-bottom: 6px;
+}
+
+/* Give the main about card room to breathe */
+.about-card {
+  margin-right: 280px; /* panel width + padding */
+}
+
+/* Responsive fix — stack panel below content on small screens */
+@media (max-width: 900px) {
+  #skills {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-left: none;
+    border-top: 2px solid rgba(200, 180, 255, 0.4);
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    margin-top: 30px;
+  }
+
+  .about-card {
+    margin-right: 0;
+  }
+}
