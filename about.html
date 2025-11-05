@@ -1,70 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Me | My Dev Journey</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | My Dev Journey</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
 </head>
 <body>
-<header class="navbar">
-  <div class="navbar-inner">
-    <!-- LEFT: Logo -->
-    <div class="logo">My Dev Journey</div>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <div class="logo">My Dev Journey</div>
 
-    <!-- CENTER: Clock + Theme -->
-    <div class="center-group">
-      <div id="clock-container">
-        <h2>🕒 Time</h2>
-        <div id="uk-clock"></div>
+      <div class="center-group">
+        <div id="clock-container">
+          <h2>🕒 Time</h2>
+          <div id="uk-clock"></div>
+        </div>
+        <button id="theme-toggle">🌓 Theme</button>
       </div>
-      <button id="theme-toggle">🌓 Theme</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="projects.html">Projects</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle">☰</button>
     </div>
+  </header>
 
-    <!-- RIGHT: Nav Links -->
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
-    </nav>
-
-    <!-- Mobile Menu -->
-    <button class="menu-toggle" id="menuToggle">☰</button>
-  </div>
-</header>
-
-
-
+  <!-- ABOUT SECTION -->
   <main>
-    <section class="about-section">
+    <div class="about-card">
       <h2>About Me</h2>
       <p>This page will tell my story as a developer in progress!</p>
-      <p>I'm very excited to share my journey learning various coding languages.</p>
-      <p>Through this website, I'll showcase projects using Python, SQL, HTML, CSS, and C.</p>
-      <p>Each step brings me closer to becoming a full-stack developer 💻✨</p>
-     <a href="index.html" class="back-btn">← Back to Home</a>
-    </section>
+      <p>I'm very excited to share my journey learning various coding languages and frameworks.</p>
+      <p>Through this website, I’ll showcase projects using <strong>Python, SQL, HTML, CSS, and C</strong>.</p>
+      <p>Each step brings me closer to becoming a <strong>full-stack developer</strong> 💻✨</p>
+      <a href="index.html" class="fun-btn">← Back to Home</a>
+    </div>
   </main>
 
   <footer>
     <p>© 2025 My Dev Journey; built with 💜.</p>
   </footer>
-
-  <script>
-    // UK CLOCK
-    function updateUKClock() {
-      const clock = document.getElementById("uk-clock");
-      if (clock) clock.textContent = new Date().toLocaleTimeString("en-GB", { timeZone: "Europe/London" });
-    }
-    setInterval(updateUKClock, 1000);
-    updateUKClock();
-
-    // MENU TOGGLE
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
-    if (menuToggle && navLinks) {
-      menuToggle.addEventListener("click", () => navLinks.classList.toggle("active"));
-    }
-  </script>
 </body>
 </html>
