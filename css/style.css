@@ -567,6 +567,70 @@ main {
   color: #aaa;
   margin-bottom: 25px;
 }
+/* ===== CENTERED HERO ===== */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 160px); /* fill view minus navbar/footer */
+  text-align: center;
+  flex-direction: column;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  animation: fadePage 1.2s ease;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #aaa;
+  margin-bottom: 20px;
+  min-height: 1.2em; /* prevents layout shift from typewriter effect */
+}
+
+/* Center button nicely */
+.hero .fun-btn {
+  margin-top: 10px;
+  display: inline-block;
+  align-self: center;
+}
+
+/* Responsive scaling */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: 80px 20px;
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+}
+.hero-content {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: heroFade 1s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes heroFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* Center and space out the button */
 .button-container {

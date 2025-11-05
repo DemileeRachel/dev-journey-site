@@ -36,32 +36,25 @@
 
   <!-- ===== HERO ===== -->
 <main>
-  <!-- HERO SECTION -->
- <section class="hero">
-  <h1 id="greetingText">Good Morning! 🌸</h1>
+  <section class="hero">
+    <div class="hero-content">
+      <h1 id="greetingText">Good Morning! 🌸</h1>
+      <p id="intro-text">Welcome to my journey to being a full-stack developer!</p>
+      <button id="greetBtn" class="fun-btn">Do you press?</button>
+    </div>
+  </section>
 
-  <div class="intro-box">
-    <p id="intro-text">Welcome to my journey to being a full-stack developer!</p>
-  </div>
-
-  <div class="button-container">
-    <button id="greetBtn" class="fun-btn">Do you press?</button>
-  </div>
-</section>
-
-  <!-- TYPING GAME -->
-  <aside id="typing-game">
+  <!-- Typing game (still toggleable via the button) -->
+  <section id="typing-game">
     <h3>⌨️ Quick Typing Challenge</h3>
     <p id="typing-word">developer</p>
     <input type="text" id="typing-input" placeholder="Type here..." />
     <p id="typing-feedback"></p>
-  </aside>
+  </section>
 </main>
 
-<!-- Floating Emojis -->
 <div id="emoji-container"></div>
 
-<!-- FOOTER -->
 <footer>
   <p>© 2025 My Dev Journey; built with 💜.</p>
   <p class="footer-links">
@@ -69,5 +62,6 @@
     <a href="#" id="changeNameLink">Change Name</a>
   </p>
 </footer>
+
 </body>
 </html>
