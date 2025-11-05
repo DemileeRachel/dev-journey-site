@@ -14,13 +14,13 @@
     <div class="navbar-inner">
       <div class="logo">My Dev Journey</div>
 
-      <!-- UK Clock in center -->
+      <!-- UK Clock -->
       <div id="clock-container">
         <h2>UK Time</h2>
         <div id="uk-clock">--:--:--</div>
       </div>
 
-      <!-- Hamburger for mobile -->
+      <!-- Hamburger menu -->
       <button class="menu-toggle" id="menuToggle">☰</button>
 
       <!-- Navigation links -->
@@ -39,8 +39,8 @@
       <a href="index.html" class="back-btn">← Back to Home</a>
     </section>
 
-    <section class="projects-layout">
-      <!-- 🐍 Python Mini Quiz -->
+    <!-- 🐍 Python Quiz + 🚀 My Projects side by side -->
+    <section class="projects-row">
       <div class="quiz-section">
         <h2>🐍 Python Mini Quiz</h2>
         <p>Test your Python knowledge — one question at a time!</p>
@@ -54,11 +54,10 @@
             <label class="quiz-option"><input type="radio" name="q1" value="9"> 9</label>
           </div>
 
-          <button id="next-btn">Next Question</button>
+          <button id="next-btn" class="fun-btn">Next Question</button>
         </div>
       </div>
 
-      <!-- 🚀 My Projects Section -->
       <div class="project-showcase">
         <h2>🚀 My Projects</h2>
         <p>Coming soon! Here’s where I’ll display my coding work and interactive demos.</p>
@@ -68,18 +67,18 @@
     <!-- 🎨 PROJECT CARDS BELOW -->
     <section class="project-cards">
       <div class="project-card">
-        <h4>🌐 Portfolio Website</h4>
-        <p>A responsive portfolio built with HTML, CSS, and JavaScript to showcase my coding journey.</p>
+        <h4>🌐 Portfolio - Coming soon! </h4>
+        <p>A responsive portfolio built with HTML, CSS, and JavaScript to showcase my coding journey and front-end specific development.</p>
       </div>
 
       <div class="project-card">
-        <h4>🧠 Quiz App using Python</h4>
-        <p>An interactive quiz system using the Python 3.14 system</p>
+        <h4>🧠 Python Quiz App</h4>
+        <p>An interactive quiz system using Python 3.14</p>
       </div>
 
       <div class="project-card">
-        <h4>🎮 Game Development</h4>
-        <p>My pixel-art roguelike game - currently in development!</p>
+        <h4>🎮 Game/App Development</h4>
+        <p>My pixel-art roguelike! Currently in development</p>
       </div>
     </section>
   </main>
@@ -126,11 +125,9 @@
       const q = quizData[currentQuestion];
       questionContainer.innerHTML = `
         <p><strong>${currentQuestion + 1}. ${q.question}</strong></p>
-        ${q.options
-          .map(
-            (opt) => `<label class="quiz-option"><input type="radio" name="q" value="${opt}"> ${opt}</label>`
-          )
-          .join("")}
+        ${q.options.map(opt => `
+          <label class="quiz-option"><input type="radio" name="q" value="${opt}"> ${opt}</label>
+        `).join("")}
       `;
     }
 
