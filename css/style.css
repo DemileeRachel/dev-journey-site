@@ -1,34 +1,29 @@
-/* 🌸 My Dev Journey — Unified Pastel Glass Theme */
+/* 🌸 My Dev Journey — Clean Pastel Glass Theme */
 
-/* ===== BASE LAYOUT ===== */
+/* ====== BASE ====== */
 html, body {
   height: 100%;
-  scroll-behavior: smooth;
 }
-
 body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  padding-top: 80px; /* Space for fixed navbar */
+  padding-top: 80px; /* space for fixed navbar */
   background-color: lavender;
   font-family: "Segoe UI", Arial, sans-serif;
   color: #333;
   overflow-x: hidden;
   animation: fadePage 1.2s ease;
 }
-
 main {
-  flex: 1; /* Push footer to bottom */
+  flex: 1; /* pushes footer down */
 }
-
 @keyframes fadePage {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-/* ===== NAVBAR ===== */
+/* ====== NAVBAR ====== */
 .navbar {
   position: fixed;
   top: 0;
@@ -36,8 +31,8 @@ main {
   background: linear-gradient(90deg, #2c2c2c, #3a3a3a);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   z-index: 1000;
+  padding: 12px 0;
 }
-
 .navbar-inner {
   max-width: 1100px;
   margin: 0 auto;
@@ -47,14 +42,40 @@ main {
   position: relative;
   padding: 12px 20px;
 }
-
 .logo {
   color: white;
   font-weight: bold;
   font-size: 18px;
 }
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 25px;
+}
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0;
+  background: #cdb4ff;
+  transition: width 0.3s ease;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
 
-/* ===== CLOCK ===== */
+/* ====== CLOCK (centered) ====== */
 #clock-container {
   position: absolute;
   left: 50%;
@@ -68,49 +89,17 @@ main {
   box-shadow: 0 0 15px rgba(255, 215, 102, 0.4);
   font-size: 0.85rem;
 }
-
 #clock-container h2 {
   font-size: 0.8rem;
   color: #ffd166;
   margin: 0;
 }
-
 #uk-clock {
   font-weight: 600;
   margin-top: 2px;
 }
 
-/* ===== NAV LINKS ===== */
-.nav-links {
-  display: flex;
-  gap: 25px;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  height: 2px;
-  width: 0;
-  background: #cdb4ff;
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-  width: 100%;
-}
-
-/* ===== MOBILE MENU ===== */
+/* 🍔 Hamburger (Mobile) */
 .menu-toggle {
   display: none;
   background: none;
@@ -119,19 +108,14 @@ main {
   font-size: 26px;
   cursor: pointer;
 }
-
 @media (max-width: 700px) {
-  .navbar-inner {
-    flex-wrap: wrap;
-  }
-
+  .navbar-inner { flex-wrap: wrap; }
   #clock-container {
     position: static;
     transform: none;
-    margin: 8px auto;
+    margin: 8px auto 0;
     order: 3;
   }
-
   .nav-links {
     display: none;
     flex-direction: column;
@@ -141,262 +125,136 @@ main {
     right: 10px;
     width: 180px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     padding: 10px;
   }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
+  .nav-links.active { display: flex; }
+  .menu-toggle { display: block; }
 }
 
-/* ===== HERO (HOME PAGE) ===== */
-.hero {
+/* ====== HERO SECTIONS ====== */
+.hero,
+.projects-hero {
   text-align: center;
-  margin-top: 120px;
+  margin-top: 100px;
 }
-
-.hero h1 {
+.hero h1,
+.projects-hero h1 {
   font-size: 2.6rem;
-  font-weight: bold;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 10px;
 }
 
-/* Gradient only on text */
-.hero h1 .title-text {
+/* ====== BACK BUTTON ====== */
+.back-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
+  color: #333;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(150,150,255,0.4);
+  transition: all 0.3s ease;
+}
+.back-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
+  box-shadow: 0 0 20px rgba(200,200,255,0.8);
+}
+
+/* ====== ABOUT SECTION ====== */
+.about-section {
+  max-width: 900px;
+  margin: 120px auto 80px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.65), rgba(255,255,255,0.55));
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+  animation: fadeIn 1s ease;
+  position: relative;
+  overflow: hidden;
+}
+.about-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.5) 0%, transparent 50%, rgba(255,255,255,0.5) 100%);
+  animation: shimmer 8s infinite linear;
+  opacity: 0.4;
+}
+.about-section h2 {
+  font-size: 2.2rem;
   background: linear-gradient(90deg, #8b5cf6, #6366f1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-/* ✅ Emoji natural color fix */
-.hero h1 .emoji {
-  background: none !important;
-  color: initial !important;
-  -webkit-text-fill-color: initial !important;
-  mix-blend-mode: normal !important;
-  filter: none !important;
-  display: inline !important;
-  isolation: isolate !important;
-}
-
-.hero p {
-  color: #444;
-  margin-top: 10px;
-}
-
-/* ===== BUTTONS ===== */
-.fun-btn,
-#next-btn,
-.back-btn {
+.about-section a {
   display: inline-block;
   margin-top: 20px;
   padding: 10px 24px;
   background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
   color: #333;
   font-weight: 600;
-  border: none;
   border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
-  transition: all 0.3s ease;
   text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(150,150,255,0.4);
 }
-
-.fun-btn:hover,
-#next-btn:hover,
-.back-btn:hover {
+.about-section a:hover {
   transform: scale(1.05);
   background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
-  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
 }
 
-/* ===== ABOUT SECTION ===== */
-.about-section {
-  max-width: 900px;
-  margin: 120px auto 80px;
-  background: linear-gradient(145deg, rgba(255,255,255,0.65), rgba(255,255,255,0.35));
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 50px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  animation: fadeIn 1s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-/* ✨ Shimmer and Sparkle Effect */
-.about-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.9), transparent 60%),
-    radial-gradient(2px 2px at 80% 70%, rgba(255,255,255,0.7), transparent 60%),
-    radial-gradient(2px 2px at 40% 80%, rgba(255,255,255,0.8), transparent 60%);
-  animation: sparkleDrift 14s linear infinite;
-  opacity: 0.4;
-}
-
-@keyframes sparkleDrift {
-  from { transform: translate(0, 0); }
-  to { transform: translate(-80px, -60px); }
-}
-
-.about-section::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
-  transform: skewX(-20deg);
-  animation: shimmer 8s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes shimmer {
-  0% { left: -150%; }
-  45% { left: 120%; }
-  100% { left: 120%; }
-}
-
-.about-section h2 {
-  font-size: 2.2rem;
-  background: linear-gradient(90deg, #8b5cf6, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
-}
-
-.about-section p {
-  font-size: 1.1rem;
-  color: #444;
-  line-height: 1.6;
-  margin-bottom: 10px;
-}
-
-/* ===== PROJECTS PAGE ===== */
-.projects-hero {
-  text-align: center;
-  margin-top: 100px;
-  margin-bottom: 10px;
-  position: relative;
-  z-index: 5;
-}
-
-.projects-hero .back-btn {
-  margin-top: 14px;
-  position: relative;
-  top: 4px;
-}
-
+/* ====== PROJECTS LAYOUT ====== */
 .projects-layout {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 40px;
   max-width: 1100px;
-  margin: 10px auto 100px;
+  margin: 40px auto 120px;
   padding: 0 40px;
+  flex-wrap: wrap;
 }
 
+/* 🐍 Python Quiz */
 .quiz-section {
   flex: 1;
+  min-width: 450px;
+  max-width: 520px;
+  align-self: flex-start;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  animation: fadeIn 0.8s ease;
-}
-
-.project-showcase {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(8px);
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-  text-align: center;
-  animation: fadeIn 1s ease;
-}
-
-/* ===== FLOATING EMOJIS ===== */
-#emoji-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.float-emoji {
-  position: absolute;
-  bottom: 0;
-  font-size: 1.8rem;
-  animation: floatUp 6s linear forwards;
-  opacity: 1;
-  filter: none;
-}
-
-@keyframes floatUp {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-100vh); opacity: 0; }
-}
-
-/* ===== FOOTER ===== */
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9rem;
-  color: #555;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  margin-top: auto;
-}
-
-/* ===== ANIMATIONS ===== */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-  .projects-layout {
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-    padding: 0 20px;
-    margin-top: 0;
-  }
-
-  .quiz-section,
-  .project-showcase {
-    width: 100%;
-  }
-}
-/* ===== SHIMMER EFFECT for PROJECTS TILES ===== */
-
-/* Shared shimmer + sparkle animation for both tiles */
-.quiz-section,
-.project-showcase {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   position: relative;
   overflow: hidden;
 }
 
-/* ✨ Sparkle shimmer overlay */
+/* 🚀 My Projects Box */
+.project-showcase {
+  flex: 1;
+  min-width: 400px;
+  max-width: 520px;
+  align-self: flex-start;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✨ Shimmer / Sparkles */
 .quiz-section::before,
 .project-showcase::before {
   content: "";
@@ -410,8 +268,6 @@ footer {
   opacity: 0.35;
   pointer-events: none;
 }
-
-/* 💫 Moving shimmer streak */
 .quiz-section::after,
 .project-showcase::after {
   content: "";
@@ -420,26 +276,100 @@ footer {
   left: -150%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,0.55) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
   transform: skewX(-20deg);
   animation: shimmer 9s ease-in-out infinite;
   pointer-events: none;
 }
-
-/* ✨ Keyframes for sparkles */
 @keyframes sparkleDrift {
   from { transform: translate(0, 0); }
   to { transform: translate(-80px, -60px); }
 }
-
-/* 🌈 Keyframes for shimmer sweep */
 @keyframes shimmer {
   0% { left: -150%; }
   45% { left: 120%; }
   100% { left: 120%; }
+}
+
+/* 💻 Individual Project Cards */
+.project-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto 120px;
+  padding: 0 40px;
+}
+.project-card {
+  flex: 1 1 300px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 1s ease;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(99,102,241,0.25);
+}
+.project-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 8s infinite;
+  pointer-events: none;
+}
+.project-card h4 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+.project-card p {
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ====== FOOTER ====== */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #555;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  margin-top: auto;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+  .projects-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  .quiz-section,
+  .project-showcase {
+    width: 100%;
+    min-width: unset;
+    margin-bottom: 30px;
+  }
+  .project-cards {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+}
+
+/* ====== ANIMATIONS ====== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
