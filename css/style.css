@@ -1183,3 +1183,29 @@ input[type="number"] {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(150,150,255,0.45);
 }
+/* 🩶 Fix for project cards + PyScript in light mode */
+body.light .project-card {
+  background: rgba(0,0,0,0.05);
+  color: #222;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+body.dark .project-card {
+  background: rgba(255,255,255,0.08);
+  color: #eee;
+}
+
+/* Keep PyScript inputs and buttons readable */
+input[type="number"] {
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+body.light input[type="number"] {
+  color: #111;
+  background: rgba(0,0,0,0.05);
+}
+
+#squareBtn, #catBtn {
+  color: #000;
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
+}
