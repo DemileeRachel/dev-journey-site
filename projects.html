@@ -60,18 +60,17 @@
           <br />
           <button class="fun-btn">Next Question</button>
         </div>
+<!-- Card 3 (PyScript Demo) -->
+<div class="project-card">
+  <h3>🧪 Python Interactive Demo (PyScript)</h3>
+  <p>Run Python directly in your browser — try squaring a number!</p>
+  <div class="py-demo">
+    <input id="numInput" type="number" value="10" />
+    <button id="squareBtn">Square it!</button>
+  </div>
+  <p id="pyResult"></p>
 
-        <!-- Card 3 (PyScript Demo) -->
-        <div class="project-card">
-          <h3>🧪 Python Interactive Demo (PyScript)</h3>
-          <p>Run Python directly in your browser — try squaring a number!</p>
-          <div class="py-demo">
-            <input id="numInput" type="number" value="10" />
-            <button id="squareBtn">Square it!</button>
-          </div>
-          <p id="pyResult"></p>
-
-          <py-script>
+  <py-script>
 from js import document
 
 def square_it(event):
@@ -82,8 +81,9 @@ def square_it(event):
         document.getElementById("pyResult").innerText = f"Error: {e}"
 
 document.getElementById("squareBtn").addEventListener("click", square_it)
-          </py-script>
-        </div>
+  </py-script>
+</div>
+
 
         <!-- Card 4 -->
         <div class="project-card">
