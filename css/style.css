@@ -660,3 +660,22 @@ body.home, body.about, body.projects { overflow: hidden; }
   background: rgba(255, 214, 102, 0.25);
   border-color: rgba(255, 214, 102, 0.5);
 }
+#numInput, #squareBtn {
+  margin: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 0 8px rgba(205,180,255,0.4);
+}
+
+#squareBtn {
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
+  color: #111;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#squareBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(205,180,255,0.6);
+}
