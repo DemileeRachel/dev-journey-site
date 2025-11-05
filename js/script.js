@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   initEmoji();
 
-  /* ===== MULTI-LINE TYPEWRITER ===== */
+    /* ===== MULTI-LINE TYPEWRITER (FINAL FIX) ===== */
   const paragraph = document.getElementById('intro-text');
   if (paragraph) {
     const lines = [
@@ -115,33 +115,35 @@ document.addEventListener('DOMContentLoaded', () => {
     let lineIndex = 0;
     let charIndex = 0;
     let deleting = false;
-    let delay = 80;
-    let pause = 1200;
+    let typingSpeed = 70;
+    let pauseDelay = 1200;
 
-    function typeLoop() {
+    function typeWriter() {
       const currentLine = lines[lineIndex];
 
       if (!deleting && charIndex < currentLine.length) {
         paragraph.textContent = currentLine.substring(0, charIndex + 1);
         charIndex++;
-        delay = 70;
       } else if (deleting && charIndex > 0) {
         paragraph.textContent = currentLine.substring(0, charIndex - 1);
         charIndex--;
-        delay = 35;
-      } else if (!deleting && charIndex === currentLine.length) {
-        deleting = true;
-        delay = pause;
-      } else if (deleting && charIndex === 0) {
-        deleting = false;
-        lineIndex = (lineIndex + 1) % lines.length;
-        delay = 300;
+      } else {
+        if (!deleting && charIndex === currentLine.length) {
+          deleting = true;
+          setTimeout(typeWriter, pauseDelay);
+          return;
+        } else if (deleting && charIndex === 0) {
+          deleting = false;
+          lineIndex = (lineIndex + 1) % lines.length;
+        }
       }
 
-      setTimeout(typeLoop, delay);
+      setTimeout(typeWriter, deleting ? typingSpeed / 2 : typingSpeed);
     }
-    typeLoop();
+
+    typeWriter();
   }
+
 
   /* ===== FUN BUTTON ===== */
   if (greetBtn) {
