@@ -426,3 +426,27 @@ footer {
   box-shadow: 0 -2px 8px rgba(120, 90, 255, 0.1);
 }
 footer p { margin: 0; }
+/* ===== HERO FIXES (Static Button Layout) ===== */
+.intro-box {
+  display: inline-block;
+  min-width: 420px; /* keeps width stable */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hero-buttons {
+  margin-top: 10px;
+}
+
+.hero-links {
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+#intro-text {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  border-right: 2px solid #cdb4ff;
+  overflow: hidden;
+}
