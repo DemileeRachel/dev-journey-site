@@ -559,6 +559,25 @@ body.light {
 .projects-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+}/* Fix spacing and centering */
+.projects-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #cdb4ff, #a5d8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.project-card.wide {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 35px; /* add balance to bottom */
+}
+
+/* Ensure bottom card aligns perfectly */
+.projects-section .project-card:last-of-type {
+  margin-bottom: 50px;
 }
 
 .wide-card {
@@ -723,4 +742,26 @@ body.home, body.about, body.projects { overflow: hidden; }
 #squareBtn:hover {
   transform: scale(1.05);
   box-shadow: 0 0 12px rgba(205,180,255,0.6);
+}
+#squareBtn, #catBtn {
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
+  color: #000;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(150,150,255,0.3);
+}
+#squareBtn:hover, #catBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(200,200,255,0.7);
+}
+.projects-section {
+  animation: fadeIn 1s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
