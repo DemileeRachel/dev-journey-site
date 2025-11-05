@@ -354,6 +354,78 @@ body.light {
 .about-card p {
   color: #555;
 }
+/* ===========================
+   ABOUT PAGE LAYOUT (2-column)
+=========================== */
+.about-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+
+/* Left card stays centered */
+.about-card {
+  flex: 1 1 480px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Right panel (Skills & Tools) */
+#skills {
+  flex: 0 0 320px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 25px;
+  color: #eee;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+}
+
+#skills h2 {
+  font-size: 1.4rem;
+  background: linear-gradient(90deg, #cdb4ff, #a5d8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;
+}
+
+.skill-category h3 {
+  color: #cdb4ff;
+  margin-bottom: 8px;
+}
+
+.skill-category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.skill-category li {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Responsive fallback */
+@media (max-width: 900px) {
+  .about-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  #skills {
+    width: 100%;
+    margin-top: 30px;
+  }
+}
 
 /* ===========================
    FOOTER
