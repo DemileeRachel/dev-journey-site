@@ -371,7 +371,12 @@ body.light {
   transform: scale(1.3) rotate(10deg);
   filter: drop-shadow(0 0 6px #cdb4ff);
 }
-
+/* Prevent emoji inside gradient text from being tinted */
+.emoji {
+  display: inline-block;
+  filter: none !important;
+  -webkit-text-fill-color: initial !important;
+}
 /* ===== CYCLING TYPEWRITER EFFECT (for JS) ===== */
 .typewriter {
   display: inline-block;
