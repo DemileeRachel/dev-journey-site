@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/script.js" defer></script>
 </head>
-<body>
+
+<body class="projects"> <!-- ✅ Added class to lock scrolling -->
   <!-- ===== NAVBAR ===== -->
   <header class="navbar">
     <div class="navbar-inner">
@@ -33,36 +34,36 @@
 
   <!-- ===== PROJECTS SECTION ===== -->
   <main>
-    <main>
-  <section class="projects-section">
-    <div class="projects-inner">
-      <h2>Projects</h2>
-      <a href="index.html" class="fun-btn">← Back to Home</a>
+    <section class="projects-section">
+      <div class="projects-inner">
+        <h2>Projects</h2>
+        <a href="index.html" class="fun-btn">← Back to Home</a>
 
-      <!-- 🐍 Python Mini Quiz -->
-      <div class="quiz-card">
-        <h3>🐍 Python Mini Quiz</h3>
-        <p>Test your Python knowledge — one question at a time!</p>
+        <!-- 🐍 Python Mini Quiz -->
+        <div class="quiz-card">
+          <h3>🐍 Python Mini Quiz</h3>
+          <p>Test your Python knowledge — one question at a time!</p>
 
-        <!-- Progress Bar -->
-        <div class="quiz-progress">
-          <div class="quiz-progress-fill" id="quiz-progress"></div>
+          <!-- Progress Bar -->
+          <div class="quiz-progress">
+            <div class="quiz-progress-fill" id="quiz-progress"></div>
+          </div>
+
+          <div id="quiz-container"></div>
+          <p id="result"></p>
+          <button id="next-btn" class="fun-btn">Next Question</button>
         </div>
 
-        <div id="quiz-container"></div>
-        <p id="result"></p>
-        <button id="next-btn" class="fun-btn">Next Question</button>
-      </div>
-
-      <!-- 🚀 Project List -->
-      <div class="projects-list">
-        <h3>🚀 My Projects</h3>
-        <p>Coming soon! Here’s where I’ll display my coding work and interactive demos.</p>
-        <ul>
-          <li>💡 <strong>Portfolio</strong> — responsive site built with HTML, CSS & JS.</li>
-          <li>🐍 <strong>Python Quiz App</strong> — an interactive quiz using Python 3.14.</li>
-          <li>🎮 <strong>Game/App Development</strong> — a pixel-art roguelike, stay tuned!</li>
-        </ul>
+        <!-- 🚀 Project List -->
+        <div class="projects-list">
+          <h3>🚀 My Projects</h3>
+          <p>Coming soon! Here’s where I’ll display my coding work and interactive demos.</p>
+          <ul>
+            <li>💡 <strong>Portfolio</strong> — responsive site built with HTML, CSS & JS.</li>
+            <li>🐍 <strong>Python Quiz App</strong> — an interactive quiz using Python 3.14.</li>
+            <li>🎮 <strong>Game/App Development</strong> — a pixel-art roguelike, stay tuned!</li>
+          </ul>
+        </div>
       </div>
     </section>
   </main>
