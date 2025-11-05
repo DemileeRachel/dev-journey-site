@@ -8,17 +8,27 @@
 </head>
 <body>
   <!-- Navbar -->
-  <header class="navbar">
+<header class="navbar">
+  <div class="navbar-inner">
     <div class="logo">My Dev Journey</div>
 
+    <!-- 🕒 Clock (centered) -->
+    <div id="clock-container">
+      <h2>UK Time</h2>
+      <div id="uk-clock"></div>
+    </div>
+
+    <!-- 🍔 Hamburger for mobile -->
     <button class="menu-toggle" id="menuToggle">☰</button>
 
+    <!-- 🔗 Navigation Links -->
     <nav class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <a href="projects.html" class="active">Projects</a>
+      <a href="projects.html">Projects</a>
     </nav>
-  </header>
+  </div>
+</header>
 
   <!-- Projects Heading + Back Button -->
   <main class="projects-hero">

@@ -8,19 +8,28 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="navbar">
+ <header class="navbar">
+  <div class="navbar-inner">
     <div class="logo">My Dev Journey</div>
 
-    <!-- Hamburger menu for mobile -->
+    <!-- 🕒 Clock (centered) -->
+    <div id="clock-container">
+      <h2>UK Time</h2>
+      <div id="uk-clock"></div>
+    </div>
+
+    <!-- 🍔 Hamburger for mobile -->
     <button class="menu-toggle" id="menuToggle">☰</button>
 
-    <!-- Navigation links -->
+    <!-- 🔗 Navigation Links -->
     <nav class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
-      <a href="about.html" class="active">About</a>
+      <a href="about.html">About</a>
       <a href="projects.html">Projects</a>
     </nav>
-  </header>
+  </div>
+</header>
+
 
   <section class="about-section">
     <h2>About Me</h2>

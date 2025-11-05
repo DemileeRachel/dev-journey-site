@@ -8,25 +8,27 @@
 </head>
 <body>
   <!-- Navbar -->
-  <header class="navbar">
-    <div class="navbar-inner">
-      <div class="logo">My Dev Journey</div>
+<header class="navbar">
+  <div class="navbar-inner">
+    <div class="logo">My Dev Journey</div>
 
-      <!-- Center clock -->
-      <div id="clock-container" aria-live="polite">
-        <h2>UK Time</h2>
-        <div id="uk-clock">--:--:--</div>
-      </div>
-
-      <!-- Links + hamburger -->
-      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
-      <nav class="nav-links" id="navLinks">
-        <a href="index.html" class="active">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-      </nav>
+    <!-- 🕒 Clock (centered) -->
+    <div id="clock-container">
+      <h2>UK Time</h2>
+      <div id="uk-clock"></div>
     </div>
-  </header>
+
+    <!-- 🍔 Hamburger for mobile -->
+    <button class="menu-toggle" id="menuToggle">☰</button>
+
+    <!-- 🔗 Navigation Links -->
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+    </nav>
+  </div>
+</header>
 
   <!-- Main content -->
   <main class="hero">
