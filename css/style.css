@@ -850,3 +850,101 @@ body.home, body.about, body.projects { overflow: hidden; }
   .projects-row{ grid-template-columns: 1fr; width: min(700px, 94vw); }
   .projects-section{ padding-top: 110px; gap: 34px; }
 }
+/* 🌌 PROJECTS SHOWCASE */
+.projects-showcase {
+  padding: 130px 40px 120px;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.projects-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #cdb4ff, #a5d8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.projects-sub {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin-bottom: 60px;
+}
+
+/* Gallery layout: organic but neat */
+.projects-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 420px));
+  gap: 40px;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card base style */
+.project-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 28px 30px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.25);
+  color: #eee;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 30px rgba(200,180,255,0.4);
+}
+
+/* Subtle random height variation (masonry-like) */
+.project-card:nth-child(1) { transform: rotate(-1deg); }
+.project-card:nth-child(2) { transform: rotate(1deg); }
+.project-card:nth-child(3) { transform: translateY(10px); }
+.project-card:nth-child(4) { transform: translateY(-8px); }
+
+.project-card.wide {
+  grid-column: span 2;
+  max-width: 880px;
+  justify-self: center;
+}
+
+/* Buttons & inputs unified look */
+#squareBtn, #catBtn {
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
+  color: #000;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+  box-shadow: 0 0 10px rgba(150,150,255,.3);
+}
+#squareBtn:hover, #catBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(150,150,255,.45);
+}
+
+input[type="number"] {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin: 8px 6px;
+  width: 140px;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 950px) {
+  .projects-gallery {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .project-card.wide { grid-column: span 1; }
+  .projects-title { font-size: 2rem; }
+}

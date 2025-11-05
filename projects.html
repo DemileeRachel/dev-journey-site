@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | My Dev Journey</title>
 
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/script.js" defer></script>
 
-  <!-- PyScript (for the Python demo) -->
+  <!-- PyScript (Python in Browser) -->
   <link rel="stylesheet" href="https://pyscript.net/releases/2024.5.1/core.css">
   <script type="module" src="https://pyscript.net/releases/2024.5.1/core.js"></script>
 </head>
 
 <body class="projects">
-  <!-- NAVBAR -->
+  <!-- ===== NAVBAR ===== -->
   <header class="navbar">
     <div class="navbar-inner">
       <div class="logo">My Dev Journey</div>
@@ -37,52 +37,47 @@
     </div>
   </header>
 
-  <!-- PROJECTS -->
+  <!-- ===== PROJECTS SHOWCASE ===== -->
   <main>
-    <section class="projects-section">
-      <a href="index.html" class="fun-btn back-home-btn">← Back to Home</a>
+    <section class="projects-showcase">
+      <h1 class="projects-title">🚀 Projects Coming Soon</h1>
+      <p class="projects-sub">Here’s a glimpse of my current and upcoming creations 🪄</p>
 
-      <!-- Row 1: two cards side-by-side -->
-      <div class="projects-row">
-        <!-- SQL Mini Quiz -->
+      <div class="projects-gallery">
+
+        <!-- SQL QUIZ -->
         <div class="project-card quiz-card">
           <h3>🧠 SQL Mini Quiz</h3>
-          <p>Test your SQL knowledge with one question at a time!</p>
-
-          <!-- Progress Bar -->
+          <p>Test your SQL knowledge — one question at a time!</p>
           <div class="quiz-progress">
             <div class="quiz-progress-fill" id="quiz-progress"></div>
           </div>
-
           <div id="quiz-container"></div>
           <p id="result"></p>
           <button id="next-btn" class="fun-btn">Next Question</button>
         </div>
 
-        <!-- My Projects list -->
-        <div class="project-card projects-list">
-          <h3>🚀 My Projects</h3>
-          <p>Here are a few ongoing and upcoming creations 👇</p>
+        <!-- PROJECTS LIST -->
+        <div class="project-card">
+          <h3>💡 My Projects</h3>
           <ul>
-            <li>💡 <strong>Portfolio</strong> A responsive site built with HTML, CSS & JS.</li>
-            <li>🐍 <strong>Python Quiz App</strong> An interactive quiz using Python 3.14.</li>
-            <li>🎮 <strong>Game/App Development</strong> A pixel-art roguelike, stay tuned!</li>
+            <li>📁 <strong>Portfolio</strong> — responsive site built with HTML, CSS & JS.</li>
+            <li>🐍 <strong>Python Quiz App</strong> — interactive quiz using Python 3.14.</li>
+            <li>🎮 <strong>Game/App Development</strong> — pixel-art roguelike (Rogue Whiskers)!</li>
           </ul>
         </div>
-      </div>
 
-      <!-- Row 2: stacked center -->
-      <div class="projects-stack">
-        <!-- PyScript demo -->
+        <!-- PYSCRIPT DEMO -->
         <div class="project-card wide">
           <h3>🧪 Python Interactive Demo (PyScript)</h3>
-          <p>Run Python directly in your browser; try squaring a number!</p>
-
+          <p>Run Python directly in your browser — try squaring a number!</p>
           <div class="py-demo">
             <label for="numInput">Enter a number:</label>
             <input id="numInput" type="number" value="10" />
             <button id="squareBtn" class="fun-btn">Square it!</button>
           </div>
+
+          <p id="pyResult" style="margin-top:10px; font-weight:600;"></p>
 
           <py-script>
 from js import document
@@ -95,21 +90,23 @@ def square_it(event):
 
 document.getElementById("squareBtn").addEventListener("click", square_it)
           </py-script>
-
-          <p id="pyResult" style="margin-top:10px; font-weight:600;"></p>
         </div>
 
-        <!-- Cat name generator (JS) -->
-        <div class="project-card wide">
+        <!-- CAT NAME GENERATOR -->
+        <div class="project-card">
           <h3>🐱 Random Cat Name Generator</h3>
-          <p>Generate a new cat hero name for <strong>COMING SOON</strong>!</p>
+          <p>Generate a new cat hero name for <strong>Rogue Whiskers</strong>!</p>
           <button id="catBtn" class="fun-btn">Generate Cat Name</button>
           <p id="catName" style="margin-top:10px; font-weight:600;"></p>
         </div>
+
       </div>
+
+      <a href="index.html" class="fun-btn" style="margin-top:60px;">← Back to Home</a>
     </section>
   </main>
 
+  <!-- ===== FOOTER ===== -->
   <footer>
     <p>© 2025 My Dev Journey; built with 💜.</p>
   </footer>
