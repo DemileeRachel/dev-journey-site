@@ -442,3 +442,24 @@ input[type="submit"] {
   font-family: "Segoe UI", Arial, sans-serif;
   letter-spacing: 0.3px;
 }
+/* ====== FOOTER STYLING ====== */
+footer {
+  margin-top: auto;
+  background: transparent;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.9rem;
+  color: #333;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+body > footer {
+  margin-top: auto; /* ensures footer pushes to the bottom */
+}
