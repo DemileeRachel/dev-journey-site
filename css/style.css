@@ -549,3 +549,56 @@ main {
     margin-top: 20px;
   }
 }
+.hero {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 25px;
+}
+
+/* Center and space out the button */
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.fun-btn {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
+  color: #000;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
+  transition: all 0.3s ease;
+}
+.fun-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
+  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
+}
+.fun-btn {
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards;
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
