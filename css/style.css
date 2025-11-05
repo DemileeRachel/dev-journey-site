@@ -387,9 +387,6 @@ body.light {
   color: #555;
 }
 /* ===========================
-   ABOUT PAGE LAYOUT (2-column)
-=========================== */
-/* ===========================
    ABOUT PAGE — FIXED LAYOUT (NO SCROLL)
 =========================== */
 .about-fixed {
@@ -797,6 +794,58 @@ body.projects main {
   text-align: center;
   padding: 0;
   margin: 0;
+}
+/* ===========================
+   PROJECTS — CLEAN SIDE-BY-SIDE LAYOUT
+=========================== */
+.projects-section {
+  height: calc(100vh - var(--nav-h) - var(--footer-h));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  text-align: center;
+}
+
+.projects-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: nowrap;
+}
+
+.quiz-card,
+.projects-list {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25);
+  color: #eee;
+  width: 400px;
+  max-width: 45%;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quiz-card:hover,
+.projects-list:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 950px) {
+  .projects-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .quiz-card,
+  .projects-list {
+    max-width: 90%;
+  }
 }
 /* ===========================
    FINAL NO-SCROLL ENFORCER (OVERRIDES EVERYTHING ABOVE)
