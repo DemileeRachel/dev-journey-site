@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | My Dev Journey</title>
 
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Core site styles -->
+  <link rel="stylesheet" href="css/style.css" />
   <script src="js/script.js" defer></script>
 
   <!-- ✅ PyScript setup -->
-  <link rel="stylesheet" href="https://pyscript.net/releases/2024.5.1/core.css">
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.5.1/core.css" />
   <script type="module" src="https://pyscript.net/releases/2024.5.1/core.js"></script>
 </head>
 
@@ -44,7 +45,6 @@
       <a href="index.html" class="fun-btn">← Back to Home</a>
 
       <div class="projects-wrapper">
-
         <!-- 🧠 SQL Mini Quiz -->
         <div class="quiz-card">
           <h3>SQL Mini Quiz</h3>
@@ -74,7 +74,7 @@
       <!-- 🐍 PyScript Interactive Project -->
       <div class="projects-list" style="margin-top:40px;">
         <h3>🐾 Python Interactive Demo (PyScript)</h3>
-        <p>Run Python 3.11 directly in your browser — try squaring a number!</p>
+        <p>Run Python directly in your browser — try squaring a number!</p>
 
         <label for="numInput">Enter a number:</label>
         <input id="numInput" type="number" value="10" />
@@ -92,9 +92,38 @@
               document.getElementById("output").innerText = f"{num}² = {result}"
         </py-script>
       </div>
+
+      <!-- 🐱 Random Cat Name Generator -->
+      <div class="projects-list" style="margin-top:40px;">
+        <h3>🐱 Random Cat Name Generator</h3>
+        <p>Generate a new cat hero name for <strong>Rogue Whiskers</strong>!</p>
+
+        <button id="catBtn">Generate Cat Name</button>
+        <div id="catOutput" style="margin-top:10px; color:#cdb4ff; font-weight:bold;"></div>
+
+        <py-script>
+          from pyscript import when
+          import random
+
+          adjectives = [
+              "Galaxy", "Cozy", "Slime", "Shadow", "Sparkle", "Fuzzy",
+              "Mossy", "Bee", "Noble", "Velvet", "Storm", "Pixel"
+          ]
+          nouns = [
+              "Whisker", "Paw", "Tail", "Claw", "Fur", "Moon", "Blink", "Charm"
+          ]
+
+          @when("click", "#catBtn")
+          def generate_name(event):
+              from js import document
+              name = f"{random.choice(adjectives)} {random.choice(nouns)}"
+              document.getElementById("catOutput").innerText = f"✨ Your cat's name is: {name} ✨"
+        </py-script>
+      </div>
     </section>
   </main>
 
+  <!-- ===== FOOTER ===== -->
   <footer>
     <p>© 2025 My Dev Journey; built with 💜.</p>
   </footer>
