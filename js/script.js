@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ===========================
-     TOGGLE TYPING GAME VISIBILITY + BUTTON TEXT
+     TOGGLE TYPING GAME VISIBILITY
   ============================ */
   if (greetBtn && tgWrap) {
     greetBtn.addEventListener('click', () => {
@@ -178,45 +178,31 @@ document.addEventListener('DOMContentLoaded', () => {
       greetBtn.textContent = isVisible ? "Do you press?" : "Hide Challenge";
     });
   }
-/* ===========================
-   SKILLS PANEL TOGGLE
-=========================== */
-const skillsToggle = document.getElementById('skillsToggle');
-const skillsBody   = document.querySelector('#skills .skills-body');
 
-if (skillsToggle && skillsBody) {
-  skillsToggle.addEventListener('click', () => {
-    const isHidden = skillsBody.classList.toggle('hidden');
-    skillsToggle.textContent = isHidden ? 'Show Skills' : 'Hide Skills';
-    skillsToggle.setAttribute('aria-expanded', !isHidden);
-  });
-}
+  /* ===========================
+     SKILLS PANEL TOGGLE (About Page)
+  ============================ */
+  const skillsToggle = document.getElementById('skillsToggle');
+  const skillsBody   = document.querySelector('#skills .skills-body');
+
+  if (skillsToggle && skillsBody) {
+    skillsToggle.addEventListener('click', () => {
+      const isCollapsed = skillsBody.classList.toggle('collapsed');
+      skillsToggle.textContent = isCollapsed ? 'Show Skills' : 'Hide Skills';
+      skillsToggle.setAttribute('aria-expanded', !isCollapsed);
+    });
+  }
 
   /* ===========================
      SQL MINI QUIZ
   ============================ */
- const quizData = [
-  { 
-    question: "Which SQL keyword is used to retrieve data from a database?", 
-    options: ["GET", "SELECT", "FETCH", "SHOW"], 
-    correct: "SELECT" 
-  },
-  { 
-    question: "Which clause filters rows returned by a SELECT query?", 
-    options: ["ORDER BY", "WHERE", "GROUP BY", "HAVING"], 
-    correct: "WHERE" 
-  },
-  { 
-    question: "Which SQL statement is used to add new data into a table?", 
-    options: ["ADD", "INSERT INTO", "UPDATE", "APPEND"], 
-    correct: "INSERT INTO" 
-  },
-  { 
-    question: "Which command permanently removes a table from the database?", 
-    options: ["DELETE FROM", "DROP TABLE", "REMOVE TABLE", "TRUNCATE TABLE"], 
-    correct: "DROP TABLE" 
-  }
-];
+  const quizData = [
+    { question: "Which SQL keyword is used to retrieve data from a database?", options: ["GET", "SELECT", "FETCH", "SHOW"], correct: "SELECT" },
+    { question: "Which clause filters rows returned by a SELECT query?", options: ["ORDER BY", "WHERE", "GROUP BY", "HAVING"], correct: "WHERE" },
+    { question: "Which SQL statement is used to add new data into a table?", options: ["ADD", "INSERT INTO", "UPDATE", "APPEND"], correct: "INSERT INTO" },
+    { question: "Which command permanently removes a table from the database?", options: ["DELETE FROM", "DROP TABLE", "REMOVE TABLE", "TRUNCATE TABLE"], correct: "DROP TABLE" }
+  ];
+
   const quizContainer = document.getElementById('quiz-container');
   const nextBtn = document.getElementById('next-btn');
   const resultText = document.getElementById('result');
