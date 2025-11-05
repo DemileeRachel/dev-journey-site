@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks   = document.getElementById('navLinks');
   const themeBtn   = document.getElementById('theme-toggle');
   const clockOut   = document.getElementById('uk-clock');
-  const greetingEl = document.getElementById('greetingText');   // <-- required
-  const changeName = document.getElementById('changeNameLink'); // <-- required
+  const greetingEl = document.getElementById('greetingText');
+  const changeName = document.getElementById('changeNameLink');
   const greetBtn   = document.getElementById('greetBtn');
 
   /* ===== NAV (mobile) ===== */
@@ -60,12 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
     greetingEl && (greetingEl.textContent = name ? `${base}, ${name}!` : `${base}!`);
   }
 
-  // Ensure we always have a name value (can be blank if user cancels)
   if (!localStorage.getItem('visitorName')) {
     localStorage.setItem('visitorName', '');
   }
   setGreetingLine();
-  // keep greeting fresh as time passes
   setInterval(setGreetingLine, 60 * 1000);
 
   if (changeName) {
@@ -80,17 +78,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== Fun button (same style everywhere) ===== */
+  /* ===== Fun button ===== */
   if (greetBtn) {
     greetBtn.addEventListener('click', () => {
       greetBtn.classList.add('clicked');
       const old = greetBtn.textContent;
       greetBtn.textContent = '✨ Magic! ✨';
-      setTimeout(() => { greetBtn.textContent = old; greetBtn.classList.remove('clicked'); }, 1200);
+      setTimeout(() => { 
+        greetBtn.textContent = old; 
+        greetBtn.classList.remove('clicked'); 
+      }, 1200);
     });
   }
 
-  /* ===== Floating emojis (optional) ===== */
+  /* ===== Floating emojis ===== */
   const emojiContainer = document.getElementById('emoji-container');
   function spawnEmoji() {
     if (!emojiContainer) return;
@@ -105,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setInterval(spawnEmoji, 1500);
 
-  /* ===== Mini typing game (optional; safe no-op if missing) ===== */
+  /* ===== Mini typing game ===== */
   const tgWrap   = document.getElementById('typing-game');
   const tgWord   = document.getElementById('typing-word');
   const tgInput  = document.getElementById('typing-input');
@@ -113,16 +114,25 @@ document.addEventListener('DOMContentLoaded', () => {
   if (tgWrap && tgWord && tgInput && tgStatus) {
     const words = ['developer','javascript','portfolio','learning','python'];
     let target = words[0];
-    function newWord() { target = words[Math.floor(Math.random()*words.length)]; tgWord.textContent = target; tgInput.value=''; tgStatus.textContent=''; }
+    function newWord() { 
+      target = words[Math.floor(Math.random()*words.length)]; 
+      tgWord.textContent = target; 
+      tgInput.value=''; 
+      tgStatus.textContent=''; 
+    }
     newWord();
     tgWrap.style.display = 'block';
     tgInput.addEventListener('input', () => {
-      if (tgInput.value.trim() === target) { tgStatus.textContent = '✓ Nice!'; setTimeout(newWord, 700); }
-      else { tgStatus.textContent = ''; }
+      if (tgInput.value.trim() === target) { 
+        tgStatus.textContent = '✓ Nice!'; 
+        setTimeout(newWord, 700); 
+      } else { 
+        tgStatus.textContent = ''; 
+      }
     });
   }
 
-  /* ===== Python Mini Quiz (id-based, works only on projects page) ===== */
+  /* ===== Python Mini Quiz ===== */
   const quizData = [
     { question: "What is the output of print(2 ** 3)?", options: ["5","6","8","9"], correct: "8" },
     { question: "Which keyword defines a function?", options: ["func","def","function","lambda"], correct: "def" },
@@ -130,9 +140,17 @@ document.addEventListener('DOMContentLoaded', () => {
     { question: "Python comment starts with…", options: ["//","#","<!--","/*"], correct: "#" }
   ];
   let qIndex = 0, qScore = 0;
+
   const quizContainer = document.getElementById('quiz-container');
   const nextBtn       = document.getElementById('next-btn');
   const resultText    = document.getElementById('result');
+  const progressFill  = document.getElementById('quiz-progress-fill'); // <-- NEW
+
+  function updateProgress() {
+    if (!progressFill) return;
+    const percent = ((qIndex) / quizData.length) * 100;
+    progressFill.style.width = `${percent}%`;
+  }
 
   function drawQuestion() {
     const q = quizData[qIndex];
@@ -145,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </label>
         `).join('')}
       </div>`;
+    updateProgress(); // update bar every question
   }
 
   function showResult() {
@@ -153,6 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <p>You scored <strong>${qScore}</strong> out of <strong>${quizData.length}</strong>.</p>
       <button id="retry-btn" class="fun-btn">Try Again</button>
     `;
+    if (progressFill) progressFill.style.width = '100%'; // fill bar at end
     if (nextBtn) nextBtn.style.display = 'none';
     const rb = document.getElementById('retry-btn');
     rb && rb.addEventListener('click', () => {
@@ -163,12 +183,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (quizContainer) {
-    // ensure the button looks like your design
     if (nextBtn && !nextBtn.classList.contains('fun-btn')) nextBtn.classList.add('fun-btn');
     drawQuestion();
     nextBtn && nextBtn.addEventListener('click', () => {
       const pick = document.querySelector('input[name="answer"]:checked');
-      if (!pick) { resultText.textContent = "⚠️ Select an answer first"; resultText.style.color = "#ff6b6b"; return; }
+      if (!pick) { 
+        resultText.textContent = "⚠️ Select an answer first"; 
+        resultText.style.color = "#ff6b6b"; 
+        return; 
+      }
       if (pick.value === quizData[qIndex].correct) qScore++;
       qIndex++;
       resultText.textContent = '';
