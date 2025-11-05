@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  /* ===== ELEMENTS ===== */
+
+  /* ===========================
+     ELEMENT SELECTORS
+  ============================ */
   const menuToggle = document.getElementById('menuToggle');
   const navLinks   = document.getElementById('navLinks');
   const themeBtn   = document.getElementById('theme-toggle');
@@ -8,7 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const changeName = document.getElementById('changeNameLink');
   const greetBtn   = document.getElementById('greetBtn');
 
-  /* ===== NAV (mobile) ===== */
+  /* ===========================
+     NAVBAR TOGGLE (MOBILE)
+  ============================ */
   if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -23,7 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== CLOCK ===== */
+  /* ===========================
+     CLOCK (UK TIME)
+  ============================ */
   function tick() {
     if (!clockOut) return;
     clockOut.textContent = new Date().toLocaleTimeString('en-GB', {
@@ -34,12 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
   tick();
   setInterval(tick, 1000);
 
-  /* ===== THEME ===== */
+  /* ===========================
+     THEME TOGGLE
+  ============================ */
   const THEME_KEY = 'siteTheme';
   const applyTheme = (theme) => {
     document.body.classList.toggle('dark', theme === 'dark');
   };
   applyTheme(localStorage.getItem(THEME_KEY) || 'light');
+
   if (themeBtn) {
     themeBtn.addEventListener('click', () => {
       const next = document.body.classList.contains('dark') ? 'light' : 'dark';
@@ -48,7 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== GREETING ===== */
+  /* ===========================
+     GREETING MESSAGE + NAME
+  ============================ */
   function computeGreeting() {
     const h = new Date().getHours();
     if (h < 12) return 'Good Morning';
@@ -66,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!localStorage.getItem('visitorName')) {
     localStorage.setItem('visitorName', '');
   }
+
   setGreetingLine();
   setInterval(setGreetingLine, 60000);
 
@@ -81,7 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== GREETING EMOJI ===== */
+  /* ===========================
+     GREETING EMOJI INTERACTION
+  ============================ */
   function initEmoji() {
     const greetingEmoji = document.getElementById('greeting-emoji');
     if (greetingEmoji) {
@@ -103,7 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   initEmoji();
 
-  /* ===== FLOATING EMOJIS ===== */
+  /* ===========================
+     FLOATING BACKGROUND EMOJIS
+  ============================ */
   const emojiContainer = document.getElementById('emoji-container');
   function spawnEmoji() {
     if (!emojiContainer) return;
@@ -118,22 +135,28 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setInterval(spawnEmoji, 1500);
 
-  /* ===== MINI TYPING GAME ===== */
+  /* ===========================
+     MINI TYPING GAME
+  ============================ */
   const tgWrap   = document.getElementById('typing-game');
   const tgWord   = document.getElementById('typing-word');
   const tgInput  = document.getElementById('typing-input');
   const tgStatus = document.getElementById('typing-feedback');
+
   if (tgWrap && tgWord && tgInput && tgStatus) {
     const words = ['developer','javascript','portfolio','learning','python'];
     let target = words[0];
+
     function newWord() {
       target = words[Math.floor(Math.random() * words.length)];
       tgWord.textContent = target;
       tgInput.value = '';
       tgStatus.textContent = '';
     }
+
     newWord();
-    tgWrap.style.display = 'block';
+    tgWrap.classList.add('typing-hidden');
+
     tgInput.addEventListener('input', () => {
       if (tgInput.value.trim() === target) {
         tgStatus.textContent = '✓ Nice!';
@@ -144,7 +167,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== PYTHON MINI QUIZ ===== */
+  // ✅ Toggle Typing Game on button click
+  if (greetBtn && tgWrap) {
+    greetBtn.addEventListener('click', () => {
+      tgWrap.classList.toggle('typing-visible');
+      tgWrap.classList.toggle('typing-hidden');
+    });
+  }
+
+  /* ===========================
+     PYTHON MINI QUIZ
+  ============================ */
   const quizData = [
     { question: "What is the output of print(2 ** 3)?", options: ["5", "6", "8", "9"], correct: "8" },
     { question: "Which keyword defines a function?", options: ["func", "def", "function", "lambda"], correct: "def" },
