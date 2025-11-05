@@ -591,3 +591,16 @@ body.home, body.about, body.projects { overflow: hidden; }
   max-height: 600px; /* or whatever fits */
   opacity: 1;
 }
+/* Collapse animation for skills section */
+.skills-body {
+  transition: max-height 0.6s ease, opacity 0.4s ease;
+  max-height: 600px;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.skills-body.collapsed {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
