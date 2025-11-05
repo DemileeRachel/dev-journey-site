@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
       menuToggle.classList.toggle('open');
     });
 
+    // Close when clicking outside
     document.addEventListener('click', (e) => {
       if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
         navLinks.classList.remove('active');
@@ -42,16 +43,35 @@ document.addEventListener('DOMContentLoaded', () => {
   updateUKClock();
 
   /* =============================
-     🌤 DYNAMIC GREETING
+     🌤 DYNAMIC GREETING (auto-updating)
   ============================== */
-  if (greeting) {
+  function updateGreeting() {
+    if (!greeting) return;
+
     const hours = new Date().getHours();
-    let text = 'Welcome to My Dev Journey 🌸';
-    if (hours < 12) text = 'Good Morning! ☀️';
-    else if (hours < 18) text = 'Good Afternoon! ☕';
-    else text = 'Good Evening! 🌙';
+    let text;
+    let bg;
+
+    if (hours < 12) {
+      text = 'Good Morning! ☀️';
+      bg = 'linear-gradient(180deg, #fff8e1, #e0c3fc)';
+    } else if (hours < 18) {
+      text = 'Good Afternoon! ☕';
+      bg = 'linear-gradient(180deg, #e0f7fa, #a5d8ff)';
+    } else {
+      text = 'Good Evening! 🌙';
+      bg = 'linear-gradient(180deg, #cdb4ff, #2c2c54)';
+    }
+
     greeting.textContent = text;
+
+    // Optional background shift
+    document.body.style.background = bg;
+    document.body.style.transition = 'background 1s ease';
   }
+
+  updateGreeting();
+  setInterval(updateGreeting, 60000); // refresh every 60 seconds
 
   /* =============================
      💬 TYPEWRITER EFFECT
@@ -188,7 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const retryBtn = document.getElementById("retry-btn");
     retryBtn.addEventListener("click", () => {
-      // Reset everything properly
       localStorage.removeItem("pythonQuizScore");
       currentQuestion = 0;
       score = 0;
