@@ -130,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       setTimeout(typeWriter, deleting ? typingSpeed / 2 : typingSpeed);
     }
-
     typeWriter();
   }
 
@@ -188,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== PYTHON MINI QUIZ (Projects Page) ===== */
+  /* ===== PYTHON MINI QUIZ (Projects Page + Progress Bar) ===== */
   const quizData = [
     { question: "What is the output of print(2 ** 3)?", options: ["5", "6", "8", "9"], correct: "8" },
     { question: "Which keyword defines a function?", options: ["func", "def", "function", "lambda"], correct: "def" },
@@ -199,9 +198,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const quizContainer = document.getElementById('quiz-container');
   const nextBtn = document.getElementById('next-btn');
   const resultText = document.getElementById('result');
+  const progressFill = document.getElementById('quiz-progress-fill');
 
   if (quizContainer && nextBtn && resultText) {
     let qIndex = 0, qScore = 0;
+
+    function updateProgress() {
+      if (progressFill) {
+        const percent = (qIndex / quizData.length) * 100;
+        progressFill.style.width = percent + '%';
+      }
+    }
 
     function drawQuestion() {
       const q = quizData[qIndex];
@@ -214,6 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </label>
           `).join('')}
         </div>`;
+      updateProgress();
     }
 
     function showResult() {
@@ -222,6 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p>You scored <strong>${qScore}</strong> / <strong>${quizData.length}</strong>.</p>
         <button id="retry-btn" class="fun-btn">Try Again</button>
       `;
+      if (progressFill) progressFill.style.width = '100%';
       resultText.textContent = "";
       nextBtn.style.display = "none";
 
