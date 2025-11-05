@@ -798,3 +798,40 @@ body.projects main {
   padding: 0;
   margin: 0;
 }
+/* ===========================
+   FINAL NO-SCROLL ENFORCER (OVERRIDES EVERYTHING ABOVE)
+=========================== */
+body.home,
+body.about,
+body.projects {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+/* Prevent small internal containers from expanding */
+main,
+.about-fixed,
+.projects-section {
+  overflow: hidden !important;
+}
+
+/* Disable skill panel auto-scroll */
+#skills {
+  overflow: hidden !important;
+}
+
+/* Make sure cards don’t push page height */
+.about-card,
+.quiz-card,
+.projects-list {
+  margin: 0 auto !important;
+  max-height: none !important;
+}
+
+/* Footer stays pinned to bottom */
+footer {
+  position: fixed !important;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
