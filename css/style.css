@@ -354,3 +354,25 @@ footer::before {
     gap: 25px;
   }
 }
+/* ====== BACK BUTTON (shared for About, Projects, etc.) ====== */
+.back-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
+  color: #333;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none !important; /* remove underline */
+  box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
+  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
+}
