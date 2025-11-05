@@ -133,18 +133,30 @@ document.addEventListener('DOMContentLoaded', () => {
     typeWriter();
   }
 
-  /* ===== FUN BUTTON ===== */
-  if (greetBtn) {
-    greetBtn.addEventListener('click', () => {
-      greetBtn.classList.add('clicked');
-      const old = greetBtn.textContent;
-      greetBtn.textContent = '✨ Magic! ✨';
-      setTimeout(() => {
-        greetBtn.textContent = old;
-        greetBtn.classList.remove('clicked');
-      }, 1200);
-    });
-  }
+if (greetBtn) {
+  const typingGame = document.getElementById('typing-game');
+  let typingVisible = false;
+
+  greetBtn.addEventListener('click', () => {
+    greetBtn.classList.add('clicked');
+
+    // Toggle the text & typing game visibility
+    if (typingVisible) {
+      typingGame.classList.remove('active');
+      greetBtn.textContent = 'Do you press?';
+    } else {
+      typingGame.classList.add('active');
+      greetBtn.textContent = 'Hide challenge ✨';
+    }
+
+    typingVisible = !typingVisible;
+
+    // Reset click animation glow
+    setTimeout(() => {
+      greetBtn.classList.remove('clicked');
+    }, 600);
+  });
+}
 
   /* ===== FLOATING EMOJIS ===== */
   const emojiContainer = document.getElementById('emoji-container');
