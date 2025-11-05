@@ -1,6 +1,4 @@
-// 🌸 My Dev Journey — Unified Script
 document.addEventListener('DOMContentLoaded', () => {
-
   /* ===== ELEMENTS ===== */
   const menuToggle = document.getElementById('menuToggle');
   const navLinks   = document.getElementById('navLinks');
@@ -36,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   tick();
   setInterval(tick, 1000);
 
-  /* ===== THEME TOGGLE ===== */
+  /* ===== THEME ===== */
   const THEME_KEY = 'siteTheme';
   const applyTheme = (theme) => {
     document.body.classList.toggle('dark', theme === 'dark');
@@ -50,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== GREETING SYSTEM ===== */
+  /* ===== GREETING ===== */
   function computeGreeting() {
     const h = new Date().getHours();
     if (h < 12) return 'Good Morning';
@@ -69,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('visitorName', '');
   }
   setGreetingLine();
-  setInterval(setGreetingLine, 60 * 1000);
+  setInterval(setGreetingLine, 60000);
 
   if (changeName) {
     changeName.addEventListener('click', (e) => {
@@ -83,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== GREETING EMOJI (Interactive + Persistent) ===== */
+  /* ===== GREETING EMOJI ===== */
   function initEmoji() {
     const greetingEmoji = document.getElementById('greeting-emoji');
     if (greetingEmoji) {
@@ -105,96 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   initEmoji();
 
-  /* ===== MULTI-LINE TYPEWRITER ===== */
-  const paragraph = document.getElementById('intro-text');
-  if (paragraph) {
-    const lines = [
-      "Welcome to my journey to being a full-stack developer!",
-      "I love creating interactive web projects 💻",
-      "Learning new tech one day at a time ⌨️",
-      "Let’s build something amazing today 🚀"
-    ];
-
-    let lineIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
-    const typingSpeed = 70;
-    const pauseDelay = 1200;
-
-    function typeWriter() {
-      const currentLine = lines[lineIndex];
-
-      if (!deleting && charIndex < currentLine.length) {
-        paragraph.textContent = currentLine.substring(0, charIndex + 1);
-        charIndex++;
-      } else if (deleting && charIndex > 0) {
-        paragraph.textContent = currentLine.substring(0, charIndex - 1);
-        charIndex--;
-      } else {
-        if (!deleting && charIndex === currentLine.length) {
-          deleting = true;
-          setTimeout(typeWriter, pauseDelay);
-          return;
-        } else if (deleting && charIndex === 0) {
-          deleting = false;
-          lineIndex = (lineIndex + 1) % lines.length;
-        }
-      }
-
-      setTimeout(typeWriter, deleting ? typingSpeed / 2 : typingSpeed);
-    }
-
-    typeWriter();
-  }
-
-  /* ===== FUN BUTTON + TYPING GAME TOGGLE ===== */
-  if (greetBtn) {
-    const typingGame = document.getElementById('typing-game');
-    const tgWord   = document.getElementById('typing-word');
-    const tgInput  = document.getElementById('typing-input');
-    const tgStatus = document.getElementById('typing-feedback');
-
-    const words = ['developer', 'javascript', 'portfolio', 'learning', 'python'];
-
-    function newWord() {
-      const target = words[Math.floor(Math.random() * words.length)];
-      tgWord.textContent = target;
-      tgInput.value = '';
-      tgStatus.textContent = '';
-      return target;
-    }
-
-    let currentWord = newWord();
-
-    greetBtn.addEventListener('click', () => {
-      greetBtn.classList.add('clicked');
-      const old = greetBtn.textContent;
-      greetBtn.textContent = '✨ Magic! ✨';
-      setTimeout(() => {
-        greetBtn.textContent = old;
-        greetBtn.classList.remove('clicked');
-      }, 1000);
-
-      // Toggle typing game visibility
-      typingGame.classList.toggle('typing-visible');
-      typingGame.classList.toggle('typing-hidden');
-    });
-
-    // Typing challenge logic
-    if (tgInput) {
-      tgInput.addEventListener('input', () => {
-        if (tgInput.value.trim() === currentWord) {
-          tgStatus.textContent = '✅ Nice!';
-          setTimeout(() => {
-            currentWord = newWord();
-          }, 700);
-        } else {
-          tgStatus.textContent = '';
-        }
-      });
-    }
-  }
-
   /* ===== FLOATING EMOJIS ===== */
   const emojiContainer = document.getElementById('emoji-container');
   function spawnEmoji() {
@@ -210,7 +118,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setInterval(spawnEmoji, 1500);
 
-  /* ===== PYTHON MINI QUIZ (Projects Page) ===== */
+  /* ===== MINI TYPING GAME ===== */
+  const tgWrap   = document.getElementById('typing-game');
+  const tgWord   = document.getElementById('typing-word');
+  const tgInput  = document.getElementById('typing-input');
+  const tgStatus = document.getElementById('typing-feedback');
+  if (tgWrap && tgWord && tgInput && tgStatus) {
+    const words = ['developer','javascript','portfolio','learning','python'];
+    let target = words[0];
+    function newWord() {
+      target = words[Math.floor(Math.random() * words.length)];
+      tgWord.textContent = target;
+      tgInput.value = '';
+      tgStatus.textContent = '';
+    }
+    newWord();
+    tgWrap.style.display = 'block';
+    tgInput.addEventListener('input', () => {
+      if (tgInput.value.trim() === target) {
+        tgStatus.textContent = '✓ Nice!';
+        setTimeout(newWord, 700);
+      } else {
+        tgStatus.textContent = '';
+      }
+    });
+  }
+
+  /* ===== PYTHON MINI QUIZ ===== */
   const quizData = [
     { question: "What is the output of print(2 ** 3)?", options: ["5", "6", "8", "9"], correct: "8" },
     { question: "Which keyword defines a function?", options: ["func", "def", "function", "lambda"], correct: "def" },
@@ -221,22 +155,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const quizContainer = document.getElementById('quiz-container');
   const nextBtn = document.getElementById('next-btn');
   const resultText = document.getElementById('result');
+  const progressFill = document.getElementById('quiz-progress');
 
-  if (quizContainer && nextBtn && resultText) {
+  if (quizContainer && nextBtn && resultText && progressFill) {
     let qIndex = 0;
     let qScore = 0;
 
     function drawQuestion() {
       const q = quizData[qIndex];
       quizContainer.innerHTML = `
-        <div class="quiz-question">
+        <div class="quiz-question fade">
           <p><strong>${qIndex + 1}. ${q.question}</strong></p>
           ${q.options.map(o => `
             <label class="quiz-option">
               <input type="radio" name="answer" value="${o}"> ${o}
             </label>
           `).join('')}
-        </div>`;
+        </div>
+      `;
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const percent = ((qIndex) / quizData.length) * 100;
+      progressFill.style.width = percent + '%';
     }
 
     function showResult() {
@@ -245,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p>You scored <strong>${qScore}</strong> / <strong>${quizData.length}</strong>.</p>
         <button id="retry-btn" class="fun-btn">Try Again</button>
       `;
+      progressFill.style.width = "100%";
       resultText.textContent = "";
       nextBtn.style.display = "none";
 
