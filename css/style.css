@@ -579,3 +579,15 @@ body.home, body.about, body.projects { overflow: hidden; }
   transform: scale(1.3) rotate(10deg);
   filter: drop-shadow(0 0 6px #cdb4ff);
 }
+#skillsBody.hidden {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+#skillsBody {
+  transition: all 0.4s ease;
+  max-height: 600px; /* or whatever fits */
+  opacity: 1;
+}

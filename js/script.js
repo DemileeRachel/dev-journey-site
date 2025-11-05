@@ -178,6 +178,19 @@ document.addEventListener('DOMContentLoaded', () => {
       greetBtn.textContent = isVisible ? "Do you press?" : "Hide Challenge";
     });
   }
+/* ===========================
+   SKILLS PANEL TOGGLE
+=========================== */
+const skillsToggle = document.getElementById('skillsToggle');
+const skillsBody   = document.querySelector('#skills .skills-body');
+
+if (skillsToggle && skillsBody) {
+  skillsToggle.addEventListener('click', () => {
+    const isHidden = skillsBody.classList.toggle('hidden');
+    skillsToggle.textContent = isHidden ? 'Show Skills' : 'Hide Skills';
+    skillsToggle.setAttribute('aria-expanded', !isHidden);
+  });
+}
 
   /* ===========================
      SQL MINI QUIZ
