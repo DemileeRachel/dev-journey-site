@@ -3,77 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Projects</title>
+  <title>My Projects | My Dev Journey</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- Navbar -->
-<header class="navbar">
-  <div class="navbar-inner">
-    <div class="logo">My Dev Journey</div>
 
-    <!-- 🕒 Clock (centered) -->
-    <div id="clock-container">
-      <h2>UK Time</h2>
-      <div id="uk-clock"></div>
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <div class="logo">My Dev Journey</div>
+
+      <!-- UK Clock -->
+      <div id="clock-container">
+        <h2>UK Time</h2>
+        <div id="uk-clock"></div>
+      </div>
+
+      <!-- Hamburger Menu -->
+      <button class="menu-toggle" id="menuToggle">☰</button>
+
+      <!-- Navigation Links -->
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html" class="active">Projects</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- 🍔 Hamburger for mobile -->
-    <button class="menu-toggle" id="menuToggle">☰</button>
+  <!-- ===== PROJECTS HERO ===== -->
+  <main>
+    <section class="projects-hero">
+      <h1>Projects</h1>
+      <a href="index.html" class="back-btn">← Back to Home</a>
+    </section>
 
-    <!-- 🔗 Navigation Links -->
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
-    </nav>
-  </div>
-</header>
-<!-- projects.html header + hero -->
-<header class="navbar">
-  <div class="navbar-inner">
-    <div class="logo">My Dev Journey</div>
+    <!-- ===== PROJECTS LAYOUT ===== -->
+    <section class="projects-layout">
 
-    <div id="clock-container">
-      <h2>UK Time</h2>
-      <div id="uk-clock"></div>
-    </div>
+      <!-- Left side: Python Mini Quiz -->
+      <div class="quiz-section">
+        <h2>🐍 Python Mini Quiz</h2>
+        <p class="quiz-intro">Test your Python knowledge — one question at a time!</p>
+        <div id="quiz-container"></div>
+        <button id="next-btn" class="fun-btn">Next Question</button>
+        <p id="result"></p>
+      </div>
 
-    <button class="menu-toggle" id="menuToggle">☰</button>
+      <!-- Right side: Coming soon projects -->
+      <div class="project-showcase">
+        <h3>🚀 My Projects</h3>
+        <p>Coming soon! Here’s where I’ll display my coding work and interactive demos.</p>
+      </div>
+    </section>
+  </main>
 
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="projects.html" class="active">Projects</a>
-    </nav>
-  </div>
-</header>
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 My Dev Journey! Built with 💜 and curiosity.</p>
+  </footer>
 
-<main>
-  <section class="projects-hero">
-    <h1>Projects</h1>
-    <a href="index.html" class="back-btn">← Back to Home</a>
-  </section>
-
-  <section class="projects-layout">
-    <div class="quiz-section">
-      <h2>🐍 Python Mini Quiz</h2>
-      <p class="quiz-intro">Test your Python knowledge — one question at a time!</p>
-      <div id="quiz-container"></div>
-      <button id="next-btn" class="fun-btn">Next Question</button>
-      <p id="result"></p>
-    </div>
-
-    <div class="project-showcase">
-      <h3>🚀 My Projects</h3>
-      <p>Coming soon! Here’s where I’ll display my coding work and interactive demos.</p>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <p>© 2025 My Dev Journey! Built with 💜 and curiosity.</p>
-</footer>
+  <!-- ===== JAVASCRIPT ===== -->
   <script src="js/script.js"></script>
+
 </body>
 </html>
