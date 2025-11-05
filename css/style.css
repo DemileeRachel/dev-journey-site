@@ -357,75 +357,85 @@ body.light {
 /* ===========================
    ABOUT PAGE LAYOUT (2-column)
 =========================== */
-.about-layout {
+/* ===========================
+   ABOUT PAGE — FIXED LAYOUT (NO SCROLL)
+=========================== */
+.about-fixed {
+  height: calc(100vh - var(--nav-h) - var(--footer-h));
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  gap: 40px;
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
-  flex-wrap: wrap;
-}
-
-/* Left card stays centered */
-.about-card {
-  flex: 1 1 480px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 18px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 30px;
+  align-items: center;
+  gap: 60px;
   text-align: center;
-  line-height: 1.6;
+  padding: 20px;
+  overflow: hidden; /* ✅ Prevents scrolling */
 }
 
-/* Right panel (Skills & Tools) */
+/* About card styling */
+.about-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 18px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  width: 500px;
+  max-width: 90%;
+}
+
+/* Skills panel styling */
 #skills {
-  flex: 0 0 320px;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
   border-radius: 16px;
-  padding: 25px;
+  padding: 25px 20px;
+  width: 300px;
+  max-height: 80%;
   color: #eee;
+  overflow: hidden;
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #skills h2 {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   background: linear-gradient(90deg, #cdb4ff, #a5d8ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .skill-category h3 {
   color: #cdb4ff;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .skill-category ul {
   list-style: none;
   padding: 0;
-  margin: 0 0 20px 0;
+  margin: 0 0 15px 0;
+  font-size: 0.9rem;
 }
 
 .skill-category li {
-  margin: 4px 0;
-  font-size: 0.9rem;
+  margin: 3px 0;
   opacity: 0.9;
 }
 
-/* Responsive fallback */
+/* Center everything perfectly on smaller screens */
 @media (max-width: 900px) {
-  .about-layout {
+  .about-fixed {
     flex-direction: column;
-    align-items: center;
+    gap: 20px;
+    height: auto;
   }
+
   #skills {
-    width: 100%;
-    margin-top: 30px;
+    width: 90%;
+    max-height: none;
   }
 }
+
 
 /* ===========================
    FOOTER
