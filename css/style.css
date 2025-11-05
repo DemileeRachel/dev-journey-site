@@ -305,35 +305,67 @@ body.light {
   to { transform: translateY(-120vh); opacity: 0; }
 }
 
+
 /* ===========================
-   PROJECTS PAGE
+   PROJECTS PAGE — FIXED VIEW (NO SCROLL)
 =========================== */
 .projects-section {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
+  height: calc(100vh - var(--nav-h) - var(--footer-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  overflow: hidden; /* ✅ No scroll */
+  padding: 0 20px;
 }
-.projects-section h2 {
-  color: #6d28d9;
-}
-.project-item {
-  background: rgba(255,255,255,0.08);
-  padding: 20px;
+
+.quiz-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  padding: 24px 30px;
   border-radius: 14px;
-  margin-bottom: 25px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+  color: #eee;
+  width: 400px;
+  max-width: 90%;
+  margin: 16px 0;
 }
-.project-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+
+.quiz-question {
+  margin-bottom: 16px;
 }
-.project-item h3 {
+
+.quiz-option {
+  display: block;
+  margin: 6px 0;
+}
+
+.projects-list {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 18px 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 420px;
+  max-width: 90%;
+  color: #ddd;
+}
+
+.projects-list h3 {
   color: #cdb4ff;
   margin-bottom: 8px;
 }
 
+/* Ensure layout remains clean on smaller screens */
+@media (max-width: 900px) {
+  .projects-section {
+    height: auto;
+    padding-top: 100px;
+  }
+}
+.projects-inner {
+  transform: scale(0.95);
+}
 /* ===========================
    ABOUT PAGE
 =========================== */
