@@ -116,6 +116,7 @@ main {
   -webkit-text-fill-color: initial !important;
   filter: none !important;
   mix-blend-mode: normal !important;
+  color: inherit;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
