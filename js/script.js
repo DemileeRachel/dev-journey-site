@@ -1,4 +1,6 @@
+// 🌸 My Dev Journey — Unified Script
 document.addEventListener('DOMContentLoaded', () => {
+
   /* ===== ELEMENTS ===== */
   const menuToggle = document.getElementById('menuToggle');
   const navLinks   = document.getElementById('navLinks');
@@ -23,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== CLOCK (center) ===== */
+  /* ===== CLOCK ===== */
   function tick() {
     if (!clockOut) return;
     clockOut.textContent = new Date().toLocaleTimeString('en-GB', {
@@ -36,7 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ===== THEME TOGGLE ===== */
   const THEME_KEY = 'siteTheme';
-  const applyTheme = (theme) => document.body.classList.toggle('dark', theme === 'dark');
+  const applyTheme = (theme) => {
+    document.body.classList.toggle('dark', theme === 'dark');
+  };
   applyTheme(localStorage.getItem(THEME_KEY) || 'light');
   if (themeBtn) {
     themeBtn.addEventListener('click', () => {
@@ -57,10 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function setGreetingLine() {
     const name = localStorage.getItem('visitorName') || '';
     const base = computeGreeting();
-    if (greetingEl) greetingEl.innerHTML = `${base}${name ? ', ' + name : ''}! <span id="greeting-emoji" class="emoji">🌸</span>`;
+    if (greetingEl)
+      greetingEl.innerHTML = `${base}${name ? ', ' + name : ''}! <span id="greeting-emoji" class="emoji">🌸</span>`;
   }
 
-  if (!localStorage.getItem('visitorName')) localStorage.setItem('visitorName', '');
+  if (!localStorage.getItem('visitorName')) {
+    localStorage.setItem('visitorName', '');
+  }
   setGreetingLine();
   setInterval(setGreetingLine, 60 * 1000);
 
@@ -76,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== GREETING EMOJI ===== */
+  /* ===== GREETING EMOJI (Interactive + Persistent) ===== */
   function initEmoji() {
     const greetingEmoji = document.getElementById('greeting-emoji');
     if (greetingEmoji) {
@@ -86,8 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       greetingEmoji.addEventListener('click', () => {
         let next;
-        do { next = emojiSet[Math.floor(Math.random() * emojiSet.length)]; }
-        while (next === greetingEmoji.textContent);
+        do {
+          next = emojiSet[Math.floor(Math.random() * emojiSet.length)];
+        } while (next === greetingEmoji.textContent);
         greetingEmoji.textContent = next;
         localStorage.setItem('greetingEmoji', next);
         greetingEmoji.classList.add('clicked');
@@ -97,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   initEmoji();
 
-  /* ===== TYPEWRITER EFFECT ===== */
+  /* ===== MULTI-LINE TYPEWRITER ===== */
   const paragraph = document.getElementById('intro-text');
   if (paragraph) {
     const lines = [
@@ -107,11 +115,15 @@ document.addEventListener('DOMContentLoaded', () => {
       "Let’s build something amazing today 🚀"
     ];
 
-    let lineIndex = 0, charIndex = 0, deleting = false;
-    const typingSpeed = 70, pauseDelay = 1200;
+    let lineIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    const typingSpeed = 70;
+    const pauseDelay = 1200;
 
     function typeWriter() {
       const currentLine = lines[lineIndex];
+
       if (!deleting && charIndex < currentLine.length) {
         paragraph.textContent = currentLine.substring(0, charIndex + 1);
         charIndex++;
@@ -128,35 +140,60 @@ document.addEventListener('DOMContentLoaded', () => {
           lineIndex = (lineIndex + 1) % lines.length;
         }
       }
+
       setTimeout(typeWriter, deleting ? typingSpeed / 2 : typingSpeed);
     }
+
     typeWriter();
   }
 
-if (greetBtn) {
-  const typingGame = document.getElementById('typing-game');
-  let typingVisible = false;
+  /* ===== FUN BUTTON + TYPING GAME TOGGLE ===== */
+  if (greetBtn) {
+    const typingGame = document.getElementById('typing-game');
+    const tgWord   = document.getElementById('typing-word');
+    const tgInput  = document.getElementById('typing-input');
+    const tgStatus = document.getElementById('typing-feedback');
 
-  greetBtn.addEventListener('click', () => {
-    greetBtn.classList.add('clicked');
+    const words = ['developer', 'javascript', 'portfolio', 'learning', 'python'];
 
-    // Toggle the text & typing game visibility
-    if (typingVisible) {
-      typingGame.classList.remove('active');
-      greetBtn.textContent = 'Do you press?';
-    } else {
-      typingGame.classList.add('active');
-      greetBtn.textContent = 'Hide challenge ✨';
+    function newWord() {
+      const target = words[Math.floor(Math.random() * words.length)];
+      tgWord.textContent = target;
+      tgInput.value = '';
+      tgStatus.textContent = '';
+      return target;
     }
 
-    typingVisible = !typingVisible;
+    let currentWord = newWord();
 
-    // Reset click animation glow
-    setTimeout(() => {
-      greetBtn.classList.remove('clicked');
-    }, 600);
-  });
-}
+    greetBtn.addEventListener('click', () => {
+      greetBtn.classList.add('clicked');
+      const old = greetBtn.textContent;
+      greetBtn.textContent = '✨ Magic! ✨';
+      setTimeout(() => {
+        greetBtn.textContent = old;
+        greetBtn.classList.remove('clicked');
+      }, 1000);
+
+      // Toggle typing game visibility
+      typingGame.classList.toggle('typing-visible');
+      typingGame.classList.toggle('typing-hidden');
+    });
+
+    // Typing challenge logic
+    if (tgInput) {
+      tgInput.addEventListener('input', () => {
+        if (tgInput.value.trim() === currentWord) {
+          tgStatus.textContent = '✅ Nice!';
+          setTimeout(() => {
+            currentWord = newWord();
+          }, 700);
+        } else {
+          tgStatus.textContent = '';
+        }
+      });
+    }
+  }
 
   /* ===== FLOATING EMOJIS ===== */
   const emojiContainer = document.getElementById('emoji-container');
@@ -173,33 +210,7 @@ if (greetBtn) {
   }
   setInterval(spawnEmoji, 1500);
 
-  /* ===== MINI TYPING GAME ===== */
-  const tgWrap   = document.getElementById('typing-game');
-  const tgWord   = document.getElementById('typing-word');
-  const tgInput  = document.getElementById('typing-input');
-  const tgStatus = document.getElementById('typing-feedback');
-  if (tgWrap && tgWord && tgInput && tgStatus) {
-    const words = ['developer','javascript','portfolio','learning','python'];
-    let target = words[0];
-    function newWord() {
-      target = words[Math.floor(Math.random() * words.length)];
-      tgWord.textContent = target;
-      tgInput.value = '';
-      tgStatus.textContent = '';
-    }
-    newWord();
-    tgWrap.style.display = 'block';
-    tgInput.addEventListener('input', () => {
-      if (tgInput.value.trim() === target) {
-        tgStatus.textContent = '✓ Nice!';
-        setTimeout(newWord, 700);
-      } else {
-        tgStatus.textContent = '';
-      }
-    });
-  }
-
-  /* ===== PYTHON MINI QUIZ (Projects Page + Progress Bar) ===== */
+  /* ===== PYTHON MINI QUIZ (Projects Page) ===== */
   const quizData = [
     { question: "What is the output of print(2 ** 3)?", options: ["5", "6", "8", "9"], correct: "8" },
     { question: "Which keyword defines a function?", options: ["func", "def", "function", "lambda"], correct: "def" },
@@ -210,17 +221,10 @@ if (greetBtn) {
   const quizContainer = document.getElementById('quiz-container');
   const nextBtn = document.getElementById('next-btn');
   const resultText = document.getElementById('result');
-  const progressFill = document.getElementById('quiz-progress-fill');
 
   if (quizContainer && nextBtn && resultText) {
-    let qIndex = 0, qScore = 0;
-
-    function updateProgress() {
-      if (progressFill) {
-        const percent = (qIndex / quizData.length) * 100;
-        progressFill.style.width = percent + '%';
-      }
-    }
+    let qIndex = 0;
+    let qScore = 0;
 
     function drawQuestion() {
       const q = quizData[qIndex];
@@ -233,7 +237,6 @@ if (greetBtn) {
             </label>
           `).join('')}
         </div>`;
-      updateProgress();
     }
 
     function showResult() {
@@ -242,7 +245,6 @@ if (greetBtn) {
         <p>You scored <strong>${qScore}</strong> / <strong>${quizData.length}</strong>.</p>
         <button id="retry-btn" class="fun-btn">Try Again</button>
       `;
-      if (progressFill) progressFill.style.width = '100%';
       resultText.textContent = "";
       nextBtn.style.display = "none";
 
