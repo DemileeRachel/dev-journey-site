@@ -3,51 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Welcome to My Dev Journey — a space to share my projects and growth as a developer." />
   <title>My Dev Journey — Home</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- Navbar -->
-<header class="navbar">
-  <div class="navbar-inner">
-    <div class="logo">My Dev Journey</div>
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <div class="logo">My Dev Journey</div>
 
-    <!-- 🕒 Clock (centered) -->
-    <div id="clock-container">
-      <h2>UK Time</h2>
-      <div id="uk-clock"></div>
+      <!-- 🕒 Clock Center -->
+      <div id="clock-container">
+        <h2>UK Time</h2>
+        <div id="uk-clock"></div>
+      </div>
+
+      <!-- 🍔 Hamburger (Mobile) -->
+      <button class="menu-toggle" id="menuToggle">☰</button>
+
+      <!-- 🔗 Navigation Links -->
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- 🍔 Hamburger for mobile -->
-    <button class="menu-toggle" id="menuToggle">☰</button>
-
-    <!-- 🔗 Navigation Links -->
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
-    </nav>
-  </div>
-</header>
-
-  <!-- Main content -->
+  <!-- ===== MAIN HERO SECTION ===== -->
   <main class="hero">
-    <h1 id="greeting" class="dynamic-greeting">Welcome to My Dev Journey 🌸</h1>
-    <p id="intro-text">
-      I'm learning full-stack development and sharing my projects along the way!</p>
-
-    <button id="greetBtn" class="fun-btn" type="button">Do you press?</button>
+    <h1 id="greeting">Good Morning! <span class="emoji">🌸</span></h1>
+    <p id="intro-text">I'm learning full-stack development and sharing my projects along the way!</p>
+    <button id="greetBtn" class="fun-btn">Do you press?</button>
   </main>
 
-  <!-- Floating emojis (optional) -->
+  <!-- ✨ Floating Emojis -->
   <div id="emoji-container"></div>
 
-  <!-- Footer (auto-sticks to bottom) -->
+  <!-- ===== FOOTER ===== -->
   <footer>
     <p>© 2025 My Dev Journey — Built with 💜 and curiosity.</p>
   </footer>
 
+  <!-- ===== SCRIPT ===== -->
   <script src="js/script.js"></script>
 </body>
 </html>
+
 
