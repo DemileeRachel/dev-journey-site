@@ -732,3 +732,69 @@ body.home {
   transition: width 0.4s ease;
   border-radius: 10px;
 }
+/* ===========================
+   FULL NO-SCROLL PAGE FIX
+=========================== */
+
+/* Base: disable scrolling completely for all main pages */
+body.home,
+body.about,
+body.projects {
+  height: 100vh;
+  overflow: hidden !important;   /* ✅ Stop all scrolling */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keep footer always visible */
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* HOME already uses hero layout correctly */
+
+/* ABOUT (centered, with side panel) */
+body.about main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.about-card {
+  margin: 0 auto;
+  z-index: 2;
+}
+
+#skills {
+  position: absolute;
+  right: 0;
+  top: var(--nav-h);
+  height: calc(100vh - var(--nav-h) - var(--footer-h));
+  overflow: hidden;
+}
+
+/* PROJECTS (centered, no overflow) */
+body.projects main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.projects-section {
+  height: calc(100vh - var(--nav-h) - var(--footer-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
