@@ -464,7 +464,102 @@ body.light {
     max-height: none;
   }
 }
+:root{
+  --panel-w: 340px;
+  --radius-xl: 22px;
+  --glass: rgba(255,255,255,.08);
+  --glass-strong: rgba(255,255,255,.12);
+}
 
+/* Two-column canvas that fills the viewport minus navbar/footer */
+.about-grid{
+  height: calc(100vh - var(--nav-h) - var(--footer-h));
+  display: grid;
+  grid-template-columns: 1fr var(--panel-w);
+  gap: 28px;
+  align-items: center;
+  padding: 24px clamp(16px, 4vw, 40px);
+}
+
+/* Main about card */
+.about-card{
+  background: rgba(255,255,255,.85);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 10px 40px rgba(0,0,0,.18);
+  padding: clamp(22px, 4vw, 34px);
+  max-width: 820px;
+  margin: 0;
+  text-align: center;
+  line-height: 1.6;
+}
+.about-card h2{ margin: 0 0 12px; color:#333; }
+.about-card p{ color:#4a4a4a; }
+.about-card .fun-btn{ margin-top: 10px; }
+
+/* Skills side panel */
+.skills-panel{
+  height: calc(100vh - var(--nav-h) - var(--footer-h));
+  position: sticky; top: var(--nav-h);
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: 0 10px 35px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.08);
+  color: #eee;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header with inline toggle */
+.skills-header{
+  display:flex; align-items:center; justify-content: space-between;
+  gap: 12px; padding: 16px 18px; border-bottom: 1px solid rgba(255,255,255,.12);
+}
+.skills-header h2{
+  font-size: 1.1rem;
+  margin:0;
+  background: linear-gradient(90deg,#cdb4ff,#a5d8ff);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.skills-toggle{
+  background: linear-gradient(135deg,#cdb4ff,#a5d8ff);
+  color:#111; border:0; border-radius:12px; padding:6px 10px;
+  font-weight:700; cursor:pointer; box-shadow: 0 4px 14px rgba(0,0,0,.2);
+}
+.skills-toggle:hover{ transform: translateY(-1px); }
+
+/* Scrollable body */
+.skills-body{
+  padding: 14px 18px 18px;
+  overflow: auto;
+}
+.skill-category{ background: var(--glass-strong); border-radius:16px; padding:14px; margin-bottom:12px; }
+.skill-category h3{ margin: 0 0 8px; color:#cdb4ff; font-size: 1rem; }
+.skill-category ul{ list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+.skill-category li{ display:flex; align-items:center; gap:8px; line-height:1.35; opacity:.95; }
+
+/* Cute badges for items */
+.badge{
+  display:inline-grid; place-items:center;
+  min-width:28px; height:22px; padding:0 8px;
+  border-radius:999px; background: rgba(255,255,255,.18);
+  font-size:.75rem; font-weight:800; color:#fff; letter-spacing:.2px;
+  border:1px solid rgba(255,255,255,.22);
+}
+
+/* Mobile layout: stack the panel under the card with a collapse */
+@media (max-width: 1100px){
+  .about-grid{ grid-template-columns: 1fr; align-items: start; height: auto; }
+  .skills-panel{ position: relative; height: auto; top: 0; }
+  .skills-body{ max-height: 50vh; }
+}
+
+/* Tiny phones: full width, bigger tap targets */
+@media (max-width: 480px){
+  .about-card{ padding: 18px; }
+  .skills-body{ max-height: none; }
+  .skills-header{ padding: 14px; }
+}
 
 /* ===========================
    FOOTER
@@ -883,4 +978,15 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
+}
+/* No-scroll on desktop, allow on small screens */
+body.home, body.about, body.projects { overflow: hidden; }
+@media (max-width: 900px) {
+  body.home, body.about, body.projects { overflow-y: auto; }
+}
+/* Hero type & spacing on small screens */
+@media (max-width: 600px){
+  .hero h1{ font-size: 1.9rem; }
+  .hero p#intro-text{ font-size: 1rem; }
+  .fun-btn{ padding: 10px 18px; }
 }

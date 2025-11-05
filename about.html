@@ -33,41 +33,48 @@
   </header>
 
   <!-- ===== FIXED CENTERED LAYOUT ===== -->
-  <main class="about-fixed">
-    <section class="about-card">
-      <h2>About Me</h2>
-      <p>Hi! I'm Demilee, an aspiring developer passionate about data analytics, creative web apps, and pixel-art game design.</p>
-      <p>Through this website, I’ll showcase projects using <strong>Python, SQL, HTML, CSS, and C</strong>.</p>
-      <p>Each step brings me closer to becoming a <strong>full-stack developer</strong> 💻✨</p>
-      <a href="index.html" class="fun-btn">← Back to Home</a>
-    </section>
+  <main class="about-grid">
+  <!-- Main card -->
+  <section class="about-card">
+    <h2>About Me</h2>
+    <p>Hi! I’m Demilee, an aspiring developer passionate about data analytics, creative web apps, and pixel-art game design.</p>
+    <p>Through this website, I’ll showcase projects using <strong>Python, SQL, HTML, CSS, and C</strong>.</p>
+    <p>Each step brings me closer to becoming a <strong>full-stack developer</strong> 💻✨</p>
+    <a href="index.html" class="fun-btn">← Back to Home</a>
+  </section>
 
-    <aside id="skills">
+  <!-- Skills side panel -->
+  <aside id="skills" class="skills-panel">
+    <header class="skills-header">
       <h2>🧠 Skills & Tools</h2>
-      <div class="skills-container">
-        <div class="skill-category">
-          <h3>Data Analytics</h3>
-          <ul>
-            <li>Python (Pandas, NumPy, Matplotlib, Seaborn)</li>
-            <li>SQL (joins, aggregations, cleaning)</li>
-            <li>Excel (Pivot Tables, VLOOKUP, Charts)</li>
-            <li>Data Visualization (Power BI, Tableau)</li>
-            <li>Statistics (Regression, Correlation, Hypothesis Testing)</li>
-          </ul>
-        </div>
+      <button id="skillsToggle" class="skills-toggle" aria-expanded="true">Hide</button>
+    </header>
 
-        <div class="skill-category">
-          <h3>Web Development</h3>
-          <ul>
-            <li>HTML5, CSS3, JavaScript (ES6+)</li>
-            <li>Responsive Design & UI Styling</li>
-            <li>Python Flask (Data Apps)</li>
-            <li>Git, GitHub Pages</li>
-          </ul>
-        </div>
+    <div class="skills-body">
+      <div class="skill-category">
+        <h3>📊 Data Analytics</h3>
+        <ul>
+          <li><span class="badge">Py</span> Python (Pandas, NumPy, Matplotlib, Seaborn)</li>
+          <li><span class="badge">SQL</span> Joins, aggregations, cleaning</li>
+          <li><span class="badge">XL</span> Excel (Pivot Tables, VLOOKUP, Charts)</li>
+          <li><span class="badge">Viz</span> Power BI, Tableau</li>
+          <li><span class="badge">Σ</span> Regression, correlation, hypothesis testing</li>
+        </ul>
       </div>
-    </aside>
-  </main>
+
+      <div class="skill-category">
+        <h3>🌐 Web Development</h3>
+        <ul>
+          <li><span class="badge">HTML</span> HTML5, CSS3, JavaScript (ES6+)</li>
+          <li><span class="badge">UI</span> Responsive design & styling</li>
+          <li><span class="badge">Flask</span> Python Flask (data apps)</li>
+          <li><span class="badge">Git</span> Git & GitHub Pages</li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</main>
+
 
   <footer>
     <p>© 2025 My Dev Journey; built with 💜.</p>
