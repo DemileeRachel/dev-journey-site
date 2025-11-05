@@ -1,4 +1,4 @@
-/* 🌸 My Dev Journey — Clean Pastel Glass Theme */
+/* 🌸 My Dev Journey — Polished Pastel Glass Theme */
 
 /* ====== BASE ====== */
 html, body {
@@ -10,6 +10,7 @@ body {
   flex-direction: column;
   padding-top: 80px; /* space for fixed navbar */
   background-color: lavender;
+  transition: background-color 1s ease;
   font-family: "Segoe UI", Arial, sans-serif;
   color: #333;
   overflow-x: hidden;
@@ -75,7 +76,7 @@ main {
   width: 100%;
 }
 
-/* ====== CLOCK (centered) ====== */
+/* ====== CLOCK ====== */
 #clock-container {
   position: absolute;
   left: 50%;
@@ -99,71 +100,109 @@ main {
   margin-top: 2px;
 }
 
-/* 🍔 Hamburger (Mobile) */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 26px;
-  cursor: pointer;
-}
-@media (max-width: 700px) {
-  .navbar-inner { flex-wrap: wrap; }
-  #clock-container {
-    position: static;
-    transform: none;
-    margin: 8px auto 0;
-    order: 3;
-  }
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    background: #333;
-    position: absolute;
-    top: 70px;
-    right: 10px;
-    width: 180px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    padding: 10px;
-  }
-  .nav-links.active { display: flex; }
-  .menu-toggle { display: block; }
-}
-
-/* ====== HERO SECTIONS ====== */
-.hero,
-.projects-hero {
+/* ====== HERO ====== */
+.hero {
   text-align: center;
-  margin-top: 100px;
+  margin-top: 120px;
 }
-.hero h1,
-.projects-hero h1 {
+.hero h1 {
   font-size: 2.6rem;
   background: linear-gradient(90deg, #8b5cf6, #6366f1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 10px;
 }
+.hero h1 .emoji {
+  -webkit-text-fill-color: initial !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.hero h1 .emoji:hover {
+  transform: scale(1.2);
+}
+.hero p {
+  color: #444;
+  margin-top: 10px;
+}
 
-/* ====== BACK BUTTON ====== */
+/* ====== BUTTONS ====== */
+.fun-btn,
+#next-btn,
+#retry-btn,
 .back-btn {
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 20px;
   padding: 10px 24px;
   background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
-  color: #333;
+  color: #000;
   font-weight: 600;
+  border: none;
   border-radius: 10px;
-  text-decoration: none;
-  box-shadow: 0 0 10px rgba(150,150,255,0.4);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
   transition: all 0.3s ease;
 }
+.fun-btn:hover,
+#next-btn:hover,
+#retry-btn:hover,
 .back-btn:hover {
   transform: scale(1.05);
   background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
-  box-shadow: 0 0 20px rgba(200,200,255,0.8);
+  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
+}
+
+/* ====== PROJECTS ====== */
+.projects-hero {
+  text-align: center;
+  margin-top: 90px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 5;
+}
+.projects-hero h1 {
+  font-size: 2.6rem;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 6px;
+}
+.projects-hero .back-btn {
+  margin-top: 8px;
+}
+
+/* ====== FLOATING EMOJIS ====== */
+#emoji-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.float-emoji {
+  position: absolute;
+  bottom: 0;
+  font-size: 1.8rem;
+  animation: floatUp 6s linear forwards;
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: normal;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* ====== EMOJI CLICK BOUNCE ====== */
+.emoji-bounce {
+  animation: bounce 0.6s ease;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 /* ====== ABOUT SECTION ====== */
@@ -188,261 +227,12 @@ main {
   animation: shimmer 8s infinite linear;
   opacity: 0.4;
 }
-.about-section h2 {
-  font-size: 2.2rem;
-  background: linear-gradient(90deg, #8b5cf6, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.about-section a {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 24px;
-  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
-  color: #333;
-  font-weight: 600;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(150,150,255,0.4);
-}
-.about-section a:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
-}
-
-/* ===== PROJECTS PAGE LAYOUT ===== */
-
-/* Title + Back Button */
-.projects-hero {
-  text-align: center;
-  margin-top: 90px; /* consistent with navbar */
-  margin-bottom: 30px; /* tighter */
-  position: relative;
-  z-index: 5;
-}
-
-.projects-hero h1 {
-  font-size: 2.6rem;
-  background: linear-gradient(90deg, #8b5cf6, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 6px;
-}
-
-.projects-hero .back-btn {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 10px 24px;
-  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
-  color: #333;
-  font-weight: 600;
-  border-radius: 10px;
-  text-decoration: none;
-  box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
-  transition: all 0.3s ease;
-}
-.projects-hero .back-btn:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
-  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
-}
-
-/* ===== TOP ROW: QUIZ + PROJECT PREVIEW ===== */
-.projects-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 30px; /* tighter spacing between cards */
-  max-width: 1100px;
-  margin: -10px auto 60px; /* pulled upward slightly */
-  padding: 0 40px;
-}
-
-/* 🐍 Quiz + 🚀 Showcase Cards */
-.quiz-section,
-.project-showcase {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  animation: fadeIn 0.8s ease;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.quiz-section:hover,
-.project-showcase:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
-/* ✨ Full-color emojis */
-.quiz-section h2,
-.project-showcase h2 {
-  font-size: 1.8rem;
-  color: #333;
-}
-.quiz-section h2 .emoji,
-.project-showcase h2 .emoji {
-  -webkit-text-fill-color: initial !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-}
-
-/* ===== BOTTOM PROJECT CARDS ===== */
-.project-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-  max-width: 1100px;
-  margin: 0 auto 100px;
-  padding: 0 40px;
-}
-
-.project-card {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(8px);
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-  text-align: left;
-  animation: fadeIn 1s ease;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-}
-.project-card h4 {
-  font-size: 1.2rem;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-/* ===== GRADIENT BUTTONS (shared) ===== */
-.fun-btn,
-#next-btn,
-#retry-btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 24px;
-  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
-  color: #000;
-  font-weight: 600;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
-  transition: all 0.3s ease;
-}
-.fun-btn:hover,
-#next-btn:hover,
-#retry-btn:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
-  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .projects-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-    margin-top: 0;
-  }
-
-  .quiz-section,
-  .project-showcase {
-    width: 100%;
-  }
-
-  .project-cards {
-    grid-template-columns: 1fr;
-  }
-}
-/* ===== SHIMMER ANIMATION FOR GRADIENT BUTTONS ===== */
-@keyframes shimmerMove {
+@keyframes shimmer {
   0% { background-position: 0% 50%; }
   100% { background-position: 200% 50%; }
 }
 
-.fun-btn,
-#next-btn,
-#retry-btn,
-.back-btn {
-  background: linear-gradient(135deg, #cdb4ff, #a5d8ff, #cdb4ff);
-  background-size: 200% 200%;
-  animation: shimmerMove 8s linear infinite;
-}
-
-/* Slight hover boost stays the same */
-.fun-btn:hover,
-#next-btn:hover,
-#retry-btn:hover,
-.back-btn:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #a5d8ff, #cdb4ff, #a5d8ff);
-  background-size: 200% 200%;
-  animation: shimmerMove 3s linear infinite;
-}
-/* ===== UNIVERSAL BUTTON SHIMMER ===== */
-
-/* Smooth pastel shimmer gradient */
-@keyframes shimmerMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
-}
-
-/* Apply shimmer to ALL main buttons */
-.fun-btn,
-#next-btn,
-#retry-btn,
-.back-btn,
-button,
-input[type="button"],
-input[type="submit"] {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 24px;
-  background: linear-gradient(135deg, #cdb4ff, #a5d8ff, #cdb4ff);
-  background-size: 200% 200%;
-  animation: shimmerMove 8s linear infinite;
-  color: #000;
-  font-weight: 600;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
-  transition: all 0.3s ease;
-}
-
-/* Hover: faster shimmer + slight glow */
-.fun-btn:hover,
-#next-btn:hover,
-#retry-btn:hover,
-.back-btn:hover,
-button:hover,
-input[type="button"]:hover,
-input[type="submit"]:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #a5d8ff, #cdb4ff, #a5d8ff);
-  background-size: 200% 200%;
-  animation: shimmerMove 3s linear infinite;
-  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
-}
-
-/* Button text stays crisp */
-button,
-input[type="button"],
-input[type="submit"] {
-  font-family: "Segoe UI", Arial, sans-serif;
-  letter-spacing: 0.3px;
-}
-/* ====== FOOTER STYLING (PASTEL GLOW LINE) ====== */
+/* ====== FOOTER ====== */
 footer {
   margin-top: auto;
   width: 100%;
@@ -455,8 +245,6 @@ footer {
   backdrop-filter: blur(10px);
   z-index: 2;
 }
-
-/* 💫 Soft pastel glow separator line */
 footer::before {
   content: "";
   position: absolute;
@@ -473,20 +261,18 @@ footer::before {
   box-shadow: 0 0 12px rgba(173, 135, 255, 0.5);
   animation: glowLine 8s linear infinite;
 }
-
-/* ✨ Gentle glowing animation */
 @keyframes glowLine {
   0% { opacity: 0.7; }
   50% { opacity: 1; }
   100% { opacity: 0.7; }
 }
 
-/* Keeps footer pinned at bottom across all pages */
-html, body {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-body > footer {
-  margin-top: auto;
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+  .projects-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin-top: 0;
+  }
 }

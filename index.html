@@ -44,6 +44,44 @@
 
   <!-- ✨ Floating Emojis -->
   <div id="emoji-container"></div>
+  <script>
+  const emojiContainer = document.getElementById("emoji-container");
+  const mainEmoji = document.querySelector(".hero h1 .emoji");
+
+  // Define emoji themes
+  const emojiThemes = [
+    ["🐱", "😺", "😸", "😻", "😼", "🐾"],        // Cat theme
+    ["🌸", "🌼", "🌿", "🌺", "🌻", "🍃"],        // Floral theme
+    ["💻", "🖱️", "⚙️", "📟", "🧠", "📱"],        // Tech theme
+    ["⭐", "🌙", "✨", "☁️", "🌌", "🌠"],        // Night theme
+    ["🐝", "🦋", "🐞", "🍯", "🌻", "🍃"]         // Nature buzz theme
+  ];
+
+  let currentThemeIndex = 0;
+
+  // Floating emoji generator
+  function spawnEmoji() {
+    if (!emojiContainer) return;
+    const emoji = document.createElement("div");
+    emoji.classList.add("float-emoji");
+    const theme = emojiThemes[currentThemeIndex];
+    emoji.textContent = theme[Math.floor(Math.random() * theme.length)];
+    emoji.style.left = Math.random() * 100 + "vw";
+    emoji.style.animationDuration = 5 + Math.random() * 3 + "s";
+    emojiContainer.appendChild(emoji);
+    setTimeout(() => emoji.remove(), 6000);
+  }
+
+  setInterval(spawnEmoji, 700); // continuously spawn emojis
+
+  // 🪄 When clicking the main emoji, change the floating theme
+  mainEmoji.addEventListener("click", () => {
+    currentThemeIndex = (currentThemeIndex + 1) % emojiThemes.length;
+    mainEmoji.classList.add("emoji-bounce");
+    setTimeout(() => mainEmoji.classList.remove("emoji-bounce"), 600);
+  });
+</script>
+
 
   <!-- ===== FOOTER ===== -->
   <footer>
