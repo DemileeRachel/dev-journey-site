@@ -529,7 +529,52 @@ body.light {
     max-width: 90%;
   }
 }
+.projects-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px 100px;
+  gap: 40px;
+}
 
+.projects-row {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.projects-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.25);
+  color: #eee;
+  width: 400px;
+  max-width: 90%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.projects-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+}
+
+.wide-card {
+  width: 600px;
+  max-width: 90%;
+}
+
+@media (max-width: 900px) {
+  .projects-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .projects-card, .wide-card {
+    width: 95%;
+  }
+}
 /* ===========================
    FOOTER
 =========================== */
