@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const clock = document.getElementById('uk-clock');
   const greeting = document.getElementById('greeting');
   const paragraph = document.getElementById('intro-text');
+  const changeName = document.getElementById('change-name');
 
   /* =============================
      🍔 NAV MENU TOGGLE (Mobile)
@@ -19,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
       menuToggle.classList.toggle('open');
     });
 
-    // Close menu if clicking outside
     document.addEventListener('click', (e) => {
       if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
         navLinks.classList.remove('active');
@@ -74,6 +74,34 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateGreeting, 60000); // refresh every minute
 
   /* =============================
+     👋 PERSONALIZED VISITOR GREETING
+  ============================== */
+  if (greeting) {
+    let name = localStorage.getItem("visitorName");
+    if (!name) {
+      name = prompt("What's your name?");
+      if (name && name.trim() !== "") {
+        localStorage.setItem("visitorName", name.trim());
+      }
+    }
+
+    if (name) {
+      greeting.textContent = `Welcome back, ${name}! 🌸`;
+    }
+
+    if (changeName) {
+      changeName.addEventListener("click", (e) => {
+        e.preventDefault();
+        const newName = prompt("Enter your name:");
+        if (newName && newName.trim() !== "") {
+          localStorage.setItem("visitorName", newName.trim());
+          greeting.textContent = `Welcome back, ${newName}! 🌸`;
+        }
+      });
+    }
+  }
+
+  /* =============================
      💬 TYPEWRITER EFFECT (Home)
   ============================== */
   if (paragraph) {
@@ -90,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* =============================
-     ✨ FLOATING EMOJIS (Full-color)
+     ✨ FLOATING EMOJIS
   ============================== */
   function spawnEmoji() {
     if (!emojiContainer) return;
@@ -155,12 +183,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextBtn = document.getElementById("next-btn");
   const resultText = document.getElementById("result");
 
-  // Restore saved score if exists
   if (localStorage.getItem("pythonQuizScore")) {
     score = parseInt(localStorage.getItem("pythonQuizScore"));
   }
 
-  /* --- Show a question --- */
   function showQuestion() {
     const q = quizData[currentQuestion];
     quizContainer.innerHTML = `
@@ -178,7 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-  /* --- Confetti effect --- */
   function showConfetti() {
     const colors = ['#8b5cf6', '#a78bfa', '#facc15', '#f472b6', '#60a5fa'];
     for (let i = 0; i < 50; i++) {
@@ -197,7 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  /* --- Show results --- */
   function showResult() {
     quizContainer.innerHTML = `
       <h3>🎉 Quiz Complete!</h3>
@@ -220,7 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* --- Next Question Logic --- */
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
       const selected = document.querySelector('input[name="answer"]:checked');
@@ -230,29 +253,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      if (selected.value === quizData[currentQuestion].correct) {
-        score++;
-      }
+      if (selected.value === quizData[currentQuestion].correct) score++;
 
       resultText.textContent = "";
       currentQuestion++;
 
-      if (currentQuestion < quizData.length) {
-        showQuestion();
-      } else {
-        showResult();
-      }
+      if (currentQuestion < quizData.length) showQuestion();
+      else showResult();
     });
   }
 
-  // Initialize quiz if container exists
   if (quizContainer) {
     showQuestion();
   }
 });
-let name = localStorage.getItem("visitorName");
-if (!name) {
-  name = prompt("What's your name?");
-  localStorage.setItem("visitorName", name);
-}
-greeting.textContent = `Welcome back, ${name}! 🌸`;

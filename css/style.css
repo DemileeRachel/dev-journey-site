@@ -376,3 +376,6 @@ footer::before {
   background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
   box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
 }
+#greeting {
+  animation: fadeIn 1.2s ease;
+}
