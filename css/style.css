@@ -373,3 +373,73 @@ footer {
   from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* ===== PROJECTS ROW (side-by-side under title) ===== */
+.projects-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 40px auto 100px;
+  padding: 0 40px;
+}
+
+/* 🐍 Quiz + 🚀 Showcase (cards beside title) */
+.quiz-section,
+.project-showcase {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  animation: fadeIn 0.8s ease;
+}
+
+/* ✨ Normal full-color emojis */
+h1, h2, h3, h4, p, label {
+  -webkit-text-fill-color: initial !important;
+  mix-blend-mode: normal !important;
+  filter: none !important;
+}
+
+/* 💜 Gradient Buttons (like home page) */
+.fun-btn,
+#next-btn,
+.back-btn,
+#retry-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
+  color: #000;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.fun-btn:hover,
+#next-btn:hover,
+.back-btn:hover,
+#retry-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
+  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
+}
+
+/* Responsive Fix */
+@media (max-width: 900px) {
+  .projects-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+  .quiz-section,
+  .project-showcase {
+    width: 100%;
+  }
+}
