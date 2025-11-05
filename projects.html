@@ -6,14 +6,17 @@
   <title>Projects | My Dev Journey</title>
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- ✅ PyScript Runtime -->
-  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  <!-- ✅ Updated PyScript Runtime -->
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.1/core.css">
+  <script defer src="https://pyscript.net/releases/2024.6.1/core.js"></script>
 </head>
-<body class="projects">
+
+<body class="projects dark">
+  <!-- ===== NAVBAR ===== -->
   <header class="navbar">
     <div class="navbar-inner">
       <div class="logo">My Dev Journey</div>
+
       <div class="center-group">
         <div id="clock-container">
           <h2>🕒 Time</h2>
@@ -21,6 +24,7 @@
         </div>
         <button id="theme-toggle">🌗 Theme</button>
       </div>
+
       <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -29,16 +33,14 @@
     </div>
   </header>
 
+  <!-- ===== MAIN CONTENT ===== -->
   <main>
     <section class="projects-showcase">
-     <h1 class="projects-title">
-  <span class="emoji">🚀</span>
-  <span class="no-gradient">Projects Coming Soon</span>
-</h1>
+      <h1 class="projects-title">🚀 Projects Coming Soon</h1>
       <p class="projects-sub">A showcase of my current and upcoming creations ✨</p>
 
       <div class="projects-grid">
-        <!-- Card 1 -->
+        <!-- CARD 1 -->
         <div class="project-card">
           <h3>💡 My Projects</h3>
           <ul>
@@ -48,7 +50,7 @@
           </ul>
         </div>
 
-        <!-- Card 2 -->
+        <!-- CARD 2 -->
         <div class="project-card">
           <h3>🧠 SQL Mini Quiz</h3>
           <p>Test your SQL knowledge — one question at a time!</p>
@@ -60,17 +62,19 @@
           <br />
           <button class="fun-btn">Next Question</button>
         </div>
-<!-- Card 3 (PyScript Demo) -->
-<div class="project-card">
-  <h3>🧪 Python Interactive Demo (PyScript)</h3>
-  <p>Run Python directly in your browser — try squaring a number!</p>
-  <div class="py-demo">
-    <input id="numInput" type="number" value="10" />
-    <button id="squareBtn">Square it!</button>
-  </div>
-  <p id="pyResult"></p>
 
-  <py-script>
+        <!-- CARD 3: PyScript Demo -->
+        <div class="project-card">
+          <h3>🧪 Python Interactive Demo (PyScript)</h3>
+          <p>Run Python directly in your browser — try squaring a number!</p>
+          <div class="py-demo">
+            <input id="numInput" type="number" value="10" />
+            <button id="squareBtn">Square it!</button>
+          </div>
+          <p id="pyResult"></p>
+
+          <!-- ✅ Fixed PyScript block -->
+          <py-script>
 from js import document
 
 def square_it(event):
@@ -81,14 +85,13 @@ def square_it(event):
         document.getElementById("pyResult").innerText = f"Error: {e}"
 
 document.getElementById("squareBtn").addEventListener("click", square_it)
-  </py-script>
-</div>
+          </py-script>
+        </div>
 
-
-        <!-- Card 4 -->
+        <!-- CARD 4 -->
         <div class="project-card">
           <h3>🐱 Random Cat Name Generator</h3>
-          <p>Generate a new cat hero name for... <strong>COMING SOON!</strong>!</p>
+          <p>Generate a new cat hero name for... <strong>COMING SOON!</strong></p>
           <button id="catBtn">Generate Cat Name</button>
           <p id="catName"></p>
         </div>
@@ -97,8 +100,15 @@ document.getElementById("squareBtn").addEventListener("click", square_it)
       <a href="index.html" class="fun-btn back-home">← Back to Home</a>
     </section>
   </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 My Dev Journey; built with 💜.</p>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
   <script>
-    // 🌙 Force dark mode on load for Projects page
+    // Force dark mode for Projects page
     document.body.classList.add("dark");
 
     // ⏰ UK Clock
@@ -109,24 +119,21 @@ document.getElementById("squareBtn").addEventListener("click", square_it)
     setInterval(updateClock, 1000);
     updateClock();
 
-   // 🐱 Random Cat Name Generator (with emojis!)
-const catNames = [
-  "✨ Whisker Spark ✨",
-  "🌙 Luna Paw 🌙",
-  "🍡 Mochi Tail 🍡",
-  "🌌 Cosmo Cat 🌌",
-  "💾 Pixel Pounce 💾",
-  "🖤 Velvet Fang 🖤",
-  "☄️ Comet Whisk ☄️"
-];
+    // 🐱 Random Cat Name Generator (now with emojis!)
+    const catNames = [
+      "🌌 Whisker Spark",
+      "🌙 Luna Paw",
+      "🍡 Mochi Tail",
+      "☄️ Cosmo Cat",
+      "🎨 Pixel Pounce",
+      "🖤 Velvet Fang",
+      "💫 Comet Whisk"
+    ];
 
-document.getElementById("catBtn").addEventListener("click", () => {
-  const random = catNames[Math.floor(Math.random() * catNames.length)];
-  document.getElementById("catName").textContent = "🐾 Your cat’s name is: " + random;
-});
+    document.getElementById("catBtn").addEventListener("click", () => {
+      const random = catNames[Math.floor(Math.random() * catNames.length)];
+      document.getElementById("catName").textContent = "Your cat’s name is: " + random;
+    });
   </script>
-   <footer>
-    <p>© 2025 My Dev Journey; built with 💜.</p>
-  </footer>
 </body>
 </html>
