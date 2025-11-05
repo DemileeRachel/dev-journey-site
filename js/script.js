@@ -34,9 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
   tick();
   setInterval(tick, 1000);
 
-  /* ===== THEME ===== */
+  /* ===== THEME TOGGLE ===== */
   const THEME_KEY = 'siteTheme';
-  const applyTheme = (t) => document.body.classList.toggle('dark', t === 'dark');
+  const applyTheme = (theme) => {
+    document.body.classList.toggle('dark', theme === 'dark');
+  };
   applyTheme(localStorage.getItem(THEME_KEY) || 'light');
   if (themeBtn) {
     themeBtn.addEventListener('click', () => {
@@ -46,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== NAME + GREETING ===== */
+  /* ===== GREETING SYSTEM ===== */
   function computeGreeting() {
     const h = new Date().getHours();
     if (h < 12) return 'Good Morning';
@@ -57,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function setGreetingLine() {
     const name = localStorage.getItem('visitorName') || '';
     const base = computeGreeting();
-    greetingEl && (greetingEl.textContent = name ? `${base}, ${name}!` : `${base}!`);
+    if (greetingEl) greetingEl.innerHTML = `${base}${name ? ', ' + name : ''}! <span id="greeting-emoji" class="emoji">🌸</span>`;
   }
 
   if (!localStorage.getItem('visitorName')) {
@@ -78,35 +80,95 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== Fun button ===== */
+  /* ===== GREETING EMOJI (Interactive + Persistent) ===== */
+  function initEmoji() {
+    const greetingEmoji = document.getElementById('greeting-emoji');
+    if (greetingEmoji) {
+      const emojiSet = ['🌸','💜','🌞','🐍','💻','🚀','🎨','🧠','✨'];
+      const savedEmoji = localStorage.getItem('greetingEmoji');
+      if (savedEmoji) greetingEmoji.textContent = savedEmoji;
+
+      greetingEmoji.addEventListener('click', () => {
+        let next;
+        do {
+          next = emojiSet[Math.floor(Math.random() * emojiSet.length)];
+        } while (next === greetingEmoji.textContent);
+        greetingEmoji.textContent = next;
+        localStorage.setItem('greetingEmoji', next);
+        greetingEmoji.classList.add('clicked');
+        setTimeout(() => greetingEmoji.classList.remove('clicked'), 400);
+      });
+    }
+  }
+  initEmoji();
+
+  /* ===== MULTI-LINE TYPEWRITER ===== */
+  const paragraph = document.getElementById('intro-text');
+  if (paragraph) {
+    const lines = [
+      "Welcome to my journey to being a full-stack developer!",
+      "I love creating interactive web projects 💻",
+      "Learning new tech one day at a time ⌨️",
+      "Let’s build something amazing today 🚀"
+    ];
+
+    let lineIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    let delay = 80;
+    let pause = 1200;
+
+    function typeLoop() {
+      const currentLine = lines[lineIndex];
+
+      if (!deleting && charIndex < currentLine.length) {
+        paragraph.textContent = currentLine.substring(0, charIndex + 1);
+        charIndex++;
+        delay = 70;
+      } else if (deleting && charIndex > 0) {
+        paragraph.textContent = currentLine.substring(0, charIndex - 1);
+        charIndex--;
+        delay = 35;
+      } else if (!deleting && charIndex === currentLine.length) {
+        deleting = true;
+        delay = pause;
+      } else if (deleting && charIndex === 0) {
+        deleting = false;
+        lineIndex = (lineIndex + 1) % lines.length;
+        delay = 300;
+      }
+
+      setTimeout(typeLoop, delay);
+    }
+    typeLoop();
+  }
+
+  /* ===== FUN BUTTON ===== */
   if (greetBtn) {
     greetBtn.addEventListener('click', () => {
       greetBtn.classList.add('clicked');
       const old = greetBtn.textContent;
       greetBtn.textContent = '✨ Magic! ✨';
-      setTimeout(() => { 
-        greetBtn.textContent = old; 
-        greetBtn.classList.remove('clicked'); 
-      }, 1200);
+      setTimeout(() => { greetBtn.textContent = old; greetBtn.classList.remove('clicked'); }, 1200);
     });
   }
 
-  /* ===== Floating emojis ===== */
+  /* ===== FLOATING EMOJIS ===== */
   const emojiContainer = document.getElementById('emoji-container');
   function spawnEmoji() {
     if (!emojiContainer) return;
     const list = ['💻','🌸','🚀','✨','🧠','💡','🎨'];
     const d = document.createElement('div');
     d.className = 'float-emoji';
-    d.textContent = list[Math.floor(Math.random()*list.length)];
-    d.style.left = Math.random()*100 + 'vw';
-    d.style.animationDuration = 3 + Math.random()*3 + 's';
+    d.textContent = list[Math.floor(Math.random() * list.length)];
+    d.style.left = Math.random() * 100 + 'vw';
+    d.style.animationDuration = 3 + Math.random() * 3 + 's';
     emojiContainer.appendChild(d);
     setTimeout(() => d.remove(), 7000);
   }
   setInterval(spawnEmoji, 1500);
 
-  /* ===== Mini typing game ===== */
+  /* ===== MINI TYPING GAME ===== */
   const tgWrap   = document.getElementById('typing-game');
   const tgWord   = document.getElementById('typing-word');
   const tgInput  = document.getElementById('typing-input');
@@ -114,25 +176,25 @@ document.addEventListener('DOMContentLoaded', () => {
   if (tgWrap && tgWord && tgInput && tgStatus) {
     const words = ['developer','javascript','portfolio','learning','python'];
     let target = words[0];
-    function newWord() { 
-      target = words[Math.floor(Math.random()*words.length)]; 
-      tgWord.textContent = target; 
-      tgInput.value=''; 
-      tgStatus.textContent=''; 
+    function newWord() {
+      target = words[Math.floor(Math.random() * words.length)];
+      tgWord.textContent = target;
+      tgInput.value = '';
+      tgStatus.textContent = '';
     }
     newWord();
     tgWrap.style.display = 'block';
     tgInput.addEventListener('input', () => {
-      if (tgInput.value.trim() === target) { 
-        tgStatus.textContent = '✓ Nice!'; 
-        setTimeout(newWord, 700); 
-      } else { 
-        tgStatus.textContent = ''; 
+      if (tgInput.value.trim() === target) {
+        tgStatus.textContent = '✓ Nice!';
+        setTimeout(newWord, 700);
+      } else {
+        tgStatus.textContent = '';
       }
     });
   }
 
-  /* ===== Python Mini Quiz ===== */
+  /* ===== PYTHON QUIZ (Projects Page Only) ===== */
   const quizData = [
     { question: "What is the output of print(2 ** 3)?", options: ["5","6","8","9"], correct: "8" },
     { question: "Which keyword defines a function?", options: ["func","def","function","lambda"], correct: "def" },
@@ -140,30 +202,21 @@ document.addEventListener('DOMContentLoaded', () => {
     { question: "Python comment starts with…", options: ["//","#","<!--","/*"], correct: "#" }
   ];
   let qIndex = 0, qScore = 0;
-
   const quizContainer = document.getElementById('quiz-container');
   const nextBtn       = document.getElementById('next-btn');
   const resultText    = document.getElementById('result');
-  const progressFill  = document.getElementById('quiz-progress-fill'); // <-- NEW
-
-  function updateProgress() {
-    if (!progressFill) return;
-    const percent = ((qIndex) / quizData.length) * 100;
-    progressFill.style.width = `${percent}%`;
-  }
 
   function drawQuestion() {
     const q = quizData[qIndex];
     quizContainer.innerHTML = `
       <div class="quiz-question fade">
-        <p><strong>${qIndex+1}. ${q.question}</strong></p>
+        <p><strong>${qIndex + 1}. ${q.question}</strong></p>
         ${q.options.map(o => `
           <label class="quiz-option">
             <input type="radio" name="answer" value="${o}"> ${o}
           </label>
         `).join('')}
       </div>`;
-    updateProgress(); // update bar every question
   }
 
   function showResult() {
@@ -172,11 +225,10 @@ document.addEventListener('DOMContentLoaded', () => {
       <p>You scored <strong>${qScore}</strong> out of <strong>${quizData.length}</strong>.</p>
       <button id="retry-btn" class="fun-btn">Try Again</button>
     `;
-    if (progressFill) progressFill.style.width = '100%'; // fill bar at end
     if (nextBtn) nextBtn.style.display = 'none';
     const rb = document.getElementById('retry-btn');
     rb && rb.addEventListener('click', () => {
-      qIndex = 0; qScore = 0; resultText.textContent = ''; 
+      qIndex = 0; qScore = 0; resultText.textContent = '';
       if (nextBtn) nextBtn.style.display = 'inline-block';
       drawQuestion();
     });
@@ -187,10 +239,10 @@ document.addEventListener('DOMContentLoaded', () => {
     drawQuestion();
     nextBtn && nextBtn.addEventListener('click', () => {
       const pick = document.querySelector('input[name="answer"]:checked');
-      if (!pick) { 
-        resultText.textContent = "⚠️ Select an answer first"; 
-        resultText.style.color = "#ff6b6b"; 
-        return; 
+      if (!pick) {
+        resultText.textContent = "⚠️ Select an answer first";
+        resultText.style.color = "#ff6b6b";
+        return;
       }
       if (pick.value === quizData[qIndex].correct) qScore++;
       qIndex++;
@@ -199,51 +251,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-  /* ===== GREETING EMOJI INTERACTION ===== */
-  const greetingEmoji = document.getElementById('greeting-emoji');
-  if (greetingEmoji) {
-    const emojiSet = ['🌸','💜','🌞','🐍','💻','🚀','🎨','🧠','✨'];
-    greetingEmoji.addEventListener('click', () => {
-      let current = greetingEmoji.textContent;
-      let next;
-      do {
-        next = emojiSet[Math.floor(Math.random() * emojiSet.length)];
-      } while (next === current);
-      greetingEmoji.textContent = next;
-      greetingEmoji.classList.add('clicked');
-      setTimeout(() => greetingEmoji.classList.remove('clicked'), 400);
-    });
-  }
-  /* ===== TYPEWRITER ANIMATION ===== */
-  const paragraph = document.getElementById('intro-text');
-  if (paragraph) {
-    const text = paragraph.textContent;
-    paragraph.textContent = '';
-    let i = 0;
-    (function type() {
-      if (i < text.length) {
-        paragraph.textContent += text.charAt(i);
-        i++;
-        setTimeout(type, 70);
-      }
-    })();
-  }
-
-  /* ===== GREETING EMOJI ===== */
-  const greetingEmoji = document.getElementById('greeting-emoji');
-  if (greetingEmoji) {
-    const emojiSet = ['🌸','💜','🌞','🐍','💻','🚀','🎨','🧠','✨'];
-    const savedEmoji = localStorage.getItem('greetingEmoji');
-    if (savedEmoji) greetingEmoji.textContent = savedEmoji;
-
-    greetingEmoji.addEventListener('click', () => {
-      let next;
-      do {
-        next = emojiSet[Math.floor(Math.random() * emojiSet.length)];
-      } while (next === greetingEmoji.textContent);
-      greetingEmoji.textContent = next;
-      localStorage.setItem('greetingEmoji', next);
-      greetingEmoji.classList.add('clicked');
-      setTimeout(() => greetingEmoji.classList.remove('clicked'), 400);
-    });
-  }
