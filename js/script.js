@@ -250,3 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
     showQuestion();
   }
 });
+let name = localStorage.getItem("visitorName");
+if (!name) {
+  name = prompt("What's your name?");
+  localStorage.setItem("visitorName", name);
+}
+greeting.textContent = `Welcome back, ${name}! 🌸`;
