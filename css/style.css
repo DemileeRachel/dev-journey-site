@@ -1111,12 +1111,14 @@ input[type="number"] {
 }
 /* 🌌 PROJECTS SHOWCASE (CLEAN + RESPONSIVE) */
 .projects-showcase {
-  padding: 120px 20px 100px;
+  padding: 90px 20px 60px; /* reduced top and bottom padding */
   text-align: center;
-  min-height: 100vh;
+  min-height: calc(100vh - var(--footer-h)); /* keeps footer visible */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start; /* ensures content starts higher */
+  gap: 40px;
 }
 
 .projects-title {
@@ -1142,7 +1144,7 @@ input[type="number"] {
   justify-content: center;
   align-items: start;
   max-width: 1000px;
-  margin: 0 auto 50px;
+  margin: 0 auto 20px; /* less bottom space to fit footer better */
 }
 
 /* --- CARD STYLE --- */
