@@ -211,180 +211,55 @@ main {
   background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
 }
 
-/* ====== PROJECTS LAYOUT ====== */
-.projects-layout {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
-  max-width: 1100px;
-  margin: 40px auto 120px;
-  padding: 0 40px;
-  flex-wrap: wrap;
-}
+/* ===== PROJECTS PAGE LAYOUT ===== */
 
-/* 🐍 Python Quiz */
-.quiz-section {
-  flex: 1;
-  min-width: 450px;
-  max-width: 520px;
-  align-self: flex-start;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-/* 🚀 My Projects Box */
-.project-showcase {
-  flex: 1;
-  min-width: 400px;
-  max-width: 520px;
-  align-self: flex-start;
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(8px);
-  border-radius: 20px;
-  padding: 40px;
+/* Title + Back Button */
+.projects-hero {
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  margin-top: 90px; /* consistent with navbar */
+  margin-bottom: 30px; /* tighter */
   position: relative;
-  overflow: hidden;
+  z-index: 5;
 }
 
-/* ✨ Shimmer / Sparkles */
-.quiz-section::before,
-.project-showcase::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.8), transparent 60%),
-    radial-gradient(2px 2px at 80% 70%, rgba(255,255,255,0.6), transparent 60%),
-    radial-gradient(2px 2px at 40% 80%, rgba(255,255,255,0.7), transparent 60%);
-  animation: sparkleDrift 15s linear infinite;
-  opacity: 0.35;
-  pointer-events: none;
-}
-.quiz-section::after,
-.project-showcase::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
-  transform: skewX(-20deg);
-  animation: shimmer 9s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes sparkleDrift {
-  from { transform: translate(0, 0); }
-  to { transform: translate(-80px, -60px); }
-}
-@keyframes shimmer {
-  0% { left: -150%; }
-  45% { left: 120%; }
-  100% { left: 120%; }
+.projects-hero h1 {
+  font-size: 2.6rem;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 6px;
 }
 
-/* 💻 Individual Project Cards */
-.project-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-  max-width: 1100px;
-  margin: 0 auto 120px;
-  padding: 0 40px;
-}
-.project-card {
-  flex: 1 1 300px;
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(10px);
-  border-radius: 18px;
-  padding: 30px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  animation: fadeIn 1s ease;
-}
-.project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 25px rgba(99,102,241,0.25);
-}
-.project-card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-  animation: shimmer 8s infinite;
-  pointer-events: none;
-}
-.project-card h4 {
-  font-size: 1.3rem;
+.projects-hero .back-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
   color: #333;
-  margin-bottom: 10px;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
+  transition: all 0.3s ease;
 }
-.project-card p {
-  color: #555;
-  line-height: 1.5;
-}
-
-/* ====== FOOTER ====== */
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9rem;
-  color: #555;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(0,0,0,0.1);
-  margin-top: auto;
+.projects-hero .back-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
+  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
 }
 
-/* ====== RESPONSIVE ====== */
-@media (max-width: 900px) {
-  .projects-layout {
-    flex-direction: column;
-    align-items: center;
-  }
-  .quiz-section,
-  .project-showcase {
-    width: 100%;
-    min-width: unset;
-    margin-bottom: 30px;
-  }
-  .project-cards {
-    flex-direction: column;
-    padding: 0 20px;
-  }
-}
-
-/* ====== ANIMATIONS ====== */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-/* ===== PROJECTS ROW (side-by-side under title) ===== */
+/* ===== TOP ROW: QUIZ + PROJECT PREVIEW ===== */
 .projects-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 40px;
+  gap: 30px; /* tighter spacing between cards */
   max-width: 1100px;
-  margin: 40px auto 100px;
+  margin: -10px auto 60px; /* pulled upward slightly */
   padding: 0 40px;
 }
 
-/* 🐍 Quiz + 🚀 Showcase (cards beside title) */
+/* 🐍 Quiz + 🚀 Showcase Cards */
 .quiz-section,
 .project-showcase {
   flex: 1;
@@ -392,22 +267,64 @@ footer {
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   text-align: left;
   animation: fadeIn 0.8s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ✨ Normal full-color emojis */
-h1, h2, h3, h4, p, label {
+.quiz-section:hover,
+.project-showcase:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ✨ Full-color emojis */
+.quiz-section h2,
+.project-showcase h2 {
+  font-size: 1.8rem;
+  color: #333;
+}
+.quiz-section h2 .emoji,
+.project-showcase h2 .emoji {
   -webkit-text-fill-color: initial !important;
-  mix-blend-mode: normal !important;
   filter: none !important;
+  mix-blend-mode: normal !important;
 }
 
-/* 💜 Gradient Buttons (like home page) */
+/* ===== BOTTOM PROJECT CARDS ===== */
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto 100px;
+  padding: 0 40px;
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  animation: fadeIn 1s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+.project-card h4 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* ===== GRADIENT BUTTONS (shared) ===== */
 .fun-btn,
 #next-btn,
-.back-btn,
 #retry-btn {
   display: inline-block;
   margin-top: 20px;
@@ -421,25 +338,107 @@ h1, h2, h3, h4, p, label {
   box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
   transition: all 0.3s ease;
 }
-
 .fun-btn:hover,
 #next-btn:hover,
-.back-btn:hover,
 #retry-btn:hover {
   transform: scale(1.05);
   background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
   box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
 }
 
-/* Responsive Fix */
+/* Responsive */
 @media (max-width: 900px) {
   .projects-row {
     flex-direction: column;
     align-items: center;
     gap: 25px;
+    margin-top: 0;
   }
+
   .quiz-section,
   .project-showcase {
     width: 100%;
   }
+
+  .project-cards {
+    grid-template-columns: 1fr;
+  }
+}
+/* ===== SHIMMER ANIMATION FOR GRADIENT BUTTONS ===== */
+@keyframes shimmerMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.fun-btn,
+#next-btn,
+#retry-btn,
+.back-btn {
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff, #cdb4ff);
+  background-size: 200% 200%;
+  animation: shimmerMove 8s linear infinite;
+}
+
+/* Slight hover boost stays the same */
+.fun-btn:hover,
+#next-btn:hover,
+#retry-btn:hover,
+.back-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #a5d8ff, #cdb4ff, #a5d8ff);
+  background-size: 200% 200%;
+  animation: shimmerMove 3s linear infinite;
+}
+/* ===== UNIVERSAL BUTTON SHIMMER ===== */
+
+/* Smooth pastel shimmer gradient */
+@keyframes shimmerMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Apply shimmer to ALL main buttons */
+.fun-btn,
+#next-btn,
+#retry-btn,
+.back-btn,
+button,
+input[type="button"],
+input[type="submit"] {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff, #cdb4ff);
+  background-size: 200% 200%;
+  animation: shimmerMove 8s linear infinite;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+/* Hover: faster shimmer + slight glow */
+.fun-btn:hover,
+#next-btn:hover,
+#retry-btn:hover,
+.back-btn:hover,
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #a5d8ff, #cdb4ff, #a5d8ff);
+  background-size: 200% 200%;
+  animation: shimmerMove 3s linear infinite;
+  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
+}
+
+/* Button text stays crisp */
+button,
+input[type="button"],
+input[type="submit"] {
+  font-family: "Segoe UI", Arial, sans-serif;
+  letter-spacing: 0.3px;
 }
