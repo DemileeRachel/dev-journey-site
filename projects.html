@@ -8,11 +8,13 @@
   <script src="js/script.js" defer></script>
 </head>
 <body>
-  <!-- NAVBAR -->
+  <!-- ===== NAVBAR ===== -->
   <header class="navbar">
     <div class="navbar-inner">
+      <!-- LEFT -->
       <div class="logo">My Dev Journey</div>
 
+      <!-- CENTER -->
       <div class="center-group">
         <div id="clock-container">
           <h2>🕒 Time</h2>
@@ -21,6 +23,7 @@
         <button id="theme-toggle">🌓 Theme</button>
       </div>
 
+      <!-- RIGHT -->
       <nav class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -31,37 +34,38 @@
     </div>
   </header>
 
-  <!-- PROJECTS SECTION -->
+  <!-- ===== PROJECTS CONTENT ===== -->
   <main>
-    <section class="projects-section">
-      <h2>Projects</h2>
+    <section class="projects-hero container">
+      <h1>Projects</h1>
       <a href="index.html" class="fun-btn">← Back to Home</a>
+    </section>
 
-      <div class="project-item">
-        <h3>🐍 Python Mini Quiz</h3>
+    <section class="projects-columns container">
+      <!-- LEFT COLUMN -->
+      <div class="card quiz-section">
+        <h2>🐍 Python Mini Quiz</h2>
         <p>Test your Python knowledge — one question at a time!</p>
         <div id="quiz-container"></div>
         <p id="result"></p>
         <button id="next-btn" class="fun-btn">Next Question</button>
       </div>
 
-      <div class="project-item">
-        <h3>🚀 My Projects</h3>
+      <!-- RIGHT COLUMN -->
+      <div class="card project-showcase">
+        <h2>🚀 My Projects</h2>
         <p>Coming soon! Here’s where I’ll display my coding work and interactive demos.</p>
-      </div>
 
-      <div class="project-item">
-        <h3>💡 Portfolio</h3>
-        <p>A responsive portfolio built with HTML, CSS, and JavaScript to showcase my coding journey.</p>
-      </div>
-
-      <div class="project-item">
-        <h3>🎮 Game/App Development</h3>
-        <p>My pixel-art roguelike! Currently in development — stay tuned!</p>
+        <ul class="project-list">
+          <li>💡 <strong>Portfolio</strong> — responsive site built with HTML, CSS & JS.</li>
+          <li>🧠 <strong>Python Quiz App</strong> — an interactive quiz using Python 3.</li>
+          <li>🎮 <strong>Game/App Development</strong> — a pixel-art roguelike, stay tuned!</li>
+        </ul>
       </div>
     </section>
   </main>
 
+  <!-- ===== FOOTER ===== -->
   <footer>
     <p>© 2025 My Dev Journey; built with 💜.</p>
   </footer>
