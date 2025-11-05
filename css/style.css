@@ -639,3 +639,19 @@ body.home, body.about, body.projects { overflow: hidden; }
 .skills-toggle[aria-expanded="false"]::after{
   transform: translateY(-50%) rotate(-90deg);
 }
+/* === FINAL FIX: Skills Panel Collapse Override === */
+#skills.skills-panel .skills-body {
+  max-height: 60vh;
+  opacity: 1;
+  padding: 14px 18px 18px;
+  overflow: auto;
+  transition: max-height 0.5s ease, opacity 0.4s ease, padding 0.4s ease;
+}
+
+#skills.skills-panel.collapsed .skills-body {
+  max-height: 0 !important;
+  opacity: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  overflow: hidden !important;
+}
