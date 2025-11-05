@@ -39,44 +39,45 @@
 
   <!-- ===== PROJECTS SECTION ===== -->
   <main>
-    <section class="projects-showcase">
-      <h1 class="projects-title">🚀 Projects Coming Soon</h1>
-      <p class="projects-sub">Here’s a glimpse of my current and upcoming creations 🪄</p>
+  <section class="projects-section">
+    <h1 class="projects-title">🚀 Projects Coming Soon</h1>
+    <p class="projects-sub">A showcase of my current and upcoming creations 🪄</p>
 
-      <div class="projects-grid">
+    <!-- ===== GRID LAYOUT ===== -->
+    <div class="projects-wrapper">
 
-        <!-- 🧠 SQL QUIZ -->
-        <div class="project-card">
-          <h3>🧠 SQL Mini Quiz</h3>
-          <p>Test your SQL knowledge — one question at a time!</p>
-          <div class="quiz-progress">
-            <div class="quiz-progress-fill" id="quiz-progress"></div>
-          </div>
-          <div id="quiz-container"></div>
-          <p id="result"></p>
-          <button id="next-btn" class="fun-btn">Next Question</button>
+      <!-- SQL QUIZ -->
+      <div class="project-card">
+        <h3>🧠 SQL Mini Quiz</h3>
+        <p>Test your SQL knowledge — one question at a time!</p>
+        <div class="quiz-progress">
+          <div class="quiz-progress-fill" id="quiz-progress"></div>
         </div>
+        <div id="quiz-container"></div>
+        <p id="result"></p>
+        <button id="next-btn" class="fun-btn">Next Question</button>
+      </div>
 
-        <!-- 💡 MY PROJECTS LIST -->
-        <div class="project-card">
-          <h3>💡 My Projects</h3>
-          <ul>
-            <li>📁 <strong>Portfolio</strong> — responsive site built with HTML, CSS & JS.</li>
-            <li>🐍 <strong>Python Quiz App</strong> — interactive quiz using Python 3.14.</li>
-            <li>🎮 <strong>Game/App Development</strong> — pixel-art roguelike (<strong>Rogue Whiskers</strong>)!</li>
-          </ul>
-        </div>
+      <!-- PROJECTS LIST -->
+      <div class="project-card">
+        <h3>💡 My Projects</h3>
+        <ul>
+          <li>📁 <strong>Portfolio</strong> — responsive site built with HTML, CSS & JS.</li>
+          <li>🐍 <strong>Python Quiz App</strong> — interactive quiz using Python 3.14.</li>
+          <li>🎮 <strong>Game/App Development</strong> — pixel-art roguelike (<strong>Rogue Whiskers</strong>)!</li>
+        </ul>
+      </div>
 
-        <!-- 🧪 PYSCRIPT DEMO -->
-        <div class="project-card">
-          <h3>🧪 Python Interactive Demo (PyScript)</h3>
-          <p>Run Python directly in your browser — try squaring a number!</p>
-          <label for="numInput">Enter a number:</label>
-          <input id="numInput" type="number" value="10" />
-          <button id="squareBtn" class="fun-btn">Square it!</button>
-          <p id="pyResult" style="margin-top:10px; font-weight:600;"></p>
+      <!-- PYTHON DEMO -->
+      <div class="project-card">
+        <h3>🧪 Python Interactive Demo (PyScript)</h3>
+        <p>Run Python directly in your browser — try squaring a number!</p>
+        <label for="numInput">Enter a number:</label>
+        <input id="numInput" type="number" value="10" />
+        <button id="squareBtn" class="fun-btn">Square it!</button>
+        <p id="pyResult" style="margin-top:10px; font-weight:600;"></p>
 
-          <py-script>
+        <py-script>
 from js import document
 def square_it(event):
     try:
@@ -86,28 +87,28 @@ def square_it(event):
         document.getElementById("pyResult").innerText = f"Error: {e}"
 
 document.getElementById("squareBtn").addEventListener("click", square_it)
-          </py-script>
-        </div>
-
-        <!-- 🐱 CAT NAME GENERATOR -->
-        <div class="project-card">
-          <h3>🐱 Random Cat Name Generator</h3>
-          <p>Generate a new cat hero name for <strong>Rogue Whiskers</strong>!</p>
-          <button id="catBtn" class="fun-btn">Generate Cat Name</button>
-          <p id="catName" style="margin-top:10px; font-weight:600;"></p>
-        </div>
-
+        </py-script>
       </div>
 
-      <a href="index.html" class="fun-btn back-home">← Back to Home</a>
-    </section>
-  </main>
+      <!-- CAT GENERATOR -->
+      <div class="project-card">
+        <h3>🐱 Random Cat Name Generator</h3>
+        <p>Generate a new cat hero name for <strong>COMING SOON</strong>!</p>
+        <button id="catBtn" class="fun-btn">Generate Cat Name</button>
+        <p id="catName" style="margin-top:10px; font-weight:600;"></p>
+      </div>
+
+    </div>
+
+    <a href="index.html" class="fun-btn back-home">← Back to Home</a>
+  </section>
+</main>
+
 
   <!-- ===== FOOTER ===== -->
   <footer>
     <p>© 2025 My Dev Journey; built with 💜.</p>
   </footer>
-
   <div id="emoji-container"></div>
 </body>
 </html>
