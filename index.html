@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Dev Journey — Home</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
   <script src="js/script.js" defer></script>
 </head>
-<body>
+
+<!-- ✅ Body class moved here -->
+<body class="home">
+
   <!-- ===== NAVBAR ===== -->
   <header class="navbar">
     <div class="navbar-inner">
@@ -35,33 +38,35 @@
   </header>
 
   <!-- ===== HERO ===== -->
-<main>
-  <section class="hero">
-    <div class="hero-content">
-      <h1 id="greetingText">Good Afternoon, Demilee! 🌸</h1>
-      <p id="intro-text">Welcome to my journey to being a full-stack developer!</p>
-      <button id="greetBtn" class="fun-btn">Do you press?</button>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1 id="greetingText">Good Afternoon, Demilee! 🌸</h1>
+        <p id="intro-text">Welcome to my journey to being a full-stack developer!</p>
+        <button id="greetBtn" class="fun-btn">Do you press?</button>
 
-      <!-- Hidden Typing Challenge -->
-      <div id="typing-game" class="typing-hidden">
-        <h3>⌨️ Quick Typing Challenge</h3>
-        <p id="typing-word">developer</p>
-        <input type="text" id="typing-input" placeholder="Type here..." />
-        <p id="typing-feedback"></p>
+        <!-- Hidden Typing Challenge -->
+        <div id="typing-game" class="typing-hidden">
+          <h3>⌨️ Quick Typing Challenge</h3>
+          <p id="typing-word">developer</p>
+          <input type="text" id="typing-input" placeholder="Type here..." />
+          <p id="typing-feedback"></p>
+        </div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
 
-<div id="emoji-container"></div>
+  <!-- FLOATING EMOJIS -->
+  <div id="emoji-container"></div>
 
-<footer>
-  <p>© 2025 My Dev Journey; built with 💜.</p>
-  <p class="footer-links">
-    <a href="about.html">Learn More →</a> |
-    <a href="#" id="changeNameLink">Change Name</a>
-  </p>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 My Dev Journey; built with 💜.</p>
+    <p class="footer-links">
+      <a href="about.html">Learn More →</a> |
+      <a href="#" id="changeNameLink">Change Name</a>
+    </p>
+  </footer>
 
 </body>
 </html>
