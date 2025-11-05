@@ -1243,3 +1243,9 @@ body.light input[type="number"] {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(150,150,255,0.45);
 }
+/* --- Adjust vertical balance for Projects page --- */
+.projects-showcase {
+  padding-top: 100px;   /* was 120px, keeps space under navbar */
+  padding-bottom: 60px; /* was 100px+, gives footer more room */
+  min-height: calc(100vh - 120px); /* ensures section fills viewport neatly */
+}
