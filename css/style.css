@@ -655,3 +655,8 @@ body.home, body.about, body.projects { overflow: hidden; }
   padding-bottom: 0 !important;
   overflow: hidden !important;
 }
+/* Optional color tweak for different badge groups */
+.skill-category:nth-child(3) .badge {
+  background: rgba(255, 214, 102, 0.25);
+  border-color: rgba(255, 214, 102, 0.5);
+}
