@@ -1,35 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /* ===== ELEMENT REFERENCES ===== */
   const menuToggle = document.getElementById("menuToggle");
   const navLinks = document.getElementById("navLinks");
-  const greetBtn = document.getElementById("greetBtn");
-  const emojiContainer = document.getElementById("emoji-container");
   const clock = document.getElementById("uk-clock");
   const greeting = document.getElementById("greeting");
-  const paragraph = document.getElementById("intro-text");
-  const backBtns = document.querySelectorAll(".back-btn");
+  const greetBtn = document.getElementById("greetBtn");
+  const emojiContainer = document.getElementById("emoji-container");
+  const themeToggle = document.getElementById("theme-toggle");
+  const typingGame = document.getElementById("typing-game");
+  const typingInput = document.getElementById("typing-input");
+  const typingFeedback = document.getElementById("typing-feedback");
 
-  /* ================================
-     🍔 NAV MENU TOGGLE (Mobile)
-  ================================= */
+  /* === NAV MENU === */
   if (menuToggle && navLinks) {
-    menuToggle.addEventListener("click", (e) => {
-      e.stopPropagation();
+    menuToggle.addEventListener("click", () => {
       navLinks.classList.toggle("active");
-      menuToggle.classList.toggle("open");
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-        navLinks.classList.remove("active");
-        menuToggle.classList.remove("open");
-      }
     });
   }
 
-  /* ================================
-     🕒 LIVE UK CLOCK
-  ================================= */
+  /* === CLOCK === */
   function updateUKClock() {
     const now = new Date().toLocaleTimeString("en-GB", {
       timeZone: "Europe/London",
@@ -43,13 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(updateUKClock, 1000);
   updateUKClock();
 
-  /* ================================
-     🌤 DYNAMIC GREETING + NAME
-  ================================= */
+  /* === GREETING + NAME === */
   function getGreeting() {
-    const hours = new Date().getHours();
-    if (hours < 12) return "Good Morning! ☀️";
-    if (hours < 18) return "Good Afternoon! ☕";
+    const h = new Date().getHours();
+    if (h < 12) return "Good Morning! ☀️";
+    if (h < 18) return "Good Afternoon! ☕";
     return "Good Evening! 🌙";
   }
 
@@ -58,36 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
     name = prompt("What's your name?");
     if (name) localStorage.setItem("visitorName", name);
   }
-
   function updateGreeting() {
-    if (greeting) {
-      const base = getGreeting();
-      greeting.textContent = name ? `${base} ${name}! 💜` : base;
-    }
+    if (greeting) greeting.textContent = `${getGreeting()} ${name || ""} 💜`;
   }
-
   updateGreeting();
-  setInterval(updateGreeting, 60000); // Update greeting every minute
+  setInterval(updateGreeting, 60000);
 
-  /* ================================
-     💬 TYPEWRITER EFFECT
-  ================================= */
-  if (paragraph) {
-    const text = paragraph.textContent;
-    paragraph.textContent = "";
-    let i = 0;
-    (function type() {
-      if (i < text.length) {
-        paragraph.textContent += text.charAt(i);
-        i++;
-        setTimeout(type, 50);
-      }
-    })();
-  }
-
-  /* ================================
-     ✨ FLOATING EMOJIS
-  ================================= */
+  /* === FLOATING EMOJIS === */
   function spawnEmoji() {
     if (!emojiContainer) return;
     const emojis = ["💻", "🌸", "🚀", "✨", "🧠", "💡", "🎨"];
@@ -101,145 +64,63 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   setInterval(spawnEmoji, 1800);
 
-  /* ================================
-     🎉 FUN INTERACTIVE BUTTON
-  ================================= */
-  if (greetBtn) {
-    greetBtn.addEventListener("click", () => {
-      greetBtn.classList.add("clicked");
-      greetBtn.textContent = "✨ Magic! ✨";
-      setTimeout(() => {
-        greetBtn.textContent = "Do you press?";
-        greetBtn.classList.remove("clicked");
-      }, 1500);
-    });
-  }
+  /* === THEME TOGGLE === */
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) document.body.classList.add(savedTheme);
 
-  /* ================================
-     🏠 BACK BUTTONS (All Pages)
-  ================================= */
-  backBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      window.location.href = "index.html";
-    });
-  });
-
-  /* ================================
-     🐍 PYTHON MINI QUIZ
-  ================================= */
-  const quizData = [
-    {
-      question: "What is the output of print(2 ** 3)?",
-      options: ["5", "6", "8", "9"],
-      correct: "8",
-    },
-    {
-      question: "Which keyword is used to define a function in Python?",
-      options: ["func", "def", "function", "lambda"],
-      correct: "def",
-    },
-    {
-      question: "What data type is the result of 3 / 2?",
-      options: ["int", "float", "str", "bool"],
-      correct: "float",
-    },
-    {
-      question: "How do you insert comments in Python code?",
-      options: ["// comment", "# comment", "<!-- comment -->", "/* comment */"],
-      correct: "# comment",
-    },
-  ];
-
-  let currentQuestion = 0;
-  let score = 0;
-
-  const quizContainer = document.getElementById("quiz-container");
-  const nextBtn = document.getElementById("next-btn");
-  const resultText = document.getElementById("result");
-
-  if (localStorage.getItem("pythonQuizScore")) {
-    score = parseInt(localStorage.getItem("pythonQuizScore"));
-  }
-
-  function showQuestion() {
-    const q = quizData[currentQuestion];
-    quizContainer.innerHTML = `
-      <div class="quiz-question fade">
-        <p><strong>${currentQuestion + 1}. ${q.question}</strong></p>
-        ${q.options
-          .map(
-            (opt) => `
-          <label class="quiz-option">
-            <input type="radio" name="answer" value="${opt}"> ${opt}
-          </label>`
-          )
-          .join("")}
-      </div>
-    `;
-  }
-
-  function showConfetti() {
-    const colors = ["#8b5cf6", "#a78bfa", "#facc15", "#f472b6", "#60a5fa"];
-    for (let i = 0; i < 50; i++) {
-      const conf = document.createElement("div");
-      conf.className = "confetti";
-      conf.style.position = "fixed";
-      conf.style.width = "8px";
-      conf.style.height = "8px";
-      conf.style.background = colors[Math.floor(Math.random() * colors.length)];
-      conf.style.left = Math.random() * 100 + "vw";
-      conf.style.top = "-10px";
-      conf.style.opacity = 0.8;
-      conf.style.animation = `fall ${2 + Math.random() * 3}s linear forwards`;
-      document.body.appendChild(conf);
-      setTimeout(() => conf.remove(), 5000);
+  function toggleTheme() {
+    if (document.body.classList.contains("dark")) {
+      document.body.classList.replace("dark", "light");
+      localStorage.setItem("theme", "light");
+    } else if (document.body.classList.contains("light")) {
+      document.body.classList.replace("light", "");
+      localStorage.removeItem("theme");
+    } else {
+      document.body.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     }
   }
 
-  function showResult() {
-    quizContainer.innerHTML = `
-      <h3>🎉 Quiz Complete!</h3>
-      <p>You scored <strong>${score}</strong> out of <strong>${quizData.length}</strong>.</p>
-      <button id="retry-btn" class="fun-btn">Try Again</button>
-    `;
-    nextBtn.style.display = "none";
-    localStorage.setItem("pythonQuizScore", score);
+  if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
 
-    if (score >= 3) showConfetti();
-
-    const retryBtn = document.getElementById("retry-btn");
-    retryBtn.addEventListener("click", () => {
-      localStorage.removeItem("pythonQuizScore");
-      currentQuestion = 0;
-      score = 0;
-      resultText.textContent = "";
-      nextBtn.style.display = "inline-block";
-      showQuestion();
+  /* === FUN BUTTON + MINI TYPING GAME === */
+  if (greetBtn) {
+    greetBtn.addEventListener("click", () => {
+      greetBtn.classList.add("clicked");
+      greetBtn.textContent = "Typing Challenge! ⌨️";
+      setTimeout(() => {
+        greetBtn.classList.remove("clicked");
+        greetBtn.textContent = "Do you press?";
+        if (typingGame) typingGame.style.display = "block";
+        startTypingGame();
+      }, 1000);
     });
   }
 
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      const selected = document.querySelector('input[name="answer"]:checked');
-      if (!selected) {
-        resultText.textContent = "⚠️ Please select an answer before continuing!";
-        resultText.style.color = "#ff6b6b";
-        return;
-      }
+  const sentences = [
+    "Code with curiosity.",
+    "Debugging is fun.",
+    "Keep building amazing things.",
+    "Persistence makes progress.",
+  ];
 
-      if (selected.value === quizData[currentQuestion].correct) score++;
+  function startTypingGame() {
+    const randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
+    document.getElementById("typing-sentence").textContent = randomSentence;
+    typingInput.value = "";
+    typingFeedback.textContent = "";
 
-      resultText.textContent = "";
-      currentQuestion++;
-
-      if (currentQuestion < quizData.length) {
-        showQuestion();
+    typingInput.addEventListener("input", () => {
+      if (typingInput.value === randomSentence) {
+        typingFeedback.textContent = "🎉 Perfect! You typed it!";
+        typingFeedback.style.color = "green";
+      } else if (randomSentence.startsWith(typingInput.value)) {
+        typingFeedback.textContent = "Keep going...";
+        typingFeedback.style.color = "gray";
       } else {
-        showResult();
+        typingFeedback.textContent = "Oops! Try again.";
+        typingFeedback.style.color = "red";
       }
     });
   }
-
-  if (quizContainer) showQuestion();
 });
