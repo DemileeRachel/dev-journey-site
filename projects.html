@@ -116,6 +116,25 @@ document.getElementById("squareBtn").addEventListener("click", square_it)
       const random = catNames[Math.floor(Math.random() * catNames.length)];
       document.getElementById("catName").textContent = "Your cat’s name is: " + random;
     });
+    <script>
+  // Force dark mode on load for Projects page
+  document.body.classList.add("dark");
+
+  // Preserve your clock
+  function updateClock() {
+    const now = new Date();
+    document.getElementById("uk-clock").textContent = now.toLocaleTimeString("en-GB");
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // Random cat name generator
+  const catNames = ["WhiskerSpark", "LunaPaw", "MochiTail", "CosmoCat", "PixelPounce", "VelvetFang", "CometWhisk"];
+  document.getElementById("catBtn").addEventListener("click", () => {
+    const random = catNames[Math.floor(Math.random() * catNames.length)];
+    document.getElementById("catName").textContent = "Your cat’s name is: " + random;
+  });
+</script>
   </script>
 </body>
 </html>
