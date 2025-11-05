@@ -199,3 +199,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+  /* ===== GREETING EMOJI INTERACTION ===== */
+  const greetingEmoji = document.getElementById('greeting-emoji');
+  if (greetingEmoji) {
+    const emojiSet = ['🌸','💜','🌞','🐍','💻','🚀','🎨','🧠','✨'];
+    greetingEmoji.addEventListener('click', () => {
+      let current = greetingEmoji.textContent;
+      let next;
+      do {
+        next = emojiSet[Math.floor(Math.random() * emojiSet.length)];
+      } while (next === current);
+      greetingEmoji.textContent = next;
+      greetingEmoji.classList.add('clicked');
+      setTimeout(() => greetingEmoji.classList.remove('clicked'), 400);
+    });
+  }
