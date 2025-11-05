@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
-  const greetBtn = document.getElementById('greetBtn');
+  const funBtn =
+    document.getElementById('funButton') ||
+    document.getElementById('greetBtn');
   const emojiContainer = document.getElementById('emoji-container');
   const clock = document.getElementById('uk-clock');
   const greeting = document.getElementById('greeting');
@@ -17,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
       menuToggle.classList.toggle('open');
     });
 
-    // Close when clicking outside
+    // Close menu if clicking outside
     document.addEventListener('click', (e) => {
       if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
         navLinks.classList.remove('active');
@@ -64,17 +66,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     greeting.textContent = text;
-
-    // Optional background shift
     document.body.style.background = bg;
     document.body.style.transition = 'background 1s ease';
   }
 
   updateGreeting();
-  setInterval(updateGreeting, 60000); // refresh every 60 seconds
+  setInterval(updateGreeting, 60000); // refresh every minute
 
   /* =============================
-     💬 TYPEWRITER EFFECT
+     💬 TYPEWRITER EFFECT (Home)
   ============================== */
   if (paragraph) {
     const text = paragraph.textContent;
@@ -90,37 +90,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* =============================
-     ✨ FLOATING EMOJIS
+     ✨ FLOATING EMOJIS (Full-color)
   ============================== */
   function spawnEmoji() {
     if (!emojiContainer) return;
-    const emojis = ['💻', '🌸', '🚀', '✨', '🧠', '💡', '🎨'];
+    const emojis = ['💻', '🌸', '🚀', '✨', '🧠', '💡', '🎨', '🐍'];
     const emoji = document.createElement('div');
     emoji.className = 'float-emoji';
     emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
     emoji.style.left = Math.random() * 100 + 'vw';
     emoji.style.animationDuration = 3 + Math.random() * 3 + 's';
+    emoji.style.filter = 'none';
+    emoji.style.mixBlendMode = 'normal';
     emojiContainer.appendChild(emoji);
     setTimeout(() => emoji.remove(), 6000);
   }
   setInterval(spawnEmoji, 1500);
 
   /* =============================
-     🎉 FUN INTERACTIVE BUTTON
+     🎉 FUN INTERACTIVE BUTTON (Home)
   ============================== */
-  if (greetBtn) {
-    greetBtn.addEventListener('click', () => {
-      greetBtn.classList.add('clicked');
-      greetBtn.textContent = '✨ Magic! ✨';
+  if (funBtn) {
+    funBtn.addEventListener('click', () => {
+      funBtn.classList.add('clicked');
+      const originalText = funBtn.textContent;
+      funBtn.textContent = '✨ Magic! ✨';
       setTimeout(() => {
-        greetBtn.textContent = 'Do you press?';
-        greetBtn.classList.remove('clicked');
+        funBtn.textContent = originalText || 'Do you press?';
+        funBtn.classList.remove('clicked');
       }, 1500);
     });
   }
 
   /* =============================
-     🐍 PYTHON MINI QUIZ
+     🐍 PYTHON MINI QUIZ (Projects)
   ============================== */
   const quizData = [
     {
