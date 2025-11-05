@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Welcome to My Dev Journey; where I learn, build, and grow as a developer!" />
-  <title>My Dev Journey | Home</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Dev Journey — Home</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <!-- 🌸 NAVBAR -->
+  <!-- ===== NAVBAR ===== -->
   <header class="navbar">
     <div class="navbar-inner">
       <div class="logo">My Dev Journey</div>
 
-      <!-- ⏰ Center Clock -->
       <div id="clock-container">
-        <h2>UK Time</h2>
-        <div id="uk-clock">00:00:00</div>
+        <h2>🕒 Time</h2>
+        <div id="uk-clock"></div>
       </div>
-<button id="theme-toggle">🌓 Theme</button>
-      <!-- 🍔 Hamburger Menu -->
-      <button class="menu-toggle" id="menuToggle">☰</button>
 
-      <!-- 🔗 Navigation Links -->
+      <button id="theme-toggle">🌓 Theme</button>
+
       <nav class="nav-links" id="navLinks">
         <a href="index.html" class="active">Home</a>
         <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
       </nav>
+
+      <button class="menu-toggle" id="menuToggle">☰</button>
     </div>
   </header>
 
-  <!-- 🌸 HERO SECTION -->
-  <main class="hero">
-    <h1 id="greeting">Welcome to My Dev Journey 🌸</h1>
-    <p id="intro-text">Welcome to my journey to being a full-stack developer!</p>
+  <!-- ===== HERO SECTION ===== -->
+  <main>
+    <section class="hero">
+      <h1 id="greeting">Good Morning! ☀️</h1>
+      <p id="intro-text">Welcome to my journey to being a full-stack developer!</p>
 
-    <button id="funButton" class="fun-btn">Do you press?</button>
-<!-- Mini Typing Game -->
-<section id="typing-game">
-  <h3>Mini Typing Game 🧠</h3>
-  <p id="typing-sentence"></p>
-  <input type="text" id="typing-input" placeholder="Start typing..." />
-  <p id="typing-feedback"></p>
-</section>
+      <button id="greetBtn" class="fun-btn">Do you press?</button>
+      <p>
+        <a href="about.html">Learn More →</a> 
+        <a href="#" id="changeName" style="margin-left: 8px;">Change Name</a>
+      </p>
+    </section>
 
-    <div class="hero-links">
-      <a href="about.html" class="back-btn">Learn More →</a>
-      <a href="#" id="change-name" class="back-btn">Change Name</a>
-    </div>
+    <!-- ===== MINI TYPING GAME ===== -->
+    <section id="typing-game">
+      <h3>Mini Typing Game 🧠</h3>
+      <p id="typing-sentence"></p>
+      <input type="text" id="typing-input" placeholder="Start typing..." />
+      <p id="typing-feedback"></p>
+    </section>
   </main>
 
-  <!-- ✨ FLOATING EMOJIS -->
+  <!-- ===== FLOATING EMOJIS ===== -->
   <div id="emoji-container"></div>
 
-  <!-- 🌸 FOOTER -->
+  <!-- ===== FOOTER ===== -->
   <footer>
     <p>© 2025 My Dev Journey; built with 💜.</p>
   </footer>
 
-  <!-- 📜 SCRIPT -->
-  <script src="js/script.js"></script>
+  <!-- ===== SCRIPT ===== -->
+  <script src="script.js"></script>
 </body>
 </html>

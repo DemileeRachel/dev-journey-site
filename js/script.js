@@ -124,3 +124,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// === CHANGE NAME BUTTON ===
+const changeNameBtn = document.getElementById("changeName");
+if (changeNameBtn) {
+  changeNameBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const newName = prompt("Enter your new name:");
+    if (newName && newName.trim() !== "") {
+      localStorage.setItem("visitorName", newName.trim());
+      window.location.reload();
+    }
+  });
+}
