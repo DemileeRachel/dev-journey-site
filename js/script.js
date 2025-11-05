@@ -182,16 +182,20 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ===========================
      SKILLS PANEL TOGGLE (About Page)
   ============================ */
-  const skillsToggle = document.getElementById('skillsToggle');
-  const skillsBody   = document.querySelector('#skills .skills-body');
+/* ===== SKILLS PANEL TOGGLE ===== */
+const skillsPanel  = document.getElementById('skills');        // the <aside>
+const skillsToggle = document.getElementById('skillsToggle');  // the button
 
-  if (skillsToggle && skillsBody) {
-    skillsToggle.addEventListener('click', () => {
-      const isCollapsed = skillsBody.classList.toggle('collapsed');
-      skillsToggle.textContent = isCollapsed ? 'Show Skills' : 'Hide Skills';
-      skillsToggle.setAttribute('aria-expanded', !isCollapsed);
-    });
-  }
+if (skillsPanel && skillsToggle) {
+  skillsToggle.addEventListener('click', () => {
+    const collapsing = !skillsPanel.classList.contains('collapsed'); // am I about to collapse?
+    skillsPanel.classList.toggle('collapsed');
+
+    // Update button label + a11y
+    skillsToggle.textContent = collapsing ? 'Show Skills' : 'Hide';
+    skillsToggle.setAttribute('aria-expanded', String(!collapsing));
+  });
+}
 
   /* ===========================
      SQL MINI QUIZ

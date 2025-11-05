@@ -604,3 +604,38 @@ body.home, body.about, body.projects { overflow: hidden; }
   opacity: 0;
   pointer-events: none;
 }
+/* Smooth collapse for the skills content */
+.skills-panel { transition: box-shadow .25s ease; }
+.skills-panel .skills-body{
+  max-height: 60vh;                /* visible state */
+  opacity: 1;
+  padding: 14px 18px 18px;
+  overflow: auto;
+  transition: max-height .35s ease, opacity .25s ease, padding .25s ease;
+}
+
+/* Collapsed state: keep header visible, hide the body nicely */
+.skills-panel.collapsed .skills-body{
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;                /* prevent scroll while hidden */
+}
+
+/* Optional: rotate little arrow on the button */
+.skills-toggle{
+  position: relative;
+  padding-right: 28px;
+}
+.skills-toggle::after{
+  content: "▼";
+  position: absolute;
+  right: 10px; top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform .25s ease;
+  font-size: .75rem;
+}
+.skills-toggle[aria-expanded="false"]::after{
+  transform: translateY(-50%) rotate(-90deg);
+}
