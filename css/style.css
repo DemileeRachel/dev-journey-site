@@ -380,6 +380,58 @@ body.light {
   flex-direction: column;
   overflow: hidden;
 }
+/* 🌟 Improved Skills Panel Layout */
+.skills-panel {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 20px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--nav-h) - var(--footer-h)); /* fill box height */
+  overflow: hidden;
+  transition: box-shadow 0.25s ease;
+}
+
+/* header stays on top */
+.skills-header {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+/* body fills remaining space */
+.skills-body {
+  flex: 1; /* fills available height below header */
+  overflow-y: auto;
+  transition: max-height 0.6s ease, opacity 0.4s ease, padding 0.3s ease;
+  opacity: 1;
+  max-height: 100%;
+}
+
+/* collapse animation */
+.skills-panel.collapsed .skills-body {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+/* scrollbar styling */
+.skills-body::-webkit-scrollbar {
+  width: 6px;
+}
+.skills-body::-webkit-scrollbar-thumb {
+  background: rgba(205,180,255,0.6);
+  border-radius: 6px;
+}
 
 .skills-header {
   display: flex;
