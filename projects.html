@@ -3,27 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Explore my projects and interactive coding demos." />
   <title>Projects | My Dev Journey</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-
-  <!-- ===== NAVBAR ===== -->
   <header class="navbar">
     <div class="navbar-inner">
       <div class="logo">My Dev Journey</div>
-
-      <!-- UK Clock -->
       <div id="clock-container">
         <h2>UK Time</h2>
-        <div id="uk-clock">--:--:--</div>
+        <div id="uk-clock"></div>
       </div>
-
-      <!-- Hamburger menu -->
       <button class="menu-toggle" id="menuToggle">☰</button>
-
-      <!-- Navigation links -->
       <nav class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -32,129 +23,69 @@
     </div>
   </header>
 
-  <!-- ===== MAIN ===== -->
   <main>
     <section class="projects-hero">
       <h1>Projects</h1>
       <a href="index.html" class="back-btn">← Back to Home</a>
     </section>
 
-    <!-- 🐍 Python Quiz + 🚀 My Projects side by side -->
     <section class="projects-row">
       <div class="quiz-section">
-        <h2>🐍 Python Mini Quiz</h2>
+        <h2><span class="emoji">🐍</span> Python Mini Quiz</h2>
         <p>Test your Python knowledge — one question at a time!</p>
-
-        <div id="quiz">
-          <div id="question-container">
-            <p><strong>1. What is the output of print(2 ** 3)?</strong></p>
-            <label class="quiz-option"><input type="radio" name="q1" value="5"> 5</label>
-            <label class="quiz-option"><input type="radio" name="q1" value="6"> 6</label>
-            <label class="quiz-option"><input type="radio" name="q1" value="8"> 8</label>
-            <label class="quiz-option"><input type="radio" name="q1" value="9"> 9</label>
-          </div>
-
-          <button id="next-btn" class="fun-btn">Next Question</button>
-        </div>
+        <p><strong>1. What is the output of print(2 ** 3)?</strong></p>
+        <form>
+          <label><input type="radio" name="q1" /> 5</label>
+          <label><input type="radio" name="q1" /> 6</label>
+          <label><input type="radio" name="q1" /> 8</label>
+          <label><input type="radio" name="q1" /> 9</label><br />
+          <button type="button" id="next-btn">Next Question</button>
+        </form>
       </div>
 
       <div class="project-showcase">
-        <h2>🚀 My Projects</h2>
+        <h2><span class="emoji">🚀</span> My Projects</h2>
         <p>Coming soon! Here’s where I’ll display my coding work and interactive demos.</p>
       </div>
     </section>
 
-    <!-- 🎨 PROJECT CARDS BELOW -->
     <section class="project-cards">
       <div class="project-card">
-        <h4>🌐 Portfolio - Coming soon! </h4>
-        <p>A responsive portfolio built with HTML, CSS, and JavaScript to showcase my coding journey and front-end specific development.</p>
+        <h4>🌐 Portfolio Website</h4>
+        <p>A responsive portfolio built with HTML, CSS, and JavaScript to showcase my coding journey and front-end development skills.</p>
       </div>
 
       <div class="project-card">
         <h4>🧠 Python Quiz App</h4>
-        <p>An interactive quiz system using Python 3.14</p>
+        <p>An interactive quiz system using Python 3.14.</p>
       </div>
 
       <div class="project-card">
         <h4>🎮 Game/App Development</h4>
-        <p>My pixel-art roguelike! Currently in development</p>
+        <p>My pixel-art roguelike in development — stay tuned!</p>
       </div>
     </section>
   </main>
 
-  <!-- ===== FOOTER ===== -->
   <footer>
     <p>© 2025 My Dev Journey! Built with 💜 and curiosity.</p>
   </footer>
 
-  <!-- ===== JAVASCRIPT ===== -->
   <script>
-    /* === CLOCK === */
+    // UK CLOCK
     function updateUKClock() {
-      const now = new Date();
-      const options = { timeZone: 'Europe/London', hour12: false };
-      const time = now.toLocaleTimeString('en-GB', options);
-      document.getElementById('uk-clock').textContent = time;
+      const clock = document.getElementById("uk-clock");
+      if (clock) clock.textContent = new Date().toLocaleTimeString("en-GB", { timeZone: "Europe/London" });
     }
     setInterval(updateUKClock, 1000);
     updateUKClock();
 
-    /* === NAV TOGGLE === */
+    // MENU TOGGLE
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
-    menuToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-    });
-
-    /* === QUIZ SCRIPT === */
-    const quizData = [
-      { question: "What is the output of print(2 ** 3)?", options: ["5", "6", "8", "9"], answer: "8" },
-      { question: "What keyword defines a function in Python?", options: ["func", "define", "def", "lambda"], answer: "def" },
-      { question: "Which data type is immutable?", options: ["list", "set", "tuple", "dict"], answer: "tuple" },
-      { question: "What symbol starts a comment in Python?", options: ["/", "#", "//", "--"], answer: "#" }
-    ];
-
-    let currentQuestion = 0;
-    let score = 0;
-
-    const questionContainer = document.getElementById("question-container");
-    const nextBtn = document.getElementById("next-btn");
-
-    function loadQuestion() {
-      const q = quizData[currentQuestion];
-      questionContainer.innerHTML = `
-        <p><strong>${currentQuestion + 1}. ${q.question}</strong></p>
-        ${q.options.map(opt => `
-          <label class="quiz-option"><input type="radio" name="q" value="${opt}"> ${opt}</label>
-        `).join("")}
-      `;
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener("click", () => navLinks.classList.toggle("active"));
     }
-
-    nextBtn.addEventListener("click", () => {
-      const selected = document.querySelector('input[name="q"]:checked');
-      if (!selected) return alert("Please select an answer!");
-      if (selected.value === quizData[currentQuestion].answer) score++;
-      currentQuestion++;
-
-      if (currentQuestion < quizData.length) {
-        loadQuestion();
-      } else {
-        questionContainer.innerHTML = `
-          <p>🎉 <strong>Quiz Complete!</strong></p>
-          <p>You scored ${score} out of ${quizData.length}.</p>
-          <button id="retry-btn" class="fun-btn">Try Again</button>
-        `;
-        document.getElementById("retry-btn").addEventListener("click", () => {
-          currentQuestion = 0;
-          score = 0;
-          loadQuestion();
-        });
-      }
-    });
-
-    loadQuestion();
   </script>
-
 </body>
 </html>

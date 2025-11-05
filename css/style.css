@@ -1,4 +1,4 @@
-/* 🌸 My Dev Journey — Polished Pastel Glass Theme */
+/* 🌸 My Dev Journey — Unified Pastel Glass Theme */
 
 /* ====== BASE ====== */
 html, body {
@@ -17,7 +17,7 @@ body {
   animation: fadePage 1.2s ease;
 }
 main {
-  flex: 1; /* pushes footer down */
+  flex: 1;
 }
 @keyframes fadePage {
   from { opacity: 0; }
@@ -100,6 +100,48 @@ main {
   margin-top: 2px;
 }
 
+/* ====== HAMBURGER ====== */
+.menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
+  display: none;
+  z-index: 1100;
+}
+@media (max-width: 700px) {
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 14px;
+  }
+
+  #clock-container {
+    position: relative;
+    left: auto;
+    transform: none;
+    margin: 10px auto;
+    order: 3;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #333;
+    position: absolute;
+    top: 65px;
+    right: 10px;
+    width: 180px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    padding: 12px;
+    z-index: 1000;
+  }
+  .nav-links.active { display: flex; }
+}
+
 /* ====== HERO ====== */
 .hero {
   text-align: center;
@@ -128,6 +170,35 @@ main {
   margin-top: 10px;
 }
 
+/* ====== FLOATING EMOJIS ====== */
+#emoji-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.float-emoji {
+  position: absolute;
+  bottom: 0;
+  font-size: 1.8rem;
+  animation: floatUp 6s linear forwards;
+  opacity: 1;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+.emoji-bounce {
+  animation: bounce 0.6s ease;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
 /* ====== BUTTONS ====== */
 .fun-btn,
 #next-btn,
@@ -152,58 +223,6 @@ main {
   transform: scale(1.05);
   background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
   box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
-}
-
-/* ====== PROJECTS ====== */
-.projects-hero {
-  text-align: center;
-  margin-top: 90px;
-  margin-bottom: 30px;
-  position: relative;
-  z-index: 5;
-}
-.projects-hero h1 {
-  font-size: 2.6rem;
-  background: linear-gradient(90deg, #8b5cf6, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 6px;
-}
-.projects-hero .back-btn {
-  margin-top: 8px;
-}
-
-/* ====== FLOATING EMOJIS ====== */
-#emoji-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-.float-emoji {
-  position: absolute;
-  bottom: 0;
-  font-size: 1.8rem;
-  animation: floatUp 6s linear forwards;
-  opacity: 1;
-  filter: none;
-  mix-blend-mode: normal;
-}
-@keyframes floatUp {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-100vh); opacity: 0; }
-}
-
-/* ====== EMOJI CLICK BOUNCE ====== */
-.emoji-bounce {
-  animation: bounce 0.6s ease;
-}
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
 }
 
 /* ====== ABOUT SECTION ====== */
@@ -233,6 +252,67 @@ main {
   100% { background-position: 200% 50%; }
 }
 
+/* ====== PROJECTS PAGE ====== */
+.projects-hero {
+  text-align: center;
+  margin-top: 90px;
+  margin-bottom: 30px;
+}
+.projects-hero h1 {
+  font-size: 2.6rem;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 6px;
+}
+.projects-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  max-width: 1100px;
+  margin: -10px auto 60px;
+  padding: 0 40px;
+}
+.quiz-section,
+.project-showcase {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  animation: fadeIn 0.8s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.quiz-section:hover,
+.project-showcase:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto 100px;
+  padding: 0 40px;
+}
+.project-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
 /* ====== FOOTER ====== */
 footer {
   margin-top: auto;
@@ -241,10 +321,8 @@ footer {
   padding: 20px 0;
   font-size: 0.9rem;
   color: #333;
-  position: relative;
   background: transparent;
-  backdrop-filter: blur(10px);
-  z-index: 2;
+  position: relative;
 }
 footer::before {
   content: "";
@@ -274,6 +352,5 @@ footer::before {
     flex-direction: column;
     align-items: center;
     gap: 25px;
-    margin-top: 0;
   }
 }
