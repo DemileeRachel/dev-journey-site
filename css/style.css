@@ -765,3 +765,88 @@ body.home, body.about, body.projects { overflow: hidden; }
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* ---------- Projects layout fixes ---------- */
+
+/* Section spacing & breathing room under fixed navbar */
+.projects-section{
+  min-height: 100vh;
+  padding: 120px 20px 120px; /* top clears navbar; bottom clears footer */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 42px;
+  text-align: center;
+}
+
+/* keep the back button centered and not crowding the cards */
+.back-home-btn{
+  margin: 0 auto 8px;
+}
+
+/* Row 1: two columns */
+.projects-row{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(320px, 520px));
+  gap: 34px;
+  align-items: start;
+  justify-content: center;
+  width: min(1100px, 94vw);
+  margin: 0 auto;
+}
+
+/* Row 2: stacked center */
+.projects-stack{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  width: min(760px, 94vw);
+  margin: 0 auto;
+}
+
+/* Card baseline */
+.project-card{
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.25);
+  color: #eee;
+  text-align: center;
+}
+
+/* wider cards look consistent */
+.project-card.wide{ width: 100%; }
+
+/* unify action buttons in these cards */
+#squareBtn, #catBtn{
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
+  color: #000;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+  box-shadow: 0 0 10px rgba(150,150,255,.3);
+}
+#squareBtn:hover, #catBtn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(150,150,255,.45);
+}
+
+/* inputs inside the PyScript demo */
+.py-demo{
+  display:flex; gap:10px; justify-content:center; align-items:center; margin-top:10px;
+}
+.py-demo input{
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.06);
+  color:#eee; padding:8px 10px; width: 160px;
+}
+
+/* Make it great on mobile */
+@media (max-width: 950px){
+  .projects-row{ grid-template-columns: 1fr; width: min(700px, 94vw); }
+  .projects-section{ padding-top: 110px; gap: 34px; }
+}
