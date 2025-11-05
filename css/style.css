@@ -1,6 +1,6 @@
 /* 🌸 My Dev Journey — Unified Pastel Glass Theme */
 
-/* ====== BASE LAYOUT ====== */
+/* ====== BASE ====== */
 html, body {
   height: 100%;
 }
@@ -175,23 +175,38 @@ main {
   margin-top: 10px;
 }
 
-/* ===== BACK TO HOME BUTTON (UNIFIED STYLE) ===== */
+/* 🌸 BACK TO HOME BUTTON — Glassy & Unified Style */
 .back-btn {
   display: inline-block;
-  margin-top: 10px;
-  padding: 10px 24px;
-  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
+  margin-top: 25px;
+  padding: 10px 26px;
+  background: linear-gradient(135deg, #ffffff, #eae8ff);
+  border: 2px solid rgba(160, 160, 255, 0.3);
+  border-radius: 12px;
   color: #333;
   font-weight: 600;
-  border-radius: 10px;
+  font-size: 1rem;
   text-decoration: none;
-  box-shadow: 0 0 10px rgba(150, 150, 255, 0.4);
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6);
   transition: all 0.3s ease;
 }
+
+/* ✨ Hover state — subtle glow */
 .back-btn:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
-  box-shadow: 0 0 20px rgba(200, 200, 255, 0.8);
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #f7f8ff, #e2e8ff);
+  box-shadow:
+    0 5px 15px rgba(160, 160, 255, 0.4),
+    inset 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* 🩵 Active (pressed) state */
+.back-btn:active {
+  transform: translateY(0);
+  background: linear-gradient(135deg, #e0e0ff, #ffffff);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 /* ===== ABOUT SECTION (SPARKLY TILE) ===== */
@@ -238,6 +253,14 @@ main {
 }
 
 /* ===== PROJECTS LAYOUT ===== */
+.projects-hero {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 5;
+}
+
 .projects-layout {
   display: flex;
   justify-content: space-between;
@@ -246,7 +269,7 @@ main {
   max-width: 1100px;
   margin: 0 auto 100px;
   padding: 0 40px;
-  margin-top: -20px;
+  margin-top: -30px;
 }
 
 /* 🐍 Python Quiz */
@@ -258,6 +281,8 @@ main {
   padding: 40px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   text-align: left;
+  position: relative;
+  margin-top: -20px;
   animation: fadeIn 0.8s ease;
 }
 
@@ -331,57 +356,4 @@ footer {
     margin-top: 100px;
     margin-bottom: 60px;
   }
-}
-/* 🎨 RESTORED GLOSSY BUTTON STYLES */
-
-/* Shared styling for all fun buttons + back buttons */
-.back-btn,
-.fun-btn,
-#next-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 12px 28px;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #ffffff, #e8eaff);
-  color: #333;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  cursor: pointer;
-  box-shadow:
-    inset 0 1px 2px rgba(255, 255, 255, 0.6),
-    0 3px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.25s ease;
-}
-
-/* Hover — add glow and lift */
-.back-btn:hover,
-.fun-btn:hover,
-#next-btn:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, #f8f9ff, #dfe3ff);
-  box-shadow:
-    0 5px 15px rgba(160, 160, 255, 0.4),
-    inset 0 0 6px rgba(255, 255, 255, 0.8);
-}
-
-/* Active — pressed look */
-.back-btn:active,
-.fun-btn:active,
-#next-btn:active {
-  transform: translateY(0);
-  box-shadow: inset 0 3px 5px rgba(0,0,0,0.1);
-}
-
-/* Optional fun color variant for quiz buttons */
-.fun-btn,
-#next-btn {
-  background: linear-gradient(135deg, #a5d8ff, #cdb4ff);
-  color: #222;
-}
-
-.fun-btn:hover,
-#next-btn:hover {
-  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
 }
