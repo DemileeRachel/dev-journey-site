@@ -367,7 +367,7 @@ body.light {
   background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
 }
 
-/* Skills panel */
+/* --- Skills Panel Full Height Fix --- */
 .skills-panel {
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(14px);
@@ -375,24 +375,53 @@ body.light {
   padding: 20px 22px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
-  height: calc(100vh - var(--nav-h) - var(--footer-h));
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 160px); /* fills entire view minus nav/footer */
+  max-height: 100%;
   overflow: hidden;
+  transition: all 0.4s ease;
 }
-/* 🌟 Improved Skills Panel Layout */
-.skills-panel {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(14px);
-  border-radius: 20px;
-  padding: 20px 22px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
+
+/* Header at the top */
+.skills-header {
+  flex-shrink: 0;
   display: flex;
-  flex-direction: column;
-  height: calc(100vh - var(--nav-h) - var(--footer-h)); /* fill box height */
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+/* Body now fully expands inside panel */
+.skills-body {
+  flex: 1; /* <-- fills remaining height automatically */
+  overflow-y: auto;
+  padding-right: 8px;
+  padding-bottom: 10px;
+  max-height: 100%;
+  opacity: 1;
+  transition: opacity 0.4s ease, max-height 0.4s ease;
+}
+
+/* Collapsed animation */
+.skills-panel.collapsed .skills-body {
+  max-height: 0;
+  opacity: 0;
   overflow: hidden;
-  transition: box-shadow 0.25s ease;
+  padding-bottom: 0;
+}
+
+/* scrollbar styling */
+.skills-body::-webkit-scrollbar {
+  width: 6px;
+}
+.skills-body::-webkit-scrollbar-thumb {
+  background: rgba(205,180,255,0.6);
+  border-radius: 6px;
+}
+
 }
 
 /* header stays on top */
