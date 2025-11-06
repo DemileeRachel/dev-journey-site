@@ -42,19 +42,24 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(tick, 1000);
 
   /* ===========================
-     THEME TOGGLE (GLOBAL)
+     THEME TOGGLE (FIXED)
   ============================ */
   const THEME_KEY = 'siteTheme';
+
   const applyTheme = (theme) => {
+    document.body.classList.toggle('light', theme === 'light');
     document.body.classList.toggle('dark', theme === 'dark');
   };
-  applyTheme(localStorage.getItem(THEME_KEY) || 'light');
+
+  // load saved theme
+  const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+  applyTheme(savedTheme);
 
   if (themeBtn) {
     themeBtn.addEventListener('click', () => {
-      const next = document.body.classList.contains('dark') ? 'light' : 'dark';
-      localStorage.setItem(THEME_KEY, next);
-      applyTheme(next);
+      const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+      localStorage.setItem(THEME_KEY, nextTheme);
+      applyTheme(nextTheme);
     });
   }
 
@@ -184,6 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ============================ */
   const skillsPanel  = document.getElementById('skills');
   const skillsToggle = document.getElementById('skillsToggle');
+
   if (skillsPanel && skillsToggle) {
     skillsToggle.addEventListener('click', () => {
       const collapsed = skillsPanel.classList.toggle('collapsed');
@@ -266,20 +272,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     drawQuestion();
   }
-
-  /* ===========================
-     PYSCRIPT DEMO FIX
-  ============================ */
-  document.addEventListener("pyscript_ready", () => {
-    const btn = document.getElementById("squareBtn");
-    if (btn) {
-      btn.addEventListener("click", () => {
-        const pyTag = document.querySelector("py-script");
-        if (pyTag && typeof pyTag.runPython === "function") {
-          pyTag.runPython("square_number()");
-        }
-      });
-    }
-  });
-
 });
