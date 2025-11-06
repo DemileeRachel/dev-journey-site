@@ -8,12 +8,8 @@
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- PyScript (working stable version) -->
+  <!-- PyScript (stable version) -->
   <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.1/core.css">
-  <script defer src="https://pyscript.net/releases/2024.6.1/core.js"></script>
-
-  <!-- JS -->
-  <script defer src="script.js"></script>
 </head>
 
 <body class="projects">
@@ -27,7 +23,8 @@
           <h2>🕒 Time</h2>
           <div id="uk-clock"></div>
         </div>
-        <button id="theme-toggle">🌗 Theme</button>
+        <!-- 🌗 Toggle button now starts in dark mode label -->
+        <button id="theme-toggle">🌞 Light Mode</button>
       </div>
 
       <button id="menuToggle" class="menu-toggle">☰</button>
@@ -67,7 +64,7 @@
         </div>
       </div>
 
-      <!-- Python Demo (WORKING VERSION) -->
+      <!-- Python Demo -->
       <div class="project-card py-demo">
         <h3>🌿 Python Interactive Demo (PyScript)</h3>
         <p>Run Python directly in your browser — try squaring a number!</p>
@@ -104,5 +101,18 @@ def square_number(event=None):
   <footer>
     © 2025 My Dev Journey · built with 💜
   </footer>
+
+  <!-- ===== JS ORDER FIX (PyScript first, then site logic) ===== -->
+  <script src="https://pyscript.net/releases/2024.6.1/core.js"></script>
+  <script>
+    // Wait for PyScript to initialize before loading main site JS
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        const s = document.createElement("script");
+        s.src = "script.js";
+        document.body.appendChild(s);
+      }, 250);
+    });
+  </script>
 </body>
 </html>
