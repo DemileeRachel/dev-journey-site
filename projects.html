@@ -4,17 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | My Dev Journey</title>
+
+  <!-- Core site styling -->
   <link rel="stylesheet" href="css/style.css" />
   <script defer src="script.js"></script>
-</head>
-<body class="projects">
 
+  <!-- ✅ PyScript runtime -->
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.1/core.css">
+  <script defer src="https://pyscript.net/releases/2024.6.1/core.js"></script>
+</head>
+
+<body class="projects">
   <!-- =========================
        NAVBAR
   ========================== -->
   <header class="navbar">
     <div class="navbar-inner">
       <div class="logo">My Dev Journey</div>
+
       <div class="center-group">
         <div id="clock-container">
           <h2>🕓 Time</h2>
@@ -22,6 +29,7 @@
         </div>
         <button id="theme-toggle">🪄 Theme</button>
       </div>
+
       <nav class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -32,7 +40,7 @@
   </header>
 
   <!-- =========================
-       PROJECTS SHOWCASE
+       PROJECTS SECTION
   ========================== -->
   <main class="projects-showcase">
     <h1 class="projects-title"><span class="emoji">🚀</span> Projects Coming Soon</h1>
@@ -65,22 +73,26 @@
       <!-- === CARD 3 (PYSCRIPT DEMO) === -->
       <div class="project-card">
         <h3>🪴 Python Interactive Demo (PyScript)</h3>
-        <p>Run Python directly in your browser; try squaring a number!</p>
+        <p>Run Python directly in your browser, just try squaring a number!</p>
+
+        <!-- PyScript block -->
         <div class="py-demo">
           <input id="numInput" type="number" placeholder="Enter number" />
-          <py-script>
-            from js import document
-            def square_number(event=None):
-                num = document.getElementById("numInput").value
-                try:
-                    result = float(num)**2
-                    document.getElementById("output").innerText = f"{result}"
-                except:
-                    document.getElementById("output").innerText = "Invalid input"
-          </py-script>
-          <button id="squareBtn" class="fun-btn" py-click="square_number()">Square it!</button>
+          <button id="squareBtn" class="fun-btn">Square it!</button>
           <p id="output"></p>
         </div>
+
+        <py-script>
+from js import document
+
+def square_number(event=None):
+    num = document.getElementById("numInput").value
+    try:
+        result = float(num) ** 2
+        document.getElementById("output").innerText = f"Result: {result:g}"
+    except Exception:
+        document.getElementById("output").innerText = "Invalid input"
+        </py-script>
       </div>
 
       <!-- === CARD 4 === -->
@@ -89,6 +101,7 @@
         <p>Generate a new cat hero name for... <strong>COMING SOON!</strong></p>
         <button id="catBtn" class="fun-btn">Generate Cat Name</button>
       </div>
+
     </section>
 
     <a href="index.html" class="back-home">← Back to Home</a>
@@ -100,5 +113,23 @@
   <footer>
     <p>© 2025 My Dev Journey; built with 💜.</p>
   </footer>
+
+  <!-- =========================
+       PYTHON BUTTON TRIGGER FIX
+  ========================== -->
+  <script>
+    document.addEventListener("pyscript_ready", () => {
+      const btn = document.getElementById("squareBtn");
+      if (btn) {
+        btn.addEventListener("click", () => {
+          const py = document.querySelector("py-script");
+          if (py && typeof py.runPython === "function") {
+            py.runPython("square_number()");
+          }
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
