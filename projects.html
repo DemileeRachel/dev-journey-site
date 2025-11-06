@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | My Dev Journey</title>
 
-  <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
 
   <!-- PyScript -->
@@ -36,45 +35,41 @@
   </nav>
 
   <!-- ===== PROJECTS SECTION ===== -->
-  <section class="projects-showcase">
-    <h1 class="projects-title">🚀 Projects Coming Soon</h1>
-    <p class="projects-sub">A showcase of my current and upcoming creations ✨</p>
+  <section class="projects-showcase" style="display:flex; flex-direction:column; align-items:center; text-align:center;">
 
-    <div class="projects-grid">
-      <!-- My Projects -->
-      <div class="project-card">
-        <h3>💡 My Projects</h3>
-        <ul style="text-align:left; margin-left:20px;">
-          <li><strong>📁 Portfolio —</strong> Responsive site built with HTML, CSS, and JS.</li>
-          <li><strong>🐍 PyScript Demo App —</strong> Interactive browser Python demo.</li>
-          <li><strong>🎮 Game/App Dev —</strong> Pixel-art roguelike (Coming soon!)</li>
-        </ul>
-      </div>
+    <!-- Title centered -->
+    <div style="margin-bottom:20px;">
+      <h1 class="projects-title">🚀 Projects Coming Soon</h1>
+      <p class="projects-sub">A showcase of my current and upcoming creations ✨</p>
+    </div>
 
-      <!-- SQL Mini Quiz -->
-      <div class="project-card">
-        <h3>💭 SQL Mini Quiz</h3>
-        <p>Test your SQL knowledge — one question at a time!</p>
-        <div id="quiz-container"></div>
-        <div class="quiz-controls">
-          <button id="next-btn" class="fun-btn">Next Question</button>
-          <p id="result"></p>
-          <div id="quiz-progress" style="height:6px;background:var(--accent-b);width:0;transition:width .4s;border-radius:4px;margin-top:4px;"></div>
+    <!-- Two-column grid -->
+    <div class="projects-columns" 
+         style="display:flex; justify-content:center; align-items:flex-start; gap:40px; flex-wrap:wrap; max-width:1000px;">
+
+      <!-- LEFT COLUMN -->
+      <div class="projects-col" style="display:flex; flex-direction:column; gap:25px;">
+        <!-- My Projects -->
+        <div class="project-card">
+          <h3>💡 My Projects</h3>
+          <ul style="text-align:left; margin-left:20px;">
+            <li><strong>📁 Portfolio —</strong> Responsive site built with HTML, CSS, and JS.</li>
+            <li><strong>🐍 PyScript Demo App —</strong> Interactive browser Python demo.</li>
+            <li><strong>🎮 Game/App Dev —</strong> Pixel-art roguelike (Coming soon!)</li>
+          </ul>
         </div>
-      </div>
 
-      <!-- Python Demo -->
-      <div class="project-card py-demo">
-        <h3>🌿 Python Interactive Demo (PyScript)</h3>
-        <p>Run Python directly in your browser — try squaring a number!</p>
+        <!-- Python Demo -->
+        <div class="project-card py-demo">
+          <h3>🌿 Python Interactive Demo (PyScript)</h3>
+          <p>Run Python directly in your browser — try squaring a number!</p>
 
-        <input id="numInput" type="number" placeholder="Enter number" />
-        <button id="squareBtn" class="fun-btn" pys-onClick="square_number">Square it!</button>
-        <p id="output"></p>
+          <input id="numInput" type="number" placeholder="Enter number" />
+          <button id="squareBtn" class="fun-btn" pys-onClick="square_number">Square it!</button>
+          <p id="output"></p>
 
-        <py-script>
+          <py-script>
 from js import document
-
 def square_number(event=None):
     num = document.getElementById("numInput").value
     try:
@@ -82,21 +77,35 @@ def square_number(event=None):
         document.getElementById("output").innerText = f"Result: {result:g}"
     except:
         document.getElementById("output").innerText = "Invalid input"
-        </py-script>
+          </py-script>
+        </div>
       </div>
 
-      <!-- Random Cat Name -->
-      <div class="project-card">
-        <h3>🐱 Random Cat Name Generator</h3>
-        <p>Generate a new cat hero name for… <strong>COMING SOON!</strong></p>
-        <button id="catNameBtn" class="fun-btn">Generate Cat Name</button>
+      <!-- RIGHT COLUMN -->
+      <div class="projects-col" style="display:flex; flex-direction:column; gap:25px;">
+        <!-- SQL Quiz -->
+        <div class="project-card">
+          <h3>💭 SQL Mini Quiz</h3>
+          <p>Test your SQL knowledge — one question at a time!</p>
+          <div id="quiz-container"></div>
+          <div class="quiz-controls">
+            <button id="next-btn" class="fun-btn">Next Question</button>
+            <p id="result"></p>
+            <div id="quiz-progress" style="height:6px;background:var(--accent-b);width:0;transition:width .4s;border-radius:4px;margin-top:4px;"></div>
+          </div>
+        </div>
+
+        <!-- Random Cat Name -->
+        <div class="project-card">
+          <h3>🐱 Random Cat Name Generator</h3>
+          <p>Generate a new cat hero name for… <strong>COMING SOON!</strong></p>
+          <button id="catNameBtn" class="fun-btn">Generate Cat Name</button>
+        </div>
       </div>
     </div>
 
-    <!-- Back button positioned above footer -->
-    <div style="margin-top: 20px; margin-bottom: 80px;">
-      <a href="index.html" class="back-home">← Back to Home</a>
-    </div>
+    <!-- Centered Back Button -->
+    <a href="index.html" class="back-home" style="margin-top:40px;">← Back to Home</a>
   </section>
 
   <!-- ===== FOOTER ===== -->
@@ -104,10 +113,9 @@ def square_number(event=None):
     © 2025 My Dev Journey · built with 💜
   </footer>
 
-  <!-- ===== FIXED SCRIPT ORDER ===== -->
+  <!-- ===== JS ===== -->
   <script src="https://pyscript.net/releases/2024.6.1/core.js"></script>
   <script>
-    // Wait until both DOM and PyScript are ready
     window.addEventListener("load", () => {
 
       /* === CLOCK === */
