@@ -42,16 +42,18 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(tick, 1000);
 
   /* ===========================
-     THEME TOGGLE (FIXED)
+     THEME TOGGLE (FIXED + LABEL)
   ============================ */
   const THEME_KEY = 'siteTheme';
 
   const applyTheme = (theme) => {
     document.body.classList.toggle('light', theme === 'light');
     document.body.classList.toggle('dark', theme === 'dark');
+    if (themeBtn) {
+      themeBtn.textContent = theme === 'dark' ? '🌞 Light Mode' : '🌙 Dark Mode';
+    }
   };
 
-  // load saved theme
   const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
   applyTheme(savedTheme);
 
