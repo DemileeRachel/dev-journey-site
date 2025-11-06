@@ -375,3 +375,47 @@ body.light .project-card input[type="number"] {
   }
   .skills-panel { height: auto; }
 }
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .menu-toggle {
+    display: block;
+    color: #fff;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: var(--nav-h);
+    right: 16px;
+    flex-direction: column;
+    background: #2f2f2f;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  }
+  .nav-links.active {
+    display: flex;
+  }
+}
+/* Add breathing room below skills so footer doesn't cover */
+.about-grid, .skills-panel {
+  padding-bottom: var(--footer-h);
+  box-sizing: border-box;
+}
+.typing-challenge {
+  display: none;
+}
+.project-card, .about-card, .skills-panel, .hero, .typing-challenge {
+  position: relative;
+  z-index: 2;
+}
+footer, .navbar {
+  z-index: 5;
+}
