@@ -455,3 +455,96 @@ body.projects footer {
   bottom: 0;
   margin-top: 60px !important;
 }
+/* === FINAL PROJECTS PAGE POLISH === */
+
+/* 🚫 No scroll on desktop */
+body.projects {
+  overflow: hidden !important;
+  height: 100vh;
+}
+
+/* Fit everything neatly within one viewport */
+body.projects .projects-showcase {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding-top: 80px;  /* header space */
+  padding-bottom: 0;
+}
+
+/* Keep cards compact and aligned */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(320px, 400px));
+  gap: 20px;
+  justify-content: center;
+  align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Slightly smaller cards for perfect fit */
+.project-card {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  color: #eee;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.25);
+}
+
+/* Fix for quiz button alignment */
+.project-card .fun-btn {
+  align-self: center;
+  margin-top: auto;
+}
+
+/* Fix for PyScript input/button layout */
+.py-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  margin-top: 8px;
+}
+.py-demo input, py-button {
+  margin: 0;
+}
+
+/* 🔥 Rocket emoji normal color */
+.projects-title .emoji,
+.projects-title span.no-gradient {
+  -webkit-text-fill-color: initial !important;
+  color: #fff !important;
+  mix-blend-mode: normal !important;
+  filter: none !important;
+}
+
+/* Footer stays visible at bottom edge */
+body.projects footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1e1e2f;
+  color: #eee;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 0;
+  font-size: 0.9rem;
+  text-align: center;
+  z-index: 10;
+}
+
+/* ✅ Responsive unlock scroll on smaller screens */
+@media (max-width: 1000px) {
+  body.projects { overflow-y: auto !important; height: auto; }
+  .projects-showcase { height: auto; padding-bottom: 120px; }
+  footer { position: relative; }
+}

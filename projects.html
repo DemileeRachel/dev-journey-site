@@ -78,18 +78,17 @@
           </div>
         </div>
 
-        <!-- CARD 3 — PYSCRIPT DEMO -->
-        <div class="project-card">
-          <h3>🧪 Python Interactive Demo (PyScript)</h3>
-          <p>Run Python directly in your browser — try squaring a number!</p>
-          <div class="py-demo">
-            <input id="numInput" type="number" value="10" />
-            <button id="squareBtn">Square it!</button>
-          </div>
-          <p id="pyResult"></p>
+  <div class="project-card">
+  <h3>🧪 Python Interactive Demo (PyScript)</h3>
+  <p>Run Python directly in your browser — try squaring a number!</p>
 
-          <!-- ✅ PyScript block (fixed) -->
-<py-script>
+  <div class="py-demo">
+    <input id="numInput" type="number" value="10" />
+    <py-button label="Square it!" id="squareBtn" py-click="square_it"></py-button>
+  </div>
+  <p id="pyResult"></p>
+
+  <py-script>
 from js import document
 
 def square_it(*args, **kwargs):
@@ -98,12 +97,9 @@ def square_it(*args, **kwargs):
         document.getElementById("pyResult").innerText = f"Result: {num * num:g}"
     except Exception as e:
         document.getElementById("pyResult").innerText = f"Error: {e}"
+  </py-script>
+</div>
 
-</py-script>
-
-<!-- ✅ PyButton triggers the Python function directly -->
-<py-button label="Square it!" id="squareBtn" py-click="square_it"></py-button>
-        </div>
 
         <!-- CARD 4 — CAT NAME GENERATOR -->
         <div class="project-card">
