@@ -82,22 +82,25 @@
   <h3>🧪 Python Interactive Demo (PyScript)</h3>
   <p>Run Python directly in your browser — try squaring a number!</p>
 
-  <div class="py-demo">
-    <input id="numInput" type="number" value="10" />
-    <py-button label="Square it!" id="squareBtn" py-click="square_it"></py-button>
-  </div>
-  <p id="pyResult"></p>
+<!-- In the PyScript card -->
+<div class="py-demo">
+  <input id="numInput" type="number" value="10" />
+  <button id="squareBtn" class="fun-btn">Square it!</button>
+</div>
+<p id="pyResult"></p>
 
-  <py-script>
+<py-script>
 from js import document
 
-def square_it(*args, **kwargs):
+def square_it(event):
     try:
-        num = float(document.getElementById("numInput").value)
-        document.getElementById("pyResult").innerText = f"Result: {num * num:g}"
+        v = float(document.getElementById("numInput").value)
+        document.getElementById("pyResult").innerText = f"Result: {v*v:g}"
     except Exception as e:
         document.getElementById("pyResult").innerText = f"Error: {e}"
-  </py-script>
+
+document.getElementById("squareBtn").addEventListener("click", square_it)
+</py-script>
 </div>
 
 

@@ -548,3 +548,74 @@ body.projects footer {
   .projects-showcase { height: auto; padding-bottom: 120px; }
   footer { position: relative; }
 }
+/* === Projects page: one-screen desktop layout, emoji color, tidy actions === */
+
+/* Keep the rocket white (only the text gets gradient) */
+.projects-title { color: #fff; }
+.projects-title .no-gradient{
+  background: linear-gradient(90deg, #cdb4ff, #a5d8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Desktop: fit everything in one viewport without scrolling */
+@media (min-width: 1200px) {
+  body.projects { overflow: hidden; }
+
+  .projects-showcase{
+    /* use almost the whole viewport minus fixed navbar height (≈80px) */
+    min-height: calc(100vh - 80px);
+    height: calc(100vh - 80px);
+    padding: 50px 20px 16px;  /* tighter to eliminate scroll */
+    display: grid;
+    grid-template-rows: auto auto 1fr auto; /* title, sub, grid, back btn */
+    row-gap: 16px;
+    justify-items: center;
+  }
+
+  .projects-title { margin: 0; }
+  .projects-sub   { margin: 0 0 8px; }
+
+  /* Two columns, compact cards so both rows fit */
+  .projects-grid{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(340px, 420px));
+    grid-auto-rows: 230px;  /* card height */
+    gap: 20px;
+    align-content: start;
+    justify-content: center;
+  }
+
+  /* Cards: compact vertical rhythm, button anchored neatly */
+  .project-card{
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .project-card h3{ margin: 0 0 6px; }
+  .project-card p { margin: 6px 0; }
+
+  /* Quiz button sits consistently at the bottom of its card */
+  .project-card .fun-btn{
+    margin-top: auto;
+    align-self: center;
+  }
+
+  /* PyScript input/button tight layout */
+  .py-demo{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    margin-top: 6px;
+  }
+
+  /* Back button visible without forcing scroll */
+  .back-home{ margin-top: 6px; }
+}
+
+/* On narrower screens, allow normal scrolling again */
+@media (max-width: 1199px){
+  body.projects { overflow-y: auto; }
+}
