@@ -422,8 +422,6 @@ body.light {
   border-radius: 6px;
 }
 
-}
-
 /* header stays on top */
 .skills-header {
   flex-shrink: 0;
@@ -1341,4 +1339,35 @@ body.projects .projects-showcase {
 
 body.projects footer {
   margin-top: 30px !important; /* slight gap for breathing room */
+}/* ===== About → Skills panel: full height + smooth collapse ===== */
+body.about .skills-panel{
+  display:flex;
+  flex-direction:column;
+  height:100%;            /* fill the grid cell */
+  max-height:100%;
+  overflow:hidden;
 }
+
+body.about .skills-header{
+  flex:0 0 auto;          /* header keeps its size */
+}
+
+body.about .skills-body{
+  flex:1 1 auto;          /* ✅ fill remaining space */
+  min-height:0;           /* ✅ allow child to shrink within flex */
+  overflow-y:auto;
+  padding-right:8px;
+  max-height:none;
+  opacity:1;
+  transition:max-height .35s ease, opacity .25s ease, padding .25s ease;
+}
+
+/* collapsed state (your JS toggles .collapsed on #skills) */
+body.about #skills.collapsed .skills-body{
+  max-height:0;
+  opacity:0;
+  padding-top:0;
+  padding-bottom:0;
+  overflow:hidden;
+}
+
