@@ -59,8 +59,7 @@
         <div class="quiz-controls">
           <button id="next-btn" class="fun-btn">Next Question</button>
           <p id="result"></p>
-          <div id="quiz-progress"
-            style="height:6px;background:var(--accent-b);width:0;transition:width .4s;border-radius:4px;margin-top:4px;"></div>
+          <div id="quiz-progress" style="height:6px;background:var(--accent-b);width:0;transition:width .4s;border-radius:4px;margin-top:4px;"></div>
         </div>
       </div>
 
@@ -94,7 +93,10 @@ def square_number(event=None):
       </div>
     </div>
 
-    <a href="index.html" class="back-home">← Back to Home</a>
+    <!-- Back button positioned above footer -->
+    <div style="margin-top: 20px; margin-bottom: 80px;">
+      <a href="index.html" class="back-home">← Back to Home</a>
+    </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
@@ -107,7 +109,8 @@ def square_number(event=None):
   <script>
     // Wait until both DOM and PyScript are ready
     window.addEventListener("load", () => {
-      // Re-initialize clock and theme toggle on all pages
+
+      /* === CLOCK === */
       function tick() {
         const clock = document.getElementById("uk-clock");
         if (clock) {
@@ -123,7 +126,7 @@ def square_number(event=None):
       tick();
       setInterval(tick, 1000);
 
-      // Apply theme from localStorage
+      /* === THEME === */
       const THEME_KEY = "siteTheme";
       const savedTheme = localStorage.getItem(THEME_KEY) || "dark";
       document.body.classList.toggle("light", savedTheme === "light");
@@ -138,11 +141,67 @@ def square_number(event=None):
         });
       }
 
-      // Load main site script
-      const s = document.createElement("script");
-      s.src = "script.js";
-      s.defer = true;
-      document.body.appendChild(s);
+      /* === QUIZ FUNCTIONALITY === */
+      const quizData = [
+        { q: "Which SQL keyword retrieves data from a database?", options: ["GET", "SELECT", "FETCH", "SHOW"], correct: "SELECT" },
+        { q: "Which clause filters rows returned by a SELECT query?", options: ["ORDER BY", "WHERE", "GROUP BY", "HAVING"], correct: "WHERE" },
+        { q: "Which SQL statement adds new data to a table?", options: ["ADD", "INSERT INTO", "UPDATE", "APPEND"], correct: "INSERT INTO" },
+        { q: "Which command deletes an entire table?", options: ["DELETE FROM", "DROP TABLE", "REMOVE", "TRUNCATE"], correct: "DROP TABLE" }
+      ];
+
+      const quizContainer = document.getElementById("quiz-container");
+      const nextBtn = document.getElementById("next-btn");
+      const resultText = document.getElementById("result");
+      const progressFill = document.getElementById("quiz-progress");
+
+      if (quizContainer && nextBtn && resultText && progressFill) {
+        let index = 0;
+        let score = 0;
+
+        function drawQuestion() {
+          const q = quizData[index];
+          quizContainer.innerHTML = `
+            <div>
+              <p><strong>${index + 1}. ${q.q}</strong></p>
+              ${q.options.map(opt => `
+                <label><input type="radio" name="ans" value="${opt}"> ${opt}</label><br>
+              `).join("")}
+            </div>
+          `;
+          resultText.textContent = "";
+          progressFill.style.width = ((index / quizData.length) * 100) + "%";
+        }
+
+        function showResult() {
+          quizContainer.innerHTML = `<h3>🎉 You scored ${score}/${quizData.length}!</h3>`;
+          nextBtn.style.display = "none";
+          progressFill.style.width = "100%";
+        }
+
+        nextBtn.addEventListener("click", () => {
+          const selected = document.querySelector('input[name="ans"]:checked');
+          if (!selected) {
+            resultText.textContent = "⚠️ Please select an answer!";
+            resultText.style.color = "#ff8080";
+            return;
+          }
+
+          if (selected.value === quizData[index].correct) score++;
+          index++;
+          if (index < quizData.length) drawQuestion();
+          else showResult();
+        });
+
+        drawQuestion();
+      }
+
+      /* === CAT NAME PLACEHOLDER === */
+      const catBtn = document.getElementById("catNameBtn");
+      if (catBtn) {
+        catBtn.addEventListener("click", () => {
+          alert("🐾 Random Cat Name Generator coming soon!");
+        });
+      }
     });
   </script>
 </body>
