@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(tick, 1000);
 
   /* ===========================
-     THEME TOGGLE
+     THEME TOGGLE (GLOBAL)
   ============================ */
   const THEME_KEY = 'siteTheme';
   const applyTheme = (theme) => {
@@ -179,17 +179,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-/* ===== SKILLS PANEL TOGGLE (FIXED) ===== */
-const skillsPanel  = document.getElementById('skills');        // the <aside>
-const skillsToggle = document.getElementById('skillsToggle');  // the button
-
-if (skillsPanel && skillsToggle) {
-  skillsToggle.addEventListener('click', () => {
-    const collapsed = skillsPanel.classList.toggle('collapsed');
-    skillsToggle.textContent = collapsed ? 'Show Skills' : 'Hide Skills';
-    skillsToggle.setAttribute('aria-expanded', !collapsed);
-  });
-}
+  /* ===========================
+     SKILLS PANEL TOGGLE
+  ============================ */
+  const skillsPanel  = document.getElementById('skills');
+  const skillsToggle = document.getElementById('skillsToggle');
+  if (skillsPanel && skillsToggle) {
+    skillsToggle.addEventListener('click', () => {
+      const collapsed = skillsPanel.classList.toggle('collapsed');
+      skillsToggle.textContent = collapsed ? 'Show Skills' : 'Hide Skills';
+      skillsToggle.setAttribute('aria-expanded', !collapsed);
+    });
+  }
 
   /* ===========================
      SQL MINI QUIZ
@@ -265,8 +266,20 @@ if (skillsPanel && skillsToggle) {
 
     drawQuestion();
   }
-});
-// Toggle between dark and light
-document.getElementById('theme-toggle').addEventListener('click', () => {
-  document.body.classList.toggle('light');
+
+  /* ===========================
+     PYSCRIPT DEMO FIX
+  ============================ */
+  document.addEventListener("pyscript_ready", () => {
+    const btn = document.getElementById("squareBtn");
+    if (btn) {
+      btn.addEventListener("click", () => {
+        const pyTag = document.querySelector("py-script");
+        if (pyTag && typeof pyTag.runPython === "function") {
+          pyTag.runPython("square_number()");
+        }
+      });
+    }
+  });
+
 });
