@@ -798,3 +798,63 @@ body.about footer {
   50%  { transform: translateY(-6px) rotate(-2deg); }
   100% { transform: translateY(0) rotate(0deg); }
 }
+/* === FINAL OVERRIDES (place at absolute end of style.css) === */
+
+/* Desktop: no scroll, everything fits one screen */
+@media (min-width: 1000px) {
+  body.projects{ overflow:hidden !important; height:100vh !important; }
+
+  .projects-showcase{
+    height:100vh !important;
+    padding:80px 0 0 !important;      /* clear navbar, no extra bottom pad */
+    display:grid !important;
+    grid-template-rows:auto auto 1fr auto !important; /* title, sub, grid, back */
+    row-gap:14px !important;
+    justify-items:center !important;
+  }
+
+  .projects-grid{
+    width:min(880px,92vw) !important;
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(320px, 380px)) !important;
+    grid-auto-rows:230px !important;  /* card height so both rows fit */
+    gap:22px 34px !important;
+    align-content:start !important;
+  }
+
+  .project-card{
+    height:auto !important;
+    padding:18px 20px !important;
+    display:flex !important;
+    flex-direction:column !important;
+  }
+
+  /* keep action buttons tidy and aligned */
+  .project-card .fun-btn,
+  .project-card button{ margin-top:auto !important; align-self:center !important; }
+
+  /* back button sits above the footer, centered */
+  .back-home{
+    margin:4px 0 8px !important;
+    position:relative !important;
+    z-index:5 !important;
+  }
+
+  /* footer stays fixed at the very bottom */
+  body.projects footer{
+    position:fixed !important; bottom:0; left:0; right:0;
+    background:#1e1e2f; color:#eee; border-top:1px solid rgba(255,255,255,.1);
+    padding:8px 0; z-index:4;
+  }
+}
+
+/* Rocket emoji must stay white (no gradient bleed) */
+.projects-title .emoji{
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  mix-blend-mode:normal !important;
+  filter:none !important;
+}
+
+/* Quiz radio line + button spacing on one line */
+.project-card label{ display:inline-block; margin:2px 6px 0 0 !important; }
