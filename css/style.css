@@ -253,46 +253,108 @@ body.about main {
   .skills-body{ max-height:none; }
 }
 
-/* ===========================
-   PROJECTS PAGE
-=========================== */
-/* Section container pulled higher + room for footer */
-.projects-showcase{
-  padding: 90px 20px 60px; /* high on page + footer room */
-  text-align:center;
-  min-height: calc(100vh - var(--footer-h));
-  display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:40px;
+/* === PROJECTS PAGE — one-screen desktop layout === */
+body.projects {
+  overflow: hidden; /* no scroll on desktop */
 }
 
-/* Title: gradient only on inner span; emoji stays true color */
-.projects-title{
-  display:flex; align-items:center; justify-content:center; gap:8px;
-  color:#fff; -webkit-text-fill-color: initial; background:none;
-  margin-bottom:10px; font-size:2.4rem; font-weight:700;
-}
-.projects-title .no-gradient{
-  background: linear-gradient(90deg,var(--accent-a),var(--accent-b));
-  -webkit-background-clip:text; -webkit-text-fill-color: transparent;
-}
-/* extra safety so emojis never get gradient */
-.projects-title .emoji{ -webkit-text-fill-color: initial !important; color: inherit !important; filter:none !important; mix-blend-mode: normal !important; }
-
-.projects-sub{ color:#bbb; font-size:1.1rem; margin-bottom: 40px; }
-
-/* Grid of cards */
-.projects-grid{
-  display:grid; grid-template-columns: repeat(2, minmax(320px,1fr));
-  gap:40px; justify-content:center; align-items:start; max-width:1000px; margin:0 auto 20px;
+body.projects .projects-showcase {
+  height: 100vh; /* lock to full viewport */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 0 0; /* keeps space below navbar */
+  gap: 24px;
 }
 
-/* Card */
-.project-card{
-  background: rgba(255,255,255,.08); backdrop-filter: blur(10px);
-  border-radius:16px; padding:28px; box-shadow:0 4px 20px rgba(0,0,0,.3);
-  color:#eee; text-align:center; transition: transform .3s ease, box-shadow .3s ease;
+/* Compact grid fits two rows of cards */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(300px, 400px));
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  transform: scale(0.95);
 }
-.project-card:hover{ transform: translateY(-5px); box-shadow:0 8px 25px rgba(200,180,255,.4); }
 
+/* Consistent card sizing */
+.project-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  color: #eee;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(200,180,255,0.4);
+}
+
+/* Title + subtitle spacing */
+.projects-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #cdb4ff, #a5d8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 6px;
+}
+.projects-sub {
+  color: #bbb;
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+}
+
+/* Back button visible but compact */
+.back-home {
+  margin-top: 8px;
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
+  color: #000;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 8px 16px;
+  box-shadow: 0 0 10px rgba(150,150,255,0.3);
+  transition: transform 0.25s ease;
+}
+.back-home:hover {
+  transform: translateY(-2px);
+}
+
+/* Footer fixed at bottom */
+body.projects footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1e1e2f;
+  color: #eee;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 0;
+  font-size: 0.9rem;
+  text-align: center;
+  z-index: 10;
+}
+
+/* Enable scroll again on smaller devices */
+@media (max-width: 1000px) {
+  body.projects { overflow-y: auto; }
+  body.projects .projects-showcase {
+    height: auto;
+    padding-top: 100px;
+    padding-bottom: 140px;
+  }
+  footer { position: relative; }
+}
 /* Lists inside cards */
 .project-card ul{ list-style:none; padding:0; margin:15px 0 0; text-align:left; }
 .project-card li{ margin:6px 0; }
@@ -392,89 +454,4 @@ body.projects footer {
   position: relative;  /* not absolute or fixed */
   bottom: 0;
   margin-top: 60px !important;
-}
-/* === Perfectly balanced Projects layout (fits 1 desktop page) === */
-body.projects {
-  overflow-y: hidden; /* lock vertical scroll on large screens */
-}
-
-body.projects .projects-showcase {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;   /* center everything vertically */
-  min-height: calc(100vh - var(--nav-h) - var(--footer-h));
-  padding-top: 80px;         /* header space */
-  padding-bottom: 40px;      /* small breathing room */
-  gap: 30px;
-}
-
-/* keep grid compact */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(320px, 420px));
-  gap: 28px;
-  justify-content: center;
-  align-items: start;
-  max-width: 1000px;
-  margin: 0 auto;
-  transform: scale(0.95); /* slightly tighter spacing */
-}
-
-/* consistent card sizing */
-.project-card {
-  height: 280px;             /* uniform card height */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 20px 26px;
-  box-shadow: 0 4px 25px rgba(0,0,0,0.25);
-  color: #eee;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(200,180,255,0.4);
-}
-
-/* title & spacing balance */
-.projects-title {
-  font-size: 2.2rem;
-  margin-bottom: 4px;
-}
-.projects-sub {
-  font-size: 1.05rem;
-  margin-bottom: 20px;
-}
-
-/* keep footer visible at bottom edge */
-body.projects footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #1e1e2f;
-  color: #eee;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding: 10px 0;
-  text-align: center;
-  font-size: 0.9rem;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
-  z-index: 5;
-}
-
-/* --- Responsive fallback (unlock scroll on smaller devices) --- */
-@media (max-width: 1000px) {
-  body.projects { overflow-y: auto; }
-  .projects-showcase {
-    min-height: auto;
-    padding-top: 100px;
-    padding-bottom: 120px;
-  }
-  footer {
-    position: relative;
-  }
 }

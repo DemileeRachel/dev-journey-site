@@ -88,20 +88,21 @@
           </div>
           <p id="pyResult"></p>
 
-          <py-script>
+          <!-- ✅ PyScript block (fixed) -->
+<py-script>
 from js import document
 
-def square_it(event):
+def square_it(*args, **kwargs):
     try:
-        v = float(document.getElementById("numInput").value)
-        document.getElementById("pyResult").innerText = f"Result: {v*v:g}"
+        num = float(document.getElementById("numInput").value)
+        document.getElementById("pyResult").innerText = f"Result: {num * num:g}"
     except Exception as e:
         document.getElementById("pyResult").innerText = f"Error: {e}"
 
-btn = document.getElementById("squareBtn")
-if btn:
-    btn.addEventListener("click", square_it)
-          </py-script>
+</py-script>
+
+<!-- ✅ PyButton triggers the Python function directly -->
+<py-button label="Square it!" id="squareBtn" py-click="square_it"></py-button>
         </div>
 
         <!-- CARD 4 — CAT NAME GENERATOR -->
