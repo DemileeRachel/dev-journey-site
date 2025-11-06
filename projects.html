@@ -4,144 +4,101 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | My Dev Journey</title>
-
   <link rel="stylesheet" href="css/style.css" />
-
-  <!-- ✅ PyScript Runtime -->
-  <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.1/core.css">
-  <script defer src="https://pyscript.net/releases/2024.6.1/core.js"></script>
+  <script defer src="script.js"></script>
 </head>
+<body class="projects">
 
-<body class="projects dark">
-  <!-- ===== NAVBAR ===== -->
+  <!-- =========================
+       NAVBAR
+  ========================== -->
   <header class="navbar">
     <div class="navbar-inner">
       <div class="logo">My Dev Journey</div>
-
       <div class="center-group">
         <div id="clock-container">
-          <h2>🕒 Time</h2>
-          <div id="uk-clock">00:00:00</div>
+          <h2>🕓 Time</h2>
+          <div id="uk-clock"></div>
         </div>
-        <button id="theme-toggle">🌗 Theme</button>
+        <button id="theme-toggle">🪄 Theme</button>
       </div>
-
       <nav class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="projects.html" class="active">Projects</a>
       </nav>
-
-      <button id="menuToggle" class="menu-toggle">☰</button>
+      <button class="menu-toggle" id="menuToggle">☰</button>
     </div>
   </header>
 
-  <!-- ===== MAIN CONTENT ===== -->
-  <main>
-    <section class="projects-showcase">
-      <h1 class="projects-title">
-        <span class="emoji">🚀</span>
-        <span class="no-gradient">Projects Coming Soon</span>
-      </h1>
-      <p class="projects-sub">A showcase of my current and upcoming creations ✨</p>
+  <!-- =========================
+       PROJECTS SHOWCASE
+  ========================== -->
+  <main class="projects-showcase">
+    <h1 class="projects-title"><span class="emoji">🚀</span> Projects Coming Soon</h1>
+    <p class="projects-sub">A showcase of my current and upcoming creations ✨</p>
 
-      <div class="projects-grid">
-        <!-- CARD 1 -->
-        <div class="project-card">
-          <h3>💡 My Projects</h3>
-          <ul>
-            <li>📁 <strong>Portfolio</strong> — responsive site built with HTML, CSS & JS.</li>
-            <li>🐍 <strong>PyScript Demo App</strong> — interactive demo using PyScript.</li>
-            <li>🎮 <strong>Game/App Development</strong> — pixel-art roguelike (Coming soon!)</li>
-          </ul>
-        </div>
+    <section class="projects-grid">
 
-        <!-- CARD 2 — SQL MINI QUIZ -->
-        <div class="project-card">
-          <h3>🧠 SQL Mini Quiz</h3>
-          <p>Test your SQL knowledge — one question at a time!</p>
+      <!-- === CARD 1 === -->
+      <div class="project-card">
+        <h3>💡 My Projects</h3>
+        <ul>
+          <li>📁 <strong>Portfolio</strong> A responsive site built with HTML, CSS & JS.</li>
+          <li>🧠 <strong>PyScript Demo App</strong> An interactive demo using PyScript.</li>
+          <li>🎮 <strong>Game/App Development</strong> A pixel-art roguelike (Coming soon!)</li>
+        </ul>
+      </div>
 
-          <!-- ✅ QUIZ CONTAINER -->
-          <div id="quiz-container"></div>
-
-          <div class="quiz-controls">
-            <p id="result"></p>
-            <div id="quiz-progress" style="
-                width: 0%;
-                height: 6px;
-                background: linear-gradient(90deg, #cdb4ff, #a5d8ff);
-                border-radius: 4px;
-                margin: 10px 0;
-                transition: width 0.4s ease;">
-            </div>
-            <button id="next-btn" class="fun-btn">Next Question</button>
-          </div>
-        </div>
-
-  <div class="project-card">
-  <h3>🧪 Python Interactive Demo (PyScript)</h3>
-  <p>Run Python directly in your browser — try squaring a number!</p>
-
-<!-- In the PyScript card -->
-<div class="py-demo">
-  <input id="numInput" type="number" value="10" />
-  <button id="squareBtn" class="fun-btn">Square it!</button>
-</div>
-<p id="pyResult"></p>
-
-<py-script>
-from js import document
-
-def square_it(event):
-    try:
-        v = float(document.getElementById("numInput").value)
-        document.getElementById("pyResult").innerText = f"Result: {v*v:g}"
-    except Exception as e:
-        document.getElementById("pyResult").innerText = f"Error: {e}"
-
-document.getElementById("squareBtn").addEventListener("click", square_it)
-</py-script>
-</div>
-
-
-        <!-- CARD 4 — CAT NAME GENERATOR -->
-        <div class="project-card">
-          <h3>🐱 Random Cat Name Generator</h3>
-          <p>Generate a new cat hero name for... <strong>COMING SOON!</strong></p>
-          <button id="catBtn">Generate Cat Name</button>
-          <p id="catName"></p>
+      <!-- === CARD 2 (SQL QUIZ) === -->
+      <div class="project-card">
+        <h3>💬 SQL Mini Quiz</h3>
+        <p>Test your SQL knowledge with one question at a time!</p>
+        <div id="quiz-container"></div>
+        <p id="result"></p>
+        <button id="next-btn" class="fun-btn">Next Question</button>
+        <div class="quiz-progress">
+          <div id="quiz-progress" style="height:4px; background:linear-gradient(90deg,#cdb4ff,#a5d8ff); width:0;"></div>
         </div>
       </div>
 
-      <a href="index.html" class="fun-btn back-home">← Back to Home</a>
+      <!-- === CARD 3 (PYSCRIPT DEMO) === -->
+      <div class="project-card">
+        <h3>🪴 Python Interactive Demo (PyScript)</h3>
+        <p>Run Python directly in your browser; try squaring a number!</p>
+        <div class="py-demo">
+          <input id="numInput" type="number" placeholder="Enter number" />
+          <py-script>
+            from js import document
+            def square_number(event=None):
+                num = document.getElementById("numInput").value
+                try:
+                    result = float(num)**2
+                    document.getElementById("output").innerText = f"{result}"
+                except:
+                    document.getElementById("output").innerText = "Invalid input"
+          </py-script>
+          <button id="squareBtn" class="fun-btn" py-click="square_number()">Square it!</button>
+          <p id="output"></p>
+        </div>
+      </div>
+
+      <!-- === CARD 4 === -->
+      <div class="project-card">
+        <h3>🐱 Random Cat Name Generator</h3>
+        <p>Generate a new cat hero name for... <strong>COMING SOON!</strong></p>
+        <button id="catBtn" class="fun-btn">Generate Cat Name</button>
+      </div>
     </section>
+
+    <a href="index.html" class="back-home">← Back to Home</a>
   </main>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- =========================
+       FOOTER
+  ========================== -->
   <footer>
     <p>© 2025 My Dev Journey; built with 💜.</p>
   </footer>
-
-  <!-- ===== JAVASCRIPT ===== -->
-  <script src="js/script.js" defer></script>
-
-  <script>
-    // Force dark mode for Projects page
-    document.body.classList.add("dark");
-
-    // Cat name generator
-    const catNames = [
-      "🐾 Whisker Spark", "🌙 Luna Paw", "🍡 Mochi Tail", "🪐 Cosmo Cat",
-      "🎮 Pixel Pounce", "🖤 Velvet Fang", "💫 Comet Whisk"
-    ];
-    const catBtn = document.getElementById("catBtn");
-    const catName = document.getElementById("catName");
-    if (catBtn && catName) {
-      catBtn.addEventListener("click", () => {
-        const random = catNames[Math.floor(Math.random() * catNames.length)];
-        catName.textContent = "Your cat’s name is: " + random;
-      });
-    }
-  </script>
 </body>
 </html>
