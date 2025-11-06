@@ -8,13 +8,13 @@
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- PyScript (stable version) -->
-  <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.1/core.css">
+  <!-- PyScript -->
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.1/core.css" />
 </head>
 
 <body class="projects">
   <!-- ===== NAVBAR ===== -->
-   <header class="navbar">
+  <nav class="navbar">
     <div class="navbar-inner">
       <div class="logo">My Dev Journey</div>
 
@@ -22,8 +22,7 @@
         <div id="clock-container">
           <h2>🕒 Time</h2>
           <div id="uk-clock"></div>
-          </div>
-        <!-- 🌗 Toggle button now starts in dark mode label -->
+        </div>
         <button id="theme-toggle">🌞 Light Mode</button>
       </div>
 
@@ -37,9 +36,11 @@
   </nav>
 
   <!-- ===== PROJECTS SECTION ===== -->
-  <section class="projects-showcase">
-    <h1 class="projects-title">🚀 Projects Coming Soon</h1>
-    <p class="projects-sub">A showcase of my current and upcoming creations ✨</p>
+  <main class="projects-showcase">
+    <div class="projects-header">
+      <h1 class="projects-title">🚀 Projects Coming Soon</h1>
+      <p class="projects-sub">A showcase of my current and upcoming creations ✨</p>
+    </div>
 
     <div class="projects-grid">
       <!-- My Projects -->
@@ -60,7 +61,8 @@
         <div class="quiz-controls">
           <button id="next-btn" class="fun-btn">Next Question</button>
           <p id="result"></p>
-          <div id="quiz-progress" style="height:6px;background:var(--accent-b);width:0;transition:width .4s;border-radius:4px;margin-top:4px;"></div>
+          <div id="quiz-progress"
+            style="height:6px;background:var(--accent-b);width:0;transition:width .4s;border-radius:4px;margin-top:4px;"></div>
         </div>
       </div>
 
@@ -90,28 +92,29 @@ def square_number(event=None):
       <div class="project-card">
         <h3>🐱 Random Cat Name Generator</h3>
         <p>Generate a new cat hero name for… <strong>COMING SOON!</strong></p>
-        <button class="fun-btn">Generate Cat Name</button>
+        <button id="catNameBtn" class="fun-btn">Generate Cat Name</button>
       </div>
     </div>
 
     <a href="index.html" class="back-home">← Back to Home</a>
-  </section>
+  </main>
 
   <!-- ===== FOOTER ===== -->
   <footer>
     © 2025 My Dev Journey · built with 💜
   </footer>
 
-  <!-- ===== JS ORDER FIX (PyScript first, then site logic) ===== -->
+  <!-- ===== JS ORDER FIX ===== -->
   <script src="https://pyscript.net/releases/2024.6.1/core.js"></script>
   <script>
-    // Wait for PyScript to initialize before loading main site JS
+    // Delay site JS until PyScript + DOM are both ready
     window.addEventListener("load", () => {
       setTimeout(() => {
-        const s = document.createElement("script");
-        s.src = "script.js";
-        document.body.appendChild(s);
-      }, 250);
+        const script = document.createElement("script");
+        script.src = "script.js";
+        script.defer = true;
+        document.body.appendChild(script);
+      }, 400); // allow PyScript to register elements
     });
   </script>
 </body>
