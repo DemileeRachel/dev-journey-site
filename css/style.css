@@ -101,6 +101,16 @@ body.light { background-color: #fafafa; color: #111; }
   .nav-links.active{ display:flex; }
   .menu-toggle{ display:block; top:12px; }
 }
+/* === Fix: Skills panel starts below navbar === */
+body.about main {
+  padding-top: 100px; /* pushes the whole grid below navbar */
+}
+
+@media (max-width: 1024px) {
+  body.about main {
+    padding-top: 80px; /* smaller gap on tablets/mobiles */
+  }
+}
 
 /* ===========================
    HERO (HOME)
@@ -348,3 +358,22 @@ body.home, body.about, body.projects{ overflow:hidden; }
   mix-blend-mode: normal !important; transition: transform .3s ease, filter .3s ease; cursor:pointer;
 }
 #greeting-emoji:hover, #greetingText .emoji:hover{ transform: scale(1.3) rotate(10deg); filter: drop-shadow(0 0 6px var(--accent-a)); }
+/* === Fix: Back-to-Home always visible === */
+.back-home {
+  display: inline-block;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background: linear-gradient(135deg, #cdb4ff, #a5d8ff);
+  color: #000;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 22px;
+  box-shadow: 0 0 10px rgba(150,150,255,0.3);
+  transition: all 0.25s ease;
+  position: relative;
+  z-index: 10;           /* ensures it sits above footer shadow */
+}
+
+body.projects .projects-showcase {
+  padding-bottom: 140px; /* extra space above footer */
+}
