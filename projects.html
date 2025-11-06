@@ -21,9 +21,9 @@
       <div class="center-group">
         <div id="clock-container">
           <h2>🕒 Time</h2>
-          <div id="uk-clock"></div>
+          <div id="uk-clock">--:--:--</div>
         </div>
-        <button id="theme-toggle">🌞 Light Mode</button>
+        <button id="theme-toggle">🌗 Theme</button>
       </div>
 
       <button id="menuToggle" class="menu-toggle">☰</button>
@@ -36,11 +36,9 @@
   </nav>
 
   <!-- ===== PROJECTS SECTION ===== -->
-  <main class="projects-showcase">
-    <div class="projects-header">
-      <h1 class="projects-title">🚀 Projects Coming Soon</h1>
-      <p class="projects-sub">A showcase of my current and upcoming creations ✨</p>
-    </div>
+  <section class="projects-showcase">
+    <h1 class="projects-title">🚀 Projects Coming Soon</h1>
+    <p class="projects-sub">A showcase of my current and upcoming creations ✨</p>
 
     <div class="projects-grid">
       <!-- My Projects -->
@@ -97,24 +95,54 @@ def square_number(event=None):
     </div>
 
     <a href="index.html" class="back-home">← Back to Home</a>
-  </main>
+  </section>
 
   <!-- ===== FOOTER ===== -->
   <footer>
     © 2025 My Dev Journey · built with 💜
   </footer>
 
-  <!-- ===== JS ORDER FIX ===== -->
+  <!-- ===== FIXED SCRIPT ORDER ===== -->
   <script src="https://pyscript.net/releases/2024.6.1/core.js"></script>
   <script>
-    // Delay site JS until PyScript + DOM are both ready
+    // Wait until both DOM and PyScript are ready
     window.addEventListener("load", () => {
-      setTimeout(() => {
-        const script = document.createElement("script");
-        script.src = "script.js";
-        script.defer = true;
-        document.body.appendChild(script);
-      }, 400); // allow PyScript to register elements
+      // Re-initialize clock and theme toggle on all pages
+      function tick() {
+        const clock = document.getElementById("uk-clock");
+        if (clock) {
+          clock.textContent = new Date().toLocaleTimeString("en-GB", {
+            timeZone: "Europe/London",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false
+          });
+        }
+      }
+      tick();
+      setInterval(tick, 1000);
+
+      // Apply theme from localStorage
+      const THEME_KEY = "siteTheme";
+      const savedTheme = localStorage.getItem(THEME_KEY) || "dark";
+      document.body.classList.toggle("light", savedTheme === "light");
+      const themeBtn = document.getElementById("theme-toggle");
+      if (themeBtn) {
+        themeBtn.textContent = savedTheme === "light" ? "🌙 Dark Mode" : "🌞 Light Mode";
+        themeBtn.addEventListener("click", () => {
+          const next = document.body.classList.contains("light") ? "dark" : "light";
+          document.body.classList.toggle("light", next === "light");
+          localStorage.setItem(THEME_KEY, next);
+          themeBtn.textContent = next === "light" ? "🌙 Dark Mode" : "🌞 Light Mode";
+        });
+      }
+
+      // Load main site script
+      const s = document.createElement("script");
+      s.src = "script.js";
+      s.defer = true;
+      document.body.appendChild(s);
     });
   </script>
 </body>
