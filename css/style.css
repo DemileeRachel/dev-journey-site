@@ -377,3 +377,19 @@ body.home, body.about, body.projects{ overflow:hidden; }
 body.projects .projects-showcase {
   padding-bottom: 140px; /* extra space above footer */
 }
+/* === Fix: Projects page scroll & footer visibility === */
+body.projects {
+  overflow-y: auto !important;    /* allow full vertical scrolling */
+}
+
+body.projects .projects-showcase {
+  min-height: auto !important;    /* remove forced viewport lock */
+  padding-bottom: 160px !important; /* ensures room above footer */
+}
+
+/* Footer spacing fix */
+body.projects footer {
+  position: relative;  /* not absolute or fixed */
+  bottom: 0;
+  margin-top: 60px !important;
+}
