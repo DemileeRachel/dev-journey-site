@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | My Dev Journey</title>
+
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- ✅ Updated PyScript Runtime -->
+  <!-- ✅ PyScript Runtime -->
   <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.1/core.css">
   <script defer src="https://pyscript.net/releases/2024.6.1/core.js"></script>
 </head>
@@ -25,18 +26,23 @@
         <button id="theme-toggle">🌗 Theme</button>
       </div>
 
-      <nav class="nav-links">
+      <nav class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="projects.html" class="active">Projects</a>
       </nav>
+
+      <button id="menuToggle" class="menu-toggle">☰</button>
     </div>
   </header>
 
   <!-- ===== MAIN CONTENT ===== -->
   <main>
     <section class="projects-showcase">
-      <h1 class="projects-title">🚀 Projects Coming Soon</h1>
+      <h1 class="projects-title">
+        <span class="emoji">🚀</span>
+        <span class="no-gradient">Projects Coming Soon</span>
+      </h1>
       <p class="projects-sub">A showcase of my current and upcoming creations ✨</p>
 
       <div class="projects-grid">
@@ -50,20 +56,29 @@
           </ul>
         </div>
 
-        <!-- CARD 2 -->
+        <!-- CARD 2 — SQL MINI QUIZ -->
         <div class="project-card">
           <h3>🧠 SQL Mini Quiz</h3>
           <p>Test your SQL knowledge — one question at a time!</p>
-          <p><strong>1.</strong> Which SQL keyword is used to retrieve data from a database?</p>
-          <label><input type="radio" name="sql" /> GET</label>
-          <label><input type="radio" name="sql" /> SELECT</label>
-          <label><input type="radio" name="sql" /> FETCH</label>
-          <label><input type="radio" name="sql" /> SHOW</label>
-          <br />
-          <button class="fun-btn">Next Question</button>
+
+          <!-- ✅ QUIZ CONTAINER -->
+          <div id="quiz-container"></div>
+
+          <div class="quiz-controls">
+            <p id="result"></p>
+            <div id="quiz-progress" style="
+                width: 0%;
+                height: 6px;
+                background: linear-gradient(90deg, #cdb4ff, #a5d8ff);
+                border-radius: 4px;
+                margin: 10px 0;
+                transition: width 0.4s ease;">
+            </div>
+            <button id="next-btn" class="fun-btn">Next Question</button>
+          </div>
         </div>
 
-        <!-- CARD 3: PyScript Demo -->
+        <!-- CARD 3 — PYSCRIPT DEMO -->
         <div class="project-card">
           <h3>🧪 Python Interactive Demo (PyScript)</h3>
           <p>Run Python directly in your browser — try squaring a number!</p>
@@ -73,8 +88,7 @@
           </div>
           <p id="pyResult"></p>
 
-          <!-- ✅ Fixed PyScript block -->
-         <py-script>
+          <py-script>
 from js import document
 
 def square_it(event):
@@ -87,11 +101,10 @@ def square_it(event):
 btn = document.getElementById("squareBtn")
 if btn:
     btn.addEventListener("click", square_it)
-</py-script>
-
+          </py-script>
         </div>
 
-        <!-- CARD 4 -->
+        <!-- CARD 4 — CAT NAME GENERATOR -->
         <div class="project-card">
           <h3>🐱 Random Cat Name Generator</h3>
           <p>Generate a new cat hero name for... <strong>COMING SOON!</strong></p>
@@ -110,33 +123,25 @@ if btn:
   </footer>
 
   <!-- ===== JAVASCRIPT ===== -->
+  <script src="js/script.js" defer></script>
+
   <script>
     // Force dark mode for Projects page
     document.body.classList.add("dark");
-    
-    // ⏰ UK Clock
-    function updateClock() {
-      const now = new Date();
-      document.getElementById("uk-clock").textContent = now.toLocaleTimeString("en-GB");
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
 
-    // 🐱 Random Cat Name Generator
+    // Cat name generator
     const catNames = [
-      "🐾 Whisker Spark",
-      "🌙 Luna Paw",
-      "🍡 Mochi Tail",
-      "🪐 Cosmo Cat",
-      "🎮 Pixel Pounce",
-      "🖤 Velvet Fang",
-      "💫 Comet Whisk"
+      "🐾 Whisker Spark", "🌙 Luna Paw", "🍡 Mochi Tail", "🪐 Cosmo Cat",
+      "🎮 Pixel Pounce", "🖤 Velvet Fang", "💫 Comet Whisk"
     ];
-
-    document.getElementById("catBtn").addEventListener("click", () => {
-      const random = catNames[Math.floor(Math.random() * catNames.length)];
-      document.getElementById("catName").textContent = "Your cat’s name is: " + random;
-    });
-</script>
+    const catBtn = document.getElementById("catBtn");
+    const catName = document.getElementById("catName");
+    if (catBtn && catName) {
+      catBtn.addEventListener("click", () => {
+        const random = catNames[Math.floor(Math.random() * catNames.length)];
+        catName.textContent = "Your cat’s name is: " + random;
+      });
+    }
+  </script>
 </body>
 </html>
