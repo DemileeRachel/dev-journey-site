@@ -74,7 +74,7 @@
           <p id="pyResult"></p>
 
           <!-- ✅ Fixed PyScript block -->
-          <py-script>
+         <py-script>
 from js import document
 
 def square_it(event):
@@ -84,8 +84,11 @@ def square_it(event):
     except Exception as e:
         document.getElementById("pyResult").innerText = f"Error: {e}"
 
-document.getElementById("squareBtn").addEventListener("click", square_it)
-          </py-script>
+btn = document.getElementById("squareBtn")
+if btn:
+    btn.addEventListener("click", square_it)
+</py-script>
+
         </div>
 
         <!-- CARD 4 -->
@@ -110,7 +113,7 @@ document.getElementById("squareBtn").addEventListener("click", square_it)
   <script>
     // Force dark mode for Projects page
     document.body.classList.add("dark");
-
+    
     // ⏰ UK Clock
     function updateClock() {
       const now = new Date();
@@ -119,21 +122,21 @@ document.getElementById("squareBtn").addEventListener("click", square_it)
     setInterval(updateClock, 1000);
     updateClock();
 
-    // 🐱 Random Cat Name Generator (now with emojis!)
+    // 🐱 Random Cat Name Generator
     const catNames = [
-      "🌌 Whisker Spark🌌",
-      "🌙 Luna Paw🌙",
-      "🍡 Mochi Tail🍡",
-      "☄️ Cosmo Cat☄️",
-      "🎨 Pixel Pounce🎨",
-      "🖤 Velvet Fang🖤",
-      "💫 Comet Whisk💫"
+      "🐾 Whisker Spark",
+      "🌙 Luna Paw",
+      "🍡 Mochi Tail",
+      "🪐 Cosmo Cat",
+      "🎮 Pixel Pounce",
+      "🖤 Velvet Fang",
+      "💫 Comet Whisk"
     ];
 
     document.getElementById("catBtn").addEventListener("click", () => {
       const random = catNames[Math.floor(Math.random() * catNames.length)];
       document.getElementById("catName").textContent = "Your cat’s name is: " + random;
     });
-  </script>
+</script>
 </body>
 </html>

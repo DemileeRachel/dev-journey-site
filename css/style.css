@@ -1370,4 +1370,25 @@ body.about #skills.collapsed .skills-body{
   padding-bottom:0;
   overflow:hidden;
 }
+/* Fix Projects vertical spacing */
+body.projects .projects-showcase {
+    padding-top: 90px;    /* was too large */
+    padding-bottom: 120px;
+}
+/* Prevent title emoji from inheriting gradient */
+.no-gradient span,
+.projects-title span,
+.projects-title .emoji,
+.projects-title {
+    -webkit-text-fill-color: initial !important;
+    color: initial !important;
+}
+/* Prevent title emoji from inheriting gradient */
+.no-gradient span,
+.projects-title span,
+.projects-title .emoji,
+.projects-title {
+    -webkit-text-fill-color: initial !important;
+    color: initial !important;
+}
 
