@@ -266,3 +266,7 @@ if (skillsPanel && skillsToggle) {
     drawQuestion();
   }
 });
+// Toggle between dark and light
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  document.body.classList.toggle('light');
+});
