@@ -58,7 +58,7 @@
   <button id="squareBtn" class="fun-btn">Square it!</button>
   <p id="output"></p>
 
-  <py-script>
+ <py-script>
 from js import document
 
 def square_number(event=None):
@@ -66,9 +66,31 @@ def square_number(event=None):
     try:
         result = float(num) ** 2
         document.getElementById("output").innerText = f"Result: {result:g}"
-    except:
+    except Exception:
         document.getElementById("output").innerText = "Invalid input"
-  </py-script>
+</py-script>
+
+<script>
+  const squareBtn = document.getElementById("squareBtn");
+  const output = document.getElementById("output");
+
+  // Wait until PyScript is ready
+  addEventListener("pyscript-ready", () => {
+    const pyFunc = pyscript.interpreter.globals.get("square_number");
+
+    squareBtn.addEventListener("click", () => {
+      pyFunc();  // ✅ safely call the Python function now
+    });
+  });
+
+  // Optional loading indicator
+  squareBtn.addEventListener("click", () => {
+    if (!window.pyscript || !pyscript.interpreter) {
+      output.innerHTML = "⏳ Loading PyScript...";
+    }
+  });
+</script>
+
 
   <script>
     document.getElementById("squareBtn").addEventListener("click", async () => {
@@ -111,7 +133,7 @@ def square_number(event=None):
   <h3>🐱 Random Cat Name Generator</h3>
   <p>Generate a unique cat hero name!</p>
   <button id="catNameBtn" class="fun-btn">Generate Cat Name</button>
-  
+
 </div>
 <p id="catNameOutput" style="margin-top:10px; font-weight:bold; font-size:1.1rem;"></p>
     </div>

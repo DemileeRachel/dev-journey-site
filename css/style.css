@@ -740,4 +740,18 @@ body.projects {
 @keyframes blinkCursor {
   50% { border-color: transparent; }
 }
+.back-home {
+  color: #000 !important;     /* make text black */
+  background: #dcdcff;        /* optional: light purple background to match your theme */
+  border-radius: 8px;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.back-home:hover {
+  transform: scale(1.05);
+}
 
