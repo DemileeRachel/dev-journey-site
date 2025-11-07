@@ -858,3 +858,69 @@ body.sandbox .project-card .fun-btn {
   padding: 7px 14px;
   font-size: 0.9rem;
 }
+/* === Remove all purple tint / blending on Sandbox === */
+body.sandbox #dev-status,
+body.sandbox .float-emoji,
+body.sandbox .emoji,
+body.sandbox span,
+body.sandbox .projects-title span,
+body.sandbox .projects-sub span {
+  color: inherit !important;
+  -webkit-text-fill-color: initial !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  text-shadow: none !important;
+}
+
+/* Make Sandbox dev-status text match normal body text */
+body.sandbox #dev-status {
+  color: var(--text-dark) !important;
+  text-shadow: none !important;
+  border-right: 2px solid var(--text-dark) !important;
+}
+/* === Sandbox SQL Panel Alignment Fix === */
+body.sandbox .project-card h3 {
+  margin-bottom: 6px;
+}
+
+body.sandbox .project-card p {
+  margin: 6px 0 8px 0;
+  font-size: 0.9rem;
+}
+
+/* Make the SQL generator card slightly taller and pull content up */
+body.sandbox .project-card:nth-of-type(3) {
+  padding-top: 14px;
+  padding-bottom: 12px;
+  min-height: 270px; /* ensure space for buttons */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+/* Compact label/input spacing */
+body.sandbox .project-card:nth-of-type(3) label {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+body.sandbox .project-card:nth-of-type(3) input[type="text"] {
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+/* Buttons visible & tidy */
+body.sandbox .project-card:nth-of-type(3) .fun-btn {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  padding: 7px 12px;
+  align-self: center;
+}
