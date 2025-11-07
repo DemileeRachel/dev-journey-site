@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sandbox | My Dev Journey</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- PyScript (for Python tests) -->
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.1/core.css" />
+  <script src="https://pyscript.net/releases/2024.6.1/core.js"></script>
+</head>
+
+<body class="projects sandbox">
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="logo">My Dev Journey</div>
+
+      <div class="center-group">
+        <div id="clock-container">
+          <h2>🕒 Time</h2>
+          <div id="uk-clock">--:--:--</div>
+        </div>
+        <button id="theme-toggle">🌗 Theme</button>
+      </div>
+
+      <button id="menuToggle" class="menu-toggle">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="sandbox.html" class="active">Sandbox</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== SANDBOX SECTION ===== -->
+  <section class="projects-showcase">
+    <div class="projects-wrapper">
+      <!-- LEFT COLUMN -->
+      <div class="projects-col left">
+        <div class="project-card">
+          <h3>🎨 CSS Tricks</h3>
+          <p>Play with gradients, transitions, or custom effects:</p>
+          <div id="css-demo-box" style="width:100%;height:100px;border-radius:10px;background:linear-gradient(90deg,#a5d8ff,#cdb4ff);transition:background 0.8s;"></div>
+          <button id="colorShift" class="fun-btn" style="margin-top:8px;">Change Gradient</button>
+        </div>
+
+        <div class="project-card">
+          <h3>🐍 Python Visualization (PyScript)</h3>
+          <p>Run Python in-browser — soon with Plotly/Seaborn!</p>
+          <py-script>
+import random
+from js import document
+nums = [random.randint(1,10) for _ in range(5)]
+document.getElementById("py-output").innerText = f"Random numbers: {nums}"
+          </py-script>
+          <p id="py-output" style="margin-top:6px;"></p>
+        </div>
+      </div>
+
+      <!-- CENTER -->
+      <div class="projects-center">
+        <h1 class="projects-title">🧪 Sandbox Experiments</h1>
+        <p class="projects-sub">A space for half-finished ideas and visual tests ✨</p>
+        <a href="index.html" class="back-home">← Back to Home</a>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="projects-col right">
+        <div class="project-card">
+          <h3>🧠 SQL Query Experiment</h3>
+          <p>Try writing SQL in your head — no DB required 😄</p>
+          <pre style="background:rgba(255,255,255,0.08);border-radius:8px;padding:10px;text-align:left;font-size:0.85rem;">
+SELECT product, SUM(sales) AS total_sales
+FROM sales_data
+WHERE region = 'North'
+GROUP BY product
+ORDER BY total_sales DESC;
+          </pre>
+        </div>
+
+        <div class="project-card">
+          <h3>⚡ JavaScript Playground</h3>
+          <p>Run quick snippets right here:</p>
+          <input id="js-input" type="text" placeholder="2 + 2 * 3" />
+          <button id="runJs" class="fun-btn">Run JS</button>
+          <p id="js-output" style="margin-top:6px;"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    © 2025 My Dev Journey · built with 💜
+  </footer>
+
+  <div id="emoji-container"></div>
+  <div id="dev-status"></div>
+
+  <!-- ===== JS ===== -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    /* Clock */
+    const clock = document.getElementById("uk-clock");
+    function tick() {
+      clock.textContent = new Date().toLocaleTimeString("en-GB", {
+        timeZone: "Europe/London",
+        hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false
+      });
+    }
+    tick(); setInterval(tick, 1000);
+
+    /* Theme toggle */
+    const themeBtn = document.getElementById("theme-toggle");
+    const THEME_KEY = "siteTheme";
+    const savedTheme = localStorage.getItem(THEME_KEY) || "dark";
+    document.body.classList.toggle("light", savedTheme === "light");
+    themeBtn.textContent = savedTheme === "light" ? "🌙 Dark Mode" : "🌞 Light Mode";
+    themeBtn.addEventListener("click", () => {
+      const next = document.body.classList.contains("light") ? "dark" : "light";
+      document.body.classList.toggle("light", next === "light");
+      localStorage.setItem(THEME_KEY, next);
+      themeBtn.textContent = next === "light" ? "🌙 Dark Mode" : "🌞 Light Mode";
+    });
+
+    /* CSS Gradient Shift */
+    const box = document.getElementById("css-demo-box");
+    document.getElementById("colorShift").addEventListener("click", () => {
+      const c1 = `hsl(${Math.random()*360},70%,75%)`;
+      const c2 = `hsl(${Math.random()*360},70%,75%)`;
+      box.style.background = `linear-gradient(90deg,${c1},${c2})`;
+    });
+
+    /* JS Runner */
+    document.getElementById("runJs").addEventListener("click", () => {
+      const inp = document.getElementById("js-input").value;
+      const out = document.getElementById("js-output");
+      try {
+        out.textContent = `Result: ${eval(inp)}`;
+      } catch {
+        out.textContent = "⚠️ Invalid JavaScript expression";
+      }
+    });
+
+    /* Debugging text */
+    const statusEl = document.getElementById("dev-status");
+    if (statusEl) {
+      const messages = [
+        "🧪 Testing CSS gradients...",
+        "🐍 Running Python snippets...",
+        "💾 Saving sandbox progress...",
+        "⚡ Evaluating JavaScript...",
+        "🎨 Experimenting with styles...",
+        "🔍 Debugging creative code..."
+      ];
+      let i=0,j=0,del=false;
+      (function type(){
+        const cur=messages[i];
+        statusEl.textContent=cur.slice(0,j);
+        j+=del?-1:1;
+        if(!del&&j===cur.length){del=true;setTimeout(type,1200);return;}
+        if(del&&j===0){del=false;i=(i+1)%messages.length;}
+        setTimeout(type,del?40:90);
+      })();
+    }
+
+    /* Floating emojis */
+    const emojiContainer=document.getElementById("emoji-container");
+    function spawnEmoji(){
+      const list=["🧪","💡","🎨","⚙️","🐍","✨"];
+      const e=document.createElement("div");
+      e.className="float-emoji";
+      e.textContent=list[Math.floor(Math.random()*list.length)];
+      e.style.left=Math.random()*100+"vw";
+      e.style.animationDuration=3+Math.random()*3+"s";
+      emojiContainer.appendChild(e);
+      setTimeout(()=>e.remove(),7000);
+    }
+    setInterval(spawnEmoji,1500);
+  });
+  </script>
+</body>
+</html>
