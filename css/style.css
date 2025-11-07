@@ -1206,3 +1206,34 @@ body.sandbox .project-card:nth-of-type(3) .fun-btn + .fun-btn {
   animation: copiedFlash 0.8s ease;
   color: #000 !important;
 }
+/* === FINAL DEBUG + NO-SCROLL FIX === */
+
+/* Debug text visible on all desktop pages (no scrollbars) */
+#dev-status {
+  position: fixed;
+  bottom: 15px;
+  left: 20px;
+  font-family: monospace;
+  font-size: 1rem;
+  color: #a78bfa;
+  opacity: 0.9;
+  white-space: nowrap;
+  pointer-events: none;
+  border-right: 2px solid #a5d8ff;
+  animation: blinkCursor 0.8s steps(1) infinite;
+  text-shadow: 0 0 8px rgba(167,139,250,0.6);
+  z-index: 9999;
+  overflow: visible;
+}
+
+/* ✅ No scroll on desktop, scroll allowed only on small screens */
+html, body {
+  overflow: hidden;               /* remove scrollbars for full-screen pages */
+  height: 100%;
+}
+
+@media (max-width: 1000px) {
+  html, body {
+    overflow-y: auto;             /* allow scroll only on mobile/tablet */
+  }
+}

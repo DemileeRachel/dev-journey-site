@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const name = localStorage.getItem('visitorName') || '';
     const base = computeGreeting();
     if (greetingEl) {
-      // keep exact text + emoji
       greetingEl.innerHTML = `${base}${name ? ', ' + name : ''}! <span id="greeting-emoji" class="emoji">🌸</span>`;
     }
   }
@@ -280,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ===========================
-     CAT NAME GENERATOR (1 emoji at end only)
+     CAT NAME GENERATOR
   ============================ */
   const catBtn = document.getElementById("catNameBtn");
   const catOut = document.getElementById("catNameOutput");
@@ -306,14 +305,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
       const name = names[Math.floor(Math.random() * names.length)];
       const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
-      // names/prefixes contain no emoji; only suffix has exactly one emoji
       catOut.textContent = `${prefix} ${name} ${suffix}`;
     });
   }
 
   /* ===========================
      ANIMATED TYPING STATUS TEXT
-     (page-specific messages)
   ============================ */
   (function devStatus() {
     const statusEl = document.getElementById('dev-status');
@@ -363,19 +360,29 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error(err);
     }
   });
-copyBtn?.addEventListener("click", async () => {
-  const text = sqlOut.textContent.trim();
-  if (!text) return alert("⚠️ No SQL query to copy!");
-  try {
-    await navigator.clipboard.writeText(text);
-    copyBtn.textContent = "✅ Copied!";
-    copyBtn.classList.add("copied"); // 🔥 triggers CSS flash
-    setTimeout(() => {
-      copyBtn.textContent = "📋 Copy";
-      copyBtn.classList.remove("copied");
-    }, 1500);
-  } catch {
-    alert("❌ Failed to copy. Please copy manually.");
+
+  /* ===========================
+     SQL COPY BUTTON ANIMATION (GLOBAL)
+  ============================ */
+  const copyBtn = document.getElementById("copySQL");
+  const sqlOut = document.getElementById("sqlOutput");
+
+  if (copyBtn && sqlOut) {
+    copyBtn.addEventListener("click", async () => {
+      const text = sqlOut.textContent.trim();
+      if (!text) return alert("⚠️ No SQL query to copy!");
+      try {
+        await navigator.clipboard.writeText(text);
+        copyBtn.textContent = "✅ Copied!";
+        copyBtn.classList.add("copied");
+        setTimeout(() => {
+          copyBtn.textContent = "📋 Copy";
+          copyBtn.classList.remove("copied");
+        }, 1500);
+      } catch {
+        alert("❌ Failed to copy. Please copy manually.");
+      }
+    });
   }
-});
-});
+
+}); // <-- closes DOMContentLoaded correctly
