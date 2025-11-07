@@ -114,19 +114,19 @@ def square_number(event=None):
     const catOut = document.getElementById("catNameOutput");
 
     const prefixes = [
-      "🐾 Sir", "🎩 Lady", "🛡️ Captain", "🧪 Doctor", "🕶️ Agent",
-      "📚 Professor", "👑 Chief", "🦴 Lord", "🌙 Queen", "🧶 Count"
+      "Sir", "Lady", "Captain", "Doctor", "Agent",
+      "Professor", "Chief", "Lord", "Queen", "Count"
     ];
 
     const names = [
-      "🌌 Galaxy Whiskers", "💧 Slimepaw", "🐝 Beeclaw", "🎩 Suitpaw", "🌿 Ivyfur",
-      "🐾 Pixel", "🌈 Mochi", "⚡ Shadow", "☁️ Luna", "🔥 Ember", "💎 Crystal", "🌊 Ripple"
+      "Galaxy Whiskers", "Slimepaw", "Beeclaw", "Suitpaw", "Ivyfur",
+      "Pixel", "Mochi", "Shadow", "Luna", "Ember", "Crystal", "Ripple"
     ];
 
     const suffixes = [
-      "🌟 the Brave", "🌀 of the Portal", "👻 the Sneaky", "🪴 of the Ivy",
-      "🚀 the Adventurer", "💤 the Dreamer", "🎮 the Coder", "👑 of Rogue Whiskers",
-      "🌠 of the Galaxy", "🐾 the Fearless", "🧭 the Wanderer"
+      "🌟 the Brave🌟", "🌀 of the Portal🌀", "👻 the Sneaky👻", "🪴 of the Ivy🪴",
+      "🚀 the Adventurer🚀", "💤 the Dreamer💤", "🎮 the Coder🎮", "👑 of Whiskers👑",
+      "🌠 of the Galaxy🌠", "🐾the Fearless🐾", "🧭 the Wanderer🧭"
     ];
 
     catBtn.addEventListener("click", () => {
@@ -235,14 +235,7 @@ def square_number(event=None):
 
         drawQuestion();
       }
-
-      /* === CAT NAME PLACEHOLDER === */
-      const catBtn = document.getElementById("catNameBtn");
-      if (catBtn) {
-        catBtn.addEventListener("click", () => {
-          alert("🐾 Random Cat Name Generator coming soon!");
-        });
-      }
+      
     });
   </script>
 
