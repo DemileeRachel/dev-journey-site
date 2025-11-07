@@ -1009,3 +1009,41 @@ body.sandbox .project-card:nth-of-type(3) .fun-btn {
 body.sandbox .project-card:nth-of-type(3) .fun-btn + .fun-btn {
   margin-left: 6px;
 }
+/* === Sandbox SQL Generator — Final Balanced Height === */
+body.sandbox .project-card:nth-of-type(3) {
+  padding-top: 14px;
+  padding-bottom: 16px;
+  min-height: 285px;              /* ⬆ slightly taller for visual balance */
+  transform: translateY(-6px);    /* gentle lift */
+}
+
+/* Inputs fine-tuned for spacing */
+body.sandbox .project-card:nth-of-type(3) input[type="text"] {
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  padding: 5px 8px;
+  height: 28px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+/* Keep labels tidy */
+body.sandbox .project-card:nth-of-type(3) label {
+  font-size: 0.82rem;
+  margin-top: 3px;
+  margin-bottom: 2px;
+  color: #ddd;
+}
+
+/* Button group alignment */
+body.sandbox .project-card:nth-of-type(3) .fun-btn {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  padding: 7px 12px;
+}
+
+body.sandbox .project-card:nth-of-type(3) .fun-btn + .fun-btn {
+  margin-left: 8px;
+}
