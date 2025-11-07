@@ -670,3 +670,27 @@ body.light .project-card input[type="number"] {
   margin-bottom: 4px;
   color: var(--accent-a);
 }
+/* === Typing Challenge Visibility Control === */
+#typing-game {
+  transition: all 0.4s ease;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* When hidden */
+#typing-game.typing-hidden {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+/* When visible */
+#typing-game.typing-visible {
+  max-height: 200px;  /* fits input + word comfortably */
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
