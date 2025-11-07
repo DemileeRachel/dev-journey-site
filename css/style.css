@@ -302,7 +302,42 @@ body.light .about-card {
   height: 100%;
   box-shadow: 0 4px 35px rgba(0,0,0,.25);
 }
+/* Skills panel */
+.skills-panel {
+  background: var(--panel-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 35px rgba(0,0,0,.25);
+  height: auto; /* allow height to grow naturally */
+  max-height: none; /* prevent clipping */
+}
 
+body.light .skills-panel {
+  background: var(--panel-light);
+  border-color: var(--border-light);
+}
+
+/* Skill content always visible (no scroll) */
+.skills-body {
+  flex: 1;
+  overflow: visible; /* no scrollbars */
+  padding-right: 0;
+}
+
+.skill-category {
+  background: rgba(255,255,255,.1);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+
+.skill-category h3 {
+  color: var(--accent-a);
+  margin-bottom: 6px;
+}
 body.light .skills-panel {
   background: var(--panel-light);
   border-color: var(--border-light);
