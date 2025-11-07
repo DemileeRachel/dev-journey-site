@@ -525,3 +525,35 @@ body.light .project-card input[type="number"] {
   .about-grid { grid-template-columns: 1fr; gap: 20px; padding: 20px; height: auto; }
   .skills-panel { height: auto; }
 }
+/* === Skills Panel Fit Refinement === */
+.skills-panel {
+  font-size: 0.9rem; /* slightly smaller overall text */
+  line-height: 1.4;  /* tighter spacing between lines */
+}
+
+.skills-header h2 {
+  font-size: 1.2rem; /* reduce title slightly */
+}
+
+.skill-category {
+  padding: 8px 12px;
+  margin-bottom: 8px;
+}
+
+.skill-category h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.skill-category ul, 
+.skill-category li {
+  margin: 2px 0;
+  padding: 0;
+  list-style-position: inside;
+}
+
+/* Make hide button fit nicely */
+.skills-header button {
+  font-size: 0.8rem;
+  padding: 4px 8px;
+}
