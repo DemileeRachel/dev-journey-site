@@ -182,7 +182,37 @@ ORDER BY total_sales DESC;
       setTimeout(()=>e.remove(),7000);
     }
     setInterval(spawnEmoji,1500);
+  <!-- 💾 SQL Query Generator -->
+<div class="sandbox-panel">
+  <h3>💾 SQL Query Generator</h3>
+  <p>Generate a basic SQL query template.</p>
+
+  <label>Table name:</label>
+  <input id="tableName" type="text" placeholder="users" />
+
+  <label>Columns (comma separated):</label>
+  <input id="columnList" type="text" placeholder="id, name, age" />
+
+  <label>Condition (optional):</label>
+  <input id="condition" type="text" placeholder="age > 30" />
+
+  <button id="genSQL" class="fun-btn">Generate SQL</button>
+  <pre id="sqlOutput" style="margin-top:10px; text-align:left;"></pre>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("genSQL");
+  const out = document.getElementById("sqlOutput");
+  btn?.addEventListener("click", () => {
+    const table = document.getElementById("tableName").value.trim() || "my_table";
+    const cols = document.getElementById("columnList").value.trim() || "*";
+    const cond = document.getElementById("condition").value.trim();
+    let query = `SELECT ${cols} FROM ${table}`;
+    if (cond) query += ` WHERE ${cond}`;
+    query += ";";
+    out.textContent = query;
   });
-  </script>
+</script>
 </body>
 </html>

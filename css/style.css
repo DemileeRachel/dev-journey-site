@@ -649,3 +649,13 @@ body.light .project-card input[type="number"] {
     justify-content: center;
   }
 }
+/* === Remove purple tint from Sandbox emojis === */
+body.sandbox .float-emoji,
+body.sandbox .emoji,
+body.sandbox #dev-status,
+body.sandbox span {
+  color: initial !important;
+  -webkit-text-fill-color: initial !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}

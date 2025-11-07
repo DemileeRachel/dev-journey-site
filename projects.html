@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | My Dev Journey</title>
 
-  <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- PyScript core -->
+  <!-- ✅ PyScript core -->
   <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.1/core.css" />
   <script src="https://pyscript.net/releases/2024.6.1/core.js"></script>
 </head>
@@ -24,17 +23,16 @@
           <h2>🕒 Time</h2>
           <div id="uk-clock">--:--:--</div>
         </div>
-        <button id="theme-toggle">🌞 Light Mode</button>
+        <button id="theme-toggle">🌗 Theme</button>
       </div>
 
       <button id="menuToggle" class="menu-toggle">☰</button>
       <div class="nav-links" id="navLinks">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="projects.html" class="active">Projects</a>
-  <a href="sandbox.html">Sandbox</a>
-</div>
-
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="sandbox.html">Sandbox</a>
+      </div>
     </div>
   </nav>
 
@@ -62,7 +60,7 @@
           <button id="squareBtn" class="fun-btn" disabled>⏳ Loading PyScript...</button>
           <p id="output" style="margin-top:6px;"></p>
 
-<py-script>
+          <py-script>
 from js import document
 
 def square_number(event=None):
@@ -72,8 +70,7 @@ def square_number(event=None):
         document.getElementById("output").innerText = f"Result: {result:g}"
     except Exception:
         document.getElementById("output").innerText = "Invalid input"
-</py-script>
-
+          </py-script>
         </div>
       </div>
 
@@ -203,25 +200,20 @@ def square_number(event=None):
       });
     }
 
-    /* === PYSCRIPT SAFE HOOK === */
-    function hookPy() {
+    /* === FIXED PYSCRIPT === */
+    document.addEventListener("py:ready", () => {
       const btn = document.getElementById("squareBtn");
       const out = document.getElementById("output");
-      if (!btn || !out) return true;
-      if (!(window.pyscript && pyscript.interpreter)) return false;
       try {
-        const pyFunc = pyscript.interpreter.globals.get("square_number");
+        const pyFunc = pyscript.runtime.globals.get("square_number"); // ✅ fixed
         btn.disabled = false;
         btn.textContent = "Square it!";
         btn.onclick = () => pyFunc();
-        return true;
       } catch (err) {
         out.textContent = "⚠️ PyScript function not found!";
         console.error(err);
-        return true;
       }
-    }
-    if (!hookPy()) document.addEventListener("py:ready", hookPy, { once: true });
+    });
 
     /* === DEBUGGING TEXT === */
     const statusEl = document.getElementById("dev-status");
@@ -238,14 +230,15 @@ def square_number(event=None):
         "😺 Debugging pawsitive code..."
       ];
       let i = 0, j = 0, del = false;
-      (function type() {
+      function type() {
         const cur = messages[i];
         statusEl.textContent = cur.slice(0, j);
         j += del ? -1 : 1;
         if (!del && j === cur.length) { del = true; setTimeout(type, 1000); return; }
         if (del && j === 0) { del = false; i = (i + 1) % messages.length; }
         setTimeout(type, del ? 40 : 90);
-      })();
+      }
+      type();
     }
 
     /* === FLOATING EMOJIS === */
@@ -262,15 +255,6 @@ def square_number(event=None):
       setTimeout(() => e.remove(), 7000);
     }
     setInterval(spawnEmoji, 1500);
-
-    /* === Fix emoji color === */
-    function wrapEmoji(el) {
-      if (!el) return;
-      const txt = el.textContent;
-      el.innerHTML = txt.replace(/([\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}]+)/gu, '<span class="emoji">$1</span>');
-    }
-    wrapEmoji(document.querySelector(".projects-title"));
-    wrapEmoji(document.querySelector(".projects-sub"));
   });
   </script>
 </body>
