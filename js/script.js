@@ -363,5 +363,19 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error(err);
     }
   });
-
+copyBtn?.addEventListener("click", async () => {
+  const text = sqlOut.textContent.trim();
+  if (!text) return alert("⚠️ No SQL query to copy!");
+  try {
+    await navigator.clipboard.writeText(text);
+    copyBtn.textContent = "✅ Copied!";
+    copyBtn.classList.add("copied"); // 🔥 triggers CSS flash
+    setTimeout(() => {
+      copyBtn.textContent = "📋 Copy";
+      copyBtn.classList.remove("copied");
+    }, 1500);
+  } catch {
+    alert("❌ Failed to copy. Please copy manually.");
+  }
+});
 });

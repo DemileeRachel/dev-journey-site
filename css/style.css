@@ -1186,3 +1186,23 @@ body.sandbox .project-card:nth-of-type(3) .fun-btn {
 body.sandbox .project-card:nth-of-type(3) .fun-btn + .fun-btn {
   margin-left: 8px;
 }
+/* === SQL Copy Button Visual Feedback === */
+@keyframes copiedFlash {
+  0% {
+    transform: scale(1);
+    background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+  }
+  40% {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #b4f8c8, #a0f0a0); /* soft green flash */
+  }
+  100% {
+    transform: scale(1);
+    background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+  }
+}
+
+.fun-btn.copied {
+  animation: copiedFlash 0.8s ease;
+  color: #000 !important;
+}
