@@ -106,6 +106,7 @@ ORDER BY total_sales DESC;
           <input id="condition" type="text" placeholder="age > 30" />
 
           <button id="genSQL" class="fun-btn">Generate SQL</button>
+          <button id="copySQL" class="fun-btn" style="margin-left:5px;">📋 Copy</button>
           <pre id="sqlOutput" style="margin-top:10px; text-align:left;"></pre>
         </div>
       </div>
@@ -166,16 +167,31 @@ ORDER BY total_sales DESC;
     });
 
     /* === SQL GENERATOR === */
-    const btn = document.getElementById("genSQL");
-    const out = document.getElementById("sqlOutput");
-    btn?.addEventListener("click", () => {
+    const genBtn = document.getElementById("genSQL");
+    const copyBtn = document.getElementById("copySQL");
+    const sqlOut = document.getElementById("sqlOutput");
+
+    genBtn?.addEventListener("click", () => {
       const table = document.getElementById("tableName").value.trim() || "my_table";
       const cols = document.getElementById("columnList").value.trim() || "*";
       const cond = document.getElementById("condition").value.trim();
       let query = `SELECT ${cols} FROM ${table}`;
       if (cond) query += ` WHERE ${cond}`;
       query += ";";
-      out.textContent = query;
+      sqlOut.textContent = query;
+    });
+
+    /* 📋 Copy SQL button */
+    copyBtn?.addEventListener("click", async () => {
+      const text = sqlOut.textContent.trim();
+      if (!text) return alert("⚠️ No SQL query to copy!");
+      try {
+        await navigator.clipboard.writeText(text);
+        copyBtn.textContent = "✅ Copied!";
+        setTimeout(() => (copyBtn.textContent = "📋 Copy"), 1500);
+      } catch {
+        alert("❌ Failed to copy. Please copy manually.");
+      }
     });
 
     /* === DEBUGGING TEXT === */
@@ -185,6 +201,7 @@ ORDER BY total_sales DESC;
         "🧪 Testing CSS gradients...",
         "🐍 Running Python snippets...",
         "💾 Generating SQL queries...",
+        "📋 Copying to clipboard...",
         "⚡ Evaluating JavaScript...",
         "🎨 Experimenting with styles...",
         "🔍 Debugging creative code..."
@@ -217,4 +234,5 @@ ORDER BY total_sales DESC;
   </script>
 </body>
 </html>
+
 
