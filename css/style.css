@@ -829,3 +829,32 @@ body.sandbox #dev-status {
   filter: none !important;
   mix-blend-mode: normal !important;
 }
+/* === Sandbox Card Spacing Adjust === */
+body.sandbox .project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;  /* instead of space-between */
+  align-items: stretch;
+  padding: 16px 18px;
+  gap: 6px;                      /* tighter internal spacing */
+  min-height: 180px;             /* keep balanced look */
+  max-height: 260px;             /* ensures full visibility */
+}
+
+/* Specific tightening for SQL generator inputs/buttons */
+body.sandbox .project-card input[type="text"] {
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+  padding: 5px 8px;
+}
+
+body.sandbox .project-card label {
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+body.sandbox .project-card .fun-btn {
+  margin-top: 6px;
+  padding: 7px 14px;
+  font-size: 0.9rem;
+}
