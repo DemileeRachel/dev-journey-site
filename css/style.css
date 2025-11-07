@@ -1047,3 +1047,30 @@ body.sandbox .project-card:nth-of-type(3) .fun-btn {
 body.sandbox .project-card:nth-of-type(3) .fun-btn + .fun-btn {
   margin-left: 8px;
 }
+/* === Debugging Text Visibility Fix (Desktop) === */
+#dev-status {
+  position: fixed;
+  bottom: 15px;
+  left: 20px;
+  font-family: monospace;
+  font-size: 1rem;
+  color: #a78bfa; /* lavender accent */
+  opacity: 0.9;
+  white-space: nowrap;
+  pointer-events: none;
+  border-right: 2px solid #a5d8ff;
+  animation: blinkCursor 0.8s steps(1) infinite;
+  text-shadow: 0 0 8px rgba(167,139,250,0.6);
+  z-index: 9999; /* ⬆ ensures visibility above panels and nav */
+}
+
+/* Restore overflow for desktop so status is visible */
+html, body {
+  overflow: visible !important;
+}
+
+/* Re-restrict overflow only for project & sandbox center wrappers */
+body.projects .projects-showcase,
+body.sandbox .projects-showcase {
+  overflow: hidden;
+}
