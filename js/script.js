@@ -42,31 +42,27 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(tick, 1000);
 
   /* ===========================
-     THEME TOGGLE (FIXED + LABEL)
+     THEME TOGGLE
   ============================ */
   const THEME_KEY = 'siteTheme';
-
   const applyTheme = (theme) => {
     document.body.classList.toggle('light', theme === 'light');
     document.body.classList.toggle('dark', theme === 'dark');
-    if (themeBtn) {
+    if (themeBtn)
       themeBtn.textContent = theme === 'dark' ? '🌞 Light Mode' : '🌙 Dark Mode';
-    }
   };
-
-  const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
-  applyTheme(savedTheme);
+  applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
 
   if (themeBtn) {
     themeBtn.addEventListener('click', () => {
-      const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
-      localStorage.setItem(THEME_KEY, nextTheme);
-      applyTheme(nextTheme);
+      const next = document.body.classList.contains('dark') ? 'light' : 'dark';
+      localStorage.setItem(THEME_KEY, next);
+      applyTheme(next);
     });
   }
 
   /* ===========================
-     GREETING MESSAGE + NAME
+     GREETING MESSAGE
   ============================ */
   function computeGreeting() {
     const h = new Date().getHours();
@@ -81,19 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (greetingEl)
       greetingEl.innerHTML = `${base}${name ? ', ' + name : ''}! <span id="greeting-emoji" class="emoji">🌸</span>`;
   }
-
-  if (!localStorage.getItem('visitorName')) {
-    localStorage.setItem('visitorName', '');
-  }
-
   setGreetingLine();
-  setInterval(setGreetingLine, 60000);
 
   if (changeName) {
     changeName.addEventListener('click', (e) => {
       e.preventDefault();
-      const current = localStorage.getItem('visitorName') || '';
-      const next = prompt("What's your name?", current);
+      const next = prompt("What's your name?", localStorage.getItem('visitorName') || '');
       if (next !== null) {
         localStorage.setItem('visitorName', next.trim());
         setGreetingLine();
@@ -104,26 +93,17 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ===========================
      GREETING EMOJI INTERACTION
   ============================ */
-  function initEmoji() {
-    const greetingEmoji = document.getElementById('greeting-emoji');
-    if (greetingEmoji) {
-      const emojiSet = ['🌸','💜','🌞','🐍','💻','🚀','🎨','🧠','✨'];
-      const savedEmoji = localStorage.getItem('greetingEmoji');
-      if (savedEmoji) greetingEmoji.textContent = savedEmoji;
-
-      greetingEmoji.addEventListener('click', () => {
-        let next;
-        do {
-          next = emojiSet[Math.floor(Math.random() * emojiSet.length)];
-        } while (next === greetingEmoji.textContent);
-        greetingEmoji.textContent = next;
-        localStorage.setItem('greetingEmoji', next);
-        greetingEmoji.classList.add('clicked');
-        setTimeout(() => greetingEmoji.classList.remove('clicked'), 400);
-      });
+  const emojiSet = ['🌸','💜','🌞','🐍','💻','🚀','🎨','🧠','✨'];
+  document.addEventListener('click', (e) => {
+    if (e.target.id === 'greeting-emoji') {
+      let next;
+      do {
+        next = emojiSet[Math.floor(Math.random() * emojiSet.length)];
+      } while (next === e.target.textContent);
+      e.target.textContent = next;
+      localStorage.setItem('greetingEmoji', next);
     }
-  }
-  initEmoji();
+  });
 
   /* ===========================
      MINI TYPING GAME
@@ -157,15 +137,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===========================
-     TOGGLE TYPING GAME VISIBILITY
-  ============================ */
   if (greetBtn && tgWrap) {
     greetBtn.addEventListener('click', () => {
       const isVisible = tgWrap.classList.contains('typing-visible');
       tgWrap.classList.toggle('typing-visible');
       tgWrap.classList.toggle('typing-hidden');
-      greetBtn.textContent = isVisible ? "Do you press?" : "Hide Challenge";
+      greetBtn.textContent = isVisible ? "Do you press?✨" : "Hide Challenge💤";
     });
   }
 
@@ -174,12 +151,10 @@ document.addEventListener('DOMContentLoaded', () => {
   ============================ */
   const skillsPanel  = document.getElementById('skills');
   const skillsToggle = document.getElementById('skillsToggle');
-
   if (skillsPanel && skillsToggle) {
     skillsToggle.addEventListener('click', () => {
       const collapsed = skillsPanel.classList.toggle('collapsed');
       skillsToggle.textContent = collapsed ? 'Show Skills' : 'Hide Skills';
-      skillsToggle.setAttribute('aria-expanded', !collapsed);
     });
   }
 
@@ -187,10 +162,10 @@ document.addEventListener('DOMContentLoaded', () => {
      SQL MINI QUIZ
   ============================ */
   const quizData = [
-    { question: "Which SQL keyword is used to retrieve data from a database?", options: ["GET", "SELECT", "FETCH", "SHOW"], correct: "SELECT" },
-    { question: "Which clause filters rows returned by a SELECT query?", options: ["ORDER BY", "WHERE", "GROUP BY", "HAVING"], correct: "WHERE" },
-    { question: "Which SQL statement is used to add new data into a table?", options: ["ADD", "INSERT INTO", "UPDATE", "APPEND"], correct: "INSERT INTO" },
-    { question: "Which command permanently removes a table from the database?", options: ["DELETE FROM", "DROP TABLE", "REMOVE TABLE", "TRUNCATE TABLE"], correct: "DROP TABLE" }
+    { q: "Which SQL keyword retrieves data?", o: ["GET","SELECT","FETCH","SHOW"], a: "SELECT" },
+    { q: "Which clause filters rows?", o: ["ORDER BY","WHERE","GROUP BY","HAVING"], a: "WHERE" },
+    { q: "Which adds new data?", o: ["ADD","INSERT INTO","UPDATE","APPEND"], a: "INSERT INTO" },
+    { q: "Which deletes an entire table?", o: ["DELETE FROM","DROP TABLE","REMOVE","TRUNCATE"], a: "DROP TABLE" }
   ];
 
   const quizContainer = document.getElementById('quiz-container');
@@ -199,122 +174,84 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressFill = document.getElementById('quiz-progress');
 
   if (quizContainer && nextBtn && resultText && progressFill) {
-    let qIndex = 0;
-    let qScore = 0;
-
-    function drawQuestion() {
-      const q = quizData[qIndex];
+    let i = 0, score = 0;
+    function draw() {
+      const q = quizData[i];
       quizContainer.innerHTML = `
-        <div class="quiz-question fade">
-          <p><strong>${qIndex + 1}. ${q.question}</strong></p>
-          ${q.options.map(o => `
-            <label class="quiz-option">
-              <input type="radio" name="answer" value="${o}"> ${o}
-            </label>
-          `).join('')}
-        </div>
+        <p><strong>${i+1}. ${q.q}</strong></p>
+        ${q.o.map(opt => `<label><input type="radio" name="ans" value="${opt}"> ${opt}</label><br>`).join('')}
       `;
-      updateProgress();
-    }
-
-    function updateProgress() {
-      const percent = ((qIndex) / quizData.length) * 100;
-      progressFill.style.width = percent + '%';
-    }
-
-    function showResult() {
-      quizContainer.innerHTML = `
-        <h3>🎉 Quiz Complete!</h3>
-        <p>You scored <strong>${qScore}</strong> / <strong>${quizData.length}</strong>.</p>
-        <button id="retry-btn" class="fun-btn">Try Again</button>
-      `;
-      progressFill.style.width = "100%";
       resultText.textContent = "";
-      nextBtn.style.display = "none";
-
-      const retry = document.getElementById('retry-btn');
-      retry.addEventListener('click', () => {
-        qIndex = 0;
-        qScore = 0;
-        nextBtn.style.display = "inline-block";
-        drawQuestion();
-      });
+      progressFill.style.width = (i / quizData.length) * 100 + "%";
     }
-
-    nextBtn.addEventListener('click', () => {
-      const picked = document.querySelector('input[name="answer"]:checked');
-      if (!picked) {
-        resultText.textContent = "⚠️ Select an answer first";
-        resultText.style.color = "#ff6b6b";
-        return;
+    nextBtn.onclick = () => {
+      const picked = document.querySelector('input[name="ans"]:checked');
+      if (!picked) return resultText.textContent = "⚠️ Select an answer!";
+      if (picked.value === quizData[i].a) score++;
+      i++;
+      if (i < quizData.length) draw();
+      else {
+        quizContainer.innerHTML = `<h3>🎉 You scored ${score}/${quizData.length}!</h3>`;
+        nextBtn.style.display = "none";
+        progressFill.style.width = "100%";
       }
-      if (picked.value === quizData[qIndex].correct) qScore++;
-      qIndex++;
-      resultText.textContent = "";
-      if (qIndex < quizData.length) drawQuestion();
-      else showResult();
-    });
-
-    drawQuestion();
+    };
+    draw();
   }
 
   /* ===========================
-     PAGE-SPECIFIC ANIMATED DEV STATUS + FLOATING EMOJIS
+     CAT NAME GENERATOR
+  ============================ */
+  const catBtn = document.getElementById("catNameBtn");
+  const catOut = document.getElementById("catNameOutput");
+
+  if (catBtn && catOut) {
+    const prefixes = ["Sir", "Lady", "Captain", "Doctor", "Agent", "Professor", "Chief", "Lord", "Queen", "Count"];
+    const names = ["Galaxy Whiskers", "Slimepaw", "Beeclaw", "Suitpaw", "Ivyfur", "Pixel", "Mochi", "Shadow", "Luna", "Ember"];
+    const suffixes = [
+      "the Brave 🌟","of the Portal 🌀","the Sneaky 👻","of the Ivy 🪴",
+      "the Adventurer 🚀","the Dreamer 💤","the Coder 🎮","of Rogue Whiskers 👑",
+      "of the Galaxy 🌠","the Wanderer 🧭"
+    ];
+    catBtn.addEventListener("click", () => {
+      const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+      const name = names[Math.floor(Math.random() * names.length)];
+      const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+      catOut.textContent = `${prefix} ${name} ${suffix}`;
+    });
+  }
+
+  /* ===========================
+     PAGE-SPECIFIC DEV STATUS + FLOATING EMOJIS
   ============================ */
   const statusEl = document.getElementById("dev-status");
   const emojiContainer = document.getElementById("emoji-container");
 
   if (statusEl) {
     const messages = document.body.classList.contains("projects")
-      ? [
-          "🐾 Compiling cat magic...",
-          "😸 Debugging portals...",
-          "💻 Refactoring whiskers...",
-          "🚀 Launching new cats...",
-          "🌌 Purring through the cosmos..."
-        ]
-      : [
-          "💻 Debugging...",
-          "🧠 Refactoring...",
-          "🚀 Compiling...",
-          "🐾 Feeding the cats...",
-          "✨ Optimizing pixels...",
-          "🌿 Cleaning up code..."
-        ];
-
+      ? ["🐾 Compiling cat magic...","😸 Debugging portals...","💻 Refactoring whiskers...","🚀 Launching new cats...","🌌 Purring through the cosmos..."]
+      : ["💻 Debugging...","🧠 Refactoring...","🚀 Compiling...","🐾 Feeding the cats...","✨ Optimizing pixels...","🌿 Cleaning up code..."];
     let msgIndex = 0, charIndex = 0, deleting = false;
-
     function typeEffect() {
       const current = messages[msgIndex];
       statusEl.textContent = current.slice(0, charIndex);
       charIndex += deleting ? -1 : 1;
-
       if (!deleting && charIndex === current.length) {
-        deleting = true;
-        setTimeout(typeEffect, 1500);
-        return;
+        deleting = true; setTimeout(typeEffect, 1200); return;
       }
       if (deleting && charIndex === 0) {
-        deleting = false;
-        msgIndex = (msgIndex + 1) % messages.length;
+        deleting = false; msgIndex = (msgIndex + 1) % messages.length;
       }
       setTimeout(typeEffect, deleting ? 40 : 90);
     }
-
-    // Smooth fade-in
-    statusEl.style.opacity = "0";
-    setTimeout(() => {
-      statusEl.style.transition = "opacity 1.2s ease";
-      statusEl.style.opacity = "1";
-      typeEffect();
-    }, 300);
+    typeEffect();
   }
 
   function spawnEmoji() {
     if (!emojiContainer) return;
     const list = document.body.classList.contains("projects")
-      ? ["🐾", "🐈", "😸", "🧶", "🌌", "🐈‍⬛"]
-      : ["💻", "✨", "🚀", "💡", "🌸", "🐾", "🎨"];
+      ? ["🐾","🐈","😸","🧶","🌌","🐈‍⬛"]
+      : ["💻","✨","🚀","💡","🌸","🐾","🎨"];
     const e = document.createElement("div");
     e.className = "float-emoji";
     e.textContent = list[Math.floor(Math.random() * list.length)];
