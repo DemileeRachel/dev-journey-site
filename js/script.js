@@ -274,8 +274,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     drawQuestion();
   }
-    /* ===========================
-     ANIMATED STATUS TEXT
+  /* ===========================
+     ANIMATED TYPING STATUS TEXT
   ============================ */
   const statusEl = document.getElementById('dev-status');
   if (statusEl) {
@@ -288,14 +288,35 @@ document.addEventListener('DOMContentLoaded', () => {
       "✨ Optimizing pixels...",
       "🌿 Cleaning up code..."
     ];
-    let index = 0;
 
-    function cycleStatus() {
-      statusEl.textContent = messages[index];
-      index = (index + 1) % messages.length;
+    let msgIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typeEffect() {
+      const current = messages[msgIndex];
+
+      if (!deleting) {
+        // typing forward
+        statusEl.textContent = current.slice(0, ++charIndex);
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(typeEffect, 1500); // pause at full word
+          return;
+        }
+      } else {
+        // deleting backward
+        statusEl.textContent = current.slice(0, --charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          msgIndex = (msgIndex + 1) % messages.length;
+        }
+      }
+
+      const speed = deleting ? 40 : 90; // faster erase, slower type
+      setTimeout(typeEffect, speed);
     }
 
-    cycleStatus();
-    setInterval(cycleStatus, 4000); // matches the 4s fade cycle
+    typeEffect();
   }
 });

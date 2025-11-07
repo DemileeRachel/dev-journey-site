@@ -720,27 +720,24 @@ body.projects {
     opacity: 0;
   }
 }
-/* ===== ANIMATED DEV STATUS TEXT ===== */
+/* ===== ANIMATED DEV STATUS (Typing Effect) ===== */
 #dev-status {
   position: fixed;
   bottom: 15px;
-  left: 20px;                /* ⬅️ anchor to bottom-left */
+  left: 20px;
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--accent, #a78bfa);
-  opacity: 0;
-  animation: fadeInOut 4s ease-in-out infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid var(--accent, #a78bfa);
+  animation: blinkCursor 0.8s steps(1) infinite;
   z-index: 10;
   pointer-events: none;
+  text-shadow: 0 0 8px rgba(167, 139, 250, 0.6);
 }
 
-@keyframes fadeInOut {
-  0% { opacity: 0; transform: translateY(10px); }
-  10% { opacity: 1; transform: translateY(0); }
-  90% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-10px); }
-}
-#dev-status {
-  text-shadow: 0 0 8px rgba(167, 139, 250, 0.6);
+@keyframes blinkCursor {
+  50% { border-color: transparent; }
 }
 
