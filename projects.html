@@ -50,15 +50,15 @@
       </div>
 
       <!-- 🐍 PyScript Demo -->
-  <div class="project-card py-demo">
+ <div class="project-card py-demo">
   <h3>🌿 Python Interactive Demo (PyScript)</h3>
   <p>Run Python directly in your browser — try squaring a number!</p>
 
   <input id="numInput" type="number" placeholder="Enter number" />
-  <button id="squareBtn" class="fun-btn">Square it!</button>
-  <p id="output"></p>
+  <button id="squareBtn" class="fun-btn" disabled>⏳ Loading PyScript...</button>
+  <p id="output" style="margin-top:6px;"></p>
 
- <py-script>
+  <py-script>
 from js import document
 
 def square_number(event=None):
@@ -68,42 +68,36 @@ def square_number(event=None):
         document.getElementById("output").innerText = f"Result: {result:g}"
     except Exception:
         document.getElementById("output").innerText = "Invalid input"
-</py-script>
-
-<script>
-  const squareBtn = document.getElementById("squareBtn");
-  const output = document.getElementById("output");
-
-  // Wait until PyScript is ready
-  addEventListener("pyscript-ready", () => {
-    const pyFunc = pyscript.interpreter.globals.get("square_number");
-
-    squareBtn.addEventListener("click", () => {
-      pyFunc();  // ✅ safely call the Python function now
-    });
-  });
-
-  // Optional loading indicator
-  squareBtn.addEventListener("click", () => {
-    if (!window.pyscript || !pyscript.interpreter) {
-      output.innerHTML = "⏳ Loading PyScript...";
-    }
-  });
-</script>
-
+  </py-script>
 
   <script>
-    document.getElementById("squareBtn").addEventListener("click", async () => {
-      // wait until PyScript is loaded
-      if (window.pyscript && pyscript.interpreter) {
-        const pyFunc = pyscript.interpreter.globals.get("square_number");
-        pyFunc(); // call the Python function
-      } else {
-        document.getElementById("output").innerText = "⚠️ PyScript not ready yet";
+    const btn = document.getElementById("squareBtn");
+    const out = document.getElementById("output");
+
+    // 1️⃣ Show loading state until PyScript ready
+    window.addEventListener("pyscript-ready", () => {
+      btn.disabled = false;
+      btn.textContent = "Square it!";
+      btn.classList.add("ready");
+
+      // 2️⃣ Get Python function safely
+      const pyFunc = pyscript.interpreter.globals.get("square_number");
+
+      // 3️⃣ Run Python on click
+      btn.addEventListener("click", () => {
+        pyFunc(); // call Python directly
+      });
+    });
+
+    // 4️⃣ If user clicks too early (edge case)
+    btn.addEventListener("click", () => {
+      if (btn.disabled) {
+        out.innerHTML = "⚙️ Still loading PyScript runtime...";
       }
     });
   </script>
 </div>
+
     </div>
 
     <!-- CENTER TITLE -->
