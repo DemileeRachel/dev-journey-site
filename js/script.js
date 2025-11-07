@@ -274,4 +274,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     drawQuestion();
   }
+    /* ===========================
+     ANIMATED STATUS TEXT
+  ============================ */
+  const statusEl = document.getElementById('dev-status');
+  if (statusEl) {
+    const messages = [
+      "💻 Debugging...",
+      "🧠 Refactoring...",
+      "🚀 Compiling...",
+      "🪄 Deploying...",
+      "🐾 Feeding the cats...",
+      "✨ Optimizing pixels...",
+      "🌿 Cleaning up code..."
+    ];
+    let index = 0;
+
+    function cycleStatus() {
+      statusEl.textContent = messages[index];
+      index = (index + 1) % messages.length;
+    }
+
+    cycleStatus();
+    setInterval(cycleStatus, 4000); // matches the 4s fade cycle
+  }
 });
