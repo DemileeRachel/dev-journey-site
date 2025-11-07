@@ -569,3 +569,31 @@ body.light .project-card input[type="number"] {
 #typing-game { transition: all 0.4s ease; overflow: hidden; max-height: 0; opacity: 0; transform: translateY(-10px); }
 #typing-game.typing-hidden { max-height: 0; opacity: 0; transform: translateY(-10px); pointer-events: none; }
 #typing-game.typing-visible { max-height: 200px; opacity: 1; transform: translateY(0); pointer-events: auto; }
+/* ===== About Page Two-Column Layout ===== */
+.about-layout {
+  height: calc(100vh - var(--nav-h) - var(--footer-h));
+  display: grid;
+  grid-template-columns: minmax(640px, 1fr) 360px; /* left grows, right fixed */
+  gap: 32px;
+  align-items: start;
+  padding: 32px 40px;
+  box-sizing: border-box;
+}
+
+.about-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about-right {
+  width: 100%;
+}
+
+@media (max-width: 1000px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+    padding: 20px;
+  }
+}
