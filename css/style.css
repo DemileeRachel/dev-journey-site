@@ -32,7 +32,7 @@ html, body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
   transition: background-color 0.4s ease, color 0.4s ease;
-  overflow: hidden; /* prevent scroll on desktop */
+  overflow: hidden; /* remove scroll on desktop */
 }
 
 body {
@@ -83,6 +83,7 @@ body, #dev-status, .float-emoji, .emoji {
 .nav-links {
   display: flex;
   gap: 24px;
+  align-items: center;
 }
 
 .nav-links a {
@@ -102,15 +103,11 @@ body, #dev-status, .float-emoji, .emoji {
 }
 
 .nav-links a:hover::after,
-.nav-links a.active::after {
-  width: 100%;
-}
+.nav-links a.active::after { width: 100%; }
 
 .nav-links a.active { color: var(--accent-a); }
 
-.menu-toggle {
-  display: none;
-}
+.menu-toggle { display: none; }
 
 @media (max-width: 700px) {
   .menu-toggle {
@@ -121,7 +118,6 @@ body, #dev-status, .float-emoji, .emoji {
     border: none;
     cursor: pointer;
   }
-
   .nav-links {
     display: none;
     position: absolute;
@@ -133,49 +129,7 @@ body, #dev-status, .float-emoji, .emoji {
     border-radius: 10px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.4);
   }
-
   .nav-links.active { display: flex; }
-}
-
-/* Center Items (Clock + Theme) */
-.center-group {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-#clock-container {
-  background: rgba(255,255,255,0.1);
-  padding: 6px 14px;
-  border-radius: 10px;
-  color: #fff;
-  text-align: center;
-  border: 1px solid rgba(255,255,255,0.25);
-  box-shadow: 0 0 12px rgba(255,215,102,0.4);
-  font-size: 0.85rem;
-}
-
-#clock-container h2 {
-  color: #ffd166;
-  font-size: 0.8rem;
-  margin: 0;
-}
-
-#theme-toggle {
-  background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
-  color: #000;
-  font-weight: 600;
-  border: none;
-  border-radius: 10px;
-  padding: 6px 12px;
-  box-shadow: 0 0 10px rgba(150,150,255,0.4);
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-#theme-toggle:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 18px rgba(200,200,255,0.6);
 }
 
 /* ===========================
@@ -195,7 +149,6 @@ footer {
   z-index: 500;
   transition: background-color 0.4s ease, color 0.4s ease;
 }
-
 body.light footer {
   background-color: #f0f0ff;
   color: #111;
@@ -217,29 +170,13 @@ button, .fun-btn, .back-home {
   transition: all 0.25s ease;
   z-index: 10;
 }
-
 button:hover, .fun-btn:hover, .back-home:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(150,150,255,0.45);
 }
 
 /* ===========================
-   EMOJI COLORS (neutralize tint)
-=========================== */
-.emoji, #greeting-emoji, .float-emoji,
-.projects-title .emoji, .projects-sub span,
-body.projects .projects-title span, body.projects .projects-sub span {
-  color: initial !important;
-  -webkit-text-fill-color: initial !important;
-  mix-blend-mode: normal !important;
-  filter: none !important;
-  transition: transform .3s ease;
-}
-
-#greeting-emoji:hover { transform: scale(1.2) rotate(10deg); }
-
-/* ===========================
-   HERO (HOME)
+   HERO
 =========================== */
 .hero {
   height: calc(100vh - var(--nav-h) - var(--footer-h));
@@ -249,7 +186,6 @@ body.projects .projects-title span, body.projects .projects-sub span {
   align-items: center;
   text-align: center;
 }
-
 .hero h1 {
   font-size: 2.8rem;
   background: linear-gradient(90deg, #8b5cf6, #6366f1);
@@ -258,7 +194,7 @@ body.projects .projects-title span, body.projects .projects-sub span {
 }
 
 /* ===========================
-   ABOUT PAGE (Fixed & Clean)
+   ABOUT
 =========================== */
 .about-grid {
   height: calc(100vh - var(--nav-h) - var(--footer-h));
@@ -270,7 +206,6 @@ body.projects .projects-title span, body.projects .projects-sub span {
   padding: 0 60px;
   box-sizing: border-box;
 }
-
 .about-card {
   align-self: center;
   background: rgba(255,255,255,0.08);
@@ -280,7 +215,6 @@ body.projects .projects-title span, body.projects .projects-sub span {
   color: #eee;
   box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
-
 .skills-panel {
   background: rgba(255,255,255,0.08);
   border-radius: 20px;
@@ -294,161 +228,46 @@ body.projects .projects-title span, body.projects .projects-sub span {
   height: auto;
 }
 
-.skills-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  padding-bottom: 10px;
-}
-
-.skills-body {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  overflow: visible;
-}
-
-.skill-category {
-  background: rgba(255,255,255,.1);
-  border-radius: 12px;
-  padding: 10px 14px;
-  margin-bottom: 10px;
-}
-
-.skill-category h3 {
-  color: var(--accent-a);
-  margin-bottom: 6px;
-}
-
 /* ===========================
-   PROJECTS PAGE
+   PROJECTS + SANDBOX
 =========================== */
-body.projects { overflow: hidden; height: 100vh; }
+body.projects, body.sandbox { overflow: hidden; height: 100vh; }
 
-.projects-showcase {
+.projects-showcase, body.sandbox .projects-showcase {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 100px);
-  text-align: center;
+  height: calc(100vh - var(--nav-h) - var(--footer-h));
   padding: 40px 20px;
+  overflow: hidden;
 }
-
-.projects-wrapper {
+.projects-wrapper, body.sandbox .projects-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 60px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   max-width: 1400px;
   width: 100%;
 }
 
-.projects-col {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  width: 300px;
-  flex-shrink: 0;
-}
-
-.projects-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  text-align: center;
-  max-width: 400px;
-}
-
-.projects-title {
-  font-size: 2.3rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #cdb4ff, #a5d8ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 8px;
-}
-
-.projects-sub {
-  color: #bbb;
-  font-size: 1.1rem;
-  opacity: 0.8;
-  margin-bottom: 20px;
-}
-
-/* Project cards */
+/* Cards */
 .project-card {
   background: var(--panel-dark);
   border-radius: 18px;
-  padding: 20px;
+  padding: 18px 20px;
   box-shadow: 0 6px 25px rgba(0,0,0,0.25);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: stretch;
   transition: transform .3s ease, box-shadow .3s ease;
+  overflow: visible;
 }
-
-body.light .project-card {
-  background: var(--panel-light);
-  box-shadow: 0 4px 15px rgba(0,0,0,.1);
-  color: #111;
-}
-
 .project-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(200,180,255,0.4);
 }
-
-/* PyScript inputs/buttons */
-.project-card input[type="number"] {
-  background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.3);
-  border-radius: 8px;
-  color: #fff;
-  padding: 6px 10px;
-  width: 120px;
-  text-align: center;
-}
-
-body.light .project-card input[type="number"] {
-  background: rgba(0,0,0,.05);
-  color: #111;
-}
-
-.py-demo {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  align-items: center;
-}
-
-#squareBtn { transition: all 0.3s ease; }
-#squareBtn:disabled { opacity: 0.6; cursor: not-allowed; }
-
-.py-demo .fun-btn.ready {
-  background: linear-gradient(135deg, #b9b7ff, #d8c7ff);
-  color: #000;
-  transition: background 0.3s;
-}
-
-/* Back to home */
-.back-home {
-  display: inline-block;
-  margin-top: 10px;
-  background: #dcdcff;
-  color: #000 !important;
-  font-weight: 600;
-  border-radius: 10px;
-  padding: 8px 18px;
-  box-shadow: 0 0 10px rgba(150,150,255,0.3);
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-.back-home:hover { transform: scale(1.05); }
 
 /* ===========================
    FLOATING EMOJIS
@@ -461,14 +280,12 @@ body.light .project-card input[type="number"] {
   pointer-events: none;
   z-index: 1;
 }
-
 .float-emoji {
   position: absolute;
   font-size: 1.5rem;
   opacity: 0.8;
   animation: floatUp linear forwards;
 }
-
 @keyframes floatUp {
   0% { transform: translateY(100vh) translateX(0) scale(1); opacity: 1; }
   50% { transform: translateY(50vh) translateX(10px) scale(1.1); opacity: 0.8; }
@@ -476,7 +293,7 @@ body.light .project-card input[type="number"] {
 }
 
 /* ===========================
-   DEV STATUS ANIMATION
+   DEV STATUS — FINAL CLEAN
 =========================== */
 #dev-status {
   position: fixed;
@@ -484,817 +301,22 @@ body.light .project-card input[type="number"] {
   left: 20px;
   font-family: monospace;
   font-size: 1rem;
-  color: #a78bfa;               /* lavender accent */
-  opacity: 0.9;
-  white-space: nowrap;
-  pointer-events: none;
-  border-right: 2px solid #a5d8ff;
-  animation: blinkCursor 0.8s steps(1) infinite;
-  text-shadow: 0 0 8px rgba(167,139,250,0.6);
-  z-index: 100;
-}
-
-@keyframes blinkCursor {
-  50% { border-color: transparent; }
-}
-
-/* ===========================
-   RESPONSIVE FIXES
-=========================== */
-@media (max-width: 1000px) {
-  html, body { overflow-y: auto; }
-  footer { position: relative; }
-  .projects-showcase { height: auto; padding-bottom: 120px; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .about-grid { grid-template-columns: 1fr; gap: 20px; padding: 20px; height: auto; }
-  .skills-panel { height: auto; }
-}
-/* === Always show full nav on desktop === */
-.nav-links {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-}
-
-.menu-toggle {
-  display: none; /* hidden on desktop */
-}
-/* === Skills Panel Fit Refinement === */
-.skills-panel { font-size: 0.9rem; line-height: 1.4; }
-.skills-header h2 { font-size: 1.2rem; }
-.skill-category { padding: 8px 12px; margin-bottom: 8px; }
-.skill-category h3 { font-size: 1rem; margin-bottom: 4px; }
-.skill-category ul, .skill-category li { margin: 2px 0; padding: 0; list-style-position: inside; }
-.skills-header button { font-size: 0.8rem; padding: 4px 8px; }
-
-/* === FIX: Restored Collapsible Skills Behaviour === */
-#skills { transition: max-height 0.5s ease, opacity 0.3s ease; overflow: hidden; }
-#skills.collapsed .skills-body { max-height: 0; opacity: 0; pointer-events: none; transform: translateY(-5px); }
-#skills .skills-body { max-height: 800px; opacity: 1; overflow: visible; transform: translateY(0); }
-
-/* === Smooth Collapsing Skills Panel (extra polish) === */
-#skills { overflow: hidden; transition: all 0.5s ease; }
-#skills:not(.collapsed) .skills-body {
-  max-height: 900px;
-  opacity: 1;
-  transform: translateY(0);
-  transition: max-height 0.7s ease, opacity 0.6s ease, transform 0.5s ease;
-}
-#skills.collapsed .skills-body {
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(-10px);
-  overflow: hidden;
-  transition: max-height 0.7s ease, opacity 0.6s ease, transform 0.5s ease;
-}
-
-.skills-panel { font-size: 0.9rem; line-height: 1.45; }
-.skills-header button {
-  font-size: 0.8rem;
-  padding: 4px 8px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
-  color: #000;
-  font-weight: 600;
-  box-shadow: 0 0 10px rgba(150,150,255,0.3);
-  transition: transform 0.25s ease;
-}
-.skills-header button:hover { transform: scale(1.05); }
-
-.skill-category { background: rgba(255,255,255,.08); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; transition: background 0.3s ease; }
-.skill-category:hover { background: rgba(255,255,255,.12); }
-.skill-category h3 { font-size: 1rem; margin-bottom: 4px; color: var(--accent-a); }
-
-/* === Typing Challenge Visibility Control === */
-#typing-game { transition: all 0.4s ease; overflow: hidden; max-height: 0; opacity: 0; transform: translateY(-10px); }
-#typing-game.typing-hidden { max-height: 0; opacity: 0; transform: translateY(-10px); pointer-events: none; }
-#typing-game.typing-visible { max-height: 200px; opacity: 1; transform: translateY(0); pointer-events: auto; }
-/* ===== About Page Two-Column Layout ===== */
-.about-layout {
-  height: calc(100vh - var(--nav-h) - var(--footer-h));
-  display: grid;
-  grid-template-columns: minmax(640px, 1fr) 360px; /* left grows, right fixed */
-  gap: 32px;
-  align-items: start;
-  padding: 32px 40px;
-  box-sizing: border-box;
-}
-
-.about-left {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.about-right {
-  width: 100%;
-}
-
-@media (max-width: 1000px) {
-  .about-layout {
-    grid-template-columns: 1fr;
-    height: auto;
-    padding: 20px;
-  }
-}
-/* ===== Restored Balanced About Grid Layout ===== */
-.about-grid {
-  height: calc(100vh - var(--nav-h) - var(--footer-h));
-  display: grid;
-  grid-template-columns: 1.3fr 340px;
-  gap: 40px;
-  align-items: start;
-  justify-content: center;
-  padding: 40px 60px;
-  box-sizing: border-box;
-}
-
-/* Left column with both cards */
-.about-left {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  max-width: 700px;
-}
-
-/* Keep right column (skills) aligned + fixed width */
-.about-right {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  height: auto;
-  position: relative;
-}
-
-/* Make About cards smaller and consistent */
-.about-card {
-  background: rgba(255,255,255,0.08);
-  border-radius: 20px;
-  padding: 32px;
-  text-align: center;
-  color: #eee;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-/* Mobile layout stacks cleanly */
-@media (max-width: 1000px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    padding: 20px;
-    height: auto;
-  }
-  .about-right {
-    justify-content: center;
-  }
-}
-/* === Remove purple tint from Sandbox emojis === */
-body.sandbox .float-emoji,
-body.sandbox .emoji,
-body.sandbox #dev-status,
-body.sandbox span {
-  color: initial !important;
-  -webkit-text-fill-color: initial !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-}
-/* === Sandbox Layout Fix === */
-body.sandbox .projects-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  align-items: start;
-  justify-content: center;
-  gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  text-align: center;
-}
-
-/* Make sure center title stays centered */
-body.sandbox .projects-center {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  margin-top: 10px;
-}
-
-/* Tidy up card sizing for even balance */
-body.sandbox .projects-col {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  align-items: center;
-}
-
-/* Fix floating emojis so they don't overlap panels */
-body.sandbox #emoji-container {
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Prevent cards from squishing too small on wide screens */
-body.sandbox .project-card {
-  width: 100%;
-  max-width: 340px;
-  margin: 0 auto;
-}
-/* === SANDBOX PAGE LAYOUT (Match Projects Page) === */
-body.sandbox .projects-showcase {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - var(--nav-h) - var(--footer-h));
-  padding: 40px 20px;
-  overflow: hidden;
-}
-
-body.sandbox .projects-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
-  flex-wrap: nowrap;
-  max-width: 1400px;
-  width: 100%;
-}
-
-body.sandbox .projects-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-  width: 300px;
-}
-
-body.sandbox .projects-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  text-align: center;
-  max-width: 400px;
-}
-
-/* Tidy up card height so all align cleanly */
-body.sandbox .project-card {
-  flex: 1 1 auto;
-  min-height: 150px;
-  max-height: 240px;
-  overflow: hidden;
-}
-
-/* Make sure everything fits on one screen */
-@media (max-width: 1200px) {
-  body.sandbox .projects-showcase {
-    height: auto;
-    overflow-y: auto;
-    padding-bottom: 100px;
-  }
-}
-/* === SANDBOX PAGE (match Projects look, no scroll on desktop) === */
-body.sandbox .projects-showcase {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - var(--nav-h) - var(--footer-h));
-  padding: 40px 20px;
-  overflow: hidden;
-}
-
-body.sandbox .projects-wrapper {
-  display: flex !important;           /* force flex (not grid) */
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
-  flex-wrap: nowrap;
-  max-width: 1400px;
-  width: 100%;
-  padding: 0;
-}
-
-body.sandbox .projects-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-  width: 300px;
-  flex-shrink: 0;
-}
-
-body.sandbox .projects-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  text-align: center;
-  max-width: 400px;
-  margin: 0 !important;               /* cancel any leftover margins */
-}
-
-body.sandbox .project-card {
-  flex: 1 1 auto;
-  min-height: 150px;
-  max-height: 240px;
-  overflow: hidden;
-}
-
-/* make it stack on smaller screens */
-@media (max-width: 1200px) {
-  body.sandbox .projects-showcase {
-    height: auto;
-    overflow-y: auto;
-    padding-bottom: 100px;
-  }
-  body.sandbox .projects-wrapper {
-    flex-wrap: wrap;
-    gap: 30px;
-  }
-}
-
-/* Neutralize any purple tint on Sandbox emojis/text */
-body.sandbox .float-emoji,
-body.sandbox .emoji,
-body.sandbox .projects-title span,
-body.sandbox .projects-sub span,
-body.sandbox #dev-status {
-  color: initial !important;
-  -webkit-text-fill-color: initial !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-}
-/* === Sandbox Card Spacing Adjust === */
-body.sandbox .project-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;  /* instead of space-between */
-  align-items: stretch;
-  padding: 16px 18px;
-  gap: 6px;                      /* tighter internal spacing */
-  min-height: 180px;             /* keep balanced look */
-  max-height: 260px;             /* ensures full visibility */
-}
-
-/* Specific tightening for SQL generator inputs/buttons */
-body.sandbox .project-card input[type="text"] {
-  margin-bottom: 4px;
-  font-size: 0.9rem;
-  padding: 5px 8px;
-}
-
-body.sandbox .project-card label {
-  font-size: 0.85rem;
-  margin-top: 2px;
-}
-
-body.sandbox .project-card .fun-btn {
-  margin-top: 6px;
-  padding: 7px 14px;
-  font-size: 0.9rem;
-}
-/* === Remove all purple tint / blending on Sandbox === */
-body.sandbox #dev-status,
-body.sandbox .float-emoji,
-body.sandbox .emoji,
-body.sandbox span,
-body.sandbox .projects-title span,
-body.sandbox .projects-sub span {
-  color: inherit !important;
-  -webkit-text-fill-color: initial !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-  text-shadow: none !important;
-}
-
-/* Make Sandbox dev-status text match normal body text */
-body.sandbox #dev-status {
   color: var(--text-dark) !important;
-  text-shadow: none !important;
-  border-right: 2px solid var(--text-dark) !important;
-}
-/* === Sandbox SQL Panel Alignment Fix === */
-body.sandbox .project-card h3 {
-  margin-bottom: 6px;
-}
-
-body.sandbox .project-card p {
-  margin: 6px 0 8px 0;
-  font-size: 0.9rem;
-}
-
-/* Make the SQL generator card slightly taller and pull content up */
-body.sandbox .project-card:nth-of-type(3) {
-  padding-top: 14px;
-  padding-bottom: 12px;
-  min-height: 270px; /* ensure space for buttons */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-}
-
-/* Compact label/input spacing */
-body.sandbox .project-card:nth-of-type(3) label {
-  display: block;
-  margin-top: 4px;
-  font-size: 0.85rem;
-  color: #ccc;
-}
-
-body.sandbox .project-card:nth-of-type(3) input[type="text"] {
-  margin-bottom: 4px;
-  font-size: 0.9rem;
-  padding: 5px 8px;
-  border-radius: 6px;
-  border: none;
-  background: rgba(255,255,255,0.1);
-  color: #fff;
-}
-
-/* Buttons visible & tidy */
-body.sandbox .project-card:nth-of-type(3) .fun-btn {
-  margin-top: 6px;
-  font-size: 0.9rem;
-  padding: 7px 12px;
-  align-self: center;
-}
-/* === Sandbox SQL Panel Alignment Fix === */
-body.sandbox .project-card h3 {
-  margin-bottom: 6px;
-}
-
-body.sandbox .project-card p {
-  margin: 6px 0 8px 0;
-  font-size: 0.9rem;
-}
-
-/* Make the SQL generator card slightly taller and pull content up */
-body.sandbox .project-card:nth-of-type(3) {
-  padding-top: 14px;
-  padding-bottom: 12px;
-  min-height: 270px; /* ensure space for buttons */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-}
-
-/* Compact label/input spacing */
-body.sandbox .project-card:nth-of-type(3) label {
-  display: block;
-  margin-top: 4px;
-  font-size: 0.85rem;
-  color: #ccc;
-}
-
-body.sandbox .project-card:nth-of-type(3) input[type="text"] {
-  margin-bottom: 4px;
-  font-size: 0.9rem;
-  padding: 5px 8px;
-  border-radius: 6px;
-  border: none;
-  background: rgba(255,255,255,0.1);
-  color: #fff;
-}
-
-/* Buttons visible & tidy */
-body.sandbox .project-card:nth-of-type(3) .fun-btn {
-  margin-top: 6px;
-  font-size: 0.9rem;
-  padding: 7px 12px;
-  align-self: center;
-}
-/* === Sandbox SQL Generator Fine Alignment === */
-body.sandbox .project-card:nth-of-type(3) {
-  padding-top: 8px;             /* lift content higher */
-  padding-bottom: 8px;
-  min-height: 250px;            /* slightly reduced for balance */
-  transform: translateY(-10px); /* visually lift card upward */
-}
-
-/* Tighten input spacing + height */
-body.sandbox .project-card:nth-of-type(3) input[type="text"] {
-  margin-bottom: 3px;
-  font-size: 0.85rem;
-  padding: 4px 6px;
-  height: 26px;
-  border-radius: 6px;
-  border: none;
-  background: rgba(255,255,255,0.1);
-  color: #fff;
-}
-
-/* Compact labels */
-body.sandbox .project-card:nth-of-type(3) label {
-  font-size: 0.8rem;
-  margin-top: 2px;
-  margin-bottom: 1px;
-  color: #ddd;
-}
-
-/* Keep buttons visible and tidy */
-body.sandbox .project-card:nth-of-type(3) .fun-btn {
-  margin-top: 4px;
-  font-size: 0.85rem;
-  padding: 6px 10px;
-}
-
-/* Button row alignment (side by side) */
-body.sandbox .project-card:nth-of-type(3) .fun-btn + .fun-btn {
-  margin-left: 6px;
-}
-/* === Sandbox SQL Generator — Final Balanced Height === */
-body.sandbox .project-card:nth-of-type(3) {
-  padding-top: 14px;
-  padding-bottom: 16px;
-  min-height: 285px;              /* ⬆ slightly taller for visual balance */
-  transform: translateY(-6px);    /* gentle lift */
-}
-
-/* Inputs fine-tuned for spacing */
-body.sandbox .project-card:nth-of-type(3) input[type="text"] {
-  margin-bottom: 6px;
-  font-size: 0.85rem;
-  padding: 5px 8px;
-  height: 28px;
-  border-radius: 6px;
-  border: none;
-  background: rgba(255,255,255,0.1);
-  color: #fff;
-}
-
-/* Keep labels tidy */
-body.sandbox .project-card:nth-of-type(3) label {
-  font-size: 0.82rem;
-  margin-top: 3px;
-  margin-bottom: 2px;
-  color: #ddd;
-}
-
-/* Button group alignment */
-body.sandbox .project-card:nth-of-type(3) .fun-btn {
-  margin-top: 8px;
-  font-size: 0.85rem;
-  padding: 7px 12px;
-}
-
-body.sandbox .project-card:nth-of-type(3) .fun-btn + .fun-btn {
-  margin-left: 8px;
-}
-/* === Debugging Text Visibility Fix (Desktop) === */
-#dev-status {
-  position: fixed;
-  bottom: 15px;
-  left: 20px;
-  font-family: monospace;
-  font-size: 1rem;
-  color: #a78bfa; /* lavender accent */
-  opacity: 0.9;
-  white-space: nowrap;
-  pointer-events: none;
-  border-right: 2px solid #a5d8ff;
-  animation: blinkCursor 0.8s steps(1) infinite;
-  text-shadow: 0 0 8px rgba(167,139,250,0.6);
-  z-index: 9999; /* ⬆ ensures visibility above panels and nav */
-}
-
-/* Restore overflow for desktop so status is visible */
-html, body {
-  overflow: visible !important;
-}
-
-/* Re-restrict overflow only for project & sandbox center wrappers */
-body.projects .projects-showcase,
-body.sandbox .projects-showcase {
-  overflow: hidden;
-}
-/* === FINAL VISIBILITY + EMOJI + DEBUG FIX === */
-
-/* ✅ Keep all text unchanged and all panels fully visible */
-body.projects .project-card,
-body.sandbox .project-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  padding: 18px 20px;
-  min-height: 250px;
-  max-height: none;
-  overflow: visible;
-}
-
-/* Ensure PyScript + SQL Generator text/buttons fully show */
-body.projects .project-card pre,
-body.sandbox .project-card pre {
-  overflow-x: auto;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-/* ✅ Fix emoji colours globally (no purple tint anywhere) */
-.emoji,
-#greeting-emoji,
-.float-emoji,
-.projects-title .emoji,
-.projects-sub span,
-body.projects .projects-title span,
-body.projects .projects-sub span,
-body.sandbox .projects-title span,
-body.sandbox .projects-sub span {
-  color: initial !important;
-  -webkit-text-fill-color: initial !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-  text-shadow: none !important;
-}
-
-/* Also ensure floating emojis remain neutral colour */
-#emoji-container .float-emoji {
-  color: initial !important;
-  mix-blend-mode: normal !important;
-  -webkit-text-fill-color: initial !important;
-  filter: none !important;
-}
-
-/* ✅ Debugging text always visible (no scrollbars reintroduced) */
-#dev-status {
-  position: fixed;
-  bottom: 15px;
-  left: 20px;
-  font-family: monospace;
-  font-size: 1rem;
-  color: #a78bfa; /* lavender accent */
-  opacity: 0.9;
-  white-space: nowrap;
-  pointer-events: none;
-  border-right: 2px solid #a5d8ff;
-  animation: blinkCursor 0.8s steps(1) infinite;
-  text-shadow: 0 0 8px rgba(167,139,250,0.6);
-  z-index: 9999; /* keep above footer and nav */
-  overflow: visible;
-}
-
-/* Prevent site-wide scrollbars returning */
-html, body {
-  overflow: hidden;
-}
-
-/* Allow scroll on smaller screens (responsive only) */
-@media (max-width: 1000px) {
-  html, body {
-    overflow-y: auto;
-  }
-}
-
-/* ✅ Adjust Sandbox SQL Generator panel height and spacing */
-body.sandbox .project-card:nth-of-type(3) {
-  padding-top: 12px;
-  padding-bottom: 16px;
-  min-height: 290px; /* ensure full content visible */
-  transform: translateY(-4px);
-}
-
-body.sandbox .project-card:nth-of-type(3) label {
-  font-size: 0.85rem;
-  margin: 3px 0;
-  color: #ddd;
-}
-
-body.sandbox .project-card:nth-of-type(3) input[type="text"] {
-  margin-bottom: 5px;
-  padding: 5px 8px;
-  height: 28px;
-  font-size: 0.85rem;
-  border-radius: 6px;
-  border: none;
-  background: rgba(255,255,255,0.1);
-  color: #fff;
-}
-
-body.sandbox .project-card:nth-of-type(3) .fun-btn {
-  margin-top: 8px;
-  font-size: 0.85rem;
-  padding: 6px 12px;
-}
-
-body.sandbox .project-card:nth-of-type(3) .fun-btn + .fun-btn {
-  margin-left: 8px;
-}
-/* === SQL Copy Button Visual Feedback === */
-@keyframes copiedFlash {
-  0% {
-    transform: scale(1);
-    background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
-  }
-  40% {
-    transform: scale(1.1);
-    background: linear-gradient(135deg, #b4f8c8, #a0f0a0); /* soft green flash */
-  }
-  100% {
-    transform: scale(1);
-    background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
-  }
-}
-
-.fun-btn.copied {
-  animation: copiedFlash 0.8s ease;
-  color: #000 !important;
-}
-/* === FINAL DEBUG + NO-SCROLL FIX === */
-
-/* Debug text visible on all desktop pages (no scrollbars) */
-#dev-status {
-  position: fixed;
-  bottom: 15px;
-  left: 20px;
-  font-family: monospace;
-  font-size: 1rem;
-  color: #a78bfa;
-  opacity: 0.9;
-  white-space: nowrap;
-  pointer-events: none;
-  border-right: 2px solid #a5d8ff;
-  animation: blinkCursor 0.8s steps(1) infinite;
-  text-shadow: 0 0 8px rgba(167,139,250,0.6);
-  z-index: 9999;
-  overflow: visible;
-}
-
-/* ✅ No scroll on desktop, scroll allowed only on small screens */
-html, body {
-  overflow: hidden;               /* remove scrollbars for full-screen pages */
-  height: 100%;
-}
-
-@media (max-width: 1000px) {
-  html, body {
-    overflow-y: auto;             /* allow scroll only on mobile/tablet */
-  }
-}
-/* === FINAL DEBUG + NO-SCROLL FIX === */
-
-/* Debug text visible on all desktop pages (no scrollbars) */
-#dev-status {
-  position: fixed;
-  bottom: 15px;
-  left: 20px;
-  font-family: monospace;
-  font-size: 1rem;
-  color: #a78bfa;
-  opacity: 0.9;
-  white-space: nowrap;
-  pointer-events: none;
-  border-right: 2px solid #a5d8ff;
-  animation: blinkCursor 0.8s steps(1) infinite;
-  text-shadow: 0 0 8px rgba(167,139,250,0.6);
-  z-index: 9999;
-  overflow: visible;
-}
-
-/* ✅ No scroll on desktop, scroll allowed only on small screens */
-html, body {
-  overflow: hidden;      /* fully removes scrollbars for all desktop pages */
-  height: 100%;
-}
-
-@media (max-width: 1000px) {
-  html, body {
-    overflow-y: auto;    /* restores scroll only for mobile/tablet */
-  }
-}
-/* === FINAL DEBUG TEXT COLOUR FIX === */
-
-/* Global unified style for bottom-left debugging text */
-#dev-status {
-  position: fixed;
-  bottom: 15px;
-  left: 20px;
-  font-family: monospace;
-  font-size: 1rem;
-  color: var(--text-dark) !important;    /* use body text colour */
   opacity: 0.9;
   white-space: nowrap;
   pointer-events: none;
   border-right: 2px solid var(--text-dark) !important;
   animation: blinkCursor 0.8s steps(1) infinite;
-  text-shadow: none !important;          /* remove purple glow */
+  text-shadow: none !important;
   z-index: 9999;
   overflow: visible;
 }
+@keyframes blinkCursor { 50% { border-color: transparent; } }
 
-/* If in light mode, switch to dark text */
 body.light #dev-status {
   color: var(--text-light) !important;
   border-right-color: var(--text-light) !important;
 }
-
-/* Remove purple text tint in any themed pages */
 body.sandbox #dev-status,
 body.projects #dev-status,
 body.about #dev-status {
@@ -1304,4 +326,15 @@ body.about #dev-status {
   -webkit-text-fill-color: initial !important;
   filter: none !important;
   mix-blend-mode: normal !important;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 1000px) {
+  html, body { overflow-y: auto; } /* allow scroll on small screens */
+  footer { position: relative; }
+  .projects-showcase { height: auto; padding-bottom: 120px; }
+  .about-grid { grid-template-columns: 1fr; gap: 20px; padding: 20px; height: auto; }
+  .skills-panel { height: auto; }
 }
