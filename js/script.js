@@ -348,4 +348,47 @@ document.addEventListener('DOMContentLoaded', () => {
       catOut.textContent = `${prefix} ${name} ${suffix}`;
     });
   }
+  /* === Animated Dev Status (Typing Effect) === */
+const statusEl = document.getElementById("dev-status");
+if (statusEl) {
+  const messages = document.body.classList.contains("projects")
+    ? ["🐾 Compiling cat magic...", "😸 Debugging portals...", "💻 Refactoring whiskers...", "🚀 Launching new cats..."]
+    : ["💻 Debugging...", "🧠 Refactoring...", "🚀 Compiling...", "🐾 Feeding the cats...", "✨ Optimizing pixels..."];
+
+  let i = 0, j = 0, deleting = false;
+
+  function type() {
+    const msg = messages[i];
+    statusEl.textContent = msg.slice(0, j);
+    j += deleting ? -1 : 1;
+
+    if (!deleting && j === msg.length) {
+      deleting = true;
+      setTimeout(type, 1000);
+      return;
+    }
+    if (deleting && j === 0) {
+      deleting = false;
+      i = (i + 1) % messages.length;
+    }
+    setTimeout(type, deleting ? 40 : 90);
+  }
+  type();
+}
+/* === Floating Emojis === */
+const emojiContainer = document.getElementById("emoji-container");
+function spawnEmoji() {
+  if (!emojiContainer) return;
+  const list = document.body.classList.contains("projects")
+    ? ["🐾", "🐈", "😸", "🧶", "🌌"]
+    : ["💻", "✨", "🚀", "💡", "🌸", "🐾"];
+  const e = document.createElement("div");
+  e.className = "float-emoji";
+  e.textContent = list[Math.floor(Math.random() * list.length)];
+  e.style.left = Math.random() * 100 + "vw";
+  e.style.animationDuration = 3 + Math.random() * 3 + "s";
+  emojiContainer.appendChild(e);
+  setTimeout(() => e.remove(), 7000);
+}
+setInterval(spawnEmoji, 1500);
 });
