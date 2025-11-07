@@ -34,17 +34,14 @@
   </header>
 
   <!-- ===== ABOUT SECTION ===== -->
-  <main class="about-layout">
-    <!-- LEFT SIDE (About Me + Skills) -->
-    <div class="about-left">
-
-      <!-- ABOUT ME CARD -->
+  <main class="about-flex">
+    <section class="about-left">
       <div class="about-card">
         <h2>👋 About Me</h2>
         <p>
           Hi! I'm Demilee — a developer passionate about blending creativity, data, and design.
           I’m currently learning full-stack development and exploring data analytics, Python projects,
-          and cozy indie game design (like my cat-themed project <strong>(COMING SOON!)</strong> 🐾).
+          and cozy indie game design (like my cat-themed project...<strong>Coming soon!)</strong> 🐾
         </p>
         <p>
           My journey combines both technical and artistic sides — from writing clean, efficient code
@@ -53,7 +50,7 @@
         </p>
       </div>
 
-      <!-- 🧠 SKILLS PANEL (EXACTLY AS YOU HAD IT) -->
+      <!-- ✅ SKILLS PANEL: exactly as before -->
       <div class="skills-panel" id="skills">
         <div class="skills-header">
           <h2>🧠 Skills</h2>
@@ -97,9 +94,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- RIGHT SIDE (About This Site) -->
+    <!-- RIGHT SIDE -->
     <aside class="about-right">
       <div class="about-card">
         <h2>🌐 About This Site</h2>
@@ -122,14 +119,11 @@
     © 2025 My Dev Journey · built with 💜
   </footer>
 
-  <!-- ===== FLOATING EMOJIS + DEBUGGING STATUS ===== -->
+  <!-- FLOATING + DEBUGGING -->
   <div id="emoji-container"></div>
   <div id="dev-status"></div>
-
-  <!-- ===== LOCAL SCRIPT (DEBUGGING TEXT + EMOJIS) ===== -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // === Debugging Text ===
       const statusEl = document.getElementById("dev-status");
       if (statusEl) {
         const messages = [
@@ -152,7 +146,7 @@
         type();
       }
 
-      // === Floating Emojis ===
+      // Floating emojis
       const emojiContainer = document.getElementById("emoji-container");
       function spawnEmoji() {
         if (!emojiContainer) return;
