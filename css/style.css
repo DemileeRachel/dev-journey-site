@@ -713,3 +713,13 @@ body.light .project-card input[type="number"] {
 @keyframes blinkCursor {
   50% { border-color: transparent; }
 }
+#dev-status {
+  position: fixed;
+  bottom: 15px;
+  left: 20px;
+  font-family: monospace;
+  font-size: 1rem;
+  color: var(--text-color, #fff);
+  opacity: 0.9;
+  pointer-events: none;
+}
