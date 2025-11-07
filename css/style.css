@@ -1357,3 +1357,19 @@ body.home .hero {
   max-width: 100%;
   box-sizing: border-box;
 }
+/* === Sandbox SQL Query Generator Panel – Taller Fit === */
+body.sandbox .project-card:nth-of-type(3) {
+  min-height: 320px !important;   /* ⬆ increased from ~285px */
+  padding-top: 16px !important;
+  padding-bottom: 20px !important;
+  justify-content: flex-start !important;
+}
+
+/* Keep input and button spacing balanced */
+body.sandbox .project-card:nth-of-type(3) input[type="text"] {
+  margin-bottom: 6px;
+}
+
+body.sandbox .project-card:nth-of-type(3) .fun-btn {
+  margin-top: 10px;
+}
