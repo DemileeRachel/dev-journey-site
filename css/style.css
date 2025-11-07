@@ -794,4 +794,30 @@ body.projects {
   white-space: nowrap;
   user-select: none;
 }
+body.projects .projects-sub span,
+body.projects .projects-sub::after,
+body.projects .projects-sub::before,
+body.projects .projects-title span,
+body.projects .projects-title::after,
+body.projects .projects-title::before {
+  color: initial !important;
+  filter: none !important;
+}
+.emoji, 
+span, 
+p, 
+h1, 
+h2, 
+h3, 
+h4 {
+  unicode-bidi: isolate;
+}
+
+.emoji, 
+p span, 
+h1 span, 
+h2 span {
+  color: initial !important;
+  filter: none !important;
+}
 
