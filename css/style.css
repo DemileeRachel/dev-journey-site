@@ -724,20 +724,23 @@ body.projects {
 #dev-status {
   position: fixed;
   bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 20px;                /* ⬅️ anchor to bottom-left */
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--accent, #a78bfa); /* lavender-purple fallback */
+  color: var(--accent, #a78bfa);
   opacity: 0;
   animation: fadeInOut 4s ease-in-out infinite;
-  z-index: 10; /* stays above emojis but below nav */
+  z-index: 10;
   pointer-events: none;
 }
 
 @keyframes fadeInOut {
-  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
-  10% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  90% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  0% { opacity: 0; transform: translateY(10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
 }
+#dev-status {
+  text-shadow: 0 0 8px rgba(167, 139, 250, 0.6);
+}
+
