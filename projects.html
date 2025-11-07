@@ -229,6 +229,51 @@ def square_number(event=None):
 
   <div id="emoji-container"></div>
   <div id="dev-status"></div>
+<script>
+  // === PAGE-SPECIFIC DEV STATUS TEXT ===
+  const statusEl = document.getElementById('dev-status');
+  if (statusEl) {
+    // Cat + Project themed messages 🐾
+    const messages = [
+      "🐾 Generating cat names...",
+      "🎮 Squaring some numbers...",
+      "🧶 Compiling whiskers...",
+      "🐍 Feeding the Python...",
+      "🪴 Growing new ideas...",
+      "💾 Saving project progress...",
+      "🚀 Launching cat projects...",
+      "✨ Polishing fur textures...",
+      "😺 Debugging pawsitive code..."
+    ];
 
+    let msgIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typeEffect() {
+      const current = messages[msgIndex];
+
+      if (!deleting) {
+        statusEl.textContent = current.slice(0, ++charIndex);
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(typeEffect, 1500); // pause at full word
+          return;
+        }
+      } else {
+        statusEl.textContent = current.slice(0, --charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          msgIndex = (msgIndex + 1) % messages.length;
+        }
+      }
+
+      const speed = deleting ? 40 : 90;
+      setTimeout(typeEffect, speed);
+    }
+
+    typeEffect();
+  }
+</script>
 </body>
 </html>

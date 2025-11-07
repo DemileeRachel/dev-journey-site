@@ -781,4 +781,15 @@ body.projects {
   color: initial; /* restore emoji’s default color */
   filter: none;
 }
+#dev-status {
+  position: fixed;
+  bottom: 10px;
+  left: 20px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: var(--text-color, #fff);
+  opacity: 0.85;
+  white-space: nowrap;
+  user-select: none;
+}
 
