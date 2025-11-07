@@ -7,7 +7,7 @@
 
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- PyScript core (must load early, not deferred) -->
+  <!-- PyScript core -->
   <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.1/core.css" />
   <script src="https://pyscript.net/releases/2024.6.1/core.js"></script>
 </head>
@@ -59,7 +59,7 @@
           <button id="squareBtn" class="fun-btn" disabled>⏳ Loading PyScript...</button>
           <p id="output" style="margin-top:6px;"></p>
 
-          <py-script>
+<py-script>
 from js import document
 
 def square_number(event=None):
@@ -69,7 +69,8 @@ def square_number(event=None):
         document.getElementById("output").innerText = f"Result: {result:g}"
     except Exception:
         document.getElementById("output").innerText = "Invalid input"
-          </py-script>
+</py-script>
+
         </div>
       </div>
 
@@ -143,7 +144,7 @@ def square_number(event=None):
       themeBtn.textContent = next === "light" ? "🌙 Dark Mode" : "🌞 Light Mode";
     });
 
-    /* === QUIZ === */
+    /* === SQL QUIZ === */
     const quizData = [
       { q: "Which SQL keyword retrieves data?", o: ["GET","SELECT","FETCH","SHOW"], a: "SELECT" },
       { q: "Which clause filters rows?", o: ["ORDER BY","WHERE","GROUP BY","HAVING"], a: "WHERE" },
