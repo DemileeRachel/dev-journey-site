@@ -1268,3 +1268,40 @@ html, body {
     overflow-y: auto;    /* restores scroll only for mobile/tablet */
   }
 }
+/* === FINAL DEBUG TEXT COLOUR FIX === */
+
+/* Global unified style for bottom-left debugging text */
+#dev-status {
+  position: fixed;
+  bottom: 15px;
+  left: 20px;
+  font-family: monospace;
+  font-size: 1rem;
+  color: var(--text-dark) !important;    /* use body text colour */
+  opacity: 0.9;
+  white-space: nowrap;
+  pointer-events: none;
+  border-right: 2px solid var(--text-dark) !important;
+  animation: blinkCursor 0.8s steps(1) infinite;
+  text-shadow: none !important;          /* remove purple glow */
+  z-index: 9999;
+  overflow: visible;
+}
+
+/* If in light mode, switch to dark text */
+body.light #dev-status {
+  color: var(--text-light) !important;
+  border-right-color: var(--text-light) !important;
+}
+
+/* Remove purple text tint in any themed pages */
+body.sandbox #dev-status,
+body.projects #dev-status,
+body.about #dev-status {
+  color: var(--text-dark) !important;
+  border-right-color: var(--text-dark) !important;
+  text-shadow: none !important;
+  -webkit-text-fill-color: initial !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
