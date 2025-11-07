@@ -1074,3 +1074,115 @@ body.projects .projects-showcase,
 body.sandbox .projects-showcase {
   overflow: hidden;
 }
+/* === FINAL VISIBILITY + EMOJI + DEBUG FIX === */
+
+/* ✅ Keep all text unchanged and all panels fully visible */
+body.projects .project-card,
+body.sandbox .project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 18px 20px;
+  min-height: 250px;
+  max-height: none;
+  overflow: visible;
+}
+
+/* Ensure PyScript + SQL Generator text/buttons fully show */
+body.projects .project-card pre,
+body.sandbox .project-card pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* ✅ Fix emoji colours globally (no purple tint anywhere) */
+.emoji,
+#greeting-emoji,
+.float-emoji,
+.projects-title .emoji,
+.projects-sub span,
+body.projects .projects-title span,
+body.projects .projects-sub span,
+body.sandbox .projects-title span,
+body.sandbox .projects-sub span {
+  color: initial !important;
+  -webkit-text-fill-color: initial !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  text-shadow: none !important;
+}
+
+/* Also ensure floating emojis remain neutral colour */
+#emoji-container .float-emoji {
+  color: initial !important;
+  mix-blend-mode: normal !important;
+  -webkit-text-fill-color: initial !important;
+  filter: none !important;
+}
+
+/* ✅ Debugging text always visible (no scrollbars reintroduced) */
+#dev-status {
+  position: fixed;
+  bottom: 15px;
+  left: 20px;
+  font-family: monospace;
+  font-size: 1rem;
+  color: #a78bfa; /* lavender accent */
+  opacity: 0.9;
+  white-space: nowrap;
+  pointer-events: none;
+  border-right: 2px solid #a5d8ff;
+  animation: blinkCursor 0.8s steps(1) infinite;
+  text-shadow: 0 0 8px rgba(167,139,250,0.6);
+  z-index: 9999; /* keep above footer and nav */
+  overflow: visible;
+}
+
+/* Prevent site-wide scrollbars returning */
+html, body {
+  overflow: hidden;
+}
+
+/* Allow scroll on smaller screens (responsive only) */
+@media (max-width: 1000px) {
+  html, body {
+    overflow-y: auto;
+  }
+}
+
+/* ✅ Adjust Sandbox SQL Generator panel height and spacing */
+body.sandbox .project-card:nth-of-type(3) {
+  padding-top: 12px;
+  padding-bottom: 16px;
+  min-height: 290px; /* ensure full content visible */
+  transform: translateY(-4px);
+}
+
+body.sandbox .project-card:nth-of-type(3) label {
+  font-size: 0.85rem;
+  margin: 3px 0;
+  color: #ddd;
+}
+
+body.sandbox .project-card:nth-of-type(3) input[type="text"] {
+  margin-bottom: 5px;
+  padding: 5px 8px;
+  height: 28px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+body.sandbox .project-card:nth-of-type(3) .fun-btn {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+}
+
+body.sandbox .project-card:nth-of-type(3) .fun-btn + .fun-btn {
+  margin-left: 8px;
+}
