@@ -274,6 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     drawQuestion();
   }
+
   /* ===========================
      ANIMATED TYPING STATUS TEXT
   ============================ */
@@ -297,80 +298,54 @@ document.addEventListener('DOMContentLoaded', () => {
       const current = messages[msgIndex];
 
       if (!deleting) {
-        // typing forward
         statusEl.textContent = current.slice(0, ++charIndex);
         if (charIndex === current.length) {
           deleting = true;
-          setTimeout(typeEffect, 1500); // pause at full word
+          setTimeout(typeEffect, 1500);
           return;
         }
       } else {
-        // deleting backward
         statusEl.textContent = current.slice(0, --charIndex);
         if (charIndex === 0) {
           deleting = false;
           msgIndex = (msgIndex + 1) % messages.length;
         }
       }
-
-      const speed = deleting ? 40 : 90; // faster erase, slower type
+      const speed = deleting ? 40 : 90;
       setTimeout(typeEffect, speed);
     }
 
     typeEffect();
   }
-  /* === CAT NAME GENERATOR === */
-const catBtn = document.getElementById("catNameBtn");
-const catOut = document.getElementById("catNameOutput");
 
-if (catBtn && catOut) {
-  const prefixes = [
-    "Sir 🐾",
-    "Lady 🎩",
-    "Captain 🛡️",
-    "Doctor 🧪",
-    "Agent 🕶️",
-    "Professor 📚",
-    "Chief 👑",
-    "Lord 🦴",
-    "Queen 🌙",
-    "Count 🧶"
-  ];
+  /* ===========================
+     CAT NAME GENERATOR (1 emoji at end only)
+  ============================ */
+  const catBtn = document.getElementById("catNameBtn");
+  const catOut = document.getElementById("catNameOutput");
 
-  const names = [
-    "Galaxy Whiskers 🌌",
-    "Slimepaw 💧",
-    "Beeclaw 🐝",
-    "Suitpaw 🎩",
-    "Ivyfur 🌿",
-    "Pixel 🐾",
-    "Mochi 🌈",
-    "Shadow ⚡",
-    "Luna ☁️",
-    "Ember 🔥",
-    "Crystal 💎",
-    "Ripple 🌊"
-  ];
+  if (catBtn && catOut) {
+    const prefixes = ["Sir", "Lady", "Captain", "Doctor", "Agent", "Professor", "Chief", "Lord", "Queen", "Count"];
+    const names = ["Galaxy Whiskers", "Slimepaw", "Beeclaw", "Suitpaw", "Ivyfur", "Pixel", "Mochi", "Shadow", "Luna", "Ember", "Crystal", "Ripple"];
+    const suffixes = [
+      "the Brave 🌟",
+      "of the Portal 🌀",
+      "the Sneaky 👻",
+      "of the Ivy 🪴",
+      "the Adventurer 🚀",
+      "the Dreamer 💤",
+      "the Coder 🎮",
+      "of Rogue Whiskers 👑",
+      "of the Galaxy 🌠",
+      "the Fearless 🐾",
+      "the Wanderer 🧭"
+    ];
 
-  const suffixes = [
-    "the Brave 🌟",
-    "of the Portal 🌀",
-    "the Sneaky 👻",
-    "of the Ivy 🪴",
-    "the Adventurer 🚀",
-    "the Dreamer 💤",
-    "the Coder 🎮",
-    "of Rogue Whiskers 👑",
-    "of the Galaxy 🌠",
-    "the Fearless 🐾",
-    "the Wanderer 🧭"
-  ];
-
-  catBtn.addEventListener("click", () => {
-    const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-    const name = names[Math.floor(Math.random() * names.length)];
-    const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
-    catOut.textContent = `${prefix} ${name} ${suffix}`;
-  });
-}
+    catBtn.addEventListener("click", () => {
+      const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+      const name = names[Math.floor(Math.random() * names.length)];
+      const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+      catOut.textContent = `${prefix} ${name} ${suffix}`;
+    });
+  }
 });

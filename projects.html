@@ -74,12 +74,10 @@ def square_number(event=None):
   const btn = document.getElementById("squareBtn");
   const out = document.getElementById("output");
 
-  // Initial loading text
   btn.disabled = true;
   btn.textContent = "⏳ Loading PyScript...";
 
-  // ✅ Wait until PyScript runtime is fully initialized
-  document.addEventListener("pyscript-interpreter-ready", () => {
+  document.addEventListener("py:ready", () => {
     btn.disabled = false;
     btn.textContent = "Square it!";
 
@@ -87,19 +85,6 @@ def square_number(event=None):
     btn.addEventListener("click", () => pyFunc());
   });
 
-  // Fallback check — some builds initialize without event
-  const waitForPyScript = setInterval(() => {
-    if (window.pyscript && pyscript.interpreter) {
-      clearInterval(waitForPyScript);
-      btn.disabled = false;
-      btn.textContent = "Square it!";
-
-      const pyFunc = pyscript.interpreter.globals.get("square_number");
-      btn.addEventListener("click", () => pyFunc());
-    }
-  }, 500);
-
-  // Optional message if clicked too soon
   btn.addEventListener("click", () => {
     if (btn.disabled) {
       out.textContent = "⚙️ Still loading PyScript runtime...";
