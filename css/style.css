@@ -47,7 +47,9 @@ body.light {
   background-color: var(--bg-light);
   color: var(--text-light);
 }
-
+body, #dev-status, .float-emoji, .emoji {
+  font-family: system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
 /* ===========================
    NAVBAR
 =========================== */
