@@ -757,3 +757,75 @@ body.sandbox .project-card {
     padding-bottom: 100px;
   }
 }
+/* === SANDBOX PAGE (match Projects look, no scroll on desktop) === */
+body.sandbox .projects-showcase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - var(--nav-h) - var(--footer-h));
+  padding: 40px 20px;
+  overflow: hidden;
+}
+
+body.sandbox .projects-wrapper {
+  display: flex !important;           /* force flex (not grid) */
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: nowrap;
+  max-width: 1400px;
+  width: 100%;
+  padding: 0;
+}
+
+body.sandbox .projects-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  width: 300px;
+  flex-shrink: 0;
+}
+
+body.sandbox .projects-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 !important;               /* cancel any leftover margins */
+}
+
+body.sandbox .project-card {
+  flex: 1 1 auto;
+  min-height: 150px;
+  max-height: 240px;
+  overflow: hidden;
+}
+
+/* make it stack on smaller screens */
+@media (max-width: 1200px) {
+  body.sandbox .projects-showcase {
+    height: auto;
+    overflow-y: auto;
+    padding-bottom: 100px;
+  }
+  body.sandbox .projects-wrapper {
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+}
+
+/* Neutralize any purple tint on Sandbox emojis/text */
+body.sandbox .float-emoji,
+body.sandbox .emoji,
+body.sandbox .projects-title span,
+body.sandbox .projects-sub span,
+body.sandbox #dev-status {
+  color: initial !important;
+  -webkit-text-fill-color: initial !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
