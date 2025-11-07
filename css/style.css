@@ -473,30 +473,46 @@ body.light .project-card input[type="number"] {
   100% { transform: translateY(-10vh) translateX(-10px) scale(1.2); opacity: 0; }
 }
 
-/* ===========================
-   DEV STATUS (unified shade)
-=========================== */
+/* === FINAL DEBUGGING TEXT — FIXED COLOUR + STABLE POSITION === */
 #dev-status {
   position: fixed;
   bottom: 15px;
   left: 20px;
   font-family: monospace;
   font-size: 1rem;
-  color: var(--text-dark) !important;             /* ✅ neutral shade */
+  color: var(--text-dark) !important;       /* match site text */
   opacity: 0.9;
   white-space: nowrap;
   pointer-events: none;
   border-right: 2px solid var(--text-dark) !important;
   animation: blinkCursor 0.8s steps(1) infinite;
-  text-shadow: none !important;
-  z-index: 9999;
+  text-shadow: none !important;             /* no glow or flicker */
+  z-index: 9999;                            /* always on top */
   overflow: visible;
+  line-height: 1;                           /* prevents jumping */
 }
-@keyframes blinkCursor { 50% { border-color: transparent; } }
 
+@keyframes blinkCursor {
+  0%, 49% { border-color: var(--text-dark); }
+  50%, 100% { border-color: transparent; }
+}
+
+/* Light mode correction */
 body.light #dev-status {
   color: var(--text-light) !important;
   border-right-color: var(--text-light) !important;
+}
+
+/* Keep neutral shade across themed pages */
+body.projects #dev-status,
+body.sandbox #dev-status,
+body.about #dev-status {
+  color: var(--text-dark) !important;
+  border-right-color: var(--text-dark) !important;
+  text-shadow: none !important;
+  mix-blend-mode: normal !important;
+  -webkit-text-fill-color: initial !important;
+  filter: none !important;
 }
 
 /* ===========================
