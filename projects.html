@@ -9,6 +9,7 @@
 
   <!-- PyScript -->
   <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.1/core.css" />
+  <script defer src="https://pyscript.net/releases/2024.6.1/core.js"></script>
 </head>
 
 <body class="projects">
@@ -35,30 +36,30 @@
   </nav>
 
   <!-- ===== PROJECTS SECTION ===== -->
-<section class="projects-showcase">
-  <div class="projects-wrapper">
+  <section class="projects-showcase">
+    <div class="projects-wrapper">
 
-    <!-- LEFT COLUMN -->
-    <div class="projects-col left">
-      <div class="project-card">
-        <h3>💡 My Projects</h3>
-        <ul>
-          <li><strong>📁 Portfolio —</strong> Responsive site built with HTML, CSS, and JS.</li>
-          <li><strong>🐍 PyScript Demo App —</strong> Interactive browser Python demo.</li>
-          <li><strong>🎮 Game/App Dev —</strong> Pixel-art roguelike (Coming soon!)</li>
-        </ul>
-      </div>
+      <!-- LEFT COLUMN -->
+      <div class="projects-col left">
+        <div class="project-card">
+          <h3>💡 My Projects</h3>
+          <ul>
+            <li><strong>📁 Portfolio —</strong> Responsive site built with HTML, CSS, and JS.</li>
+            <li><strong>🐍 PyScript Demo App —</strong> Interactive browser Python demo.</li>
+            <li><strong>🎮 Game/App Dev —</strong> Pixel-art roguelike (Coming soon!)</li>
+          </ul>
+        </div>
 
-      <!-- 🐍 PyScript Demo -->
- <div class="project-card py-demo">
-  <h3>🌿 Python Interactive Demo (PyScript)</h3>
-  <p>Run Python directly in your browser — try squaring a number!</p>
+        <!-- 🐍 PyScript Demo -->
+        <div class="project-card py-demo">
+          <h3>🌿 Python Interactive Demo (PyScript)</h3>
+          <p>Run Python directly in your browser — try squaring a number!</p>
 
-  <input id="numInput" type="number" placeholder="Enter number" />
-  <button id="squareBtn" class="fun-btn" disabled>⏳ Loading PyScript...</button>
-  <p id="output" style="margin-top:6px;"></p>
+          <input id="numInput" type="number" placeholder="Enter number" />
+          <button id="squareBtn" class="fun-btn" disabled>⏳ Loading PyScript...</button>
+          <p id="output" style="margin-top:6px;"></p>
 
-  <py-script>
+          <py-script>
 from js import document
 
 def square_number(event=None):
@@ -68,172 +69,153 @@ def square_number(event=None):
         document.getElementById("output").innerText = f"Result: {result:g}"
     except Exception:
         document.getElementById("output").innerText = "Invalid input"
-  </py-script>
-
-<script>
-  const btn = document.getElementById("squareBtn");
-  const out = document.getElementById("output");
-
-  btn.disabled = true;
-  btn.textContent = "⏳ Loading PyScript...";
-
-  document.addEventListener("py:ready", () => {
-    btn.disabled = false;
-    btn.textContent = "Square it!";
-
-    const pyFunc = pyscript.interpreter.globals.get("square_number");
-    btn.addEventListener("click", () => pyFunc());
-  });
-
-  btn.addEventListener("click", () => {
-    if (btn.disabled) {
-      out.textContent = "⚙️ Still loading PyScript runtime...";
-    }
-  });
-</script>
-</div>
-
-    </div>
-
-    <!-- CENTER TITLE -->
-    <div class="projects-center">
-      <h1 class="projects-title">🚀 Projects Coming Soon</h1>
-      <p class="projects-sub">A showcase of my current and upcoming creations ✨</p>
-      <a href="index.html" class="back-home">← Back to Home</a>
-    </div>
-
-    <!-- RIGHT COLUMN -->
-    <div class="projects-col right">
-      <!-- SQL Quiz -->
-      <div class="project-card">
-        <h3>💭 SQL Mini Quiz</h3>
-        <p>Test your SQL knowledge — one question at a time!</p>
-        <div id="quiz-container"></div>
-        <div class="quiz-controls">
-          <button id="next-btn" class="fun-btn">Next Question</button>
-          <p id="result"></p>
-          <div id="quiz-progress"></div>
+          </py-script>
         </div>
       </div>
 
-      <!-- 🐱 Cat Name Generator -->
-   <!-- 🐱 Cat Name Generator -->
-<div class="project-card">
-  <h3>🐱 Random Cat Name Generator</h3>
-  <p>Generate a unique cat hero name!</p>
-  <button id="catNameBtn" class="fun-btn">Generate Cat Name</button>
+      <!-- CENTER TITLE -->
+      <div class="projects-center">
+        <h1 class="projects-title">🚀 Projects Coming Soon</h1>
+        <p class="projects-sub">A showcase of my current and upcoming creations ✨</p>
+        <a href="index.html" class="back-home">← Back to Home</a>
+      </div>
 
-</div>
-<p id="catNameOutput" style="margin-top:10px; font-weight:bold; font-size:1.1rem;"></p>
+      <!-- RIGHT COLUMN -->
+      <div class="projects-col right">
+        <!-- SQL Quiz -->
+        <div class="project-card">
+          <h3>💭 SQL Mini Quiz</h3>
+          <p>Test your SQL knowledge — one question at a time!</p>
+          <div id="quiz-container"></div>
+          <div class="quiz-controls">
+            <button id="next-btn" class="fun-btn">Next Question</button>
+            <p id="result"></p>
+            <div id="quiz-progress"></div>
+          </div>
+        </div>
+
+        <!-- 🐱 Cat Name Generator -->
+        <div class="project-card">
+          <h3>🐱 Random Cat Name Generator</h3>
+          <p>Generate a unique cat hero name!</p>
+          <button id="catNameBtn" class="fun-btn">Generate Cat Name</button>
+          <p id="catNameOutput" style="margin-top:10px; font-weight:bold; font-size:1.1rem;"></p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- ===== FOOTER ===== -->
   <footer>
     © 2025 My Dev Journey · built with 💜
   </footer>
 
-  <!-- ===== JS ===== -->
-  <script src="https://pyscript.net/releases/2024.6.1/core.js"></script>
-  <script>
-    window.addEventListener("load", () => {
-
-      /* === CLOCK === */
-      function tick() {
-        const clock = document.getElementById("uk-clock");
-        if (clock) {
-          clock.textContent = new Date().toLocaleTimeString("en-GB", {
-            timeZone: "Europe/London",
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-            hour12: false
-          });
-        }
-      }
-      tick();
-      setInterval(tick, 1000);
-
-      /* === THEME === */
-      const THEME_KEY = "siteTheme";
-      const savedTheme = localStorage.getItem(THEME_KEY) || "dark";
-      document.body.classList.toggle("light", savedTheme === "light");
-      const themeBtn = document.getElementById("theme-toggle");
-      if (themeBtn) {
-        themeBtn.textContent = savedTheme === "light" ? "🌙 Dark Mode" : "🌞 Light Mode";
-        themeBtn.addEventListener("click", () => {
-          const next = document.body.classList.contains("light") ? "dark" : "light";
-          document.body.classList.toggle("light", next === "light");
-          localStorage.setItem(THEME_KEY, next);
-          themeBtn.textContent = next === "light" ? "🌙 Dark Mode" : "🌞 Light Mode";
-        });
-      }
-
-      /* === QUIZ FUNCTIONALITY === */
-      const quizData = [
-        { q: "Which SQL keyword retrieves data from a database?", options: ["GET", "SELECT", "FETCH", "SHOW"], correct: "SELECT" },
-        { q: "Which clause filters rows returned by a SELECT query?", options: ["ORDER BY", "WHERE", "GROUP BY", "HAVING"], correct: "WHERE" },
-        { q: "Which SQL statement adds new data to a table?", options: ["ADD", "INSERT INTO", "UPDATE", "APPEND"], correct: "INSERT INTO" },
-        { q: "Which command deletes an entire table?", options: ["DELETE FROM", "DROP TABLE", "REMOVE", "TRUNCATE"], correct: "DROP TABLE" }
-      ];
-
-      const quizContainer = document.getElementById("quiz-container");
-      const nextBtn = document.getElementById("next-btn");
-      const resultText = document.getElementById("result");
-      const progressFill = document.getElementById("quiz-progress");
-
-      if (quizContainer && nextBtn && resultText && progressFill) {
-        let index = 0;
-        let score = 0;
-
-        function drawQuestion() {
-          const q = quizData[index];
-          quizContainer.innerHTML = `
-            <div>
-              <p><strong>${index + 1}. ${q.q}</strong></p>
-              ${q.options.map(opt => `
-                <label><input type="radio" name="ans" value="${opt}"> ${opt}</label><br>
-              `).join("")}
-            </div>
-          `;
-          resultText.textContent = "";
-          progressFill.style.width = ((index / quizData.length) * 100) + "%";
-        }
-
-        function showResult() {
-          quizContainer.innerHTML = `<h3>🎉 You scored ${score}/${quizData.length}!</h3>`;
-          nextBtn.style.display = "none";
-          progressFill.style.width = "100%";
-        }
-
-        nextBtn.addEventListener("click", () => {
-          const selected = document.querySelector('input[name="ans"]:checked');
-          if (!selected) {
-            resultText.textContent = "⚠️ Please select an answer!";
-            resultText.style.color = "#ff8080";
-            return;
-          }
-
-          if (selected.value === quizData[index].correct) score++;
-          index++;
-          if (index < quizData.length) drawQuestion();
-          else showResult();
-        });
-
-        drawQuestion();
-      }
-
-    });
-  </script>
-
+  <!-- ===== FLOATING & STATUS ===== -->
   <div id="emoji-container"></div>
   <div id="dev-status"></div>
-<script>
-  // === PAGE-SPECIFIC DEV STATUS TEXT ===
+
+  <!-- ===== SCRIPT ===== -->
+  <script>
+  // === CLOCK ===
+  const clock = document.getElementById("uk-clock");
+  function tick() {
+    if (clock) {
+      clock.textContent = new Date().toLocaleTimeString("en-GB", {
+        timeZone: "Europe/London",
+        hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false
+      });
+    }
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // === THEME ===
+  const themeBtn = document.getElementById("theme-toggle");
+  const THEME_KEY = "siteTheme";
+  const savedTheme = localStorage.getItem(THEME_KEY) || "dark";
+  document.body.classList.toggle("light", savedTheme === "light");
+  themeBtn.textContent = savedTheme === "light" ? "🌙 Dark Mode" : "🌞 Light Mode";
+  themeBtn.addEventListener("click", () => {
+    const next = document.body.classList.contains("light") ? "dark" : "light";
+    document.body.classList.toggle("light", next === "light");
+    localStorage.setItem(THEME_KEY, next);
+    themeBtn.textContent = next === "light" ? "🌙 Dark Mode" : "🌞 Light Mode";
+  });
+
+  // === QUIZ ===
+  const quizData = [
+    { q: "Which SQL keyword retrieves data?", o: ["GET","SELECT","FETCH","SHOW"], a: "SELECT" },
+    { q: "Which clause filters rows?", o: ["ORDER BY","WHERE","GROUP BY","HAVING"], a: "WHERE" },
+    { q: "Which adds new data?", o: ["ADD","INSERT INTO","UPDATE","APPEND"], a: "INSERT INTO" },
+    { q: "Which deletes a table?", o: ["DELETE FROM","DROP TABLE","REMOVE","TRUNCATE"], a: "DROP TABLE" }
+  ];
+  const quizContainer = document.getElementById("quiz-container");
+  const nextBtn = document.getElementById("next-btn");
+  const resultText = document.getElementById("result");
+  const progressFill = document.getElementById("quiz-progress");
+
+  if (quizContainer && nextBtn && resultText && progressFill) {
+    let i = 0, score = 0;
+    function draw() {
+      const q = quizData[i];
+      quizContainer.innerHTML = `
+        <p><strong>${i+1}. ${q.q}</strong></p>
+        ${q.o.map(opt => `<label><input type="radio" name="ans" value="${opt}"> ${opt}</label><br>`).join('')}
+      `;
+      resultText.textContent = "";
+      progressFill.style.width = (i / quizData.length) * 100 + "%";
+    }
+    nextBtn.onclick = () => {
+      const picked = document.querySelector('input[name="ans"]:checked');
+      if (!picked) return resultText.textContent = "⚠️ Select an answer!";
+      if (picked.value === quizData[i].a) score++;
+      i++;
+      if (i < quizData.length) draw();
+      else {
+        quizContainer.innerHTML = `<h3>🎉 You scored ${score}/${quizData.length}!</h3>`;
+        nextBtn.style.display = "none";
+        progressFill.style.width = "100%";
+      }
+    };
+    draw();
+  }
+
+  // === CAT GENERATOR ===
+  const catBtn = document.getElementById("catNameBtn");
+  const catOut = document.getElementById("catNameOutput");
+  if (catBtn && catOut) {
+    const prefixes = ["Sir","Lady","Captain","Doctor","Agent","Professor","Chief","Lord","Queen","Count"];
+    const names = ["Galaxy Whiskers","Slimepaw","Beeclaw","Suitpaw","Ivyfur","Pixel","Mochi","Shadow","Luna","Ember"];
+    const suffixes = [
+      "the Brave 🌟","of the Portal 🌀","the Sneaky 👻","of the Ivy 🪴",
+      "the Adventurer 🚀","the Dreamer 💤","the Coder 🎮",
+      "of Rogue Whiskers 👑","of the Galaxy 🌠","the Wanderer 🧭"
+    ];
+    catBtn.addEventListener("click", () => {
+      const p = prefixes[Math.floor(Math.random() * prefixes.length)];
+      const n = names[Math.floor(Math.random() * names.length)];
+      const s = suffixes[Math.floor(Math.random() * suffixes.length)];
+      catOut.textContent = `${p} ${n} ${s}`;
+    });
+  }
+
+  // === PYSCRIPT HOOK ===
+  document.addEventListener("py:ready", () => {
+    const btn = document.getElementById("squareBtn");
+    const out = document.getElementById("output");
+    try {
+      const pyFunc = pyscript.interpreter.globals.get("square_number");
+      btn.disabled = false;
+      btn.textContent = "Square it!";
+      btn.onclick = () => pyFunc();
+    } catch {
+      out.textContent = "⚠️ PyScript function not found!";
+    }
+  });
+
+  // === DEV STATUS (typing effect) ===
   const statusEl = document.getElementById('dev-status');
   if (statusEl) {
-    // Cat + Project themed messages 🐾
     const messages = [
       "🐾 Generating cat names...",
       "🎮 Squaring some numbers...",
@@ -245,35 +227,32 @@ def square_number(event=None):
       "✨ Polishing fur textures...",
       "😺 Debugging pawsitive code..."
     ];
-
-    let msgIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
-
-    function typeEffect() {
-      const current = messages[msgIndex];
-
-      if (!deleting) {
-        statusEl.textContent = current.slice(0, ++charIndex);
-        if (charIndex === current.length) {
-          deleting = true;
-          setTimeout(typeEffect, 1500); // pause at full word
-          return;
-        }
-      } else {
-        statusEl.textContent = current.slice(0, --charIndex);
-        if (charIndex === 0) {
-          deleting = false;
-          msgIndex = (msgIndex + 1) % messages.length;
-        }
-      }
-
-      const speed = deleting ? 40 : 90;
-      setTimeout(typeEffect, speed);
+    let i = 0, j = 0, del = false;
+    function type() {
+      const cur = messages[i];
+      statusEl.textContent = cur.slice(0, j);
+      j += del ? -1 : 1;
+      if (!del && j === cur.length) { del = true; setTimeout(type, 1000); return; }
+      if (del && j === 0) { del = false; i = (i + 1) % messages.length; }
+      setTimeout(type, del ? 40 : 90);
     }
-
-    typeEffect();
+    type();
   }
-</script>
+
+  // === FLOATING EMOJIS ===
+  const emojiContainer = document.getElementById("emoji-container");
+  function spawnEmoji() {
+    if (!emojiContainer) return;
+    const list = ["🐾","🐈","😸","🧶","🌌","🐈‍⬛"];
+    const e = document.createElement("div");
+    e.className = "float-emoji";
+    e.textContent = list[Math.floor(Math.random() * list.length)];
+    e.style.left = Math.random() * 100 + "vw";
+    e.style.animationDuration = 3 + Math.random() * 3 + "s";
+    emojiContainer.appendChild(e);
+    setTimeout(() => e.remove(), 7000);
+  }
+  setInterval(spawnEmoji, 1500);
+  </script>
 </body>
 </html>
