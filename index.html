@@ -8,9 +8,9 @@
   <script src="js/script.js" defer></script>
 </head>
 
-<body class="home"> <!-- ✅ Page type set here -->
+<body class="home">
   <!-- ===== NAVBAR ===== -->
-   <header class="navbar">
+  <header class="navbar">
     <div class="navbar-inner">
       <div class="logo">My Dev Journey</div>
 
@@ -18,19 +18,17 @@
         <div id="clock-container">
           <h2>🕒 Time</h2>
           <div id="uk-clock"></div>
-          </div>
-        <!-- 🌗 Toggle button now starts in dark mode label -->
+        </div>
+        <!-- 🌗 Toggle button now starts in light mode label -->
         <button id="theme-toggle">🌞 Light Mode</button>
       </div>
 
-
-      <!-- RIGHT -->
-    <div class="nav-links" id="navLinks">
-  <a href="index.html" class="active">Home</a>
-  <a href="about.html">About</a>
-  <a href="projects.html">Projects</a>
-  <a href="sandbox.html">Sandbox</a>
-</div>
+      <!-- ✅ Nav links (all four visible on desktop) -->
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="sandbox.html">Sandbox</a>
       </nav>
 
       <button class="menu-toggle" id="menuToggle">☰</button>
@@ -68,58 +66,60 @@
     </p>
   </footer>
 
-<div id="emoji-container"></div>
-<!-- Animated Dev Text -->
-<div id="dev-status"></div>
-<script>
-  // === Animated "Debugging..." Text for Home Page ===
-  const statusEl = document.getElementById("dev-status");
-  if (statusEl) {
-    const messages = [
-      "💻 Debugging...",
-      "🧠 Refactoring code...",
-      "🚀 Compiling ideas...",
-      "🐾 Feeding the cats...",
-      "✨ Optimizing pixels...",
-      "🌿 Cleaning up code...",
-      "📊 Building data dreams..."
-    ];
-    let i = 0, j = 0, deleting = false;
+  <!-- Animated Dev Text -->
+  <div id="dev-status"></div>
 
-    function type() {
-      const cur = messages[i];
-      statusEl.textContent = cur.slice(0, j);
-      j += deleting ? -1 : 1;
+  <script>
+    // === Animated "Debugging..." Text for Home Page ===
+    document.addEventListener("DOMContentLoaded", () => {
+      const statusEl = document.getElementById("dev-status");
+      if (statusEl) {
+        const messages = [
+          "💻 Debugging...",
+          "🧠 Refactoring code...",
+          "🚀 Compiling ideas...",
+          "🐾 Feeding the cats...",
+          "✨ Optimizing pixels...",
+          "🌿 Cleaning up code...",
+          "📊 Building data dreams..."
+        ];
+        let i = 0, j = 0, deleting = false;
 
-      if (!deleting && j === cur.length) {
-        deleting = true;
-        setTimeout(type, 1200);
-        return;
+        function type() {
+          const cur = messages[i];
+          statusEl.textContent = cur.slice(0, j);
+          j += deleting ? -1 : 1;
+
+          if (!deleting && j === cur.length) {
+            deleting = true;
+            setTimeout(type, 1200);
+            return;
+          }
+          if (deleting && j === 0) {
+            deleting = false;
+            i = (i + 1) % messages.length;
+          }
+          setTimeout(type, deleting ? 40 : 90);
+        }
+        type();
       }
-      if (deleting && j === 0) {
-        deleting = false;
-        i = (i + 1) % messages.length;
-      }
-      setTimeout(type, deleting ? 40 : 90);
-    }
-    type();
-  }
 
-  // === Floating Emojis for Home Page ===
-  const emojiContainer = document.getElementById("emoji-container");
-  function spawnEmoji() {
-    if (!emojiContainer) return;
-    const list = ["💻", "✨", "🚀", "🌸", "🐾", "🎨", "💡"];
-    const e = document.createElement("div");
-    e.className = "float-emoji";
-    e.textContent = list[Math.floor(Math.random() * list.length)];
-    e.style.left = Math.random() * 100 + "vw";
-    e.style.animationDuration = 3 + Math.random() * 3 + "s";
-    emojiContainer.appendChild(e);
-    setTimeout(() => e.remove(), 7000);
-  }
-  setInterval(spawnEmoji, 1500);
-</script>
+      // === Floating Emojis for Home Page ===
+      const emojiContainer = document.getElementById("emoji-container");
+      function spawnEmoji() {
+        if (!emojiContainer) return;
+        const list = ["💻", "✨", "🚀", "🌸", "🐾", "🎨", "💡"];
+        const e = document.createElement("div");
+        e.className = "float-emoji";
+        e.textContent = list[Math.floor(Math.random() * list.length)];
+        e.style.left = Math.random() * 100 + "vw";
+        e.style.animationDuration = 3 + Math.random() * 3 + "s";
+        emojiContainer.appendChild(e);
+        setTimeout(() => e.remove(), 7000);
+      }
+      setInterval(spawnEmoji, 1500);
+    });
+  </script>
 
 </body>
 </html>
