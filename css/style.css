@@ -509,7 +509,16 @@ body.light .project-card input[type="number"] {
   .about-grid { grid-template-columns: 1fr; gap: 20px; padding: 20px; height: auto; }
   .skills-panel { height: auto; }
 }
+/* === Always show full nav on desktop === */
+.nav-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
 
+.menu-toggle {
+  display: none; /* hidden on desktop */
+}
 /* === Skills Panel Fit Refinement === */
 .skills-panel { font-size: 0.9rem; line-height: 1.4; }
 .skills-header h2 { font-size: 1.2rem; }
