@@ -73,6 +73,43 @@ def square_number(event=None):
           </py-script>
         </div>
       </div>
+<script>
+(function initPyDemo(){
+  const btn = document.getElementById("squareBtn");
+  const out = document.getElementById("output");
+  if (!btn || !out) return;
+
+  function wire() {
+    try {
+      const pyFunc = window.pyscript?.interpreter?.globals?.get?.("square_number");
+      if (typeof pyFunc === "function") {
+        btn.disabled = false;
+        btn.textContent = "Square it!";
+        btn.onclick = () => pyFunc();
+        return true;
+      }
+    } catch(e){}
+    return false;
+  }
+
+  // 1) Try immediately (covers case where PyScript is already ready)
+  if (wire()) return;
+
+  // 2) Listen for py:ready (covers normal case)
+  document.addEventListener("py:ready", wire, { once:true });
+
+  // 3) Tiny fallback poll (covers odd timing)
+  let tries = 0;
+  const t = setInterval(() => {
+    if (wire() || ++tries > 20) clearInterval(t);
+  }, 200);
+
+  // Friendly message if user clicks too soon
+  btn.addEventListener("click", () => {
+    if (btn.disabled) out.textContent = "⚙️ Still loading PyScript runtime...";
+  });
+})();
+</script>
 
       <!-- CENTER TITLE -->
       <div class="projects-center">
