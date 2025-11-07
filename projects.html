@@ -35,8 +35,9 @@
   </nav>
 
   <!-- ===== PROJECTS SECTION ===== -->
- <section class="projects-showcase">
+<section class="projects-showcase">
   <div class="projects-wrapper">
+
     <!-- LEFT COLUMN -->
     <div class="projects-col left">
       <div class="project-card">
@@ -48,14 +49,18 @@
         </ul>
       </div>
 
+      <!-- 🐍 PyScript Demo -->
       <div class="project-card py-demo">
         <h3>🌿 Python Interactive Demo (PyScript)</h3>
         <p>Run Python directly in your browser — try squaring a number!</p>
+
         <input id="numInput" type="number" placeholder="Enter number" />
-        <button id="squareBtn" class="fun-btn" pys-onClick="square_number">Square it!</button>
+        <button id="squareBtn" class="fun-btn">Square it!</button>
         <p id="output"></p>
+
         <py-script>
 from js import document
+
 def square_number(event=None):
     num = document.getElementById("numInput").value
     try:
@@ -64,6 +69,14 @@ def square_number(event=None):
     except:
         document.getElementById("output").innerText = "Invalid input"
         </py-script>
+
+        <script>
+          // manually call the PyScript function when button clicked
+          document.getElementById("squareBtn").addEventListener("click", () => {
+            const pysFunc = pyscript.interpreter.globals.get("square_number");
+            pysFunc(); // trigger the Python function
+          });
+        </script>
       </div>
     </div>
 
@@ -76,6 +89,7 @@ def square_number(event=None):
 
     <!-- RIGHT COLUMN -->
     <div class="projects-col right">
+      <!-- SQL Quiz -->
       <div class="project-card">
         <h3>💭 SQL Mini Quiz</h3>
         <p>Test your SQL knowledge — one question at a time!</p>
@@ -87,11 +101,42 @@ def square_number(event=None):
         </div>
       </div>
 
-      <div class="project-card">
-        <h3>🐱 Random Cat Name Generator</h3>
-        <p>Generate a new cat hero name for… <strong>COMING SOON!</strong></p>
-        <button id="catNameBtn" class="fun-btn">Generate Cat Name</button>
-      </div>
+      <!-- 🐱 Cat Name Generator -->
+   <!-- 🐱 Cat Name Generator -->
+<div class="project-card">
+  <h3>🐱 Random Cat Name Generator</h3>
+  <p>Generate a unique cat hero name!</p>
+  <button id="catNameBtn" class="fun-btn">Generate Cat Name</button>
+  <p id="catNameOutput" style="margin-top:10px; font-weight:bold; font-size:1.1rem;"></p>
+
+  <script>
+    const catBtn = document.getElementById("catNameBtn");
+    const catOut = document.getElementById("catNameOutput");
+
+    const prefixes = [
+      "🐾 Sir", "🎩 Lady", "🛡️ Captain", "🧪 Doctor", "🕶️ Agent",
+      "📚 Professor", "👑 Chief", "🦴 Lord", "🌙 Queen", "🧶 Count"
+    ];
+
+    const names = [
+      "🌌 Galaxy Whiskers", "💧 Slimepaw", "🐝 Beeclaw", "🎩 Suitpaw", "🌿 Ivyfur",
+      "🐾 Pixel", "🌈 Mochi", "⚡ Shadow", "☁️ Luna", "🔥 Ember", "💎 Crystal", "🌊 Ripple"
+    ];
+
+    const suffixes = [
+      "🌟 the Brave", "🌀 of the Portal", "👻 the Sneaky", "🪴 of the Ivy",
+      "🚀 the Adventurer", "💤 the Dreamer", "🎮 the Coder", "👑 of Rogue Whiskers",
+      "🌠 of the Galaxy", "🐾 the Fearless", "🧭 the Wanderer"
+    ];
+
+    catBtn.addEventListener("click", () => {
+      const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+      const name = names[Math.floor(Math.random() * names.length)];
+      const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+      catOut.textContent = `${prefix} ${name} ${suffix}`;
+    });
+  </script>
+</div>
     </div>
   </div>
 </section>
@@ -200,5 +245,8 @@ def square_number(event=None):
       }
     });
   </script>
+
+  <div id="emoji-container"></div>
+  
 </body>
 </html>
