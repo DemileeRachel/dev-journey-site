@@ -557,3 +557,51 @@ body.light .project-card input[type="number"] {
   font-size: 0.8rem;
   padding: 4px 8px;
 }
+/* === FIX: Restored Collapsible Skills Behaviour === */
+
+/* Reset overflow logic while keeping smooth animation */
+#skills {
+  transition: max-height 0.5s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+
+/* When collapsed */
+#skills.collapsed .skills-body {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+}
+
+/* When expanded */
+#skills .skills-body {
+  max-height: 800px; /* fits all skills comfortably */
+  opacity: 1;
+  overflow: visible;
+  transform: translateY(0);
+}
+
+/* Adjust skill font sizing for perfect fit */
+.skills-panel {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.skills-header h2 {
+  font-size: 1.2rem;
+}
+
+.skill-category {
+  padding: 8px 12px;
+  margin-bottom: 8px;
+}
+
+.skill-category h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.skills-header button {
+  font-size: 0.8rem;
+  padding: 4px 8px;
+}
