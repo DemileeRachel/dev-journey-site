@@ -924,3 +924,88 @@ body.sandbox .project-card:nth-of-type(3) .fun-btn {
   padding: 7px 12px;
   align-self: center;
 }
+/* === Sandbox SQL Panel Alignment Fix === */
+body.sandbox .project-card h3 {
+  margin-bottom: 6px;
+}
+
+body.sandbox .project-card p {
+  margin: 6px 0 8px 0;
+  font-size: 0.9rem;
+}
+
+/* Make the SQL generator card slightly taller and pull content up */
+body.sandbox .project-card:nth-of-type(3) {
+  padding-top: 14px;
+  padding-bottom: 12px;
+  min-height: 270px; /* ensure space for buttons */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+/* Compact label/input spacing */
+body.sandbox .project-card:nth-of-type(3) label {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+body.sandbox .project-card:nth-of-type(3) input[type="text"] {
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+/* Buttons visible & tidy */
+body.sandbox .project-card:nth-of-type(3) .fun-btn {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  padding: 7px 12px;
+  align-self: center;
+}
+/* === Sandbox SQL Generator Fine Alignment === */
+body.sandbox .project-card:nth-of-type(3) {
+  padding-top: 8px;             /* lift content higher */
+  padding-bottom: 8px;
+  min-height: 250px;            /* slightly reduced for balance */
+  transform: translateY(-10px); /* visually lift card upward */
+}
+
+/* Tighten input spacing + height */
+body.sandbox .project-card:nth-of-type(3) input[type="text"] {
+  margin-bottom: 3px;
+  font-size: 0.85rem;
+  padding: 4px 6px;
+  height: 26px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+/* Compact labels */
+body.sandbox .project-card:nth-of-type(3) label {
+  font-size: 0.8rem;
+  margin-top: 2px;
+  margin-bottom: 1px;
+  color: #ddd;
+}
+
+/* Keep buttons visible and tidy */
+body.sandbox .project-card:nth-of-type(3) .fun-btn {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  padding: 6px 10px;
+}
+
+/* Button row alignment (side by side) */
+body.sandbox .project-card:nth-of-type(3) .fun-btn + .fun-btn {
+  margin-left: 6px;
+}
