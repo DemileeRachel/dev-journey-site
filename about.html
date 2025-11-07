@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | My Dev Journey</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
   <script src="js/script.js" defer></script>
 </head>
 
@@ -33,16 +33,16 @@
     </div>
   </header>
 
-  <!-- ===== ABOUT SECTION ===== -->
-  <main class="about-flex">
-    <!-- LEFT COLUMN -->
-    <section class="about-left">
+  <!-- ===== ABOUT GRID ===== -->
+  <main class="about-grid">
+    <!-- LEFT SIDE (About Me + About This Site) -->
+    <div class="about-left">
       <div class="about-card">
         <h2>👋 About Me</h2>
         <p>
           Hi! I'm Demilee — a developer passionate about blending creativity, data, and design.
           I’m currently learning full-stack development and exploring data analytics, Python projects,
-          and cozy indie game design (like my cat-themed project - <strong>Coming soon</strong> 🐾).
+          and cozy indie game design (like my cat-themed project <strong>Rogue Whiskers</strong> 🐾).
         </p>
         <p>
           My journey combines both technical and artistic sides — from writing clean, efficient code
@@ -51,7 +51,6 @@
         </p>
       </div>
 
-      <!-- 🌐 About This Site (Now directly under About Me) -->
       <div class="about-card">
         <h2>🌐 About This Site</h2>
         <p>
@@ -65,15 +64,16 @@
           and fun touches like floating emojis 💻🌸.
         </p>
       </div>
-    </section>
+    </div>
 
-    <!-- RIGHT COLUMN (Skills moved here) -->
+    <!-- RIGHT SIDE (Skills Panel) -->
     <aside class="about-right">
       <div class="skills-panel" id="skills">
         <div class="skills-header">
           <h2>🧠 Skills</h2>
           <button id="skillsToggle" aria-expanded="true">Hide Skills</button>
         </div>
+
         <div class="skills-body">
           <div class="skill-category">
             <h3>Languages</h3>
@@ -120,36 +120,33 @@
     © 2025 My Dev Journey · built with 💜
   </footer>
 
-  <!-- ===== FLOATING EMOJIS + DEBUGGING STATUS ===== -->
+  <!-- FLOATING EMOJIS + DEBUGGING STATUS -->
   <div id="emoji-container"></div>
   <div id="dev-status"></div>
 
-  <!-- ===== PAGE SCRIPT ===== -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // === Debugging Text ===
       const statusEl = document.getElementById("dev-status");
       if (statusEl) {
         const messages = [
           "💻 Debugging portfolio layout...",
-          "🌸 Styling About panels...",
-          "🚀 Optimizing responsiveness...",
-          "🎨 Adjusting panel balance...",
-          "🐾 Updating design flow..."
+          "🎨 Balancing About panels...",
+          "🌸 Styling responsive grid...",
+          "🚀 Optimizing design flow...",
+          "🐾 Compiling creativity..."
         ];
         let i = 0, j = 0, del = false;
         function type() {
           const cur = messages[i];
           statusEl.textContent = cur.slice(0, j);
           j += del ? -1 : 1;
-          if (!del && j === cur.length) { del = true; setTimeout(type, 1200); return; }
+          if (!del && j === cur.length) { del = true; setTimeout(type, 1000); return; }
           if (del && j === 0) { del = false; i = (i + 1) % messages.length; }
           setTimeout(type, del ? 40 : 90);
         }
         type();
       }
 
-      // === Floating Emojis ===
       const emojiContainer = document.getElementById("emoji-container");
       function spawnEmoji() {
         if (!emojiContainer) return;

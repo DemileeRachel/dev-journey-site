@@ -597,3 +597,55 @@ body.light .project-card input[type="number"] {
     padding: 20px;
   }
 }
+/* ===== Restored Balanced About Grid Layout ===== */
+.about-grid {
+  height: calc(100vh - var(--nav-h) - var(--footer-h));
+  display: grid;
+  grid-template-columns: 1.3fr 340px;
+  gap: 40px;
+  align-items: start;
+  justify-content: center;
+  padding: 40px 60px;
+  box-sizing: border-box;
+}
+
+/* Left column with both cards */
+.about-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 700px;
+}
+
+/* Keep right column (skills) aligned + fixed width */
+.about-right {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: auto;
+  position: relative;
+}
+
+/* Make About cards smaller and consistent */
+.about-card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 32px;
+  text-align: center;
+  color: #eee;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Mobile layout stacks cleanly */
+@media (max-width: 1000px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    height: auto;
+  }
+  .about-right {
+    justify-content: center;
+  }
+}
