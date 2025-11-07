@@ -224,12 +224,11 @@ button:hover, .fun-btn:hover, .back-home:hover {
 }
 
 /* ===========================
-   EMOJI COLORS
+   EMOJI COLORS (neutralize tint)
 =========================== */
-#greeting-emoji,
-#greetingText .emoji,
-.projects-title .emoji,
-.projects-sub span {
+.emoji, #greeting-emoji, .float-emoji,
+.projects-title .emoji, .projects-sub span,
+body.projects .projects-title span, body.projects .projects-sub span {
   color: initial !important;
   -webkit-text-fill-color: initial !important;
   mix-blend-mode: normal !important;
@@ -381,13 +380,6 @@ body.projects { overflow: hidden; height: 100vh; }
   margin-bottom: 20px;
 }
 
-/* Fix purple emoji tint */
-body.projects .projects-sub span,
-body.projects .projects-title span {
-  color: initial !important;
-  filter: none !important;
-}
-
 /* Project cards */
 .project-card {
   background: var(--panel-dark);
@@ -434,14 +426,8 @@ body.light .project-card input[type="number"] {
   align-items: center;
 }
 
-#squareBtn {
-  transition: all 0.3s ease;
-}
-
-#squareBtn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
+#squareBtn { transition: all 0.3s ease; }
+#squareBtn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .py-demo .fun-btn.ready {
   background: linear-gradient(135deg, #b9b7ff, #d8c7ff);
@@ -462,7 +448,6 @@ body.light .project-card input[type="number"] {
   text-decoration: none;
   transition: all 0.25s ease;
 }
-
 .back-home:hover { transform: scale(1.05); }
 
 /* ===========================
@@ -495,19 +480,18 @@ body.light .project-card input[type="number"] {
 =========================== */
 #dev-status {
   position: fixed;
-  bottom: 10px;
+  bottom: 15px;
   left: 20px;
   font-family: monospace;
-  font-size: 0.9rem;
-  color: var(--text-color, #fff);
-  opacity: 0.85;
+  font-size: 1rem;
+  color: #a78bfa;               /* lavender accent */
+  opacity: 0.9;
   white-space: nowrap;
-  user-select: none;
-  border-right: 2px solid var(--accent, #a78bfa);
+  pointer-events: none;
+  border-right: 2px solid #a5d8ff;
   animation: blinkCursor 0.8s steps(1) infinite;
   text-shadow: 0 0 8px rgba(167,139,250,0.6);
-  pointer-events: none;
-  z-index: 10;
+  z-index: 100;
 }
 
 @keyframes blinkCursor {
@@ -525,101 +509,28 @@ body.light .project-card input[type="number"] {
   .about-grid { grid-template-columns: 1fr; gap: 20px; padding: 20px; height: auto; }
   .skills-panel { height: auto; }
 }
+
 /* === Skills Panel Fit Refinement === */
-.skills-panel {
-  font-size: 0.9rem; /* slightly smaller overall text */
-  line-height: 1.4;  /* tighter spacing between lines */
-}
+.skills-panel { font-size: 0.9rem; line-height: 1.4; }
+.skills-header h2 { font-size: 1.2rem; }
+.skill-category { padding: 8px 12px; margin-bottom: 8px; }
+.skill-category h3 { font-size: 1rem; margin-bottom: 4px; }
+.skill-category ul, .skill-category li { margin: 2px 0; padding: 0; list-style-position: inside; }
+.skills-header button { font-size: 0.8rem; padding: 4px 8px; }
 
-.skills-header h2 {
-  font-size: 1.2rem; /* reduce title slightly */
-}
-
-.skill-category {
-  padding: 8px 12px;
-  margin-bottom: 8px;
-}
-
-.skill-category h3 {
-  font-size: 1rem;
-  margin-bottom: 4px;
-}
-
-.skill-category ul, 
-.skill-category li {
-  margin: 2px 0;
-  padding: 0;
-  list-style-position: inside;
-}
-
-/* Make hide button fit nicely */
-.skills-header button {
-  font-size: 0.8rem;
-  padding: 4px 8px;
-}
 /* === FIX: Restored Collapsible Skills Behaviour === */
+#skills { transition: max-height 0.5s ease, opacity 0.3s ease; overflow: hidden; }
+#skills.collapsed .skills-body { max-height: 0; opacity: 0; pointer-events: none; transform: translateY(-5px); }
+#skills .skills-body { max-height: 800px; opacity: 1; overflow: visible; transform: translateY(0); }
 
-/* Reset overflow logic while keeping smooth animation */
-#skills {
-  transition: max-height 0.5s ease, opacity 0.3s ease;
-  overflow: hidden;
-}
-
-/* When collapsed */
-#skills.collapsed .skills-body {
-  max-height: 0;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-5px);
-}
-
-/* When expanded */
-#skills .skills-body {
-  max-height: 800px; /* fits all skills comfortably */
-  opacity: 1;
-  overflow: visible;
-  transform: translateY(0);
-}
-
-/* Adjust skill font sizing for perfect fit */
-.skills-panel {
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-.skills-header h2 {
-  font-size: 1.2rem;
-}
-
-.skill-category {
-  padding: 8px 12px;
-  margin-bottom: 8px;
-}
-
-.skill-category h3 {
-  font-size: 1rem;
-  margin-bottom: 4px;
-}
-
-.skills-header button {
-  font-size: 0.8rem;
-  padding: 4px 8px;
-}
-/* === Smooth Collapsing Skills Panel === */
-#skills {
-  overflow: hidden;
-  transition: all 0.5s ease;
-}
-
-/* Expanded state (default) */
+/* === Smooth Collapsing Skills Panel (extra polish) === */
+#skills { overflow: hidden; transition: all 0.5s ease; }
 #skills:not(.collapsed) .skills-body {
-  max-height: 900px; /* fits all items */
+  max-height: 900px;
   opacity: 1;
   transform: translateY(0);
   transition: max-height 0.7s ease, opacity 0.6s ease, transform 0.5s ease;
 }
-
-/* Collapsed state (smoothly slides + fades) */
 #skills.collapsed .skills-body {
   max-height: 0;
   opacity: 0;
@@ -628,16 +539,7 @@ body.light .project-card input[type="number"] {
   transition: max-height 0.7s ease, opacity 0.6s ease, transform 0.5s ease;
 }
 
-/* Compact spacing & balanced text */
-.skills-panel {
-  font-size: 0.9rem;
-  line-height: 1.45;
-}
-
-.skills-header h2 {
-  font-size: 1.2rem;
-}
-
+.skills-panel { font-size: 0.9rem; line-height: 1.45; }
 .skills-header button {
   font-size: 0.8rem;
   padding: 4px 8px;
@@ -648,89 +550,13 @@ body.light .project-card input[type="number"] {
   box-shadow: 0 0 10px rgba(150,150,255,0.3);
   transition: transform 0.25s ease;
 }
+.skills-header button:hover { transform: scale(1.05); }
 
-.skills-header button:hover {
-  transform: scale(1.05);
-}
+.skill-category { background: rgba(255,255,255,.08); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; transition: background 0.3s ease; }
+.skill-category:hover { background: rgba(255,255,255,.12); }
+.skill-category h3 { font-size: 1rem; margin-bottom: 4px; color: var(--accent-a); }
 
-.skill-category {
-  background: rgba(255,255,255,.08);
-  border-radius: 10px;
-  padding: 8px 12px;
-  margin-bottom: 8px;
-  transition: background 0.3s ease;
-}
-
-.skill-category:hover {
-  background: rgba(255,255,255,.12);
-}
-
-.skill-category h3 {
-  font-size: 1rem;
-  margin-bottom: 4px;
-  color: var(--accent-a);
-}
 /* === Typing Challenge Visibility Control === */
-#typing-game {
-  transition: all 0.4s ease;
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-/* When hidden */
-#typing-game.typing-hidden {
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(-10px);
-  pointer-events: none;
-}
-
-/* When visible */
-#typing-game.typing-visible {
-  max-height: 200px;  /* fits input + word comfortably */
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-#dev-status {
-  position: fixed;
-  bottom: 15px;
-  left: 20px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--accent-a);
-  white-space: nowrap;
-  border-right: 2px solid var(--accent-b);
-  animation: blinkCursor 0.8s steps(1) infinite;
-  z-index: 100;
-  pointer-events: none;
-  text-shadow: 0 0 8px rgba(167,139,250,0.6);
-  opacity: 0.9;
-}
-
-@keyframes blinkCursor {
-  50% { border-color: transparent; }
-}
-#dev-status {
-  position: fixed;
-  bottom: 15px;
-  left: 20px;
-  font-family: monospace;
-  font-size: 1rem;
-  color: var(--text-color, #fff);
-  opacity: 0.9;
-  pointer-events: none;
-}
-#dev-status {
-  position: fixed;
-  bottom: 15px;
-  left: 20px;
-  font-family: monospace;
-  font-size: 1rem;
-  color: var(--text-color, #fff);
-  opacity: 0.9;
-  pointer-events: none;
-  z-index: 100;
-}
+#typing-game { transition: all 0.4s ease; overflow: hidden; max-height: 0; opacity: 0; transform: translateY(-10px); }
+#typing-game.typing-hidden { max-height: 0; opacity: 0; transform: translateY(-10px); pointer-events: none; }
+#typing-game.typing-visible { max-height: 200px; opacity: 1; transform: translateY(0); pointer-events: auto; }
