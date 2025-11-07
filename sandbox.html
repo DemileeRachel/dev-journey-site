@@ -90,6 +90,24 @@ ORDER BY total_sales DESC;
           <button id="runJs" class="fun-btn">Run JS</button>
           <p id="js-output" style="margin-top:6px;"></p>
         </div>
+
+        <!-- 💾 SQL Query Generator -->
+        <div class="project-card">
+          <h3>💾 SQL Query Generator</h3>
+          <p>Generate a basic SQL query template.</p>
+
+          <label>Table name:</label>
+          <input id="tableName" type="text" placeholder="users" />
+
+          <label>Columns (comma separated):</label>
+          <input id="columnList" type="text" placeholder="id, name, age" />
+
+          <label>Condition (optional):</label>
+          <input id="condition" type="text" placeholder="age > 30" />
+
+          <button id="genSQL" class="fun-btn">Generate SQL</button>
+          <pre id="sqlOutput" style="margin-top:10px; text-align:left;"></pre>
+        </div>
       </div>
     </div>
   </section>
@@ -105,7 +123,7 @@ ORDER BY total_sales DESC;
   <!-- ===== JS ===== -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
-    /* Clock */
+    /* === CLOCK === */
     const clock = document.getElementById("uk-clock");
     function tick() {
       clock.textContent = new Date().toLocaleTimeString("en-GB", {
@@ -115,7 +133,7 @@ ORDER BY total_sales DESC;
     }
     tick(); setInterval(tick, 1000);
 
-    /* Theme toggle */
+    /* === THEME TOGGLE === */
     const themeBtn = document.getElementById("theme-toggle");
     const THEME_KEY = "siteTheme";
     const savedTheme = localStorage.getItem(THEME_KEY) || "dark";
@@ -128,7 +146,7 @@ ORDER BY total_sales DESC;
       themeBtn.textContent = next === "light" ? "🌙 Dark Mode" : "🌞 Light Mode";
     });
 
-    /* CSS Gradient Shift */
+    /* === CSS GRADIENT SHIFT === */
     const box = document.getElementById("css-demo-box");
     document.getElementById("colorShift").addEventListener("click", () => {
       const c1 = `hsl(${Math.random()*360},70%,75%)`;
@@ -136,7 +154,7 @@ ORDER BY total_sales DESC;
       box.style.background = `linear-gradient(90deg,${c1},${c2})`;
     });
 
-    /* JS Runner */
+    /* === JS RUNNER === */
     document.getElementById("runJs").addEventListener("click", () => {
       const inp = document.getElementById("js-input").value;
       const out = document.getElementById("js-output");
@@ -147,72 +165,56 @@ ORDER BY total_sales DESC;
       }
     });
 
-    /* Debugging text */
+    /* === SQL GENERATOR === */
+    const btn = document.getElementById("genSQL");
+    const out = document.getElementById("sqlOutput");
+    btn?.addEventListener("click", () => {
+      const table = document.getElementById("tableName").value.trim() || "my_table";
+      const cols = document.getElementById("columnList").value.trim() || "*";
+      const cond = document.getElementById("condition").value.trim();
+      let query = `SELECT ${cols} FROM ${table}`;
+      if (cond) query += ` WHERE ${cond}`;
+      query += ";";
+      out.textContent = query;
+    });
+
+    /* === DEBUGGING TEXT === */
     const statusEl = document.getElementById("dev-status");
     if (statusEl) {
       const messages = [
         "🧪 Testing CSS gradients...",
         "🐍 Running Python snippets...",
-        "💾 Saving sandbox progress...",
+        "💾 Generating SQL queries...",
         "⚡ Evaluating JavaScript...",
         "🎨 Experimenting with styles...",
         "🔍 Debugging creative code..."
       ];
-      let i=0,j=0,del=false;
-      (function type(){
-        const cur=messages[i];
-        statusEl.textContent=cur.slice(0,j);
-        j+=del?-1:1;
-        if(!del&&j===cur.length){del=true;setTimeout(type,1200);return;}
-        if(del&&j===0){del=false;i=(i+1)%messages.length;}
-        setTimeout(type,del?40:90);
+      let i = 0, j = 0, del = false;
+      (function type() {
+        const cur = messages[i];
+        statusEl.textContent = cur.slice(0, j);
+        j += del ? -1 : 1;
+        if (!del && j === cur.length) { del = true; setTimeout(type, 1200); return; }
+        if (del && j === 0) { del = false; i = (i + 1) % messages.length; }
+        setTimeout(type, del ? 40 : 90);
       })();
     }
 
-    /* Floating emojis */
-    const emojiContainer=document.getElementById("emoji-container");
-    function spawnEmoji(){
-      const list=["🧪","💡","🎨","⚙️","🐍","✨"];
-      const e=document.createElement("div");
-      e.className="float-emoji";
-      e.textContent=list[Math.floor(Math.random()*list.length)];
-      e.style.left=Math.random()*100+"vw";
-      e.style.animationDuration=3+Math.random()*3+"s";
+    /* === FLOATING EMOJIS === */
+    const emojiContainer = document.getElementById("emoji-container");
+    function spawnEmoji() {
+      const list = ["🧪","💡","🎨","⚙️","🐍","✨"];
+      const e = document.createElement("div");
+      e.className = "float-emoji";
+      e.textContent = list[Math.floor(Math.random() * list.length)];
+      e.style.left = Math.random() * 100 + "vw";
+      e.style.animationDuration = 3 + Math.random() * 3 + "s";
       emojiContainer.appendChild(e);
-      setTimeout(()=>e.remove(),7000);
+      setTimeout(() => e.remove(), 7000);
     }
-    setInterval(spawnEmoji,1500);
-  <!-- 💾 SQL Query Generator -->
-<div class="sandbox-panel">
-  <h3>💾 SQL Query Generator</h3>
-  <p>Generate a basic SQL query template.</p>
-
-  <label>Table name:</label>
-  <input id="tableName" type="text" placeholder="users" />
-
-  <label>Columns (comma separated):</label>
-  <input id="columnList" type="text" placeholder="id, name, age" />
-
-  <label>Condition (optional):</label>
-  <input id="condition" type="text" placeholder="age > 30" />
-
-  <button id="genSQL" class="fun-btn">Generate SQL</button>
-  <pre id="sqlOutput" style="margin-top:10px; text-align:left;"></pre>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("genSQL");
-  const out = document.getElementById("sqlOutput");
-  btn?.addEventListener("click", () => {
-    const table = document.getElementById("tableName").value.trim() || "my_table";
-    const cols = document.getElementById("columnList").value.trim() || "*";
-    const cond = document.getElementById("condition").value.trim();
-    let query = `SELECT ${cols} FROM ${table}`;
-    if (cond) query += ` WHERE ${cond}`;
-    query += ";";
-    out.textContent = query;
+    setInterval(spawnEmoji, 1500);
   });
-</script>
+  </script>
 </body>
 </html>
+
