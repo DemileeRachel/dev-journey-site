@@ -126,23 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initEmoji();
 
   /* ===========================
-     FLOATING BACKGROUND EMOJIS
-  ============================ */
-  const emojiContainer = document.getElementById('emoji-container');
-  function spawnEmoji() {
-    if (!emojiContainer) return;
-    const list = ['💻','🌸','🚀','✨','🧠','💡','🎨'];
-    const d = document.createElement('div');
-    d.className = 'float-emoji';
-    d.textContent = list[Math.floor(Math.random() * list.length)];
-    d.style.left = Math.random() * 100 + 'vw';
-    d.style.animationDuration = 3 + Math.random() * 3 + 's';
-    emojiContainer.appendChild(d);
-    setTimeout(() => d.remove(), 7000);
-  }
-  setInterval(spawnEmoji, 1500);
-
-  /* ===========================
      MINI TYPING GAME
   ============================ */
   const tgWrap   = document.getElementById('typing-game');
@@ -276,119 +259,69 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ===========================
-     ANIMATED TYPING STATUS TEXT
+     PAGE-SPECIFIC ANIMATED DEV STATUS + FLOATING EMOJIS
   ============================ */
-  const statusEl = document.getElementById('dev-status');
-  if (statusEl) {
-    const messages = [
-      "💻 Debugging...",
-      "🧠 Refactoring...",
-      "🚀 Compiling...",
-      "🪄 Deploying...",
-      "🐾 Feeding the cats...",
-      "✨ Optimizing pixels...",
-      "🌿 Cleaning up code..."
-    ];
+  const statusEl = document.getElementById("dev-status");
+  const emojiContainer = document.getElementById("emoji-container");
 
-    let msgIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
+  if (statusEl) {
+    const messages = document.body.classList.contains("projects")
+      ? [
+          "🐾 Compiling cat magic...",
+          "😸 Debugging portals...",
+          "💻 Refactoring whiskers...",
+          "🚀 Launching new cats...",
+          "🌌 Purring through the cosmos..."
+        ]
+      : [
+          "💻 Debugging...",
+          "🧠 Refactoring...",
+          "🚀 Compiling...",
+          "🐾 Feeding the cats...",
+          "✨ Optimizing pixels...",
+          "🌿 Cleaning up code..."
+        ];
+
+    let msgIndex = 0, charIndex = 0, deleting = false;
 
     function typeEffect() {
       const current = messages[msgIndex];
+      statusEl.textContent = current.slice(0, charIndex);
+      charIndex += deleting ? -1 : 1;
 
-      if (!deleting) {
-        statusEl.textContent = current.slice(0, ++charIndex);
-        if (charIndex === current.length) {
-          deleting = true;
-          setTimeout(typeEffect, 1500);
-          return;
-        }
-      } else {
-        statusEl.textContent = current.slice(0, --charIndex);
-        if (charIndex === 0) {
-          deleting = false;
-          msgIndex = (msgIndex + 1) % messages.length;
-        }
+      if (!deleting && charIndex === current.length) {
+        deleting = true;
+        setTimeout(typeEffect, 1500);
+        return;
       }
-      const speed = deleting ? 40 : 90;
-      setTimeout(typeEffect, speed);
+      if (deleting && charIndex === 0) {
+        deleting = false;
+        msgIndex = (msgIndex + 1) % messages.length;
+      }
+      setTimeout(typeEffect, deleting ? 40 : 90);
     }
 
-    typeEffect();
+    // Smooth fade-in
+    statusEl.style.opacity = "0";
+    setTimeout(() => {
+      statusEl.style.transition = "opacity 1.2s ease";
+      statusEl.style.opacity = "1";
+      typeEffect();
+    }, 300);
   }
 
-  /* ===========================
-     CAT NAME GENERATOR (1 emoji at end only)
-  ============================ */
-  const catBtn = document.getElementById("catNameBtn");
-  const catOut = document.getElementById("catNameOutput");
-
-  if (catBtn && catOut) {
-    const prefixes = ["Sir", "Lady", "Captain", "Doctor", "Agent", "Professor", "Chief", "Lord", "Queen", "Count"];
-    const names = ["Galaxy Whiskers", "Slimepaw", "Beeclaw", "Suitpaw", "Ivyfur", "Pixel", "Mochi", "Shadow", "Luna", "Ember", "Crystal", "Ripple"];
-    const suffixes = [
-      "the Brave 🌟",
-      "of the Portal 🌀",
-      "the Sneaky 👻",
-      "of the Ivy 🪴",
-      "the Adventurer 🚀",
-      "the Dreamer 💤",
-      "the Coder 🎮",
-      "of Rogue Whiskers 👑",
-      "of the Galaxy 🌠",
-      "the Fearless 🐾",
-      "the Wanderer 🧭"
-    ];
-
-    catBtn.addEventListener("click", () => {
-      const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-      const name = names[Math.floor(Math.random() * names.length)];
-      const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
-      catOut.textContent = `${prefix} ${name} ${suffix}`;
-    });
+  function spawnEmoji() {
+    if (!emojiContainer) return;
+    const list = document.body.classList.contains("projects")
+      ? ["🐾", "🐈", "😸", "🧶", "🌌", "🐈‍⬛"]
+      : ["💻", "✨", "🚀", "💡", "🌸", "🐾", "🎨"];
+    const e = document.createElement("div");
+    e.className = "float-emoji";
+    e.textContent = list[Math.floor(Math.random() * list.length)];
+    e.style.left = Math.random() * 100 + "vw";
+    e.style.animationDuration = 3 + Math.random() * 3 + "s";
+    emojiContainer.appendChild(e);
+    setTimeout(() => e.remove(), 7000);
   }
-  /* === Animated Dev Status (Typing Effect) === */
-const statusEl = document.getElementById("dev-status");
-if (statusEl) {
-  const messages = document.body.classList.contains("projects")
-    ? ["🐾 Compiling cat magic...", "😸 Debugging portals...", "💻 Refactoring whiskers...", "🚀 Launching new cats..."]
-    : ["💻 Debugging...", "🧠 Refactoring...", "🚀 Compiling...", "🐾 Feeding the cats...", "✨ Optimizing pixels..."];
-
-  let i = 0, j = 0, deleting = false;
-
-  function type() {
-    const msg = messages[i];
-    statusEl.textContent = msg.slice(0, j);
-    j += deleting ? -1 : 1;
-
-    if (!deleting && j === msg.length) {
-      deleting = true;
-      setTimeout(type, 1000);
-      return;
-    }
-    if (deleting && j === 0) {
-      deleting = false;
-      i = (i + 1) % messages.length;
-    }
-    setTimeout(type, deleting ? 40 : 90);
-  }
-  type();
-}
-/* === Floating Emojis === */
-const emojiContainer = document.getElementById("emoji-container");
-function spawnEmoji() {
-  if (!emojiContainer) return;
-  const list = document.body.classList.contains("projects")
-    ? ["🐾", "🐈", "😸", "🧶", "🌌"]
-    : ["💻", "✨", "🚀", "💡", "🌸", "🐾"];
-  const e = document.createElement("div");
-  e.className = "float-emoji";
-  e.textContent = list[Math.floor(Math.random() * list.length)];
-  e.style.left = Math.random() * 100 + "vw";
-  e.style.animationDuration = 3 + Math.random() * 3 + "s";
-  emojiContainer.appendChild(e);
-  setTimeout(() => e.remove(), 7000);
-}
-setInterval(spawnEmoji, 1500);
+  setInterval(spawnEmoji, 1500);
 });
