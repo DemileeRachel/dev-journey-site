@@ -70,32 +70,42 @@ def square_number(event=None):
         document.getElementById("output").innerText = "Invalid input"
   </py-script>
 
-  <script>
-    const btn = document.getElementById("squareBtn");
-    const out = document.getElementById("output");
+<script>
+  const btn = document.getElementById("squareBtn");
+  const out = document.getElementById("output");
 
-    // 1️⃣ Show loading state until PyScript ready
-    window.addEventListener("pyscript-ready", () => {
+  // Initial loading text
+  btn.disabled = true;
+  btn.textContent = "⏳ Loading PyScript...";
+
+  // ✅ Wait until PyScript runtime is fully initialized
+  document.addEventListener("pyscript-interpreter-ready", () => {
+    btn.disabled = false;
+    btn.textContent = "Square it!";
+
+    const pyFunc = pyscript.interpreter.globals.get("square_number");
+    btn.addEventListener("click", () => pyFunc());
+  });
+
+  // Fallback check — some builds initialize without event
+  const waitForPyScript = setInterval(() => {
+    if (window.pyscript && pyscript.interpreter) {
+      clearInterval(waitForPyScript);
       btn.disabled = false;
       btn.textContent = "Square it!";
-      btn.classList.add("ready");
 
-      // 2️⃣ Get Python function safely
       const pyFunc = pyscript.interpreter.globals.get("square_number");
+      btn.addEventListener("click", () => pyFunc());
+    }
+  }, 500);
 
-      // 3️⃣ Run Python on click
-      btn.addEventListener("click", () => {
-        pyFunc(); // call Python directly
-      });
-    });
-
-    // 4️⃣ If user clicks too early (edge case)
-    btn.addEventListener("click", () => {
-      if (btn.disabled) {
-        out.innerHTML = "⚙️ Still loading PyScript runtime...";
-      }
-    });
-  </script>
+  // Optional message if clicked too soon
+  btn.addEventListener("click", () => {
+    if (btn.disabled) {
+      out.textContent = "⚙️ Still loading PyScript runtime...";
+    }
+  });
+</script>
 </div>
 
     </div>

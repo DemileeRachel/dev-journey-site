@@ -754,4 +754,21 @@ body.projects {
 .back-home:hover {
   transform: scale(1.05);
 }
+.py-demo .fun-btn.ready {
+  background: linear-gradient(135deg, #b9b7ff, #d8c7ff);
+  color: #000;
+  transition: background 0.3s;
+}
+
+.py-demo .fun-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+#squareBtn {
+  transition: all 0.3s ease;
+}
+#squareBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
