@@ -694,3 +694,22 @@ body.light .project-card input[type="number"] {
   transform: translateY(0);
   pointer-events: auto;
 }
+#dev-status {
+  position: fixed;
+  bottom: 15px;
+  left: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-a);
+  white-space: nowrap;
+  border-right: 2px solid var(--accent-b);
+  animation: blinkCursor 0.8s steps(1) infinite;
+  z-index: 100;
+  pointer-events: none;
+  text-shadow: 0 0 8px rgba(167,139,250,0.6);
+  opacity: 0.9;
+}
+
+@keyframes blinkCursor {
+  50% { border-color: transparent; }
+}
