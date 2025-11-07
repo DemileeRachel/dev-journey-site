@@ -319,4 +319,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     typeEffect();
   }
+  /* === CAT NAME GENERATOR === */
+const catBtn = document.getElementById("catNameBtn");
+const catOut = document.getElementById("catNameOutput");
+
+if (catBtn && catOut) {
+  const prefixes = [
+    "Sir 🐾",
+    "Lady 🎩",
+    "Captain 🛡️",
+    "Doctor 🧪",
+    "Agent 🕶️",
+    "Professor 📚",
+    "Chief 👑",
+    "Lord 🦴",
+    "Queen 🌙",
+    "Count 🧶"
+  ];
+
+  const names = [
+    "Galaxy Whiskers 🌌",
+    "Slimepaw 💧",
+    "Beeclaw 🐝",
+    "Suitpaw 🎩",
+    "Ivyfur 🌿",
+    "Pixel 🐾",
+    "Mochi 🌈",
+    "Shadow ⚡",
+    "Luna ☁️",
+    "Ember 🔥",
+    "Crystal 💎",
+    "Ripple 🌊"
+  ];
+
+  const suffixes = [
+    "the Brave 🌟",
+    "of the Portal 🌀",
+    "the Sneaky 👻",
+    "of the Ivy 🪴",
+    "the Adventurer 🚀",
+    "the Dreamer 💤",
+    "the Coder 🎮",
+    "of Rogue Whiskers 👑",
+    "of the Galaxy 🌠",
+    "the Fearless 🐾",
+    "the Wanderer 🧭"
+  ];
+
+  catBtn.addEventListener("click", () => {
+    const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+    const name = names[Math.floor(Math.random() * names.length)];
+    const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+    catOut.textContent = `${prefix} ${name} ${suffix}`;
+  });
+}
 });

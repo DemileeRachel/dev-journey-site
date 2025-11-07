@@ -111,34 +111,7 @@ def square_number(event=None):
   <h3>🐱 Random Cat Name Generator</h3>
   <p>Generate a unique cat hero name!</p>
   <button id="catNameBtn" class="fun-btn">Generate Cat Name</button>
-
-  <script>
-    const catBtn = document.getElementById("catNameBtn");
-    const catOut = document.getElementById("catNameOutput");
-
-    const prefixes = [
-      "Sir", "Lady", "Captain", "Doctor", "Agent",
-      "Professor", "Chief", "Lord", "Queen", "Count"
-    ];
-
-    const names = [
-      "Galaxy Whiskers", "Slimepaw", "Beeclaw", "Suitpaw", "Ivyfur",
-      "Pixel", "Mochi", "Shadow", "Luna", "Ember", "Crystal", "Ripple"
-    ];
-
-    const suffixes = [
-      "🌟 the Brave🌟", "🌀 of the Portal🌀", "👻 the Sneaky👻", "🪴 of the Ivy🪴",
-      "🚀 the Adventurer🚀", "💤 the Dreamer💤", "🎮 the Coder🎮", "👑 of Whiskers👑",
-      "🌠 of the Galaxy🌠", "🐾the Fearless🐾", "🧭 the Wanderer🧭"
-    ];
-
-    catBtn.addEventListener("click", () => {
-      const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-      const name = names[Math.floor(Math.random() * names.length)];
-      const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
-      catOut.textContent = `${prefix} ${name} ${suffix}`;
-    });
-  </script>
+  
 </div>
 <p id="catNameOutput" style="margin-top:10px; font-weight:bold; font-size:1.1rem;"></p>
     </div>
