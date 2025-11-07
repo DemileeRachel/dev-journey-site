@@ -50,15 +50,15 @@
       </div>
 
       <!-- 🐍 PyScript Demo -->
-      <div class="project-card py-demo">
-        <h3>🌿 Python Interactive Demo (PyScript)</h3>
-        <p>Run Python directly in your browser — try squaring a number!</p>
+  <div class="project-card py-demo">
+  <h3>🌿 Python Interactive Demo (PyScript)</h3>
+  <p>Run Python directly in your browser — try squaring a number!</p>
 
-        <input id="numInput" type="number" placeholder="Enter number" />
-        <button id="squareBtn" class="fun-btn">Square it!</button>
-        <p id="output"></p>
+  <input id="numInput" type="number" placeholder="Enter number" />
+  <button id="squareBtn" class="fun-btn">Square it!</button>
+  <p id="output"></p>
 
-        <py-script>
+  <py-script>
 from js import document
 
 def square_number(event=None):
@@ -68,16 +68,20 @@ def square_number(event=None):
         document.getElementById("output").innerText = f"Result: {result:g}"
     except:
         document.getElementById("output").innerText = "Invalid input"
-        </py-script>
+  </py-script>
 
-        <script>
-          // manually call the PyScript function when button clicked
-          document.getElementById("squareBtn").addEventListener("click", () => {
-            const pysFunc = pyscript.interpreter.globals.get("square_number");
-            pysFunc(); // trigger the Python function
-          });
-        </script>
-      </div>
+  <script>
+    document.getElementById("squareBtn").addEventListener("click", async () => {
+      // wait until PyScript is loaded
+      if (window.pyscript && pyscript.interpreter) {
+        const pyFunc = pyscript.interpreter.globals.get("square_number");
+        pyFunc(); // call the Python function
+      } else {
+        document.getElementById("output").innerText = "⚠️ PyScript not ready yet";
+      }
+    });
+  </script>
+</div>
     </div>
 
     <!-- CENTER TITLE -->
