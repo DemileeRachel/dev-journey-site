@@ -258,73 +258,58 @@ button:hover, .fun-btn:hover, .back-home:hover {
   -webkit-text-fill-color: transparent;
 }
 
-/* ===========================
-   ABOUT PAGE
-=========================== */
+/* === ABOUT PAGE FIX — SKILLS PANEL FULL HEIGHT === */
 .about-grid {
-  height: calc(100vh - var(--nav-h) - var(--footer-h));
-  display: grid;
-  grid-template-columns: 1fr 340px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   gap: 40px;
-  padding: 0 60px;
-  align-items: center;
+  height: auto; /* allow full height expansion */
+  min-height: calc(100vh - var(--nav-h) - var(--footer-h));
+  padding: 40px 60px;
   box-sizing: border-box;
+  flex-wrap: wrap; /* fits smaller screens naturally */
 }
 
 .about-card {
-  background: var(--panel-dark);
-  color: #eee;
-  border-radius: 22px;
-  padding: 36px 48px;
-  box-shadow: 0 6px 30px rgba(0,0,0,.25);
+  flex: 1 1 480px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 40px;
   text-align: center;
+  color: #eee;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
 
-body.light .about-card {
-  background: var(--panel-light);
-  color: #111;
-}
-
-.about-card h2 {
-  background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Skills panel */
 .skills-panel {
-  background: var(--panel-dark);
-  border: 1px solid var(--border-dark);
+  flex: 0 1 340px;
+  background: rgba(255,255,255,0.08);
   border-radius: 20px;
   padding: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
   display: flex;
   flex-direction: column;
-  height: 100%;
-  box-shadow: 0 4px 35px rgba(0,0,0,.25);
+  justify-content: flex-start;
+  height: auto; /* allow panel to grow naturally */
+  max-height: none; /* remove clipping */
+  overflow: visible; /* no scroll */
 }
-/* Skills panel */
-.skills-panel {
-  background: var(--panel-dark);
-  border: 1px solid var(--border-dark);
-  border-radius: 20px;
-  padding: 20px;
+
+.skills-header {
   display: flex;
-  flex-direction: column;
-  box-shadow: 0 4px 35px rgba(0,0,0,.25);
-  height: auto; /* allow height to grow naturally */
-  max-height: none; /* prevent clipping */
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 10px;
 }
 
-body.light .skills-panel {
-  background: var(--panel-light);
-  border-color: var(--border-light);
-}
-
-/* Skill content always visible (no scroll) */
 .skills-body {
   flex: 1;
-  overflow: visible; /* no scrollbars */
-  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: visible; /* ensures all skill boxes are visible */
 }
 
 .skill-category {
@@ -338,10 +323,21 @@ body.light .skills-panel {
   color: var(--accent-a);
   margin-bottom: 6px;
 }
-body.light .skills-panel {
-  background: var(--panel-light);
-  border-color: var(--border-light);
+
+/* Skill content always visible (no scroll) */
+.skills-body {
+  flex: 1;
+  overflow: visible; /* no scrollbars */
+  padding-right: 0;
 }
+.skills-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: visible; 
+}
+  /* ensures all skill boxes are visible */
 
 .skills-header {
   display: flex;
