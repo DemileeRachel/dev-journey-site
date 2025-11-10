@@ -677,3 +677,23 @@ body.projects .projects-showcase {
     transform: none;              /* reset lift on smaller screens */
   }
 }
+/* === PROJECTS PAGE — SQL Mini Quiz Panel Fine Alignment === */
+body.projects .project-card:nth-of-type(4) {
+  padding-top: 14px;          /* ⬆ slightly less padding */
+  padding-bottom: 10px;       /* keeps symmetry */
+  min-height: 220px;          /* ensures full fit */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+body.projects .project-card:nth-of-type(4) p,
+body.projects .project-card:nth-of-type(4) label {
+  margin-top: 0;
+  margin-bottom: 6px;         /* tighter text spacing */
+  line-height: 1.4;
+}
+
+body.projects .project-card:nth-of-type(4) button {
+  margin-top: 6px;            /* keeps button close to content */
+}
