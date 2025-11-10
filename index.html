@@ -69,41 +69,64 @@
   <!-- Animated Dev Text -->
   <div id="dev-status"></div>
 
-  <script>
-    // === Animated "Debugging..." Text for Home Page ===
-    document.addEventListener("DOMContentLoaded", () => {
-      const statusEl = document.getElementById("dev-status");
-      if (statusEl) {
-        const messages = [
-          "💻 Debugging...",
-          "🧠 Refactoring code...",
-          "🚀 Compiling ideas...",
-          "🐾 Feeding the cats...",
-          "✨ Optimizing pixels...",
-          "🌿 Cleaning up code...",
-          "📊 Building data dreams..."
-        ];
-        let i = 0, j = 0, deleting = false;
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const statusEl = document.getElementById("dev-status");
+  if (!statusEl) return;
 
-        function type() {
-          const cur = messages[i];
-          statusEl.textContent = cur.slice(0, j);
-          j += deleting ? -1 : 1;
+  // Pick messages depending on page
+  let messages = [];
+  if (document.body.classList.contains("projects")) {
+    messages = [
+      "🐾 Generating cat names...",
+      "🎮 Squaring some numbers...",
+      "🧶 Compiling whiskers...",
+      "🐍 Feeding the Python...",
+      "💾 Saving project progress...",
+      "🚀 Launching cat projects...",
+      "✨ Polishing fur textures..."
+    ];
+  } else if (document.body.classList.contains("about")) {
+    messages = [
+      "🌸 Balancing About panels...",
+      "💡 Expanding skill trees...",
+      "🎨 Polishing personal story...",
+      "📚 Documenting growth...",
+      "💜 Debugging self-improvement..."
+    ];
+  } else if (document.body.classList.contains("sandbox")) {
+    messages = [
+      "🧪 Testing new ideas...",
+      "💻 Spawning prototypes...",
+      "🎨 Painting pixels...",
+      "⚙️ Running creative experiments...",
+      "🌈 Calibrating sandbox magic..."
+    ];
+  } else {
+    // Home / Default
+    messages = [
+      "💻 Debugging portfolio layout...",
+      "🎨 Animating hero section...",
+      "🚀 Preparing new updates...",
+      "🐾 Feeding creative cats...",
+      "✨ Syncing with GitHub..."
+    ];
+  }
 
-          if (!deleting && j === cur.length) {
-            deleting = true;
-            setTimeout(type, 1200);
-            return;
-          }
-          if (deleting && j === 0) {
-            deleting = false;
-            i = (i + 1) % messages.length;
-          }
-          setTimeout(type, deleting ? 40 : 90);
-        }
-        type();
-      }
-
+  // Smooth fade cycle (same as projects)
+  let i = 0;
+  function cycle() {
+    statusEl.style.opacity = 0;
+    setTimeout(() => {
+      statusEl.textContent = messages[i];
+      statusEl.style.opacity = 1;
+      i = (i + 1) % messages.length;
+    }, 500);
+  }
+  statusEl.textContent = messages[0];
+  setInterval(cycle, 3500);
+});
+</script>
       // === Floating Emojis for Home Page ===
       const emojiContainer = document.getElementById("emoji-container");
       function spawnEmoji() {

@@ -135,30 +135,64 @@
 <div id="emoji-container"></div>
 <div id="dev-status"></div>
 
-<script>
+  <script>
 document.addEventListener("DOMContentLoaded", () => {
-
-  /* === DEV STATUS TYPING === */
   const statusEl = document.getElementById("dev-status");
-  if (statusEl) {
-    const messages = [
-      "💻 Debugging portfolio layout...",
-      "🎨 Balancing About panels...",
-      "🌸 Styling responsive grid...",
-      "🚀 Optimizing design flow...",
-      "🐾 Compiling creativity..."
+  if (!statusEl) return;
+
+  // Pick messages depending on page
+  let messages = [];
+  if (document.body.classList.contains("projects")) {
+    messages = [
+      "🐾 Generating cat names...",
+      "🎮 Squaring some numbers...",
+      "🧶 Compiling whiskers...",
+      "🐍 Feeding the Python...",
+      "💾 Saving project progress...",
+      "🚀 Launching cat projects...",
+      "✨ Polishing fur textures..."
     ];
-    let i = 0, j = 0, del = false;
-    function type() {
-      const cur = messages[i];
-      statusEl.textContent = cur.slice(0, j);
-      j += del ? -1 : 1;
-      if (!del && j === cur.length) { del = true; setTimeout(type, 1000); return; }
-      if (del && j === 0) { del = false; i = (i + 1) % messages.length; }
-      setTimeout(type, del ? 40 : 90);
-    }
-    type();
+  } else if (document.body.classList.contains("about")) {
+    messages = [
+      "🌸 Balancing About panels...",
+      "💡 Expanding skill trees...",
+      "🎨 Polishing personal story...",
+      "📚 Documenting growth...",
+      "💜 Debugging self-improvement..."
+    ];
+  } else if (document.body.classList.contains("sandbox")) {
+    messages = [
+      "🧪 Testing new ideas...",
+      "💻 Spawning prototypes...",
+      "🎨 Painting pixels...",
+      "⚙️ Running creative experiments...",
+      "🌈 Calibrating sandbox magic..."
+    ];
+  } else {
+    // Home / Default
+    messages = [
+      "💻 Debugging portfolio layout...",
+      "🎨 Animating hero section...",
+      "🚀 Preparing new updates...",
+      "🐾 Feeding creative cats...",
+      "✨ Syncing with GitHub..."
+    ];
   }
+
+  // Smooth fade cycle (same as projects)
+  let i = 0;
+  function cycle() {
+    statusEl.style.opacity = 0;
+    setTimeout(() => {
+      statusEl.textContent = messages[i];
+      statusEl.style.opacity = 1;
+      i = (i + 1) % messages.length;
+    }, 500);
+  }
+  statusEl.textContent = messages[0];
+  setInterval(cycle, 3500);
+});
+</script>
 
   /* === FLOATING EMOJIS === */
   const emojiContainer = document.getElementById("emoji-container");
@@ -199,6 +233,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("toggleSkills");
+  const container = document.getElementById("skillsContainer");
+
+  if (btn && container) {
+    btn.addEventListener("click", () => {
+      const isHidden = container.style.display === "none";
+      container.style.display = isHidden ? "grid" : "none";
+      btn.textContent = isHidden ? "Hide Skills" : "Show Skills";
+    });
+  }
 });
 </script>
 </body>
