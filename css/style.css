@@ -1178,7 +1178,6 @@ body.about .portal-animation {
     0 0 300px rgba(150,200,255,1);
 }
 
-/* === Text Label in Center === */
 .portal-home .portal-label {
   position: absolute;
   top: 50%;
@@ -1186,13 +1185,13 @@ body.about .portal-animation {
   transform: translate(-50%, -50%);
   font-family: "Poppins", sans-serif;
   color: #eaf3ff;
-  font-weight: 700;
-  font-size: 2.3rem;
-  letter-spacing: 1px;
+  font-weight: 600; /* slightly lighter for elegance */
+  font-size: 1.6rem; /* 🔽 smaller text to fit better */
+  letter-spacing: 0.5px;
   text-shadow:
-    0 0 25px rgba(165, 216, 255, 1),
-    0 0 50px rgba(205, 180, 255, 1),
-    0 0 80px rgba(150, 200, 255, 1);
+    0 0 15px rgba(165, 216, 255, 1),
+    0 0 35px rgba(205, 180, 255, 1),
+    0 0 60px rgba(150, 200, 255, 0.8);
   pointer-events: none;
   animation: portalTextGlow 2.5s ease-in-out infinite;
 }
