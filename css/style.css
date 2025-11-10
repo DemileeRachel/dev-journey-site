@@ -1702,17 +1702,22 @@ body.sandbox .projects-title .emoji {
 
 /* === NORMAL COLOUR EMOJI FIX FOR SANDBOX === */
 body.sandbox .projects-title .emoji {
-  -webkit-text-fill-color: initial !important;
   background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
   filter: none !important;
+  color: revert !important;
+  display: inline-block; /* prevents inheriting gradient clipping */
 }
+
 /* === Portal Alignment Adjustment (centered between panels) === */
 body.about .portal-home {
   position: absolute;
   top: 50%;
-  left: 58%; /* 🔥 moves it slightly right (was 50%) */
-  transform: translate(-50%, -50%);
+  left: 61%; /* 🔥 moves it more right to visually center */
+  transform: translate(-52%, -50%); /* fine-tunes position balance */
 }
+
 
 /* Keep frame + animation intact */
 body.about .portal-home::before {
@@ -1728,8 +1733,9 @@ body.about .portal-home::before {
   z-index: 2;
 }
 body.about .portal-home {
-  position: absolute;
-  top: 50%;
-  left: 59%; /* was 50% — 59% visually centers between your panels */
-  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 90px rgba(165, 216, 255, 0.9),
+    inset 0 0 150px rgba(205, 180, 255, 0.8),
+    0 0 250px rgba(140, 100, 255, 0.7),
+    0 0 50px rgba(160, 120, 255, 0.6); /* subtle lavender accent */
 }
