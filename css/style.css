@@ -555,7 +555,7 @@ body.light #dev-status {
   position: fixed;
   bottom: 15px;
   left: 20px;
-  font-family: monospace;
+  font-family: "Courier New", monospace;
   font-size: 1rem;
   color: var(--text-dark);
   opacity: 0.9;
@@ -564,6 +564,30 @@ body.light #dev-status {
   border-right: 2px solid var(--text-dark);
   animation: blinkCursor 0.8s steps(1) infinite;
   z-index: 9999;
-  overflow: hidden;         /* prevents flicker */
-  width: fit-content;       /* keeps width adaptive */
+  overflow: hidden;             /* prevents glitchy overflow */
+  display: inline-block;
+  min-width: 180px;             /* stabilises width to avoid jump */
+  letter-spacing: 0.02em;       /* smoother spacing */
+  text-shadow: 0 0 8px rgba(167,139,250,0.3);
+}
+
+body.light #dev-status {
+  color: var(--text-light);
+  border-right-color: var(--text-light);
+}
+
+@keyframes blinkCursor {
+  50% { border-color: transparent; }
+}
+/* Hide typing game until toggled */
+#typing-game {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* When shown by JS */
+#typing-game.typing-visible {
+  display: block;
+  opacity: 1;
 }
