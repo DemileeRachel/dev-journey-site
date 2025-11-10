@@ -1,6 +1,6 @@
 /* ===========================
    My Dev Journey – Global JS
-   (works on Home, About, Projects)
+   (works on Home, About, Projects, Sandbox)
 =========================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
      THEME TOGGLE (FIXED + LABEL)
   ============================ */
   const THEME_KEY = 'siteTheme';
-
   function applyTheme(theme) {
     document.body.classList.toggle('light', theme === 'light');
     document.body.classList.toggle('dark', theme === 'dark');
@@ -58,15 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
       themeBtn.textContent = theme === 'dark' ? '🌞 Light Mode' : '🌙 Dark Mode';
     }
   }
-
   const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
   applyTheme(savedTheme);
-
   if (themeBtn) {
     themeBtn.addEventListener('click', () => {
-      const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
-      localStorage.setItem(THEME_KEY, nextTheme);
-      applyTheme(nextTheme);
+      const next = document.body.classList.contains('dark') ? 'light' : 'dark';
+      localStorage.setItem(THEME_KEY, next);
+      applyTheme(next);
     });
   }
 
@@ -79,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (h < 18) return 'Good Afternoon';
     return 'Good Evening';
   }
-
   function setGreetingLine() {
     const name = localStorage.getItem('visitorName') || '';
     const base = computeGreeting();
@@ -87,11 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
       greetingEl.innerHTML = `${base}${name ? ', ' + name : ''}! <span id="greeting-emoji" class="emoji">🌸</span>`;
     }
   }
-
   if (!localStorage.getItem('visitorName')) {
     localStorage.setItem('visitorName', '');
   }
-
   setGreetingLine();
   setInterval(setGreetingLine, 60000);
 
@@ -111,22 +105,21 @@ document.addEventListener('DOMContentLoaded', () => {
      GREETING EMOJI INTERACTION
   ============================ */
   (function initEmoji() {
-    const greetingEmoji = document.getElementById('greeting-emoji');
-    if (!greetingEmoji) return;
-
+    const emoji = document.getElementById('greeting-emoji');
+    if (!emoji) return;
     const emojiSet = ['🌸','💜','🌞','🐍','💻','🚀','🎨','🧠','✨'];
-    const savedEmoji = localStorage.getItem('greetingEmoji');
-    if (savedEmoji) greetingEmoji.textContent = savedEmoji;
+    const saved = localStorage.getItem('greetingEmoji');
+    if (saved) emoji.textContent = saved;
 
-    greetingEmoji.addEventListener('click', () => {
+    emoji.addEventListener('click', () => {
       let next;
       do {
         next = emojiSet[Math.floor(Math.random() * emojiSet.length)];
-      } while (next === greetingEmoji.textContent);
-      greetingEmoji.textContent = next;
+      } while (next === emoji.textContent);
+      emoji.textContent = next;
       localStorage.setItem('greetingEmoji', next);
-      greetingEmoji.classList.add('clicked');
-      setTimeout(() => greetingEmoji.classList.remove('clicked'), 400);
+      emoji.classList.add('clicked');
+      setTimeout(() => emoji.classList.remove('clicked'), 400);
     });
   })();
 
@@ -156,33 +149,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const tgWord   = document.getElementById('typing-word');
   const tgInput  = document.getElementById('typing-input');
   const tgStatus = document.getElementById('typing-feedback');
-
   if (tgWrap && tgWord && tgInput && tgStatus) {
     const words = ['developer','javascript','portfolio','learning','python'];
     let target = words[0];
-
     function newWord() {
       target = words[Math.floor(Math.random() * words.length)];
       tgWord.textContent = target;
       tgInput.value = '';
       tgStatus.textContent = '';
     }
-
     newWord();
     tgWrap.classList.add('typing-hidden');
-
     tgInput.addEventListener('input', () => {
       if (tgInput.value.trim() === target) {
         tgStatus.textContent = '✓ Nice!';
         setTimeout(newWord, 700);
-      } else {
-        tgStatus.textContent = '';
-      }
+      } else tgStatus.textContent = '';
     });
   }
 
   /* ===========================
-     TOGGLE TYPING GAME VISIBILITY
+     TYPING GAME TOGGLE
   ============================ */
   if (greetBtn && tgWrap) {
     greetBtn.addEventListener('click', () => {
@@ -198,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
   ============================ */
   const skillsPanel  = document.getElementById('skills');
   const skillsToggle = document.getElementById('skillsToggle');
-
   if (skillsPanel && skillsToggle) {
     skillsToggle.addEventListener('click', () => {
       const collapsed = skillsPanel.classList.toggle('collapsed');
@@ -211,21 +197,17 @@ document.addEventListener('DOMContentLoaded', () => {
      SQL MINI QUIZ
   ============================ */
   const quizData = [
-    { question: "Which SQL keyword is used to retrieve data from a database?", options: ["GET", "SELECT", "FETCH", "SHOW"], correct: "SELECT" },
-    { question: "Which clause filters rows returned by a SELECT query?", options: ["ORDER BY", "WHERE", "GROUP BY", "HAVING"], correct: "WHERE" },
-    { question: "Which SQL statement is used to add new data into a table?", options: ["ADD", "INSERT INTO", "UPDATE", "APPEND"], correct: "INSERT INTO" },
-    { question: "Which command permanently removes a table from the database?", options: ["DELETE FROM", "DROP TABLE", "REMOVE TABLE", "TRUNCATE TABLE"], correct: "DROP TABLE" }
+    { question: "Which SQL keyword retrieves data?", options: ["GET", "SELECT", "FETCH", "SHOW"], correct: "SELECT" },
+    { question: "Which SQL clause filters rows?", options: ["ORDER BY", "WHERE", "GROUP BY", "HAVING"], correct: "WHERE" },
+    { question: "Which SQL command adds data?", options: ["INSERT", "ADD", "APPEND", "UPDATE"], correct: "INSERT" },
+    { question: "Which command deletes a table?", options: ["DELETE FROM", "DROP TABLE", "REMOVE", "TRUNCATE"], correct: "DROP TABLE" }
   ];
-
   const quizContainer = document.getElementById('quiz-container');
   const nextBtn = document.getElementById('next-btn');
   const resultText = document.getElementById('result');
   const progressFill = document.getElementById('quiz-progress');
-
   if (quizContainer && nextBtn && resultText && progressFill) {
-    let qIndex = 0;
-    let qScore = 0;
-
+    let qIndex = 0, qScore = 0;
     function drawQuestion() {
       const q = quizData[qIndex];
       quizContainer.innerHTML = `
@@ -242,7 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
       progressFill.style.width = percent + '%';
       resultText.textContent = "";
     }
-
     function showResult() {
       quizContainer.innerHTML = `
         <h3>🎉 Quiz Complete!</h3>
@@ -250,18 +231,14 @@ document.addEventListener('DOMContentLoaded', () => {
         <button id="retry-btn" class="fun-btn">Try Again</button>
       `;
       progressFill.style.width = "100%";
-      resultText.textContent = "";
       nextBtn.style.display = "none";
-
       const retry = document.getElementById('retry-btn');
       retry.addEventListener('click', () => {
-        qIndex = 0;
-        qScore = 0;
+        qIndex = 0; qScore = 0;
         nextBtn.style.display = "inline-block";
         drawQuestion();
       });
     }
-
     nextBtn.addEventListener('click', () => {
       const picked = document.querySelector('input[name="answer"]:checked');
       if (!picked) {
@@ -271,10 +248,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (picked.value === quizData[qIndex].correct) qScore++;
       qIndex++;
-      if (qIndex < quizData.length) drawQuestion();
-      else showResult();
+      if (qIndex < quizData.length) drawQuestion(); else showResult();
     });
-
     drawQuestion();
   }
 
@@ -283,79 +258,48 @@ document.addEventListener('DOMContentLoaded', () => {
   ============================ */
   const catBtn = document.getElementById("catNameBtn");
   const catOut = document.getElementById("catNameOutput");
-
   if (catBtn && catOut) {
-    const prefixes = ["Sir", "Lady", "Captain", "Doctor", "Agent", "Professor", "Chief", "Lord", "Queen", "Count"];
-    const names = ["Galaxy Whiskers", "Slimepaw", "Beeclaw", "Suitpaw", "Ivyfur", "Pixel", "Mochi", "Shadow", "Luna", "Ember", "Crystal", "Ripple"];
-    const suffixes = [
-      "the Brave 🌟",
-      "of the Portal 🌀",
-      "the Sneaky 👻",
-      "of the Ivy 🪴",
-      "the Adventurer 🚀",
-      "the Dreamer 💤",
-      "the Coder 🎮",
-      "of Rogue Whiskers 👑",
-      "of the Galaxy 🌠",
-      "the Fearless 🐾",
-      "the Wanderer 🧭"
-    ];
-
+    const prefixes = ["Sir","Lady","Captain","Doctor","Agent","Professor","Chief","Lord","Queen","Count"];
+    const names = ["Galaxy Whiskers","Slimepaw","Beeclaw","Suitpaw","Ivyfur","Pixel","Mochi","Shadow","Luna","Ember","Crystal","Ripple"];
+    const suffixes = ["the Brave 🌟","of the Portal 🌀","the Sneaky 👻","of the Ivy 🪴","the Adventurer 🚀","the Dreamer 💤","the Coder 🎮","of Rogue Whiskers 👑","of the Galaxy 🌠","the Fearless 🐾","the Wanderer 🧭"];
     catBtn.addEventListener("click", () => {
-      const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-      const name = names[Math.floor(Math.random() * names.length)];
-      const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
-      catOut.textContent = `${prefix} ${name} ${suffix}`;
+      const p = prefixes[Math.floor(Math.random() * prefixes.length)];
+      const n = names[Math.floor(Math.random() * names.length)];
+      const s = suffixes[Math.floor(Math.random() * suffixes.length)];
+      catOut.textContent = `${p} ${n} ${s}`;
     });
   }
 
-/* ===========================
-   ANIMATED DEV STATUS (SMOOTH TYPE + FADE)
-=========================== */
-(function devStatus() {
-  const statusEl = document.getElementById('dev-status');
-  if (!statusEl) return;
+  /* ===========================
+     SANDBOX-STYLE DEV STATUS (Smooth Fade)
+  ============================ */
+  (function devStatus() {
+    const statusEl = document.getElementById('dev-status');
+    if (!statusEl) return;
 
-  const messages = document.body.classList.contains("projects")
-    ? ["🐾 Generating cat names...", "🎮 Squaring some numbers...", "🧶 Compiling whiskers...", "🐍 Feeding the Python...", "🪴 Growing new ideas...", "💾 Saving project progress...", "🚀 Launching cat projects...", "✨ Polishing fur textures...", "😺 Debugging pawsitive code..."]
-    : ["💻 Debugging...", "🧠 Refactoring...", "🚀 Compiling...", "🪄 Deploying...", "🐾 Feeding the cats...", "✨ Optimizing pixels...", "🌿 Cleaning up code..."];
-
-  let i = 0, j = 0, deleting = false;
-  let delay = 70;
-
-  function typeEffect() {
-    const msg = messages[i];
-    const text = msg.slice(0, j);
-    if (statusEl.textContent !== text) {
-      statusEl.textContent = text;
+    let messages = [];
+    if (document.body.classList.contains("projects")) {
+      messages = ["🐾 Generating cat names...","🎮 Squaring some numbers...","🧶 Compiling whiskers...","🐍 Feeding the Python...","💾 Saving project progress...","🚀 Launching cat projects...","✨ Polishing fur textures..."];
+    } else if (document.body.classList.contains("about")) {
+      messages = ["🌸 Balancing About panels...","💡 Expanding skill trees...","🎨 Polishing personal story...","📚 Documenting growth...","💜 Debugging self-improvement..."];
+    } else if (document.body.classList.contains("sandbox")) {
+      messages = ["🧪 Testing CSS gradients...","🐍 Running Python snippets...","💾 Generating SQL queries...","⚙️ Running creative experiments...","🎨 Experimenting with UI layouts...","📋 Copying to clipboard...","🚀 Launching sandbox ideas...","✨ Debugging creativity..."];
+    } else {
+      messages = ["💻 Debugging portfolio layout...","🎨 Animating hero section...","🚀 Preparing new updates...","🐾 Feeding creative cats...","✨ Syncing with GitHub..."];
     }
 
-    if (!deleting && j < msg.length) {
-      j++;
-      delay = 60 + Math.random() * 30;
-    } else if (deleting && j > 0) {
-      j--;
-      delay = 40 + Math.random() * 20;
-    } else if (!deleting && j === msg.length) {
-      delay = 1500;
-      deleting = true;
-    } else if (deleting && j === 0) {
-      deleting = false;
-      i = (i + 1) % messages.length;
-      delay = 600;
+    let i = 0;
+    function cycle() {
+      statusEl.style.opacity = 0;
+      setTimeout(() => {
+        statusEl.textContent = messages[i];
+        statusEl.style.opacity = 1;
+        i = (i + 1) % messages.length;
+      }, 500);
     }
-
-    requestAnimationFrame(() => setTimeout(typeEffect, delay));
-  }
-
-  // Initial fade-in for smoother start
-  statusEl.style.opacity = 0;
-  setTimeout(() => {
-    statusEl.style.transition = "opacity 0.4s ease";
-    statusEl.style.opacity = 1;
-    typeEffect();
-  }, 300);
-})();
+    statusEl.textContent = messages[0];
+    setInterval(cycle, 3500);
+  })();
 
   /* ===========================
      PYSCRIPT RUNTIME HOOK
@@ -364,7 +308,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById("squareBtn");
     const out = document.getElementById("output");
     if (!btn || !out || !window.pyscript || !pyscript.interpreter) return;
-
     try {
       const pyFunc = pyscript.interpreter.globals.get("square_number");
       btn.disabled = false;
@@ -377,11 +320,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ===========================
-     SQL COPY BUTTON ANIMATION (GLOBAL)
+     SQL COPY BUTTON ANIMATION
   ============================ */
   const copyBtn = document.getElementById("copySQL");
   const sqlOut = document.getElementById("sqlOutput");
-
   if (copyBtn && sqlOut) {
     copyBtn.addEventListener("click", async () => {
       const text = sqlOut.textContent.trim();
@@ -399,17 +341,26 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-document.querySelector('.back-home')?.addEventListener('click', (e) => {
-  const portal = document.querySelector('.portal-animation');
-  if (portal) {
-    portal.classList.add('active');
-    setTimeout(() => portal.classList.remove('active'), 800);
-  }
-});
-document.querySelectorAll('.quiz-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.quiz-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
+
+  /* ===========================
+     PORTAL EFFECT ON BACK-HOME LINKS
+  ============================ */
+  document.querySelector('.back-home')?.addEventListener('click', (e) => {
+    const portal = document.querySelector('.portal-animation');
+    if (portal) {
+      portal.classList.add('active');
+      setTimeout(() => portal.classList.remove('active'), 800);
+    }
   });
-});
-}); // <-- closes DOMContentLoaded correctly
+
+  /* ===========================
+     QUIZ BUTTON SELECTION STYLE
+  ============================ */
+  document.querySelectorAll('.quiz-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.quiz-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    });
+  });
+
+}); // End DOMContentLoaded
