@@ -1316,3 +1316,98 @@ body.sandbox .project-card {
     gap: 30px;
   }
 }
+/* === CENTERED PORTAL WITH FRAME === */
+.portal-home {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  width: 260px;
+  height: 380px;
+  border-radius: 50% / 60%;
+  overflow: hidden;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(175, 160, 255, 0.25) 0%,
+    rgba(100, 60, 200, 0.15) 40%,
+    rgba(60, 30, 120, 0.08) 80%
+  );
+  box-shadow:
+    0 0 50px rgba(165, 216, 255, 0.6),
+    inset 0 0 150px rgba(205, 180, 255, 0.7),
+    0 0 200px rgba(150, 200, 255, 0.5);
+  animation: portalHomePulse 3s ease-in-out infinite;
+  transition: transform 0.6s ease, box-shadow 0.6s ease, filter 0.6s ease;
+  z-index: 10;
+}
+
+/* === Magical Frame Glow === */
+.portal-home::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50% / 60%;
+  border: 4px solid rgba(180, 160, 255, 0.6);
+  box-shadow:
+    0 0 25px rgba(205, 180, 255, 0.7),
+    0 0 60px rgba(165, 216, 255, 0.6),
+    inset 0 0 25px rgba(205, 180, 255, 0.8);
+  filter: blur(0.5px);
+  animation: framePulse 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* === "Home?" Label === */
+.portal-home .portal-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Poppins", sans-serif;
+  color: #eaf3ff;
+  font-weight: 600;
+  font-size: 1.6rem;
+  letter-spacing: 0.5px;
+  text-shadow:
+    0 0 15px rgba(165, 216, 255, 1),
+    0 0 35px rgba(205, 180, 255, 1),
+    0 0 60px rgba(150, 200, 255, 0.8);
+  pointer-events: none;
+  animation: portalTextGlow 2.5s ease-in-out infinite;
+}
+
+/* === Floating Particles === */
+.portal-home .portal-particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(175, 160, 255, 0.9);
+  opacity: 0.8;
+  animation: floatUpPortal 6s linear infinite;
+  pointer-events: none;
+  filter: blur(1px);
+}
+
+/* === Animations === */
+@keyframes portalHomePulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); filter: hue-rotate(0deg); }
+  50% { transform: translate(-50%, -50%) scale(1.05); filter: hue-rotate(25deg); }
+}
+
+@keyframes framePulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+
+@keyframes portalTextGlow {
+  0%, 100% { opacity: 0.85; text-shadow: 0 0 20px rgba(165,216,255,0.8); }
+  50% { opacity: 1; text-shadow: 0 0 45px rgba(205,180,255,1); }
+}
+
+@keyframes floatUpPortal {
+  0% { transform: translateY(0) scale(0.6); opacity: 0.8; }
+  70% { opacity: 1; }
+  100% { transform: translateY(-200px) scale(1.2); opacity: 0; }
+}
