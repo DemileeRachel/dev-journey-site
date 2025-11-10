@@ -73,44 +73,7 @@ def square_number(event=None):
           </py-script>
         </div>
       </div>
-<script>
-(function initPyDemo(){
-  const btn = document.getElementById("squareBtn");
-  const out = document.getElementById("output");
-  if (!btn || !out) return;
-
-  function wire() {
-    try {
-      const pyFunc = window.pyscript?.interpreter?.globals?.get?.("square_number");
-      if (typeof pyFunc === "function") {
-        btn.disabled = false;
-        btn.textContent = "Square it!";
-        btn.onclick = () => pyFunc();
-        return true;
-      }
-    } catch(e){}
-    return false;
-  }
-
-  // 1) Try immediately (covers case where PyScript is already ready)
-  if (wire()) return;
-
-  // 2) Listen for py:ready (covers normal case)
-  document.addEventListener("py:ready", wire, { once:true });
-
-  // 3) Tiny fallback poll (covers odd timing)
-  let tries = 0;
-  const t = setInterval(() => {
-    if (wire() || ++tries > 20) clearInterval(t);
-  }, 200);
-
-  // Friendly message if user clicks too soon
-  btn.addEventListener("click", () => {
-    if (btn.disabled) out.textContent = "⚙️ Still loading PyScript runtime...";
-  });
-})();
-</script>
-
+      
       <!-- CENTER TITLE -->
       <div class="projects-center">
         <h1 class="projects-title">🚀 Projects Coming Soon</h1>
@@ -120,21 +83,23 @@ def square_number(event=None):
 
       <!-- RIGHT COLUMN -->
       <div class="projects-col right">
-       <div class="quiz-container">
-  <h3 class="quiz-title">💭 SQL Mini Quiz</h3>
-  <p class="quiz-sub">Test your SQL knowledge — one question at a time!</p>
 
-  <div class="quiz-question">1. Which SQL keyword retrieves data?</div>
+        <!-- 💭 SQL Mini Quiz -->
+        <div class="quiz-container" id="sql-quiz">
+          <h3 class="quiz-title">💭 SQL Mini Quiz</h3>
+          <p class="quiz-sub">Test your SQL knowledge — one question at a time!</p>
 
-  <div class="quiz-options">
-    <button class="quiz-btn">GET</button>
-    <button class="quiz-btn">SELECT</button>
-    <button class="quiz-btn">FETCH</button>
-    <button class="quiz-btn">SHOW</button>
-  </div>
+          <div class="quiz-question">1. Which SQL keyword retrieves data?</div>
 
-  <button class="next-question">Next Question</button>
-</div>
+          <div class="quiz-options">
+            <button class="quiz-btn">GET</button>
+            <button class="quiz-btn">SELECT</button>
+            <button class="quiz-btn">FETCH</button>
+            <button class="quiz-btn">SHOW</button>
+          </div>
+
+          <button class="next-question">Next Question</button>
+        </div>
 
         <!-- 🐱 Cat Name Generator -->
         <div class="project-card">
@@ -159,6 +124,7 @@ def square_number(event=None):
   <!-- ===== PAGE SCRIPT ===== -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
+
     /* === CLOCK === */
     const clock = document.getElementById("uk-clock");
     function tick() {
@@ -185,42 +151,82 @@ def square_number(event=None):
       themeBtn.textContent = next === "light" ? "🌙 Dark Mode" : "🌞 Light Mode";
     });
 
-    /* === SQL QUIZ === */
+    /* === SQL QUIZ (Functional + Smooth Fade) === */
     const quizData = [
-      { q: "Which SQL keyword retrieves data?", o: ["GET","SELECT","FETCH","SHOW"], a: "SELECT" },
-      { q: "Which clause filters rows?", o: ["ORDER BY","WHERE","GROUP BY","HAVING"], a: "WHERE" },
-      { q: "Which adds new data?", o: ["ADD","INSERT INTO","UPDATE","APPEND"], a: "INSERT INTO" },
-      { q: "Which deletes a table?", o: ["DELETE FROM","DROP TABLE","REMOVE","TRUNCATE"], a: "DROP TABLE" }
+      { question: "Which SQL keyword retrieves data?", options: ["GET", "SELECT", "FETCH", "SHOW"], correct: "SELECT" },
+      { question: "Which SQL clause filters rows?", options: ["ORDER BY", "WHERE", "GROUP BY", "HAVING"], correct: "WHERE" },
+      { question: "Which SQL command adds data to a table?", options: ["INSERT", "ADD", "APPEND", "UPDATE"], correct: "INSERT" },
+      { question: "Which command permanently deletes a table?", options: ["DELETE FROM", "DROP TABLE", "REMOVE", "TRUNCATE"], correct: "DROP TABLE" }
     ];
-    const quizContainer = document.getElementById("quiz-container");
-    const nextBtn = document.getElementById("next-btn");
-    const resultText = document.getElementById("result");
-    const progressFill = document.getElementById("quiz-progress");
-    if (quizContainer && nextBtn && resultText && progressFill) {
-      let i = 0, score = 0;
-      function draw() {
-        const q = quizData[i];
-        quizContainer.innerHTML = `
-          <p><strong>${i+1}. ${q.q}</strong></p>
-          ${q.o.map(opt => `<label><input type="radio" name="ans" value="${opt}"> ${opt}</label><br>`).join('')}
-        `;
-        resultText.textContent = "";
-        progressFill.style.width = (i / quizData.length) * 100 + "%";
-      }
-      nextBtn.onclick = () => {
-        const picked = document.querySelector('input[name="ans"]:checked');
-        if (!picked) return resultText.textContent = "⚠️ Select an answer!";
-        if (picked.value === quizData[i].a) score++;
-        i++;
-        if (i < quizData.length) draw();
-        else {
-          quizContainer.innerHTML = `<h3>🎉 You scored ${score}/${quizData.length}!</h3>`;
-          nextBtn.style.display = "none";
-          progressFill.style.width = "100%";
-        }
-      };
-      draw();
+
+    const questionEl = document.querySelector(".quiz-question");
+    const optionsContainer = document.querySelector(".quiz-options");
+    const nextBtn = document.querySelector(".next-question");
+    const quizBox = document.querySelector(".quiz-container");
+
+    let current = 0;
+    let score = 0;
+
+    function fadeOutIn(callback) {
+      quizBox.style.opacity = 0;
+      setTimeout(() => {
+        callback();
+        quizBox.style.opacity = 1;
+      }, 300);
     }
+
+    function loadQuestion() {
+      const q = quizData[current];
+      fadeOutIn(() => {
+        questionEl.textContent = `${current + 1}. ${q.question}`;
+        optionsContainer.innerHTML = "";
+        q.options.forEach(opt => {
+          const btn = document.createElement("button");
+          btn.className = "quiz-btn";
+          btn.textContent = opt;
+          btn.onclick = () => selectAnswer(btn, q.correct);
+          optionsContainer.appendChild(btn);
+        });
+        nextBtn.textContent = "Next Question";
+      });
+    }
+
+    function selectAnswer(btn, correct) {
+      document.querySelectorAll(".quiz-btn").forEach(b => {
+        b.disabled = true;
+        b.classList.remove("correct", "wrong");
+      });
+      if (btn.textContent === correct) {
+        btn.classList.add("correct");
+        score++;
+      } else {
+        btn.classList.add("wrong");
+      }
+    }
+
+    function restartQuiz() {
+      current = 0;
+      score = 0;
+      loadQuestion();
+      nextBtn.onclick = nextHandler;
+    }
+
+    function nextHandler() {
+      if (current < quizData.length - 1) {
+        current++;
+        loadQuestion();
+      } else {
+        fadeOutIn(() => {
+          questionEl.textContent = `🎉 You scored ${score} / ${quizData.length}!`;
+          optionsContainer.innerHTML = "";
+          nextBtn.textContent = "Restart Quiz";
+          nextBtn.onclick = restartQuiz;
+        });
+      }
+    }
+
+    nextBtn.onclick = nextHandler;
+    loadQuestion();
 
     /* === CAT GENERATOR === */
     const catBtn = document.getElementById("catNameBtn");
@@ -241,12 +247,12 @@ def square_number(event=None):
       });
     }
 
-    /* === FIXED PYSCRIPT === */
+    /* === PYSCRIPT RUNTIME HOOK === */
     document.addEventListener("py:ready", () => {
       const btn = document.getElementById("squareBtn");
       const out = document.getElementById("output");
       try {
-        const pyFunc = pyscript.runtime.globals.get("square_number"); // ✅ fixed
+        const pyFunc = pyscript.runtime.globals.get("square_number");
         btn.disabled = false;
         btn.textContent = "Square it!";
         btn.onclick = () => pyFunc();
@@ -270,16 +276,17 @@ def square_number(event=None):
         "✨ Polishing fur textures...",
         "😺 Debugging pawsitive code..."
       ];
-      let i = 0, j = 0, del = false;
-      function type() {
-        const cur = messages[i];
-        statusEl.textContent = cur.slice(0, j);
-        j += del ? -1 : 1;
-        if (!del && j === cur.length) { del = true; setTimeout(type, 1000); return; }
-        if (del && j === 0) { del = false; i = (i + 1) % messages.length; }
-        setTimeout(type, del ? 40 : 90);
+      let i = 0;
+      function cycle() {
+        statusEl.style.opacity = 0;
+        setTimeout(() => {
+          statusEl.textContent = messages[i];
+          statusEl.style.opacity = 1;
+          i = (i + 1) % messages.length;
+        }, 500);
       }
-      type();
+      statusEl.textContent = messages[0];
+      setInterval(cycle, 3500);
     }
 
     /* === FLOATING EMOJIS === */
@@ -296,6 +303,7 @@ def square_number(event=None):
       setTimeout(() => e.remove(), 7000);
     }
     setInterval(spawnEmoji, 1500);
+
   });
   </script>
 </body>
