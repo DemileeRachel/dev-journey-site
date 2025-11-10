@@ -524,6 +524,30 @@ body.light .project-card input[type="number"] {
 @keyframes blinkCursor {
   50% { border-color: transparent; }
 }
+/* 🧠 Typing Status Smooth Fix */
+#dev-status {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  min-height: 1.4em;
+  will-change: contents;
+  transition: none !important;
+}
+
+/* Optional: adds a fake caret flicker (looks smoother than full re-render) */
+#dev-status::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: currentColor;
+  margin-left: 3px;
+  animation: caretBlink 1s steps(1) infinite;
+}
+
+@keyframes caretBlink {
+  50% { opacity: 0; }
+}
 
 /* ===========================
    RESPONSIVE FIXES
