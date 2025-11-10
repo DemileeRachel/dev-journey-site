@@ -1709,6 +1709,41 @@ body.sandbox .projects-title .emoji {
   color: revert !important;
   display: inline-block; /* prevents inheriting gradient clipping */
 }
+/* === Sandbox Button Glow + Gradient === */
+body.sandbox button,
+body.sandbox .fun-btn {
+  background: linear-gradient(135deg, #bfa6ff, #a5d8ff);
+  color: #111;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+  box-shadow:
+    0 4px 15px rgba(160, 140, 255, 0.3),
+    inset 0 0 10px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+body.sandbox button:hover,
+body.sandbox .fun-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 20px rgba(160, 140, 255, 0.45),
+    inset 0 0 12px rgba(255, 255, 255, 0.25);
+  filter: brightness(1.15);
+}
+/* === Sandbox Emoji True Colour Fix === */
+body.sandbox .projects-title .emoji {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  color: initial !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  display: inline-block;
+}
 
 /* === Portal Alignment Adjustment (centered between panels) === */
 body.about .portal-home {
