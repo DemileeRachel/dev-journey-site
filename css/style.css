@@ -222,6 +222,33 @@ button:hover, .fun-btn:hover, .back-home:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(150,150,255,0.45);
 }
+/* 🎛️ SQL Query Box Buttons Fix */
+#quiz-container button,
+#sqlOutput + .fun-btn,
+#sqlOutput + button,
+#copySQL,
+#sql-generator button {
+  width: auto;
+  min-width: 120px;
+  max-width: 48%;
+  flex: 1;
+}
+
+.sql-box .fun-btn,
+#sqlOutput + .fun-btn,
+#copySQL {
+  display: inline-block;
+  margin: 6px 4px;
+  text-align: center;
+}
+
+/* Make both SQL buttons align nicely */
+.sql-box .button-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
 
 /* ===========================
    EMOJI COLORS (neutralize tint)
@@ -1412,4 +1439,37 @@ body.light .portal-animation {
   box-shadow:
     0 0 12px rgba(100, 100, 255, 0.6),
     inset 0 0 16px rgba(205, 180, 255, 0.5);
+}
+/* 1️⃣ Prevent greeting flicker */
+#greetingText {
+  display: inline-block;
+  min-height: 1.5em;
+  transition: none !important;
+}
+
+/* 2️⃣ Reserve space so emoji swaps don't shift text */
+#greeting-emoji {
+  display: inline-block;
+  width: 1.5em;
+  text-align: center;
+}
+
+/* 3️⃣ Smooth typing text (dev-status) */
+#dev-status {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid transparent; /* typing cursor */
+  min-height: 1.5em;
+}
+
+/* 4️⃣ Ensure no text hides under fixed navbar */
+main, section, .page-content {
+  padding-top: var(--nav-h);
+}
+
+/* 5️⃣ Stop layout jump on theme toggle */
+#theme-toggle {
+  width: 150px; /* fixed width stops text push */
+  text-align: center;
 }
