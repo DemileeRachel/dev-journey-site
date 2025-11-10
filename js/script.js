@@ -309,37 +309,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===========================
-     ANIMATED TYPING STATUS TEXT
-  ============================ */
-  (function devStatus() {
-    const statusEl = document.getElementById('dev-status');
-    if (!statusEl) return;
-
-    const messages = document.body.classList.contains("projects")
-      ? ["🐾 Generating cat names...", "🎮 Squaring some numbers...", "🧶 Compiling whiskers...", "🐍 Feeding the Python...", "🪴 Growing new ideas...", "💾 Saving project progress...", "🚀 Launching cat projects...", "✨ Polishing fur textures...", "😺 Debugging pawsitive code..."]
-      : ["💻 Debugging...", "🧠 Refactoring...", "🚀 Compiling...", "🪄 Deploying...", "🐾 Feeding the cats...", "✨ Optimizing pixels...", "🌿 Cleaning up code..."];
-
-    let i = 0, j = 0, deleting = false;
-
-    function typeEffect() {
-      const msg = messages[i];
-      statusEl.textContent = msg.slice(0, j);
-      j += deleting ? -1 : 1;
-
-      if (!deleting && j === msg.length) {
-        deleting = true;
-        setTimeout(typeEffect, 1500);
-        return;
-      }
-      if (deleting && j === 0) {
-        deleting = false;
-        i = (i + 1) % messages.length;
-      }
-      setTimeout(typeEffect, deleting ? 40 : 90);
-    }
 /* ===========================
-   ANIMATED DEV STATUS (FADE SMOOTH)
+   ANIMATED DEV STATUS (SMOOTH TYPE + FADE)
 =========================== */
 (function devStatus() {
   const statusEl = document.getElementById('dev-status');
@@ -349,24 +320,42 @@ document.addEventListener('DOMContentLoaded', () => {
     ? ["🐾 Generating cat names...", "🎮 Squaring some numbers...", "🧶 Compiling whiskers...", "🐍 Feeding the Python...", "🪴 Growing new ideas...", "💾 Saving project progress...", "🚀 Launching cat projects...", "✨ Polishing fur textures...", "😺 Debugging pawsitive code..."]
     : ["💻 Debugging...", "🧠 Refactoring...", "🚀 Compiling...", "🪄 Deploying...", "🐾 Feeding the cats...", "✨ Optimizing pixels...", "🌿 Cleaning up code..."];
 
-  let i = 0;
+  let i = 0, j = 0, deleting = false;
+  let delay = 70;
 
-  function cycleMessage() {
-    statusEl.style.opacity = 0;
-    setTimeout(() => {
-      statusEl.textContent = messages[i];
-      statusEl.style.opacity = 1;
+  function typeEffect() {
+    const msg = messages[i];
+    const text = msg.slice(0, j);
+    if (statusEl.textContent !== text) {
+      statusEl.textContent = text;
+    }
+
+    if (!deleting && j < msg.length) {
+      j++;
+      delay = 60 + Math.random() * 30;
+    } else if (deleting && j > 0) {
+      j--;
+      delay = 40 + Math.random() * 20;
+    } else if (!deleting && j === msg.length) {
+      delay = 1500;
+      deleting = true;
+    } else if (deleting && j === 0) {
+      deleting = false;
       i = (i + 1) % messages.length;
-    }, 600);
+      delay = 600;
+    }
+
+    requestAnimationFrame(() => setTimeout(typeEffect, delay));
   }
 
-  // initial fade-in
-  statusEl.textContent = messages[0];
-  statusEl.style.opacity = 1;
-  setInterval(cycleMessage, 3500);
-})();
+  // Initial fade-in for smoother start
+  statusEl.style.opacity = 0;
+  setTimeout(() => {
+    statusEl.style.transition = "opacity 0.4s ease";
+    statusEl.style.opacity = 1;
     typeEffect();
-  })();
+  }, 300);
+})();
 
   /* ===========================
      PYSCRIPT RUNTIME HOOK
