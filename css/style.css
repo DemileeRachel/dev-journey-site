@@ -1469,6 +1469,13 @@ body.sandbox .projects-title .emoji {
     gap: 40px;
   }
 }
+body.sandbox .projects-title .emoji {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  filter: none !important;
+  color: initial !important;
+}
 
 /* 🌸 My Dev Journey — Final Polished Theme
    ========================================== */
@@ -1719,4 +1726,10 @@ body.about .portal-home::before {
     inset 0 0 20px rgba(0, 0, 0, 0.7);
   pointer-events: none;
   z-index: 2;
+}
+body.about .portal-home {
+  position: absolute;
+  top: 50%;
+  left: 59%; /* was 50% — 59% visually centers between your panels */
+  transform: translate(-50%, -50%);
 }
