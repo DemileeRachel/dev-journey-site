@@ -399,5 +399,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
+document.querySelector('.back-home')?.addEventListener('click', (e) => {
+  const portal = document.querySelector('.portal-animation');
+  if (portal) {
+    portal.classList.add('active');
+    setTimeout(() => portal.classList.remove('active'), 800);
+  }
+});
 }); // <-- closes DOMContentLoaded correctly
