@@ -362,5 +362,34 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('selected');
     });
   });
+/* === PORTAL PARTICLE GENERATOR (spark motes) === */
+(function portalParticles() {
+  const portal = document.querySelector('.portal-animation');
+  if (!portal) return;
 
+  function spawnSpark() {
+    const spark = document.createElement('span');
+    spark.classList.add('portal-spark');
+
+    // randomize starting position near portal
+    const angle = Math.random() * Math.PI * 2;
+    const radius = 40 + Math.random() * 30;
+    const x = 50 + Math.cos(angle) * radius;
+    const y = 50 + Math.sin(angle) * radius;
+    spark.style.left = `${x}%`;
+    spark.style.top = `${y}%`;
+
+    // random scale + slight hue variation
+    spark.style.transform = `scale(${0.6 + Math.random() * 0.6})`;
+    spark.style.background = `radial-gradient(circle, rgba(200,${150 + Math.random()*100},255,0.9), transparent 70%)`;
+
+    portal.appendChild(spark);
+
+    // fade out + remove
+    setTimeout(() => spark.remove(), 4000);
+  }
+
+  // spawn sparks every 400–800ms
+  setInterval(spawnSpark, 400 + Math.random() * 400);
+})();
 }); // End DOMContentLoaded

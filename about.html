@@ -137,8 +137,6 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-
-
   /* === FLOATING EMOJIS === */
   const emojiContainer = document.getElementById("emoji-container");
   function spawnEmoji() {
@@ -167,41 +165,41 @@ document.addEventListener("DOMContentLoaded", () => {
   /* === PORTAL PULSE ON BACK HOME === */
   const backHome = document.getElementById("backHomeBtn");
   const portal = document.getElementById("portal");
-
   if (backHome && portal) {
     backHome.addEventListener("click", (e) => {
-      e.preventDefault(); // stop immediate navigation
+      e.preventDefault();
       portal.classList.add("active");
       setTimeout(() => {
         window.location.href = "index.html";
-      }, 800); // wait for pulse animation before navigating
+      }, 800);
     });
   }
 
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("toggleSkills");
-  const container = document.getElementById("skillsContainer");
+  /* === PORTAL PARTICLES (SPARK MOTES) === */
+  (function portalParticles() {
+    if (!portal) return;
+    function spawnSpark() {
+      const spark = document.createElement("span");
+      spark.classList.add("portal-spark");
+      const angle = Math.random() * Math.PI * 2;
+      const radius = 40 + Math.random() * 30;
+      const x = 50 + Math.cos(angle) * radius;
+      const y = 50 + Math.sin(angle) * radius;
+      spark.style.left = `${x}%`;
+      spark.style.top = `${y}%`;
+      spark.style.transform = `scale(${0.6 + Math.random() * 0.6})`;
+      spark.style.background = `radial-gradient(circle, rgba(200,${150 + Math.random()*100},255,0.9), transparent 70%)`;
+      portal.appendChild(spark);
+      setTimeout(() => spark.remove(), 4000);
+    }
+    setInterval(spawnSpark, 400 + Math.random() * 400);
+  })();
 
-  if (btn && container) {
-    btn.addEventListener("click", () => {
-      const isHidden = container.style.display === "none";
-      container.style.display = isHidden ? "grid" : "none";
-      btn.textContent = isHidden ? "Hide Skills" : "Show Skills";
-    });
-  }
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+  /* === DEV STATUS (SMOOTH FADE) === */
   const statusEl = document.getElementById("dev-status");
   if (!statusEl) return;
 
   let messages = [];
-
-  // Identify page type by <body class="...">
   if (document.body.classList.contains("projects")) {
     messages = [
       "🐾 Generating cat names...",
@@ -232,7 +230,6 @@ document.addEventListener("DOMContentLoaded", () => {
       "✨ Debugging creativity..."
     ];
   } else {
-     if (document.body.classList.contains("index")) {
     messages = [
       "💻 Debugging portfolio layout...",
       "🎨 Animating hero section...",
@@ -242,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
   }
 
-  // === Sandbox-style smooth fade animation ===
+  // Smooth fade
   let i = 0;
   function cycle() {
     statusEl.style.opacity = 0;
@@ -252,10 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
       i = (i + 1) % messages.length;
     }, 500);
   }
-
   statusEl.textContent = messages[0];
   setInterval(cycle, 3500);
 });
 </script>
-</body>
-</html>
