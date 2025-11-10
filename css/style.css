@@ -1478,7 +1478,27 @@ body.sandbox .output:empty {
     width: 100%;
   }
 }
+/* === Emoji Colour Restoration (Permanent Fix) === */
+body.sandbox .projects-title {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
 
+/* isolate emoji so it ignores gradient clipping */
+body.sandbox .projects-title .emoji {
+  position: relative;
+  z-index: 2;
+  background: none !important;
+  color: initial !important;
+  -webkit-text-fill-color: initial !important;
+  -webkit-background-clip: border-box !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  filter: none !important;
+  isolation: isolate !important;
+}
 
 /* 🌸 My Dev Journey — Final Polished Theme
    ========================================== */
