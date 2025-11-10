@@ -558,18 +558,28 @@ body.light #dev-status {
   font-family: "Courier New", monospace;
   font-size: 1rem;
   color: var(--text-dark);
-  opacity: 0.9;
+  opacity: 0;
+  transition: opacity 0.6s ease;
   white-space: nowrap;
   pointer-events: none;
   border-right: 2px solid var(--text-dark);
-  animation: blinkCursor 0.8s steps(1) infinite;
+  animation: blinkCursor 0.9s steps(1) infinite;
   z-index: 9999;
-  overflow: hidden;             /* prevents glitchy overflow */
+  overflow: hidden;
   display: inline-block;
-  min-width: 180px;             /* stabilises width to avoid jump */
-  letter-spacing: 0.02em;       /* smoother spacing */
+  min-width: 200px;
+  letter-spacing: 0.02em;
   text-shadow: 0 0 8px rgba(167,139,250,0.3);
 }
+body.light #dev-status {
+  color: var(--text-light);
+  border-right-color: var(--text-light);
+}
+
+@keyframes blinkCursor {
+  50% { border-color: transparent; }
+}
+
 
 body.light #dev-status {
   color: var(--text-light);

@@ -338,7 +338,33 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       setTimeout(typeEffect, deleting ? 40 : 90);
     }
+/* ===========================
+   ANIMATED DEV STATUS (FADE SMOOTH)
+=========================== */
+(function devStatus() {
+  const statusEl = document.getElementById('dev-status');
+  if (!statusEl) return;
 
+  const messages = document.body.classList.contains("projects")
+    ? ["🐾 Generating cat names...", "🎮 Squaring some numbers...", "🧶 Compiling whiskers...", "🐍 Feeding the Python...", "🪴 Growing new ideas...", "💾 Saving project progress...", "🚀 Launching cat projects...", "✨ Polishing fur textures...", "😺 Debugging pawsitive code..."]
+    : ["💻 Debugging...", "🧠 Refactoring...", "🚀 Compiling...", "🪄 Deploying...", "🐾 Feeding the cats...", "✨ Optimizing pixels...", "🌿 Cleaning up code..."];
+
+  let i = 0;
+
+  function cycleMessage() {
+    statusEl.style.opacity = 0;
+    setTimeout(() => {
+      statusEl.textContent = messages[i];
+      statusEl.style.opacity = 1;
+      i = (i + 1) % messages.length;
+    }, 600);
+  }
+
+  // initial fade-in
+  statusEl.textContent = messages[0];
+  statusEl.style.opacity = 1;
+  setInterval(cycleMessage, 3500);
+})();
     typeEffect();
   })();
 
