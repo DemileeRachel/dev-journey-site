@@ -120,17 +120,21 @@ def square_number(event=None):
 
       <!-- RIGHT COLUMN -->
       <div class="projects-col right">
-        <!-- SQL Quiz -->
-        <div class="project-card">
-          <h3>💭 SQL Mini Quiz</h3>
-          <p>Test your SQL knowledge — one question at a time!</p>
-          <div id="quiz-container"></div>
-          <div class="quiz-controls">
-            <button id="next-btn" class="fun-btn">Next Question</button>
-            <p id="result"></p>
-            <div id="quiz-progress"></div>
-          </div>
-        </div>
+       <div class="quiz-container">
+  <h3 class="quiz-title">💭 SQL Mini Quiz</h3>
+  <p class="quiz-sub">Test your SQL knowledge — one question at a time!</p>
+
+  <div class="quiz-question">1. Which SQL keyword retrieves data?</div>
+
+  <div class="quiz-options">
+    <button class="quiz-btn">GET</button>
+    <button class="quiz-btn">SELECT</button>
+    <button class="quiz-btn">FETCH</button>
+    <button class="quiz-btn">SHOW</button>
+  </div>
+
+  <button class="next-question">Next Question</button>
+</div>
 
         <!-- 🐱 Cat Name Generator -->
         <div class="project-card">

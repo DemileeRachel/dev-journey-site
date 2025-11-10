@@ -406,4 +406,10 @@ document.querySelector('.back-home')?.addEventListener('click', (e) => {
     setTimeout(() => portal.classList.remove('active'), 800);
   }
 });
+document.querySelectorAll('.quiz-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.quiz-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+  });
+});
 }); // <-- closes DOMContentLoaded correctly
