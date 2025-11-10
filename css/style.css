@@ -1473,3 +1473,13 @@ main, section, .page-content {
   width: 150px; /* fixed width stops text push */
   text-align: center;
 }
+/* 🌸 Restore emoji colours */
+.emoji, .float-emoji, #greeting-emoji {
+  filter: none !important;
+  opacity: 1 !important;
+  color: inherit !important;
+}
+.fun-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--accent-b);
+}
