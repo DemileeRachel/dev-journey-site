@@ -697,3 +697,93 @@ body.projects .project-card:nth-of-type(4) label {
 body.projects .project-card:nth-of-type(4) button {
   margin-top: 6px;            /* keeps button close to content */
 }
+/* === ABOUT PAGE — FIXED PORTAL CENTER + COLLAPSIBLE SKILLS === */
+
+/* Position Back-to-Home + Portal neatly in center gap */
+body.about .about-footer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  z-index: 10;
+}
+
+/* Keep portal centered and glowing */
+body.about .portal-animation {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 4px solid rgba(165, 216, 255, 0.6);
+  box-shadow:
+    0 0 15px rgba(165, 216, 255, 0.6),
+    inset 0 0 20px rgba(205, 180, 255, 0.6);
+  animation: spinPortal 3s linear infinite, pulsePortal 2.5s ease-in-out infinite;
+}
+
+@keyframes spinPortal {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulsePortal {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+/* Back to home button style */
+body.about .back-home {
+  background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+  color: #000 !important;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 8px 18px;
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(150,150,255,0.3);
+  transition: all 0.25s ease;
+}
+
+body.about .back-home:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(200,200,255,0.6);
+}
+
+/* Skills collapsible behavior restore */
+#skills {
+  transition: max-height 0.5s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+
+#skills.collapsed .skills-body {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+}
+
+#skills .skills-body {
+  max-height: 800px;
+  opacity: 1;
+  overflow: visible;
+  transform: translateY(0);
+  transition: all 0.5s ease;
+}
+
+/* Skills button look */
+.skills-header button {
+  background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.skills-header button:hover {
+  transform: scale(1.05);
+}
