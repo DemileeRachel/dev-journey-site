@@ -116,67 +116,84 @@
   </main>
 <!-- Back to Home + Portal Animation -->
 <div class="about-footer">
-  <a href="index.html" class="back-home">🏠 Back to Home</a>
-  <div class="portal-animation"></div>
+  <a href="index.html" class="back-home" id="backHomeBtn">🏠 Back to Home</a>
+  <div class="portal-animation" id="portal"></div>
 </div>
 
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    © 2025 My Dev Journey · built with 💜
-  </footer>
+<!-- ===== FOOTER ===== -->
+<footer>
+  © 2025 My Dev Journey · built with 💜
+</footer>
 
-  <!-- FLOATING EMOJIS + DEBUGGING STATUS -->
-  <div id="emoji-container"></div>
-  <div id="dev-status"></div>
+<!-- FLOATING EMOJIS + DEBUGGING STATUS -->
+<div id="emoji-container"></div>
+<div id="dev-status"></div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const statusEl = document.getElementById("dev-status");
-      if (statusEl) {
-        const messages = [
-          "💻 Debugging portfolio layout...",
-          "🎨 Balancing About panels...",
-          "🌸 Styling responsive grid...",
-          "🚀 Optimizing design flow...",
-          "🐾 Compiling creativity..."
-        ];
-        let i = 0, j = 0, del = false;
-        function type() {
-          const cur = messages[i];
-          statusEl.textContent = cur.slice(0, j);
-          j += del ? -1 : 1;
-          if (!del && j === cur.length) { del = true; setTimeout(type, 1000); return; }
-          if (del && j === 0) { del = false; i = (i + 1) % messages.length; }
-          setTimeout(type, del ? 40 : 90);
-        }
-        type();
-      }
-
-      const emojiContainer = document.getElementById("emoji-container");
-      function spawnEmoji() {
-        if (!emojiContainer) return;
-        const list = ["💻", "🌸", "🚀", "✨", "🐾", "🎨", "🧠"];
-        const e = document.createElement("div");
-        e.className = "float-emoji";
-        e.textContent = list[Math.floor(Math.random() * list.length)];
-        e.style.left = Math.random() * 100 + "vw";
-        e.style.animationDuration = 3 + Math.random() * 3 + "s";
-        emojiContainer.appendChild(e);
-        setTimeout(() => e.remove(), 7000);
-      }
-      setInterval(spawnEmoji, 1500);
-    });
+<script>
 document.addEventListener("DOMContentLoaded", () => {
+
+  /* === DEV STATUS TYPING === */
+  const statusEl = document.getElementById("dev-status");
+  if (statusEl) {
+    const messages = [
+      "💻 Debugging portfolio layout...",
+      "🎨 Balancing About panels...",
+      "🌸 Styling responsive grid...",
+      "🚀 Optimizing design flow...",
+      "🐾 Compiling creativity..."
+    ];
+    let i = 0, j = 0, del = false;
+    function type() {
+      const cur = messages[i];
+      statusEl.textContent = cur.slice(0, j);
+      j += del ? -1 : 1;
+      if (!del && j === cur.length) { del = true; setTimeout(type, 1000); return; }
+      if (del && j === 0) { del = false; i = (i + 1) % messages.length; }
+      setTimeout(type, del ? 40 : 90);
+    }
+    type();
+  }
+
+  /* === FLOATING EMOJIS === */
+  const emojiContainer = document.getElementById("emoji-container");
+  function spawnEmoji() {
+    if (!emojiContainer) return;
+    const list = ["💻", "🌸", "🚀", "✨", "🐾", "🎨", "🧠"];
+    const e = document.createElement("div");
+    e.className = "float-emoji";
+    e.textContent = list[Math.floor(Math.random() * list.length)];
+    e.style.left = Math.random() * 100 + "vw";
+    e.style.animationDuration = 3 + Math.random() * 3 + "s";
+    emojiContainer.appendChild(e);
+    setTimeout(() => e.remove(), 7000);
+  }
+  setInterval(spawnEmoji, 1500);
+
+  /* === SKILLS TOGGLE === */
   const toggleBtn = document.querySelector(".skills-header button");
   const skillsSection = document.getElementById("skills");
-
   if (toggleBtn && skillsSection) {
     toggleBtn.addEventListener("click", () => {
       const collapsed = skillsSection.classList.toggle("collapsed");
       toggleBtn.textContent = collapsed ? "Show Skills" : "Hide Skills";
     });
   }
+
+  /* === PORTAL PULSE ON BACK HOME === */
+  const backHome = document.getElementById("backHomeBtn");
+  const portal = document.getElementById("portal");
+
+  if (backHome && portal) {
+    backHome.addEventListener("click", (e) => {
+      e.preventDefault(); // stop immediate navigation
+      portal.classList.add("active");
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 800); // wait for pulse animation before navigating
+    });
+  }
+
 });
-  </script>
+</script>
 </body>
 </html>
