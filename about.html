@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "💡 Expanding skill trees...",
       "🎨 Polishing personal story...",
       "📚 Documenting growth...",
-      "💜 Debugging self-improvement..."
+      "💜 Doing self-improvement..."
     ];
   } else if (document.body.classList.contains("sandbox")) {
     messages = [
@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "✨ Debugging creativity..."
     ];
   } else {
-    // Default = Home Page
+     if (document.body.classList.contains("index")) {
     messages = [
       "💻 Debugging portfolio layout...",
       "🎨 Animating hero section...",
