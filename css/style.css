@@ -1317,6 +1317,42 @@ body.sandbox .back-home:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(150,150,255,0.45);
 }
+/* === SANDBOX PAGE — LIGHT MODE FIX === */
+body.light.sandbox .projects-title {
+  background: linear-gradient(90deg, #7b42ff, #00b3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.light.sandbox .projects-sub,
+body.light.sandbox .project-card,
+body.light.sandbox .projects-col,
+body.light.sandbox label,
+body.light.sandbox p {
+  color: #333 !important; /* deep neutral text */
+  opacity: 1 !important;
+}
+
+body.light.sandbox input,
+body.light.sandbox textarea {
+  background: rgba(255,255,255,0.8);
+  color: #000;
+  border: 1px solid rgba(0,0,0,0.2);
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+}
+
+body.light.sandbox button,
+body.light.sandbox .back-home {
+  background: linear-gradient(135deg, #d4b8ff, #a5d8ff);
+  color: #111 !important;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+body.light.sandbox button:hover,
+body.light.sandbox .back-home:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+}
 
 /* Responsive fallback */
 @media (max-width: 1200px) {
