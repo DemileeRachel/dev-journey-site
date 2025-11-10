@@ -351,7 +351,18 @@ document.addEventListener('DOMContentLoaded', () => {
       portal.classList.add('active');
       setTimeout(() => portal.classList.remove('active'), 800);
     }
+  });/* === PORTAL INTERACTIVE HOME BUTTON === */
+const portal = document.getElementById("portal");
+if (portal) {
+  portal.addEventListener("click", (e) => {
+    e.preventDefault();
+    portal.classList.add("active");
+    portal.querySelector(".portal-label").textContent = "🌌 Travelling...";
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 1000); // slight delay to show “travel” effect
   });
+}
 
   /* ===========================
      QUIZ BUTTON SELECTION STYLE
