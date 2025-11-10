@@ -982,3 +982,17 @@ body.light .next-question {
   transition: opacity 0.6s ease-in-out;
   opacity: 1;
 }
+#dev-status {
+  position: fixed;
+  bottom: 15px;
+  left: 20px;
+  font-family: monospace;
+  font-size: 1rem;
+  color: #a5d8ff; /* same pale blue as Sandbox */
+  opacity: 1;
+  transition: opacity 0.6s ease-in-out;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 9999;
+  text-shadow: 0 0 8px rgba(165, 216, 255, 0.6);
+}

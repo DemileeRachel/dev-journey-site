@@ -262,33 +262,7 @@ def square_number(event=None):
       }
     });
 
-    /* === DEBUGGING TEXT === */
-    const statusEl = document.getElementById("dev-status");
-    if (statusEl) {
-      const messages = [
-        "🐾 Generating cat names...",
-        "🎮 Squaring some numbers...",
-        "🧶 Compiling whiskers...",
-        "🐍 Feeding the Python...",
-        "🪴 Growing new ideas...",
-        "💾 Saving project progress...",
-        "🚀 Launching cat projects...",
-        "✨ Polishing fur textures...",
-        "😺 Debugging pawsitive code..."
-      ];
-      let i = 0;
-      function cycle() {
-        statusEl.style.opacity = 0;
-        setTimeout(() => {
-          statusEl.textContent = messages[i];
-          statusEl.style.opacity = 1;
-          i = (i + 1) % messages.length;
-        }, 500);
-      }
-      statusEl.textContent = messages[0];
-      setInterval(cycle, 3500);
-    }
-
+  
     /* === FLOATING EMOJIS === */
     const emojiContainer = document.getElementById("emoji-container");
     function spawnEmoji() {
@@ -306,5 +280,68 @@ def square_number(event=None):
 
   });
   </script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const statusEl = document.getElementById("dev-status");
+  if (!statusEl) return;
+
+  let messages = [];
+
+  // Identify page type by <body class="...">
+  if (document.body.classList.contains("projects")) {
+    messages = [
+      "🐾 Generating cat names...",
+      "🎮 Squaring some numbers...",
+      "🧶 Compiling whiskers...",
+      "🐍 Feeding the Python...",
+      "💾 Saving project progress...",
+      "🚀 Launching cat projects...",
+      "✨ Polishing fur textures..."
+    ];
+  } else if (document.body.classList.contains("about")) {
+    messages = [
+      "🌸 Balancing About panels...",
+      "💡 Expanding skill trees...",
+      "🎨 Polishing personal story...",
+      "📚 Documenting growth...",
+      "💜 Debugging self-improvement..."
+    ];
+  } else if (document.body.classList.contains("sandbox")) {
+    messages = [
+      "🧪 Testing CSS gradients...",
+      "🐍 Running Python snippets...",
+      "💾 Generating SQL queries...",
+      "⚙️ Running creative experiments...",
+      "🎨 Experimenting with UI layouts...",
+      "📋 Copying to clipboard...",
+      "🚀 Launching sandbox ideas...",
+      "✨ Debugging creativity..."
+    ];
+  } else {
+    // Default = Home Page
+    messages = [
+      "💻 Debugging portfolio layout...",
+      "🎨 Animating hero section...",
+      "🚀 Preparing new updates...",
+      "🐾 Feeding creative cats...",
+      "✨ Syncing with GitHub..."
+    ];
+  }
+
+  // === Sandbox-style smooth fade animation ===
+  let i = 0;
+  function cycle() {
+    statusEl.style.opacity = 0;
+    setTimeout(() => {
+      statusEl.textContent = messages[i];
+      statusEl.style.opacity = 1;
+      i = (i + 1) % messages.length;
+    }, 500);
+  }
+
+  statusEl.textContent = messages[0];
+  setInterval(cycle, 3500);
+});
+</script>
 </body>
 </html>
