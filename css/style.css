@@ -135,13 +135,27 @@ body.light {
   align-items: center;
 }
 
+/* 🕒 Navbar Clock Layout Fix */
 #clock-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(255,255,255,0.1);
-  padding: 6px 14px;
-  border-radius: 10px;
+  padding: 8px 16px;
+  border-radius: 12px;
   color: #fff;
+  text-align: center;
   border: 1px solid rgba(255,255,255,0.25);
-  font-size: 0.85rem;
+  box-shadow: 0 0 10px rgba(255,215,102,0.3);
+  font-size: 0.9rem;
+  line-height: 1.2;
+  height: 40px;
+}
+
+#clock-container h2 {
+  font-size: 0.8rem;
+  color: #ffd166;
+  margin: 0 6px 0 0;
 }
 
 #theme-toggle {
@@ -240,7 +254,17 @@ button:hover, .fun-btn:hover, .back-home:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
+/* Center the Home hero properly */
+body.home .hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - var(--nav-h) - var(--footer-h));
+  padding: 20px;
+  text-align: center;
+  gap: 12px;
+}
 /* ===========================
    ABOUT PAGE
 =========================== */
@@ -297,7 +321,39 @@ button:hover, .fun-btn:hover, .back-home:hover {
   0%,100% { transform: scale(1); opacity: 0.9; }
   50% { transform: scale(1.15); opacity: 1; }
 }
+/* Restore balanced About layout */
+body.about .about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 360px;
+  gap: 40px;
+  align-items: start;
+  justify-content: center;
+  height: calc(100vh - var(--nav-h) - var(--footer-h));
+  padding: 40px 60px;
+  box-sizing: border-box;
+}
 
+body.about .about-card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 36px;
+  text-align: left;
+  color: #eee;
+  line-height: 1.6;
+}
+
+body.about .skills-panel {
+  height: auto;
+  align-self: start;
+}
+
+@media (max-width: 1000px) {
+  body.about .about-grid {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    height: auto;
+  }
+}
 /* ===========================
    PROJECTS + SANDBOX (shared)
 =========================== */
