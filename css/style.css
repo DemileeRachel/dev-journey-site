@@ -917,3 +917,75 @@ body.about .portal-animation {
     inset 0 0 70px rgba(160, 120, 255, 0.8),
     0 0 130px rgba(130, 100, 255, 0.7);
 }
+/* === PORTAL AS HOME BUTTON — DOUBLE SIZE EDITION === */
+.portal-animation {
+  position: relative;
+  cursor: pointer;
+  width: 360px;   /* 🔥 double size (was 180px) */
+  height: 360px;  /* 🔥 double size */
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, rgba(175, 160, 255, 0.25), transparent 70%);
+  box-shadow:
+    0 0 90px rgba(175, 160, 255, 0.9),
+    inset 0 0 120px rgba(205, 180, 255, 0.8),
+    0 0 200px rgba(140, 100, 255, 0.8);
+  animation: portalPulse 3s ease-in-out infinite;
+  transition: transform 0.6s ease, box-shadow 0.6s ease, filter 0.6s ease;
+  z-index: 10;
+}
+
+/* Portal text label */
+.portal-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Poppins", sans-serif;
+  color: #eaf3ff;
+  font-weight: 700;
+  font-size: 2.2rem;      /* 🌀 larger to stay readable */
+  letter-spacing: 1px;
+  text-shadow:
+    0 0 20px rgba(165, 216, 255, 1),
+    0 0 50px rgba(205, 180, 255, 1),
+    0 0 80px rgba(150, 200, 255, 0.9);
+  pointer-events: none;
+  animation: portalTextPulse 2.5s ease-in-out infinite;
+}
+
+/* Hover glow intensity */
+.portal-animation:hover {
+  transform: scale(1.2);
+  box-shadow:
+    0 0 120px rgba(175,160,255,1),
+    inset 0 0 160px rgba(205,180,255,1),
+    0 0 240px rgba(150,200,255,0.95);
+  filter: brightness(1.3) saturate(1.5);
+}
+
+/* Text shimmer pulse */
+@keyframes portalTextPulse {
+  0%, 100% { opacity: 0.85; text-shadow: 0 0 25px rgba(175,160,255,0.8); }
+  50% { opacity: 1; text-shadow: 0 0 60px rgba(205,180,255,1); }
+}
+
+/* Adjust particle scale to match bigger portal */
+.portal-particle {
+  position: absolute;
+  width: 14px;   /* was 8px */
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(175, 160, 255, 0.9);
+  opacity: 0.8;
+  animation: floatUpPortal 6s linear infinite;
+  pointer-events: none;
+  filter: blur(1px);
+}
+
+/* Smooth upward drift for sparks */
+@keyframes floatUpPortal {
+  0% { transform: translateY(0) scale(0.6); opacity: 0.8; }
+  70% { opacity: 1; }
+  100% { transform: translateY(-150px) scale(1.3); opacity: 0; }
+}
