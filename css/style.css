@@ -1699,3 +1699,24 @@ body.sandbox .projects-title .emoji {
   background: none !important;
   filter: none !important;
 }
+/* === Portal Alignment Adjustment (centered between panels) === */
+body.about .portal-home {
+  position: absolute;
+  top: 50%;
+  left: 58%; /* 🔥 moves it slightly right (was 50%) */
+  transform: translate(-50%, -50%);
+}
+
+/* Keep frame + animation intact */
+body.about .portal-home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50% / 60%;
+  border: 5px solid rgba(0, 0, 0, 0.8);
+  box-shadow:
+    0 0 25px rgba(0, 0, 0, 0.6),
+    inset 0 0 20px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  z-index: 2;
+}
