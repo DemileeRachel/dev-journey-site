@@ -166,6 +166,17 @@
       }
       setInterval(spawnEmoji, 1500);
     });
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.querySelector(".skills-header button");
+  const skillsSection = document.getElementById("skills");
+
+  if (toggleBtn && skillsSection) {
+    toggleBtn.addEventListener("click", () => {
+      const collapsed = skillsSection.classList.toggle("collapsed");
+      toggleBtn.textContent = collapsed ? "Show Skills" : "Hide Skills";
+    });
+  }
+});
   </script>
 </body>
 </html>
