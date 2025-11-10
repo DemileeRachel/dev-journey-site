@@ -157,12 +157,18 @@ document.addEventListener("DOMContentLoaded", () => {
   /* === SKILLS TOGGLE === */
   const toggleBtn = document.querySelector(".skills-header button");
   const skillsSection = document.getElementById("skills");
-  if (toggleBtn && skillsSection) {
-    toggleBtn.addEventListener("click", () => {
-      const collapsed = skillsSection.classList.toggle("collapsed");
-      toggleBtn.textContent = collapsed ? "Show Skills" : "Hide Skills";
-    });
-  }
+  toggleBtn.addEventListener("click", () => {
+    const expanded = toggleBtn.getAttribute("aria-expanded") === "true";
+    if (expanded) {
+      skillsSection.classList.add("collapsed");
+      toggleBtn.textContent = "Show Skills";
+      toggleBtn.setAttribute("aria-expanded", "false");
+    } else {
+      skillsSection.classList.remove("collapsed");
+      toggleBtn.textContent = "Hide Skills";
+      toggleBtn.setAttribute("aria-expanded", "true");
+    }
+  });
 
   /* === PORTAL PULSE ON BACK HOME === */
   const backHome = document.getElementById("backHomeBtn");
