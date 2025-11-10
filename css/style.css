@@ -667,3 +667,13 @@ body.projects .project-card {
     gap: 30px;
   }
 }
+/* === PROJECTS PAGE — LIFT PANELS TO MATCH SANDBOX HEIGHT === */
+body.projects .projects-showcase {
+  transform: translateY(-25px);   /* gentle lift */
+}
+
+@media (max-width: 1200px) {
+  body.projects .projects-showcase {
+    transform: none;              /* reset lift on smaller screens */
+  }
+}
