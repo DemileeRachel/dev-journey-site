@@ -1394,6 +1394,90 @@ body.light.sandbox .back-home:hover {
     gap: 40px;
   }
 }
+/* === Sandbox Inputs — Smooth Glass Gradient Style === */
+body.sandbox input[type="text"],
+body.sandbox input[type="number"],
+body.sandbox textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(180, 180, 255, 0.3);
+  background: linear-gradient(135deg, rgba(240, 240, 255, 0.1), rgba(180, 160, 255, 0.15));
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  box-shadow: inset 0 0 8px rgba(150, 150, 255, 0.2);
+  transition: all 0.25s ease;
+  backdrop-filter: blur(4px);
+}
+
+/* Focus glow */
+body.sandbox input:focus,
+body.sandbox textarea:focus {
+  outline: none;
+  border-color: rgba(150, 200, 255, 0.6);
+  box-shadow:
+    0 0 12px rgba(150, 200, 255, 0.3),
+    inset 0 0 8px rgba(200, 180, 255, 0.25);
+  background: linear-gradient(135deg, rgba(180, 160, 255, 0.2), rgba(150, 200, 255, 0.25));
+  transform: scale(1.01);
+}
+
+/* Light mode version */
+body.light.sandbox input[type="text"],
+body.light.sandbox input[type="number"],
+body.light.sandbox textarea {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+body.light.sandbox input:focus,
+body.light.sandbox textarea:focus {
+  border-color: rgba(120, 100, 255, 0.5);
+  box-shadow:
+    0 0 10px rgba(150, 120, 255, 0.2),
+    inset 0 0 6px rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 1);
+}
+
+/* === Labels + Text Alignment === */
+body.sandbox label {
+  display: block;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 5px;
+  opacity: 0.85;
+  text-align: left;
+}
+
+/* === Result / Output Text === */
+body.sandbox .result,
+body.sandbox .output {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  box-shadow: inset 0 0 8px rgba(150, 150, 255, 0.15);
+  margin-top: 10px;
+  transition: all 0.25s ease;
+}
+
+body.sandbox .result:empty,
+body.sandbox .output:empty {
+  display: none;
+}
+
+/* === Responsive Form Fit === */
+@media (max-width: 700px) {
+  body.sandbox input,
+  body.sandbox textarea,
+  body.sandbox button {
+    width: 100%;
+  }
+}
 
 
 /* 🌸 My Dev Journey — Final Polished Theme
