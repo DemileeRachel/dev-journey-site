@@ -70,40 +70,6 @@
   <div id="dev-status"></div>
 
   <script>
-    // === Animated "Debugging..." Text for Home Page ===
-    document.addEventListener("DOMContentLoaded", () => {
-      const statusEl = document.getElementById("dev-status");
-      if (statusEl) {
-        const messages = [
-          "💻 Debugging...",
-          "🧠 Refactoring code...",
-          "🚀 Compiling ideas...",
-          "🐾 Feeding the cats...",
-          "✨ Optimizing pixels...",
-          "🌿 Cleaning up code...",
-          "📊 Building data dreams..."
-        ];
-        let i = 0, j = 0, deleting = false;
-
-        function type() {
-          const cur = messages[i];
-          statusEl.textContent = cur.slice(0, j);
-          j += deleting ? -1 : 1;
-
-          if (!deleting && j === cur.length) {
-            deleting = true;
-            setTimeout(type, 1200);
-            return;
-          }
-          if (deleting && j === 0) {
-            deleting = false;
-            i = (i + 1) % messages.length;
-          }
-          setTimeout(type, deleting ? 40 : 90);
-        }
-        type();
-      }
-
       // === Floating Emojis for Home Page ===
       const emojiContainer = document.getElementById("emoji-container");
       function spawnEmoji() {
@@ -118,8 +84,7 @@
         setTimeout(() => e.remove(), 7000);
       }
       setInterval(spawnEmoji, 1500);
-    });
-  </script>
+      </script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const statusEl = document.getElementById("dev-status");
