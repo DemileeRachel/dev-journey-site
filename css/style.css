@@ -240,7 +240,17 @@ body.home .hero {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.hero h1 {
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
+.hero h1 .emoji {
+  -webkit-text-fill-color: initial !important;
+  background: none !important;
+  filter: none !important;
+}
 /* ===========================
    ABOUT PAGE — Fixed & Balanced
 =========================== */
@@ -534,3 +544,26 @@ body.light #dev-status {
   border-right-color: var(--text-light);
 }
 @keyframes blinkCursor { 50% { border-color: transparent; } }
+/* Hide typing challenge until triggered */
+#typing-challenge {
+  display: none;
+}
+#typing-challenge.active {
+  display: block;
+}
+#dev-status {
+  position: fixed;
+  bottom: 15px;
+  left: 20px;
+  font-family: monospace;
+  font-size: 1rem;
+  color: var(--text-dark);
+  opacity: 0.9;
+  white-space: nowrap;
+  pointer-events: none;
+  border-right: 2px solid var(--text-dark);
+  animation: blinkCursor 0.8s steps(1) infinite;
+  z-index: 9999;
+  overflow: hidden;         /* prevents flicker */
+  width: fit-content;       /* keeps width adaptive */
+}
