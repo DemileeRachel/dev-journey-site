@@ -2359,3 +2359,9 @@ body.certificates .content {
     color: #111 !important;
   }
 }
+/* === 🧹 REMOVE PORTAL VISUALLY (ALL PAGES) === */
+.portal-animation,
+.portal-home {
+  display: none !important;
+  visibility: hidden !important;
+}
