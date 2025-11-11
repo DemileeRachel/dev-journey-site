@@ -2425,3 +2425,125 @@ body.certificates .content {
     to { opacity: 1; transform: translateY(0); }
   }
 }
+/* ============================================
+   📱 MOBILE FIT PATCH (no desktop changes)
+   ============================================ */
+@media (max-width: 700px) {
+  /* Let pages scroll normally */
+  html, body {
+    height: auto !important;
+    min-height: 100%;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Make the fixed footer stop covering content */
+  footer {
+    position: relative !important;
+    height: auto !important;
+    padding: 14px 10px;
+    margin-top: 18px;
+  }
+
+  /* Give the main area breathing room between fixed navbar and footer */
+  main.content {
+    padding: calc(var(--nav-h) + 12px) 16px 80px; /* bottom ≥ footer height */
+    box-sizing: border-box;
+  }
+
+  /* Navbar: allow wrapping and shrink center widgets */
+  .navbar-inner {
+    width: 95%;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .center-group {
+    order: 2;                      /* moves under logo on small screens */
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+  }
+  #clock-container {
+    transform: scale(.9);
+    padding: 6px 10px;
+  }
+  #theme-toggle {
+    padding: 6px 10px;
+    width: auto;
+  }
+
+  /* Hamburger dropdown (works with your existing IDs/classes) */
+  .menu-toggle { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: var(--nav-h);
+    right: 12px;
+    flex-direction: column;
+    background: rgba(40,40,60,.95);
+    padding: 12px 16px;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0,0,0,.35);
+    backdrop-filter: blur(6px);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { margin: 6px 0; }
+
+  /* Remove fixed heights that were clipping content */
+  body.projects .projects-showcase,
+  body.sandbox  .projects-showcase,
+  body.about    .about-grid {
+    height: auto !important;
+    overflow: visible !important;
+    padding-bottom: 90px;           /* so footer never overlaps */
+    transform: none !important;     /* undo desktop "lift" */
+  }
+
+  /* Stacking columns/cards cleanly */
+  body.projects .projects-wrapper,
+  body.sandbox  .projects-wrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+  body.projects .projects-col,
+  body.sandbox  .projects-col,
+  body.projects .projects-center,
+  body.sandbox  .projects-center {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  /* Certificates grid: one column, comfy buttons */
+  .certificates-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+    padding: 0 12px;
+  }
+  .cert-card { text-align: center; }
+  .cert-card a {
+    display: block;
+    width: 85%;
+    margin: 8px auto 0;
+  }
+
+  /* Dev-status sits above footer and centers */
+  #dev-status {
+    position: relative !important;
+    bottom: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    width: 100%;
+    text-align: center;
+    font-size: .9rem;
+    margin: 10px 0 0;
+    white-space: normal;
+    line-height: 1.35;
+  }
+}
+
+/* Extra-small devices: save space by hiding the clock */
+@media (max-width: 400px) {
+  #clock-container { display: none !important; }
+}
