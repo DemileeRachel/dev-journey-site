@@ -1940,3 +1940,16 @@ body.about section.about-showcase {
 body.light #dev-status {
   color: #111 !important;
 }
+/* === 💼 ABOUT SKILLS COLLAPSE FIX === */
+body.about .skills-panel {
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+  overflow: hidden;
+  max-height: 800px; /* enough to show full panel */
+  opacity: 1;
+}
+
+body.about .skills-panel.collapsed {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+}

@@ -258,4 +258,14 @@ document.addEventListener("DOMContentLoaded", () => {
   statusEl.textContent = messages[0];
   setInterval(cycle, 3500);
 });
+/* === SKILLS COLLAPSE TOGGLE === */
+const skillsPanel = document.querySelector(".skills-panel");
+const toggleBtn = document.getElementById("toggleSkills");
+
+if (skillsPanel && toggleBtn) {
+  toggleBtn.addEventListener("click", () => {
+    const isCollapsed = skillsPanel.classList.toggle("collapsed");
+    toggleBtn.textContent = isCollapsed ? "Show Skills" : "Hide Skills";
+  });
+}
 </script>
