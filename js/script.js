@@ -415,4 +415,54 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.textContent = collapsed ? "📂 Show Skills" : "📂 Hide Skills";
   });
 });
+document.addEventListener("DOMContentLoaded", () => {
+  /* ====== 🕒 CLOCK ====== */
+  const clockContainer = document.getElementById("clock-container");
+  if (clockContainer) {
+    const clockLabel = document.createElement("h2");
+    clockLabel.textContent = "🕒 Time:";
+    const clockTime = document.createElement("span");
+    clockTime.id = "clock";
+    clockContainer.appendChild(clockLabel);
+    clockContainer.appendChild(clockTime);
+
+    const updateClock = () => {
+      const now = new Date();
+      const options = {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+        timeZone: "Europe/London",
+      };
+      clockTime.textContent = now.toLocaleTimeString("en-GB", options);
+    };
+    updateClock();
+    setInterval(updateClock, 1000);
+  }
+
+  /* ====== 🌗 THEME TOGGLE ====== */
+  const toggleBtn = document.getElementById("theme-toggle");
+  const body = document.body;
+
+  // Load stored theme
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "light") {
+    body.classList.add("light");
+    if (toggleBtn) toggleBtn.textContent = "🌙 Dark Mode";
+  } else {
+    body.classList.remove("light");
+    if (toggleBtn) toggleBtn.textContent = "☀️ Light Mode";
+  }
+
+  // Toggle when clicked
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      body.classList.toggle("light");
+      const isLight = body.classList.contains("light");
+      toggleBtn.textContent = isLight ? "🌙 Dark Mode" : "☀️ Light Mode";
+      localStorage.setItem("theme", isLight ? "light" : "dark");
+    });
+  }
+});
 }); // End DOMContentLoaded
