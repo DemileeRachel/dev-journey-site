@@ -1836,3 +1836,73 @@ body.about .portal-home {
     0 0 250px rgba(140, 100, 255, 0.7),
     0 0 50px rgba(160, 120, 255, 0.6); /* subtle lavender accent */
 }
+/* === 🧪 FINAL EMOJI TRUE COLOUR FIX FOR SANDBOX === */
+body.sandbox .projects-title .emoji {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  color: initial !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  display: inline !important;
+  isolation: isolate !important;
+}
+/* === 🌈 SANDBOX PANEL REMOVAL OVERRIDE === */
+body.sandbox .project-card {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  transition: none !important;
+  color: var(--text-dark) !important;
+}
+
+body.light.sandbox .project-card {
+  background: none !important;
+  box-shadow: none !important;
+  color: #111 !important;
+}
+/* === 🧪 FINAL SANDBOX EMOJI + PANEL FIX === */
+
+/* 🔹 Restore normal emoji colours for gradient headings */
+body.sandbox .projects-title .emoji {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  color: initial !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  display: inline !important;
+  isolation: isolate !important;
+}
+
+/* 🔹 Remove dark rounded panels from sandbox to match Projects layout */
+body.sandbox .project-card {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  transition: none !important;
+  color: var(--text-dark) !important;
+}
+
+/* 🔹 Light mode variant (keeps text readable on pale background) */
+body.light.sandbox .project-card {
+  background: none !important;
+  box-shadow: none !important;
+  color: #111 !important;
+}
+
+/* 🔹 Ensure sandbox layout spacing matches projects */
+body.sandbox .projects-wrapper {
+  align-items: center !important;
+}
+
+body.sandbox .projects-center {
+  text-align: center;
+  gap: 1rem;
+}
