@@ -2131,3 +2131,62 @@ body.certificates .content {
   padding: 2rem 1rem 6rem; /* bottom padding so footer doesn’t crowd */
   text-align: left;
 }
+/* ============================================
+   📱 CERTIFICATES PAGE — MOBILE OPTIMIZATION
+   ============================================ */
+@media (max-width: 700px) {
+
+  /* Make grid flow nicely */
+  .certificates-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  /* Keep cards readable and centered */
+  .cert-card {
+    padding: 1rem 1.2rem;
+    border-radius: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    text-align: center;
+  }
+
+  /* Buttons — stack vertically if too many */
+  .cert-card a {
+    display: block;
+    margin: 6px auto 0;
+    width: 80%;
+    text-align: center;
+  }
+
+  /* Title spacing and size */
+  h1 {
+    font-size: 1.6rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  /* Footer spacing so it doesn’t overlap cards */
+  footer {
+    position: relative;
+    margin-top: 2rem;
+  }
+
+  /* Navbar — stack neatly */
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* Dev status — shrink and reposition */
+  #dev-status {
+    bottom: 80px; /* above footer */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.85rem;
+    text-align: center;
+    white-space: normal;
+    width: 90%;
+  }
+}
