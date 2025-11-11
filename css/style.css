@@ -2055,3 +2055,43 @@ body.light .skills-body h4 { color: #0077ff; }
   .skills-header h2 { font-size: 1.1rem; }
   .skills-body li { font-size: 0.95rem; }
 }
+/* ==============================
+   CERTIFICATES PAGE
+============================== */
+.certificates-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.cert-card {
+  background: var(--panel-dark);
+  color: var(--text-dark);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.cert-card a {
+  color: var(--accent-a);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.cert-card a:hover {
+  text-decoration: underline;
+}
+
+.in-progress {
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px dashed var(--accent-b);
+}
