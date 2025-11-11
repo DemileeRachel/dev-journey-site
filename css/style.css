@@ -2317,3 +2317,45 @@ body.certificates .content {
     transform: translate(-50%, -50%) scale(0.8);
   }
 }
+/* ===============================
+   📱 FOOTER + DEV STATUS FIX (MOBILE)
+   =============================== */
+@media (max-width: 700px) {
+  /* Footer — becomes static and centered */
+  footer {
+    position: relative !important;
+    bottom: auto !important;
+    left: 0;
+    right: 0;
+    height: auto !important;
+    margin-top: 2rem;
+    padding: 1rem 0.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    background: rgba(42, 42, 59, 0.95); /* keep same tone */
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.2);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    z-index: 2;
+  }
+
+  /* Dev status — moves above footer, centered and readable */
+  #dev-status {
+    position: relative !important;
+    bottom: auto !important;
+    left: 0;
+    right: 0;
+    transform: none !important;
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+    margin: 1rem auto 0.5rem;
+    opacity: 0.9;
+    line-height: 1.4;
+    color: var(--text-dark) !important;
+    text-shadow: none !important;
+  }
+
+  body.light #dev-status {
+    color: #111 !important;
+  }
+}
