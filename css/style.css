@@ -2094,4 +2094,40 @@ body.light .skills-body h4 { color: #0077ff; }
   opacity: 0.8;
   background: rgba(255, 255, 255, 0.08);
   border: 1px dashed var(--accent-b);
+}/* =======================================================
+   ✨ CERTIFICATES BUTTON UPGRADE (MATCHES SITE THEME)
+   ======================================================= */
+.cert-card a {
+  display: inline-block;
+  margin-top: 8px;
+  background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 6px 14px;
+  box-shadow: 0 0 10px rgba(150,150,255,0.3);
+  transition: all 0.25s ease;
+}
+
+.cert-card a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(150,150,255,0.45);
+  filter: brightness(1.1);
+}
+
+/* Neater link stacking if there are multiple per card */
+.cert-card a + a {
+  margin-left: 6px;
+}
+
+/* Spacing for certificate text */
+.cert-card p {
+  margin-bottom: 10px;
+}
+body.certificates .content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem 6rem; /* bottom padding so footer doesn’t crowd */
+  text-align: left;
 }
