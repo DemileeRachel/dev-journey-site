@@ -1724,14 +1724,17 @@ body.sandbox .projects-title .emoji {
 }
 
 /* === NORMAL COLOUR EMOJI FIX FOR SANDBOX === */
-body.sandbox .projects-title .emoji {
+body.sandbox .sandbox-title .emoji {
   background: none !important;
   -webkit-background-clip: initial !important;
   -webkit-text-fill-color: initial !important;
+  color: initial !important;
   filter: none !important;
-  color: revert !important;
-  display: inline-block; /* prevents inheriting gradient clipping */
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  display: inline-block; /* prevents gradient clipping */
 }
+
 /* === Sandbox Button Glow + Gradient === */
 body.sandbox button,
 body.sandbox .fun-btn {
@@ -1756,18 +1759,13 @@ body.sandbox .fun-btn:hover {
     inset 0 0 12px rgba(255, 255, 255, 0.25);
   filter: brightness(1.15);
 }
-/* === Sandbox Emoji True Colour Fix === */
-body.sandbox .projects-title .emoji {
-  background: none !important;
-  -webkit-background-clip: initial !important;
-  -webkit-text-fill-color: initial !important;
-  color: initial !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-  opacity: 1 !important;
-  display: inline-block;
+
+body.sandbox button:active {
+  transform: translateY(0);
+  filter: brightness(1);
 }
-/* SANDBOX LAYOUT FIX */
+
+/* === SANDBOX LAYOUT FIX === */
 .sandbox-container {
   display: flex;
   flex-wrap: wrap;
@@ -1778,8 +1776,8 @@ body.sandbox .projects-title .emoji {
 }
 
 .sandbox-box {
-  background: none; /* remove panel background */
-  box-shadow: none; /* remove shadow */
+  background: none;        /* remove panel background */
+  box-shadow: none;        /* remove shadow */
   border: none;
   border-radius: 0;
   padding: 0;
@@ -1789,6 +1787,8 @@ body.sandbox .projects-title .emoji {
 
 .sandbox-box h3 {
   margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 /* Make inputs and buttons still look nice */
@@ -1797,7 +1797,15 @@ body.sandbox .projects-title .emoji {
   border-radius: 10px;
   border: none;
   padding: 0.5rem 1rem;
+  font-size: 0.95rem;
 }
+
+/* Optional: subtle alignment for uniform look */
+.sandbox-container > * {
+  flex: 1 1 280px;
+  max-width: 320px;
+}
+
 
 /* === Portal Alignment Adjustment (centered between panels) === */
 body.about .portal-home {
