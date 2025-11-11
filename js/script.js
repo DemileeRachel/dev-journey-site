@@ -403,4 +403,16 @@ if (portal) {
   // spawn sparks every 400–800ms
   setInterval(spawnSpark, 400 + Math.random() * 400);
 })();
+// === 📂 Collapsible Skills Panel with Emoji Toggle ===
+document.addEventListener("DOMContentLoaded", () => {
+  const panel = document.getElementById("skills");
+  const toggle = document.getElementById("toggleSkills");
+  if (!panel || !toggle) return;
+
+  toggle.addEventListener("click", () => {
+    panel.classList.toggle("collapsed");
+    const collapsed = panel.classList.contains("collapsed");
+    toggle.textContent = collapsed ? "📂 Show Skills" : "📂 Hide Skills";
+  });
+});
 }); // End DOMContentLoaded

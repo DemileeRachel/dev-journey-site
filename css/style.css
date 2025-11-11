@@ -1953,3 +1953,105 @@ body.about .skills-panel.collapsed {
   opacity: 0;
   pointer-events: none;
 }
+/* === 💼 ABOUT SKILLS PANEL — SMOOTH COLLAPSE + EMOJI TOGGLE === */
+.skills-panel {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.45s ease-in-out;
+  overflow: hidden;
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.skills-panel.collapsed {
+  max-height: 68px; /* keep header visible */
+  opacity: 0.85;
+}
+
+/* Header row */
+.skills-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.skills-header h2 {
+  color: var(--accent-a);
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.skills-header button {
+  font-size: 0.9rem;
+  padding: 5px 12px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(150,150,255,0.4);
+  transition: all 0.25s ease;
+}
+
+.skills-header button:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Body fade */
+.skills-body {
+  margin-top: 14px;
+  opacity: 1;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.skills-panel.collapsed .skills-body {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+/* Typography + lists */
+.skills-body h4 {
+  margin: 10px 0 4px;
+  color: var(--accent-b);
+  font-size: 1rem;
+}
+
+.skills-body ul {
+  margin: 0 0 10px 18px;
+  padding: 0;
+  list-style-type: "✨ ";
+}
+
+.skills-body li {
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+/* 🌞 Light mode */
+body.light .skills-panel {
+  background: rgba(0,0,0,0.05);
+  color: #111;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+body.light .skills-header h2 { color: #6b4eff; }
+body.light .skills-body h4 { color: #0077ff; }
+
+/* 📱 Responsive */
+@media (max-width: 900px) {
+  .skills-panel {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .skills-header h2 { font-size: 1.1rem; }
+  .skills-body li { font-size: 0.95rem; }
+}
