@@ -1767,6 +1767,37 @@ body.sandbox .projects-title .emoji {
   opacity: 1 !important;
   display: inline-block;
 }
+/* SANDBOX LAYOUT FIX */
+.sandbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.sandbox-box {
+  background: none; /* remove panel background */
+  box-shadow: none; /* remove shadow */
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  transition: none;
+  color: var(--text-dark);
+}
+
+.sandbox-box h3 {
+  margin-bottom: 0.8rem;
+}
+
+/* Make inputs and buttons still look nice */
+.sandbox-box input,
+.sandbox-box button {
+  border-radius: 10px;
+  border: none;
+  padding: 0.5rem 1rem;
+}
 
 /* === Portal Alignment Adjustment (centered between panels) === */
 body.about .portal-home {
