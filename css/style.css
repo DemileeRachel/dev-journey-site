@@ -1928,3 +1928,15 @@ body.about .about-wrapper,
 body.about section.about-showcase {
   position: relative;
 }
+/* === 💬 DEV STATUS COLOR FIX === */
+#dev-status {
+  color: var(--text-dark) !important;  /* normal text color */
+  text-shadow: none !important;        /* remove blue glow */
+  filter: none !important;             /* stop hue filtering */
+  opacity: 0.9;                        /* clean smooth text */
+}
+
+/* Light mode variant (ensures contrast stays readable) */
+body.light #dev-status {
+  color: #111 !important;
+}
