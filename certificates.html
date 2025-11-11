@@ -102,5 +102,49 @@
   <footer>
     © 2025 My Dev Journey · built with 💜
   </footer>
+  <!-- FLOATING DEV STATUS -->
+<div id="dev-status"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const statusEl = document.getElementById("dev-status");
+    if (!statusEl) return;
+
+    const messages = [
+      "🏆 Compiling certifications...",
+      "🎓 Polishing trophy cabinet...",
+      "📜 Validating course completions...",
+      "💡 Syncing Sololearn achievements...",
+      "🐍 Importing Python credentials...",
+      "🧠 Optimizing skill tree...",
+      "⚙️ Rendering learning progress...",
+      "✨ Leveling up expertise..."
+    ];
+
+    let i = 0, j = 0, deleting = false;
+
+    function typeEffect() {
+      const msg = messages[i];
+      if (!deleting && j < msg.length) {
+        statusEl.textContent = msg.slice(0, j + 1);
+        j++;
+        setTimeout(typeEffect, 70);
+      } else if (deleting && j > 0) {
+        statusEl.textContent = msg.slice(0, j - 1);
+        j--;
+        setTimeout(typeEffect, 30);
+      } else if (!deleting && j === msg.length) {
+        deleting = true;
+        setTimeout(typeEffect, 1800);
+      } else {
+        deleting = false;
+        i = (i + 1) % messages.length;
+        setTimeout(typeEffect, 200);
+      }
+    }
+
+    typeEffect();
+  });
+</script>
 </body>
 </html>
