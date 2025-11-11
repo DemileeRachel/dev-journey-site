@@ -465,4 +465,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+
+  if (menuToggle && navLinks) {
+    // Toggle open/close on click
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    // Auto-close when a link is tapped
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+  }
+});
 }); // End DOMContentLoaded

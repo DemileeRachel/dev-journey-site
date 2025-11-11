@@ -2365,3 +2365,63 @@ body.certificates .content {
   display: none !important;
   visibility: hidden !important;
 }
+/* =====================================
+   📱 RESPONSIVE NAVBAR + HAMBURGER FIX
+   ===================================== */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #fff;
+  background: none;
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 700px) {
+  .menu-toggle {
+    display: block;
+    z-index: 1001;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: var(--nav-h);
+    right: 15px;
+    flex-direction: column;
+    background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+    padding: 14px 18px;
+    border-radius: 14px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.25s ease;
+  }
+
+  .nav-links a {
+    display: block;
+    margin: 8px 0;
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+  }
+
+  .nav-links a:hover {
+    opacity: 0.85;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
