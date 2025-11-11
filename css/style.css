@@ -2095,3 +2095,43 @@ body.light .skills-body h4 { color: #0077ff; }
   background: rgba(255, 255, 255, 0.08);
   border: 1px dashed var(--accent-b);
 }
+/* =========================
+   NAVBAR UNIVERSAL
+========================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+}
+
+.navbar a {
+  color: #fff;
+  font-weight: 500;
+  margin: 0 1rem;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.navbar a:hover {
+  opacity: 0.8;
+  transform: translateY(-2px);
+}
+
+.navbar .active {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.nav-left .nav-logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
