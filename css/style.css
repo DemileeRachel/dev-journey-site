@@ -2576,3 +2576,33 @@ body.light .nav-links a.active {
   background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
   border-radius: 2px;
 }
+/* === ☀️ LIGHT MODE FIX — ABOUT PAGE TEXT VISIBILITY === */
+body.light.about .about-card,
+body.light.about .skills-panel {
+  background: rgba(0, 0, 0, 0.05);          /* soft neutral panel */
+  color: #111 !important;                   /* strong readable text */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Make sure nested text inherits correctly */
+body.light.about .about-card p,
+body.light.about .about-card h3,
+body.light.about .skills-panel h2,
+body.light.about .skills-panel h4,
+body.light.about .skills-panel li {
+  color: #111 !important;
+  opacity: 1 !important;
+}
+
+/* Links + emojis stay colourful */
+body.light.about a,
+body.light.about .emoji {
+  filter: none !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+/* Optional: brighten accent headers in light mode */
+body.light.about .skills-header h2 {
+  color: #6b4eff !important;
+}
