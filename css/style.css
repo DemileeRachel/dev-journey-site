@@ -2606,3 +2606,42 @@ body.light.about .emoji {
 body.light.about .skills-header h2 {
   color: #6b4eff !important;
 }
+/* === ☀️ LIGHT MODE FIX — CERTIFICATES PAGE TEXT & CARDS === */
+body.light.certificates .cert-card {
+  background: rgba(0, 0, 0, 0.05) !important;   /* soft neutral white/grey */
+  color: #111 !important;                      /* readable dark text */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* Headings */
+body.light.certificates .cert-card h3 {
+  color: #222 !important;
+}
+
+/* Descriptive text */
+body.light.certificates .cert-card p {
+  color: #444 !important;
+  opacity: 1 !important;
+}
+
+/* In-progress cards */
+body.light.certificates .cert-card.in-progress {
+  background: rgba(0,0,0,0.04) !important;
+  border: 1px dashed #7b4dff !important;
+}
+
+/* Links (buttons) stay colorful and readable */
+body.light.certificates .cert-card a {
+  color: #333 !important;
+  font-weight: 600;
+}
+
+/* Button backgrounds stay clean */
+body.light.certificates .cert-card a {
+  background: linear-gradient(135deg, #d4b8ff, #a5d8ff) !important;
+  color: #111 !important;
+  border-radius: 10px;
+  padding: 6px 12px;
+  display: inline-block;
+}
