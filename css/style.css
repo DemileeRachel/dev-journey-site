@@ -2685,3 +2685,40 @@ body.light.certificates .cert-card a {
   display: inline-block;
   font-weight: 600;
 }
+/* === MINI GAME CTA BUTTON === */
+.mini-game-btn{
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 26px;
+  font-size: 12px;
+  font-family: "Press Start 2P", monospace;
+
+  color: #ffffff;
+  text-decoration: none;
+
+  background: linear-gradient(135deg, #6c3dff, #9b7bff);
+  border: 3px solid #3b1fb8;
+  border-radius: 14px;
+
+  box-shadow:
+    0 6px 0 #2a157a,
+    0 10px 20px rgba(108,61,255,0.45);
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Hover = lift */
+.mini-game-btn:hover{
+  transform: translateY(-4px);
+  box-shadow:
+    0 10px 0 #2a157a,
+    0 18px 28px rgba(108,61,255,0.55);
+}
+
+/* Click = press */
+.mini-game-btn:active{
+  transform: translateY(2px);
+  box-shadow:
+    0 4px 0 #2a157a,
+    0 6px 12px rgba(108,61,255,0.4);
+}
